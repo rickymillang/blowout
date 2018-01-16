@@ -15,9 +15,14 @@ class CreateEstablishmentsTable extends Migration
     {
         Schema::create('establishments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('e_type')->unsigned();
             $table->string('name');
             $table->string('address');
+            $table->string('image');
+
             $table->timestamps();
+            $table->foreign('e_type')->references('id')->on('establishment_types');
+
         });
     }
 

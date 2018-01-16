@@ -2,7 +2,7 @@
 <div class="col-md-3">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			{{ auth()->user()->name }}
+		   <img src="{{ asset(auth()->user()->avatar) }}" alt="" style="border-radius: 50%"  width="30px" height="30px"/>	{{ auth()->user()->name }}
 		</div>
 		<div class="panel-footer">
 			{{ auth()->user()->email }}
@@ -18,7 +18,8 @@
         <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
     </ul>
 
+    @if(!auth()->user()->hasRole('establishment.admin'))
 
-        <a href="/establishment" class="btn btn-success btn-block"><span class="fa fa-building"></span> Register Establishment Here</a>
-
+        <a href="/establishments" class="btn btn-success btn-block"><span class="fa fa-building"></span> Register Establishment Here</a>
+    @endif
 </div>

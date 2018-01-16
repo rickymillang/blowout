@@ -51,11 +51,20 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <img src="{{ asset(auth()->user()->avatar) }}" alt="" style="border-radius: 50%"  width="30px" height="30px"/> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#"> Profile</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="#">My Establishment</a>
+
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -77,6 +86,15 @@
 
 
         @if(str_contains(request()->url(), 'login') || str_contains(request()->url(), 'register'))
+            <div class="col-sm-12">
+                   		@if ($message = session('message'))
+               				<div class="alert alert-success alert-dismissible" role="alert">
+               					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+               					</button>
+               					<strong>Success!</strong> {{ $message }}
+               				</div>
+                           @endif
+                   	</div>
             @yield('content')
         @else
             <div class="container">
