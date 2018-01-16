@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('heading', 'Lol')
+@section('heading', 'Dashboard')
 
 @section('content')
-Hello
+Welcome to your blowout dashboard!
 @endsection

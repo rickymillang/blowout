@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Blowout') }}</title>
 
     <!-- Styles -->
 
@@ -33,7 +33,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Blowout') }}
                     </a>
                 </div>
 
@@ -83,18 +83,18 @@
                 </div>
             </div>
         </nav>
-
+        <div class="col-sm-12">
+                @if ($message = session('message'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Success!</strong> {{ $message }}
+                    </div>
+                   @endif
+            </div>
 
         @if(str_contains(request()->url(), 'login') || str_contains(request()->url(), 'register'))
-            <div class="col-sm-12">
-                   		@if ($message = session('message'))
-               				<div class="alert alert-success alert-dismissible" role="alert">
-               					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-               					</button>
-               					<strong>Success!</strong> {{ $message }}
-               				</div>
-                           @endif
-                   	</div>
+
             @yield('content')
         @else
             <div class="container">

@@ -79,7 +79,7 @@ class EstablishmentController extends Controller
             session()->flash('message', 'Fail to registered establishment!');
         }
 
-        return redirect()->back();
+        return redirect('/home');
     }
 
     /**

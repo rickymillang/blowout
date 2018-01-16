@@ -6,15 +6,7 @@
 
 
    <form class="form-horizontal" method="POST" action="/establishments" enctype="multipart/form-data">
-      <div class="col-sm-12">
-                       		@if ($message = session('message'))
-                   				<div class="alert alert-success alert-dismissible" role="alert">
-                   					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                   					</button>
-                   					<strong>Success!</strong> {{ $message }}
-                   				</div>
-                               @endif
-                       	</div>
+
    		{{ csrf_field() }}
 
 
