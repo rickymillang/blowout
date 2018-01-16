@@ -12,7 +12,7 @@
     </div>
     <hr>
     <form class="form-horizontal" method="POST" action="/products" enctype="multipart/form-data">
-    	
+
 		{{ csrf_field() }}
 
 		<div class="form-group">
@@ -31,7 +31,10 @@
             <label for="product_type" class="col-md-2 col-md-offset-2 control-label">Product Type</label>
 			<div class="col-md-6">
 				<select id="product_type" class="form-control" name="product_type">
-                	<option value="1">lol</option>
+                	<option >select product type</option>
+                	@foreach($product_type as $key => $val)
+                	<option value="{{ $key }}">{{ $val }}</option>
+                	@endforeach
             	</select>
 			</div>
 

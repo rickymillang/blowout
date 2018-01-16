@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -13,10 +15,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->product_type = ProductType::pluck('name','id');
+      
+    }
+
     public function index()
     {
         $products = Product::all();
-        return view('products.index', compact('products'));
+        return view('products.index')
+                ->with('products',$products);
     }
 
     /**
@@ -26,7 +34,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create')
+            ->with('product_type',$this->product_type);
     }
 
     /**
