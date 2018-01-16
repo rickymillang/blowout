@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('custom_css')
 </head>
 <body>
     <div id="app">
@@ -71,10 +72,29 @@
             </div>
         </nav>
 
-        @yield('content')
+
+        @if(str_contains(request()->url(), 'login') || str_contains(request()->url(), 'register'))
+            @yield('content')
+        @else
+            <div class="container">
+                <div class="row">
+                    @include('layouts.sidenav')
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h3>@yield('heading')</h3></div>
+
+                            <div class="panel-body">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('custom_js')
 </body>
 </html>
