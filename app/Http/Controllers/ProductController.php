@@ -46,9 +46,9 @@ class ProductController extends Controller
         ]);
 
         if (request()->hasFile('image')) {
-            $image = Storage::putFile('images', $request->file('image'));
+            $image = Storage::putFile('images/product', $request->file('image'));
         } else {
-            $image = "images/avatar.jpg";
+            $image = "images/avatar.png";
         }
         Product::create([
             'name' => $request->name,
