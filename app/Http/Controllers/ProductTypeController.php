@@ -80,7 +80,17 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, ProductType $productType)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $productType->name = $request->name;
+
+        $productType->save();
+
+        session()->flash('message', 'Product type successfully saved.');
+
+        return redirect()->back();
     }
 
     /**

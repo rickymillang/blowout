@@ -99,7 +99,7 @@
         @else
             <div class="container">
                 <div class="row">
-                    @include('layouts.sidenav')
+                   @include('layouts.sidenav')
                     <div class="col-md-9">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3>@yield('heading')</h3></div>

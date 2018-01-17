@@ -7,7 +7,6 @@ use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class ProductController extends Controller
 {
     /**
@@ -15,16 +14,29 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-        $this->product_type = ProductType::pluck('name','id');
+     public function __construct(){
+
+        $this->middleware(function ($request, $next) {
+
+            $this->user = auth()->user()->id;
+
+             $this->product_type = ProductType::pluck('name','id');
+
+             $this->products = Product::where('user',$this->user)->get();
       
+
+          return $next($request);
+        });
+
+       
+    
     }
 
     public function index()
     {
-        $products = Product::all();
+        
         return view('products.index')
-                ->with('products',$products);
+                    ->with('products',$this->products);
     }
 
     /**
@@ -34,8 +46,9 @@ class ProductController extends Controller
      */
     public function create()
     {
+       
         return view('products.create')
-            ->with('product_type',$this->product_type);
+                ->with('product_type',$this->product_type);
     }
 
     /**
@@ -47,6 +60,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+
             'name' => 'required|string',
             'description' => 'required|string',
             'product_type' => 'required|integer',
@@ -55,11 +69,12 @@ class ProductController extends Controller
         ]);
 
         if (request()->hasFile('image')) {
-            $image = Storage::putFile('images/product', $request->file('image'));
+            $image = Storage::putFile('images', $request->file('image'));
         } else {
-            $image = "images/avatar.png";
+            $image = "images/avatar.jpg";
         }
         Product::create([
+            'user' => $this->user,
             'name' => $request->name,
             'description' => $request->description,
             'product_type_id' => $request->product_type,
@@ -91,7 +106,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $product_types = ProductType::pluck('name', 'id');
+        return view('products.edit', compact('product', 'product_types'));
     }
 
     /**
@@ -103,7 +119,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'product_type' => 'required|integer',
+            'price' => 'required',
+            'image' => 'image'
+        ]);
+
+        if (request()->hasFile('image')) {
+            $image = Storage::putFile('images', $request->file('image'));
+            $product->image = $image;
+        }
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->product_type_id = $request->product_type;
+        $product->price = $request->price;
+
+        $product->save();
+
+        session()->flash('message', 'Product successfully saved');
+
+        return redirect()->back();
     }
 
     /**

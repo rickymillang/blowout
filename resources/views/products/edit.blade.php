@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('heading', 'Add Products')
+@section('heading', 'Edit Product')
 
 @section('content')
 	<div class="container" style="margin-bottom:10px;">
@@ -11,7 +11,7 @@
         </div>
     </div>
     <hr>
-    <form class="form-horizontal" method="POST" action="/products" enctype="multipart/form-data">
+    <form class="form-horizontal" method="POST" action="/products/{{ $product->id }}" enctype="multipart/form-data">
     	<div class="col-sm-12">
     		@if ($message = session('message'))
 				<div class="alert alert-success alert-dismissible" role="alert">
@@ -22,17 +22,17 @@
             @endif
     	</div>
 		{{ csrf_field() }}
-
+		{{ method_field('PATCH')}}
 		<div class="form-group">
 			<label for="name" class="col-md-2 col-md-offset-2 control-label">Product Name</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="name">
+				<input type="text" class="form-control" name="name" value="{{ $product->name }}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="description">
+				<input type="text" class="form-control" name="description" value="{{ $product->description }}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -49,13 +49,13 @@
 		<div class="form-group">
 			<label for="price" class="col-md-2 col-md-offset-2 control-label">Price</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="price">
+				<input type="number" class="form-control" name="price" value="{{ $product->price }}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="photo" class="col-md-2 col-md-offset-2 control-label">Image</label>
 			<div class="col-md-6">
-				<input id="avatar" type="file" name="image">
+				<input id="avatar" type="file" name="image" value="{{ $product->image }}">
 			</div>
 		</div>
 		<div class="form-group">

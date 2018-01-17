@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('heading', 'Edit Product Type')
+@section('heading', 'Add Services')
 
 @section('content')
 	<div class="container" style="margin-bottom:10px;">
         <div class="row">
             <div class="col-sm-12">
-                <a href="/product_types/" class="btn btn-success">View Product Types</a>
+                <a href="/services/" class="btn btn-success">View Services</a>
             </div>
         </div>
     </div>
     <hr>
-    <form class="form-horizontal" method="POST" action="/products">
+    <form class="form-horizontal" method="POST" action="/services">
     	<div class="col-sm-12">
     		@if ($message = session('message'))
 				<div class="alert alert-success alert-dismissible" role="alert">
@@ -24,12 +24,23 @@
 		{{ csrf_field() }}
 
 		<div class="form-group">
-			<label for="name" class="col-md-2 col-md-offset-2 control-label">Product Type</label>
+			<label for="name" class="col-md-2 col-md-offset-2 control-label">Service Name</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="name" value="{{ $product_type->name">
+				<input type="text" class="form-control" name="name">
 			</div>
 		</div>
-
+		<div class="form-group">
+			<label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" name="description">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="price" class="col-md-2 col-md-offset-2 control-label">Price</label>
+			<div class="col-md-6">
+				<input type="number" class="form-control" name="price">
+			</div>
+		</div>
 		<div class="form-group">
 			<div class="col-md-6 col-md-offset-4">
 				<button class="btn btn-primary btn-fullwidth">Submit</button>
