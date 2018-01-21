@@ -12,12 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/establishment/list','PageController@lists');
+Route::get('/about-us','PageController@about_us');
+Route::get('/contact-us','PageController@contact_us');
+Route::get('/meet-the-team','PageController@meet_the_team');
 
 Route::resource('/products', 'ProductController');
 Route::resource('/product_types', 'ProductTypeController');

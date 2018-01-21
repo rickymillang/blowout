@@ -18,7 +18,7 @@ class CreateEstablishmentsTable extends Migration
             $table->integer('e_type')->unsigned();
             $table->string('name');
             $table->string('address');
-            $table->string('image');
+            $table->string('image')s;
 
             $table->timestamps();
             $table->foreign('e_type')->references('id')->on('establishment_types');
