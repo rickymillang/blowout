@@ -1,4 +1,3 @@
-
 <div class="col-md-3">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -18,6 +17,10 @@
             <li role="presentation"><a href="/packages"><span class="fa fa-window-restore"></span> Packages</a></li>
             <li role="presentation"><a href="/invoices"><span class="fa fa-file-text-o"></span> Invoices</a></li>
         @endif
+        @role('superadmin')
+            <li role="presentation"><a href="/customers"><span class="fa fa-file-text-o"></span> Customers</a></li>
+            <li role="presentation"><a href="/administrators"><span class="fa fa-file-text-o"></span> Administrators</a></li>
+        @endrole
         <li role="presentation"><a href="/payments"><span class="fa fa-credit-card"></span> Payments</a></li>
         <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
     </ul>
@@ -28,4 +31,3 @@
     @endif
 </div>
 
- 
