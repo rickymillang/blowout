@@ -15,26 +15,19 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
      public function __construct(){
-
         $this->middleware(function ($request, $next) {
-
             $this->user = auth()->user()->id;
 
-             $this->product_type = ProductType::pluck('name','id');
+            $this->product_type = ProductType::pluck('name','id');
 
-             $this->products = Product::where('user',$this->user)->get();
-      
+            $this->products = Product::where('user',$this->user)->get();
 
-          return $next($request);
+            return $next($request);
         });
-
-       
-    
     }
 
     public function index()
     {
-        
         return view('products.index')
                     ->with('products',$this->products);
     }
@@ -46,7 +39,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-       
         return view('products.create')
                 ->with('product_type',$this->product_type);
     }
@@ -60,7 +52,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
             'name' => 'required|string',
             'description' => 'required|string',
             'product_type' => 'required|integer',
