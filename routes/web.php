@@ -27,3 +27,17 @@ Route::resource('/products', 'ProductController');
 Route::resource('/product_types', 'ProductTypeController');
 Route::resource('/establishments','EstablishmentController');
 Route::resource('/services', 'ServiceController');
+
+Route::group(['prefix' => 'customers', 'middleware' => ['auth', 'role:superadmin']], function() {
+    Route::get('/', 'CustomerController@index');
+    Route::delete('/{id}', 'CustomerController@destroy');
+});
+
+Route::group(['prefix' => 'administrators', 'middleware' => ['auth', 'role:superadmin']], function() {
+    Route::get('/', 'AdministratorController@index');
+    Route::delete('/{id}', 'AdministratorController@destroy');
+    Route::get('/create', 'AdministratorController@create');
+    Route::post('/', 'AdministratorController@store');
+    Route::get('/{id}/edit', 'AdministratorController@edit');
+    Route::patch('/{id}', 'AdministratorController@update');
+});
