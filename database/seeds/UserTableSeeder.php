@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\Role;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
@@ -18,8 +19,13 @@ class UserTableSeeder extends Seeder
         $user->create([
             'name' => 'superadmin',
             'email' => 'superadmin@gmail.com',
-            'password' => bcrypt('superadmin123'),
+            'password' => bcrypt('password'),
             'avatar' => "images/user/avatar.png"
-            ]);
+        ]);
+
+        $super_admin = Role::findOrFail(1);
+        $user = User::findOrFail(1);
+        $user->attachRole($super_admin);
+
     }
 }
