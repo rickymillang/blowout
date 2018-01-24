@@ -41,3 +41,11 @@ Route::group(['prefix' => 'administrators', 'middleware' => ['auth', 'role:super
     Route::get('/{id}/edit', 'AdministratorController@edit');
     Route::patch('/{id}', 'AdministratorController@update');
 });
+
+Route::group(['prefix' => 'establishment_types', 'middleware' => ['auth', 'role:superadmin']], function () {
+    Route::get('/', 'EstablishmentTypeController@index');
+    Route::get('/create', 'EstablishmentTypeController@create');
+    Route::post('/', 'EstablishmentTypeController@store');
+    Route::get('/{id}/edit', 'EstablishmentTypeController@edit');
+    Route::patch('/{id}', 'EstablishmentTypeController@update');
+});
