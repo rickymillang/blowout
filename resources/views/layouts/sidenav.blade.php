@@ -24,7 +24,6 @@
             <li role="presentation"><a href="/establishments"><span class="fa fa-file-text-o"></span> Establishments</a></li>
             <li role="presentation"><a href="/customers"><span class="fa fa-file-text-o"></span> Customers</a></li>
             <li role="presentation"><a href="/administrators"><span class="fa fa-file-text-o"></span> Administrators</a></li>
-            <li role="presentation"><a href="/establishments"><span class="fa fa-file-text-o"></span> Establishments</a></li>
         @endrole
 
 
