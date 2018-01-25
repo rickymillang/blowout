@@ -61,10 +61,12 @@
                                         <a href="#"> Profile</a>
 
                                     </li>
+                                    @role('establishment.admin')
                                     <li>
                                         <a href="#">My Establishment</a>
 
                                     </li>
+                                    @endrole
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
