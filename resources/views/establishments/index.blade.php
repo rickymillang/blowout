@@ -1,49 +1,37 @@
 @extends('layouts.app')
 
-@section('heading', 'Register Establishment')
+@section('heading', 'View Establishments')
 
 @section('content')
+    <table class="table table-striped table-hover" id="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($establishments as $establishment)
+                <tr>
+                    <td>{{ $establishment->name }}</td>
+					<td>{{ $establishment->address }}</td>
+					<td>{{ $establishment->establishment_type->name }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
 
+@section('custom_css')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+@endsection
 
-   <form class="form-horizontal" method="POST" action="/establishments" enctype="multipart/form-data">
-
-   		{{ csrf_field() }}
-
-
-   		<div class="form-group">
-   			<label for="name" class="col-md-2 col-md-offset-2 control-label">Name</label>
-   			<div class="col-md-6">
-   				<input type="text" name="name" id="name" class="form-control"/>
-   			</div>
-   		</div>
-   		<div class="form-group">
-               <label for="address" class="col-md-2 col-md-offset-2 control-label">Address</label>
-   			<div class="col-md-6">
-   				<input type="text" name="address" id="address" class="form-control"/>
-   			</div>
-
-         </div>
-   		<div class="form-group">
-            <label for="establishment_type" class="col-md-2 col-md-offset-2 control-label">Type</label>
-            <div class="col-md-6">
-                <select name="establishment_type" id="establishment_type" class="form-control">
-                    <option >select establishment type</option>
-                    @foreach($establishment_types as $key => $value)
-                        <option value="{{$key}}">{{ $value }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-   		<div class="form-group">
-   			<label for="photo" class="col-md-2 col-md-offset-2 control-label">Image</label>
-   			<div class="col-md-6">
-   				<input id="avatar" type="file" name="image">
-   			</div>
-   		</div>
-   		<div class="form-group">
-   			<div class="col-md-6 col-md-offset-4">
-   				<button class="btn btn-primary btn-fullwidth">Register</button>
-   			</div>
-   		</div>
-       </form>
+@section('custom_js')
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#table').DataTable();
+} );
+</script>
 @endsection

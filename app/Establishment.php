@@ -9,4 +9,9 @@ class Establishment extends Model
     protected $table = 'establishments';
 
     protected $fillable = ['e_type','name','address','image'];
+
+    public function establishment_type()
+    {
+        return $this->belongsTo(EstablishmentType::class, 'e_type');
+    }
 }
