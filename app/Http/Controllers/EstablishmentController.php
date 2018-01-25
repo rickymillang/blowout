@@ -17,13 +17,13 @@ class EstablishmentController extends Controller
      */
     public function __construct(){
         $this->establishment_types = EstablishmentType::pluck('name','id');
-
+        $this->establishments = Establishment::all();
     }
 
     public function index()
     {
         return view('establishments.index')
-                    ->with('establishment_types',$this->establishment_types);
+                    ->with('establishments', $this->establishments);
     }
 
     /**
@@ -33,7 +33,8 @@ class EstablishmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('establishments.create')
+                ->with('establishment_types', $this->establishment_types);
     }
 
     /**
@@ -101,7 +102,9 @@ class EstablishmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $establishment = Establishment::find($id);
+        return view('establishments.edit', compact('establishment'))
+                ->with('establishment_types', $this->establishment_types);
     }
 
     /**
