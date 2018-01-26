@@ -39,8 +39,9 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         return view('products.create')
-                ->with('product_type',$this->product_type);
+                ->with('product_types',$this->product_type);
     }
 
     /**
