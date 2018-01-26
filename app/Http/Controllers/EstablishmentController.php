@@ -63,6 +63,7 @@ class EstablishmentController extends Controller
                         'name' => $request->name,
                         'address' => $request->address,
                         'e_type' => $request->establishment_type,
+                        'user_id' => auth()->user()->id,
                         'image' => $image
                         ]);
 
