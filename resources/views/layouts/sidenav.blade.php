@@ -29,9 +29,8 @@
 
     </ul>
 
-    @role('customer')
-
+    @if(!auth()->user()->hasRole('establishment.admin') || !auth()->user()->hasRole('superadmin'))
         <a href="/establishments/create" class="btn btn-success btn-block"><span class="fa fa-building"></span> Register Establishment Here</a>
-    @endrole
+    @endif
 </div>
 
