@@ -17,8 +17,6 @@
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->email }}</td>
                     <td>
-                    	<a href="/customers/{{ $customer->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
-
                     	<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#customer{{ $customer->id }}">Delete</button>
                     	<div id="customer{{ $customer->id }}"class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
                     		<div class="modal-dialog modal-sm" role="document">
