@@ -18,7 +18,7 @@ class ProductController extends Controller
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user()->id;
 
-            $this->product_type = ProductType::pluck('name','id');
+            $this->product_type = ProductType::where('establishment_id', auth()->user()->establishment->id)->pluck('name','id');
 
             $this->products = Product::where('user',$this->user)->get();
 
