@@ -41,7 +41,8 @@ class ProductTypeController extends Controller
         ]);
 
         ProductType::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'establishment_id' => auth()->user()->establishment->id
         ]);
 
         session()->flash('message', 'Product type successfully added');
