@@ -124,7 +124,29 @@ class EstablishmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'min:4|required|string|unique:establishments,id',
+            'description' => 'required|string',
+            'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments,id'],
+            'email' => 'email|required|unique:establishments,id',
+            'address' => 'required',
+            'owner_name' => 'required'
+        ]);
+
+        $establishment = Establishment::find($id);
+
+        $establishment->name = $request->name;
+        $establishment->description = $request->description;
+        $establishment->phone = $request->phone;
+        $establishment->email = $request->email;
+        $establishment->address = $request->address;
+        $establishment->owner_name = $request->owner_name;
+
+        $establishment->save();
+
+        session()->flash('message', 'Establishment successfully saved');
+
+        return redirect()->back();
     }
 
     /**
