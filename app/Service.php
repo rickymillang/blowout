@@ -8,7 +8,7 @@ class Service extends Model
 {
     protected $table = 'services';
 
-    protected $fillable = ['user','name','description','price'];
+    protected $fillable = ['establishment_id', 'name', 'description', 'price'];
 
     public function packages()
     {
