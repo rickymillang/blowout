@@ -36,7 +36,7 @@ class EstablishmentController extends Controller
     public function create()
     {
         if (!auth()->user()->hasRole('admin')) {
-            if (!Establishment::where('user_id', auth()->user()->id)->get()) {
+            if ($establishment = !Establishment::where('user_id', auth()->user()->id)->first()) {
                 return view('establishments.create')
                     ->with('establishment_types', $this->establishment_types);
             } else {
