@@ -20,9 +20,9 @@
         @endrole
         @role('superadmin')
             <li role="presentation"><a href="/establishment_types"><span class="fa fa-file-text-o"></span> Establishment Types</a></li>
-            <li role="presentation"><a href="/establishments"><span class="fa fa-file-text-o"></span> Establishments</a></li>
-            <li role="presentation"><a href="/customers"><span class="fa fa-file-text-o"></span> Customers</a></li>
-            <li role="presentation"><a href="/administrators"><span class="fa fa-file-text-o"></span> Administrators</a></li>
+            <li role="presentation"><a href="/establishments"><span class="fa fa-building"></span> Establishments</a></li>
+            <li role="presentation"><a href="/customers"><span class="fa fa-group"></span> Customers</a></li>
+            <li role="presentation"><a href="/administrators"><span class="fa fa-user"></span> Administrators</a></li>
         @endrole
         @role('customer')
             <li role="presentation"><a href="#"><span class="fa fa-credit-card"></span> Payments</a></li>
