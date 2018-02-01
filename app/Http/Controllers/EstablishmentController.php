@@ -15,15 +15,17 @@ class EstablishmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
+    public function __construct() {
         $this->establishment_types = EstablishmentType::pluck('name','id');
-        $this->establishments = Establishment::all();
+        $this->establishments = Establishment::where('status', 1)->get();
+        $this->unapproved_establishments = Establishment::where('status', 0)->get();
     }
 
     public function index()
     {
         return view('establishments.index')
-                    ->with('establishments', $this->establishments);
+                    ->with('establishments', $this->establishments)
+                    ->with('unapproved_establishments', $this->unapproved_establishments);
     }
 
     /**
