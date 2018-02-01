@@ -16,11 +16,11 @@ class ProductController extends Controller
      */
      public function __construct(){
         $this->middleware(function ($request, $next) {
-            $this->user = auth()->user()->id;
+            $this->establishment_id = auth()->user()->establishment->id;
 
-            $this->product_type = ProductType::where('establishment_id', auth()->user()->establishment->id)->pluck('name','id');
+            $this->product_types = ProductType::where('establishment_id', auth()->user()->establishment->id)->pluck('name','id');
 
-            $this->products = Product::where('user',$this->user)->get();
+            $this->products = Product::where('establishment_id', $this->establishment_id)->get();
 
             return $next($request);
         });
@@ -39,9 +39,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-
         return view('products.create')
-                ->with('product_types',$this->product_type);
+                ->with('product_types',$this->product_types);
     }
 
     /**
@@ -66,7 +65,7 @@ class ProductController extends Controller
             $image = "images/avatar.jpg";
         }
         Product::create([
-            'user' => $this->user,
+            'establishment_id' => $this->establishment_id,
             'name' => $request->name,
             'description' => $request->description,
             'product_type_id' => $request->product_type,
