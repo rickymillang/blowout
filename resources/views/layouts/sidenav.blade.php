@@ -33,7 +33,13 @@
     </ul>
 
     @if(!auth()->user()->hasRole('establishment.admin') && !auth()->user()->hasRole('superadmin'))
-        <a href="/establishments/create" class="btn btn-success btn-block"><span class="fa fa-building"></span> Register Establishment Here</a>
+        <a href="/establishments/create" class="btn btn-success btn-block
+            @if(\App\Establishment::where('user_id', auth()->user()->id)->get())
+                disabled
+            @endif
+            ">
+            <span class="fa fa-building"></span> Register Establishment Here
+        </a>
     @endif
 </div>
 
