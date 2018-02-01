@@ -55,5 +55,6 @@ Route::group(['prefix' => 'packages', 'middleware' => ['auth', 'role:establishme
 });
 
 
-    Route::patch('establishment/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
-    Route::patch('establishment/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);
+Route::patch('establishments/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
+Route::patch('establishments/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);
+
