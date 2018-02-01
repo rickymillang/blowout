@@ -15,8 +15,6 @@
             <li role="presentation"><a href="/product_types"><span class="fa fa-tags"></span> Product Types</a></li>
             <li role="presentation"><a href="/services"><span class="fa fa-tags"></span> Services</a></li>
             <li role="presentation"><a href="/packages"><span class="fa fa-window-restore"></span> Packages</a></li>
-            <li role="presentation"><a href="/invoices"><span class="fa fa-file-text-o"></span> Invoices</a></li>
-            <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
         @endrole
         @role('superadmin')
             <li role="presentation"><a href="/establishment_types"><span class="fa fa-file-text-o"></span> Establishment Types</a></li>
@@ -24,7 +22,7 @@
             <li role="presentation"><a href="/customers"><span class="fa fa-group"></span> Customers</a></li>
             <li role="presentation"><a href="/administrators"><span class="fa fa-user"></span> Administrators</a></li>
         @endrole
-        @role('customer')
+        @role('customer', 'establishment.admin')
             <li role="presentation"><a href="#"><span class="fa fa-credit-card"></span> Payments</a></li>
             <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Invoices</a></li>
             <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>

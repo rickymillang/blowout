@@ -20,8 +20,6 @@ class CreateServicesTable extends Migration
             $table->string('description');
             $table->decimal('price');
             $table->timestamps();
-
-            $table->foreign('user')->references('id')->on('users');
         });
     }
 

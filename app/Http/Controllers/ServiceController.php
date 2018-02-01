@@ -15,12 +15,11 @@ class ServiceController extends Controller
     public function __construct(){
 
         $this->middleware(function ($request, $next) {
+            $this->establishment_id = auth()->user()->establishment->id;
 
-            $this->user = auth()->user()->id;
+            $this->services = Service::where('establishment_id',   $this->establishment_id)->get();
 
-             $this->services = Service::where('user',$this->user)->get();
 
-        
           return $next($request);
         });
 
@@ -28,7 +27,7 @@ class ServiceController extends Controller
 
     public function index()
     {
-       
+
         return view('services.index')
                 ->with('services',$this->services);
     }
@@ -58,7 +57,7 @@ class ServiceController extends Controller
         ]);
 
         Service::create([
-            'user' => $this->user,
+            'establishment_id' => $this->establishment_id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,

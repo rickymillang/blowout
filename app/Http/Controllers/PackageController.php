@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Package;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
     public function __construct()
     {
-        $this->packages = Package::where('establishment_id', auth()->user()->establishment->id);
+        $this->middleware(function ($request, $next) {
+            $this->establishment_id = auth()->user()->establishment->id;
+
+            $this->packages = Package::where('establishment_id',   $this->establishment_id)->get();
+
+
+          return $next($request);
+        });
+
     }
+
     public function index()
     {
 

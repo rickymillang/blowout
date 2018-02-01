@@ -3,14 +3,10 @@
 @section('heading', 'View Services')
 
 @section('content')
-    <div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/services/create" class="btn btn-success">Add Service</a>
-            </div>
-        </div>
-    </div>
+    <a href="/services/create" class="btn btn-success">Add Service</a>
+
     <hr>
+
     <table class="table table-striped table-hover" id="table">
         <thead>
             <tr>

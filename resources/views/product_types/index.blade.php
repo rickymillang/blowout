@@ -3,14 +3,10 @@
 @section('heading', 'View Product Types')
 
 @section('content')
-    <div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/product_types/create" class="btn btn-success">Add Product Type</a>
-            </div>
-        </div>
-    </div>
+    <a href="/product_types/create" class="btn btn-success">Add Product Type</a>
+
     <hr>
+
     <table class="table table-striped table-hover" id="table">
         <thead>
             <tr>

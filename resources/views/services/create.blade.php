@@ -3,14 +3,10 @@
 @section('heading', 'Add Services')
 
 @section('content')
-	<div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/services/" class="btn btn-success">View Services</a>
-            </div>
-        </div>
-    </div>
+    <a href="/services/" class="btn btn-success">View Services</a>
+
     <hr>
+
     <form class="form-horizontal" method="POST" action="/services">
 		{{ csrf_field() }}
 

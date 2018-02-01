@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
+	protected $fillable = ['establishment_id', 'name'];
+
+	public function establishment()
+	{
+		return $this->belongsTo(Establishment::class);
+	}
+
     public function products()
     {
         return $this->morphedByMany(Product::class, 'packageable');

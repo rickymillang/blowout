@@ -22,8 +22,6 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->string('image')->default('images/default.jpg');
             $table->timestamps();
-
-            $table->foreign('user')->references('id')->on('users');
         });
     }
 

@@ -3,14 +3,10 @@
 @section('heading', 'Add Product Types')
 
 @section('content')
-	<div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/product_types/" class="btn btn-success">View Product Types</a>
-            </div>
-        </div>
-    </div>
+    <a href="/product_types/" class="btn btn-success">View Product Types</a>
+
     <hr>
+
     <form class="form-horizontal" method="POST" action="/product_types">
 		{{ csrf_field() }}
 
