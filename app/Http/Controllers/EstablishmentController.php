@@ -130,4 +130,59 @@ class EstablishmentController extends Controller
     {
         //
     }
+
+    public function approve($id)
+    {
+        $establishment = Establishment::find($id);
+        if (!$establishment) {
+            session()->flash('error', 'Establishment does not exist');
+
+            return redirect('/home');
+        }
+        if ($establishment->status == 0) {
+            RoleUser::create([
+                'user_id' => $establishment->user,
+                'role_id' => 2,
+            ]);
+            $establishment->status = 1;
+
+            $establishment->save();
+            session()->flash('message', 'Establishment has been successfully approved.');
+
+            return redirect()->back();
+        } else {
+            session()->flash('error', 'Establishment has already been approved.');
+
+            return redirect()->back();
+        }
+    }
+
+    public function deactivate($id)
+    {
+        $establishment = Establishment::find($id);
+
+        if (!$establishment) {
+            session()->flash('error', 'Establishment does not exist');
+
+            return redirect('/home');
+        }
+
+        if ($establishment->status == 1) {
+            RoleUser::where('role_id', 2)
+                    ->where('user_id', $establishment->user->id)
+                    ->delete();
+
+            $establishment->status = 0;
+
+            $establishment->save();
+
+            session()->flash('message', 'Establishment has been successfully deactivated.');
+
+            return redirect()->back();
+        } else {
+            session()->flash('error', 'Establishment has already been deactivated.');
+
+            return redirect()->back();
+        }
+    }
 }
