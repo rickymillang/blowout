@@ -69,25 +69,18 @@ class EstablishmentController extends Controller
 
         $establishment = Establishment::create([
                         'name' => $request->name,
+                        'description' => $request->description,
                         'address' => $request->address,
-                        'e_type' => $request->establishment_type,
+                        'owner_name' => $request->owner_name,
+                        'phone' => $request->phone,
+                        'email' => $request->email,
+                        'establishment_type_id' => $request->establishment_type,
                         'user_id' => auth()->user()->id,
-                        'image' => $image
+                        'image' => $image,
+                        'status' => 0
                         ]);
 
-
-
-        if($establishment) {
-
-            RoleUser::create([
-                'user_id' => auth()->user()->id,
-                'role_id' => 2,
-                ]);
-
-            session()->flash('message', 'You have successfully registered your establishment!');
-        }else{
-            session()->flash('message', 'Fail to registered establishment!');
-        }
+        session()->flash('message', 'You have successfully registered your establishment!');
 
         return redirect('/home');
     }
