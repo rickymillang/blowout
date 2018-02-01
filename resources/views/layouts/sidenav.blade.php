@@ -32,7 +32,7 @@
 
     @if(!auth()->user()->hasRole('establishment.admin') && !auth()->user()->hasRole('superadmin'))
         <a href="/establishments/create" class="btn btn-success btn-block
-            @if($establishment = !\App\Establishment::where('user_id', auth()->user()->id)->get())
+            @if($establishment = \App\Establishment::where('user_id', auth()->user()->id)->first())
                 disabled
             @endif
             ">
