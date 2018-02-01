@@ -3,13 +3,8 @@
 @section('heading', 'Add Products')
 
 @section('content')
-	<div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/products/" class="btn btn-success">View Products</a>
-            </div>
-        </div>
-    </div>
+    <a href="/products/" class="btn btn-success">View Products</a>
+
     <hr>
     <form class="form-horizontal" method="POST" action="/products" enctype="multipart/form-data">
 		{{ csrf_field() }}
