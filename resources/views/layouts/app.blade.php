@@ -92,6 +92,12 @@
                     </button>
                     <strong>Success!</strong> {{ $message }}
                 </div>
+            @elseif ($error_message = session('error_message'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Error!</strong> {{ $error_message }}
+                </div>
             @elseif ($errors->any())
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
@@ -107,10 +113,10 @@
         @if(str_contains(request()->url(), 'login') || str_contains(request()->url(), 'register'))
             @yield('content')
         @else
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                    @include('layouts.sidenav')
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3>@yield('heading')</h3></div>
 

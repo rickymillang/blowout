@@ -49,3 +49,11 @@ Route::group(['prefix' => 'establishment_types', 'middleware' => ['auth', 'role:
     Route::get('/{id}/edit', 'EstablishmentTypeController@edit');
     Route::patch('/{id}', 'EstablishmentTypeController@update');
 });
+
+Route::group(['prefix' => 'packages', 'middleware' => ['auth', 'role:establishment.admin']], function () {
+    Route::get('/', 'PackageController@index');
+});
+
+
+    Route::patch('establishment/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
+    Route::patch('establishment/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);

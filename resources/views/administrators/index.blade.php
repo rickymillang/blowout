@@ -6,7 +6,7 @@
     <div class="container" style="margin-bottom:10px;">
         <div class="row">
             <div class="col-sm-12">
-                <a href="/administrators/create" class="btn btn-success">Add Administrator</a>
+                <a href="/administrators/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Administrator</a>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackagesTable extends Migration
+class CreatePackageablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->integer('establishment_id');
+        Schema::create('packageables', function (Blueprint $table) {
+            $table->integer('package_id');
+            $table->integer('packageable_id');
+            $table->string('packageable_type');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('packageables');
     }
 }

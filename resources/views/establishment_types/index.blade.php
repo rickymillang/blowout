@@ -3,11 +3,9 @@
 @section('heading', 'View Establishment Types')
 
 @section('content')
-    <div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/establishment_types/create" class="btn btn-success">Add Establishment Type</a>
-            </div>
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-sm-12">
+            <a href="/establishment_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Establishment Type</a>
         </div>
     </div>
     <hr>

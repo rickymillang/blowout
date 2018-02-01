@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-md-2">
     <div class="panel panel-default">
         <div class="panel-heading">
            <img src="{{ asset(auth()->user()->avatar) }}" alt="" style="border-radius: 50%"  width="30px" height="30px"/>   {{ auth()->user()->name }}
@@ -20,9 +20,9 @@
         @endrole
         @role('superadmin')
             <li role="presentation"><a href="/establishment_types"><span class="fa fa-file-text-o"></span> Establishment Types</a></li>
-            <li role="presentation"><a href="/establishments"><span class="fa fa-file-text-o"></span> Establishments</a></li>
-            <li role="presentation"><a href="/customers"><span class="fa fa-file-text-o"></span> Customers</a></li>
-            <li role="presentation"><a href="/administrators"><span class="fa fa-file-text-o"></span> Administrators</a></li>
+            <li role="presentation"><a href="/establishments"><span class="fa fa-building"></span> Establishments</a></li>
+            <li role="presentation"><a href="/customers"><span class="fa fa-group"></span> Customers</a></li>
+            <li role="presentation"><a href="/administrators"><span class="fa fa-user"></span> Administrators</a></li>
         @endrole
         @role('customer')
             <li role="presentation"><a href="#"><span class="fa fa-credit-card"></span> Payments</a></li>
@@ -33,7 +33,13 @@
     </ul>
 
     @if(!auth()->user()->hasRole('establishment.admin') && !auth()->user()->hasRole('superadmin'))
-        <a href="/establishments/create" class="btn btn-success btn-block"><span class="fa fa-building"></span> Register Establishment Here</a>
+        <a href="/establishments/create" class="btn btn-success btn-block
+            @if(\App\Establishment::where('user_id', auth()->user()->id)->get())
+                disabled
+            @endif
+            ">
+            <span class="fa fa-building"></span> Register Establishment Here
+        </a>
     @endif
 </div>
 

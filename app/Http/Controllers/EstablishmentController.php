@@ -15,15 +15,17 @@ class EstablishmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
+    public function __construct() {
         $this->establishment_types = EstablishmentType::pluck('name','id');
-        $this->establishments = Establishment::all();
+        $this->establishments = Establishment::where('status', 1)->get();
+        $this->unapproved_establishments = Establishment::where('status', 0)->get();
     }
 
     public function index()
     {
         return view('establishments.index')
-                    ->with('establishments', $this->establishments);
+                    ->with('establishments', $this->establishments)
+                    ->with('unapproved_establishments', $this->unapproved_establishments);
     }
 
     /**
@@ -33,8 +35,16 @@ class EstablishmentController extends Controller
      */
     public function create()
     {
-        return view('establishments.create')
-                ->with('establishment_types', $this->establishment_types);
+        if (!auth()->user()->hasRole('admin')) {
+            if (!Establishment::where('user_id', auth()->user()->id)->get()) {
+                return view('establishments.create')
+                    ->with('establishment_types', $this->establishment_types);
+            } else {
+                session()->flash('error_message', 'You can only add one establishment');
+
+                return redirect('/home');
+            }
+        }
     }
 
     /**
@@ -48,7 +58,11 @@ class EstablishmentController extends Controller
 
         $request->validate([
             'name' => 'required|string',
+            'description' => 'required',
             'address' => 'required|string',
+            'owner_name' => 'required|string',
+            'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments'],
+            'email' => 'required|email|unique:establishments',
             'establishment_type' => 'required',
             'image' => 'image'
         ]);
@@ -61,25 +75,18 @@ class EstablishmentController extends Controller
 
         $establishment = Establishment::create([
                         'name' => $request->name,
+                        'description' => $request->description,
                         'address' => $request->address,
-                        'e_type' => $request->establishment_type,
+                        'owner_name' => $request->owner_name,
+                        'phone' => $request->phone,
+                        'email' => $request->email,
+                        'establishment_type_id' => $request->establishment_type,
                         'user_id' => auth()->user()->id,
-                        'image' => $image
+                        'image' => $image,
+                        'status' => 0
                         ]);
 
-
-
-        if($establishment) {
-
-            RoleUser::create([
-                'user_id' => auth()->user()->id,
-                'role_id' => 2,
-                ]);
-
-            session()->flash('message', 'You have successfully registered your establishment!');
-        }else{
-            session()->flash('message', 'Fail to registered establishment!');
-        }
+        session()->flash('message', 'You have successfully registered your establishment!');
 
         return redirect('/home');
     }
@@ -129,5 +136,60 @@ class EstablishmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function approve($id)
+    {
+        $establishment = Establishment::find($id);
+        if (!$establishment) {
+            session()->flash('error', 'Establishment does not exist');
+
+            return redirect('/home');
+        }
+        if ($establishment->status == 0) {
+            RoleUser::create([
+                'user_id' => $establishment->user->id,
+                'role_id' => 2,
+            ]);
+            $establishment->status = 1;
+
+            $establishment->save();
+            session()->flash('message', 'Establishment has been successfully approved.');
+
+            return redirect()->back();
+        } else {
+            session()->flash('error', 'Establishment has already been approved.');
+
+            return redirect()->back();
+        }
+    }
+
+    public function deactivate($id)
+    {
+        $establishment = Establishment::find($id);
+
+        if (!$establishment) {
+            session()->flash('error', 'Establishment does not exist');
+
+            return redirect('/home');
+        }
+
+        if ($establishment->status == 1) {
+            RoleUser::where('role_id', 2)
+                    ->where('user_id', $establishment->user->id)
+                    ->delete();
+
+            $establishment->status = 0;
+
+            $establishment->save();
+
+            session()->flash('message', 'Establishment has been successfully deactivated.');
+
+            return redirect()->back();
+        } else {
+            session()->flash('error', 'Establishment has already been deactivated.');
+
+            return redirect()->back();
+        }
     }
 }
