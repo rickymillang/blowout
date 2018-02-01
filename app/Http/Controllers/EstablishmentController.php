@@ -16,9 +16,15 @@ class EstablishmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct() {
-        $this->establishment_types = EstablishmentType::pluck('name','id');
-        $this->establishments = Establishment::where('status', 1)->get();
-        $this->unapproved_establishments = Establishment::where('status', 0)->get();
+        $this->middleware(function ($request, $next) {
+            $this->establishment_id = auth()->user()->establishment->id;
+            $this->establishment_types = EstablishmentType::pluck('name','id');
+            $this->establishments = Establishment::where('status', 1)->get();
+            $this->unapproved_establishments = Establishment::where('status', 0)->get();
+
+            return $next($request);
+        });
+
     }
 
     public function index()
