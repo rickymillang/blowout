@@ -113,10 +113,10 @@
         @if(str_contains(request()->url(), 'login') || str_contains(request()->url(), 'register'))
             @yield('content')
         @else
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                    @include('layouts.sidenav')
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3>@yield('heading')</h3></div>
 
