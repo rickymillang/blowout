@@ -56,7 +56,11 @@ class EstablishmentController extends Controller
 
         $request->validate([
             'name' => 'required|string',
+            'description' => 'required',
             'address' => 'required|string',
+            'owner_name' => 'required|string',
+            'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments'],
+            'email' => 'required|email|unique:establishments',
             'establishment_type' => 'required',
             'image' => 'image'
         ]);
