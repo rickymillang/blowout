@@ -61,3 +61,6 @@ Route::group(['prefix' => 'packages', 'middleware' => ['auth', 'role:establishme
 Route::patch('establishments/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
 Route::patch('establishments/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);
 
+
+Route::get('change_password', 'ChangePasswordController@edit');
+Route::patch('change_password', 'ChangePasswordController@update');
