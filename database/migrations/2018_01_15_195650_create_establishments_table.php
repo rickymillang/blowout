@@ -22,13 +22,12 @@ class CreateEstablishmentsTable extends Migration
             $table->string('email')->unique();
             $table->string('owner_name');
             $table->string('address');
-            $table->string('image');
-            $table->string('dti_permit');
+            $table->string('image')->nullable();
+            $table->string('dti_permit')->nullable();
             $table->integer('user_id')->unsigned();
             $table->string('status');
 
             $table->timestamps();
-            $table->foreign('establishment_type_id')->references('id')->on('establishment_types');
 
         });
     }
