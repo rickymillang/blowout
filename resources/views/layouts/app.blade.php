@@ -61,9 +61,13 @@
                                         <a href="#"> Profile</a>
 
                                     </li>
+                                    <li>
+                                        <a href="/change_password"> Change Password</a>
+
+                                    </li>
                                     @role('establishment.admin')
                                     <li>
-                                        <a href="#">My Establishment</a>
+                                        <a href="/establishment/edit">My Establishment</a>
 
                                     </li>
                                     @endrole
