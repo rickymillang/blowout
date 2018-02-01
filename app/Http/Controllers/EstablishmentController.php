@@ -16,9 +16,15 @@ class EstablishmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct() {
-        $this->establishment_types = EstablishmentType::pluck('name','id');
-        $this->establishments = Establishment::where('status', 1)->get();
-        $this->unapproved_establishments = Establishment::where('status', 0)->get();
+        $this->middleware(function ($request, $next) {
+            $this->establishment_id = auth()->user()->establishment->id;
+            $this->establishment_types = EstablishmentType::pluck('name','id');
+            $this->establishments = Establishment::where('status', 1)->get();
+            $this->unapproved_establishments = Establishment::where('status', 0)->get();
+
+            return $next($request);
+        });
+
     }
 
     public function index()
@@ -108,11 +114,12 @@ class EstablishmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $establishment = Establishment::find($id);
+        $establishment = Establishment::find($this->establishment_id);
         return view('establishments.edit', compact('establishment'))
-                ->with('establishment_types', $this->establishment_types);
+                ->with('establishment_types', $this->establishment_types)
+                ->with('establishment', $establishment);
     }
 
     /**
@@ -124,7 +131,29 @@ class EstablishmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'min:4|required|string|unique:establishments,id',
+            'description' => 'required|string',
+            'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments,id'],
+            'email' => 'email|required|unique:establishments,id',
+            'address' => 'required',
+            'owner_name' => 'required'
+        ]);
+
+        $establishment = Establishment::find($id);
+
+        $establishment->name = $request->name;
+        $establishment->description = $request->description;
+        $establishment->phone = $request->phone;
+        $establishment->email = $request->email;
+        $establishment->address = $request->address;
+        $establishment->owner_name = $request->owner_name;
+
+        $establishment->save();
+
+        session()->flash('message', 'Establishment successfully saved');
+
+        return redirect()->back();
     }
 
     /**

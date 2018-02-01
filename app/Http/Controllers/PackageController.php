@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Package;
+use App\Packageable;
+use App\Product;
+use App\Service;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -14,78 +17,82 @@ class PackageController extends Controller
 
             $this->packages = Package::where('establishment_id',   $this->establishment_id)->get();
 
+            $this->services = Service::where('establishment_id', $this->establishment_id)->pluck('name', 'id');
+            $this->products = Product::where('establishment_id', $this->establishment_id)->pluck('name', 'id');
 
-          return $next($request);
+            return $next($request);
         });
 
     }
 
     public function index()
     {
-
+        return view('packages.index')
+            ->with('packages', $this->packages);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('packages.create')
+            ->with('services', $this->services)
+            ->with('products', $this->products);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|unique:packages',
+            'price' => 'required|numeric'
+        ]);
+
+        $package = Package::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'establishment_id' => $this->establishment_id
+        ]);
+
+        if (filled($request->service)) {
+            Packageable::insert([
+                'package_id' => $package->id,
+                'packageable_id' => $request->service,
+                'packageable_type' => 'App\Service'
+            ]);
+        }
+
+        if (filled($request->product)) {
+            Packageable::insert([
+                'package_id' => $package->id,
+                'packageable_id' => $request->product,
+                'packageable_type' => 'App\Product'
+            ]);
+        }
+
+        session()->flash('success', 'Package has been created');
+
+        return redirect('/packages/' . $package->id . '/edit');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($package_id)
     {
-        //
+        $package = Package::where('id', $package_id)
+            ->where('establishment_id', $this->establishment_id)->first();
+        return view('packages.edit')
+            ->with('services', $this->services)
+            ->with('products', $this->products)
+            ->with('package', $package);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

@@ -3,12 +3,10 @@
 @section('heading', 'View Establishment Types')
 
 @section('content')
-    <div class="row" style="margin-bottom:10px;">
-        <div class="col-sm-12">
-            <a href="/establishment_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Establishment Type</a>
-        </div>
-    </div>
+    <a href="/establishment_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Establishment Type</a>
+
     <hr>
+
     <table class="table table-striped table-hover" id="table">
         <thead>
             <tr>
