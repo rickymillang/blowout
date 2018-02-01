@@ -20,6 +20,6 @@ class Package extends Model
 
     public function services()
     {
-        return $this->morphedByMany(Service::class, 'packgeable');
+        return $this->morphedByMany(Service::class, 'packageable');
     }
 }
