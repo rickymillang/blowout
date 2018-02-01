@@ -10,8 +10,7 @@
     <table class="table table-striped table-hover" id="table">
         <thead>
             <tr>
-
-                <th></th>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Product Type</th>
