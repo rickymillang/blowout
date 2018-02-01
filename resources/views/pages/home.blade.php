@@ -13,7 +13,8 @@
 
 					<div class="row row-mt-15em">
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>We can make things Magical for you !</h1>
+							<h1>"Code is like humor. when you have to explain it, it's bad.
+</h1>
 						</div>
 
 						{{--Login --}}

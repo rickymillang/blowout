@@ -9,173 +9,140 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Blowout | Meet the team</title>
+	<title>Blowout | Establishments</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="GetTemplates.co" />
 
-
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-    	<!-- Animate.css -->
-        	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-        	<!-- Icomoon Icon Fonts-->
-        	<link rel="stylesheet" href="{{ asset('css/icomoon.css')}}">
-        	<!-- Themify Icons-->
-        	<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
-        	<!-- Bootstrap  -->
-        	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
-        	<!-- Magnific Popup -->
-        	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{{ asset('css/icomoon.css')}}">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
-        	<!-- Magnific Popup -->
-        	<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 
-        	<!-- Owl Carousel  -->
-        	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-        	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 
-            <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
-        	<!-- Theme style  -->
-        	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
-        	<!-- Modernizr JS -->
-        	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
-        	<!-- FOR IE9 below -->
-        	<!--[if lt IE 9]>
-        	<script src="{{ asset('js/respond.min.js') }}"></script>
-        	<![endif]-->
+    <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+	<!-- Modernizr JS -->
+	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{{ asset('js/respond.min.js') }}"></script>
+	<![endif]-->
 
 	</head>
 	<body>
-		
+
 	<div class="gtco-loader"></div>
-	
+
 	<div id="page">
 
-	
+
 	<!-- <div class="page-inner"> -->
 	@include('include.nav')
-	
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_2.jpg)">
+
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_6.jpg)">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0 text-center">
 					<div class="row row-mt-15em">
-
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>Plans for Everyone</h1>	
+							<h1>>Meet the Awesome team!</h1>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
 	</header>
-	
-	
-	
-	<div class="gtco-section border-bottom">
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-					<h2>Choose The Best Plan For You</h2>
-					<p>Join over 1 Million of users. Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="price-box">
-						<h2 class="pricing-plan">Starter</h2>
-						<div class="price"><sup class="currency">$</sup>7<small>/mo</small></div>
-						<p>Basic customer support for small business</p>
-						<hr>
-						<ul class="pricing-info">
-							<li>10 projects</li>
-							<li>20 Pages</li>
-							<li>20 Emails</li>
-							<li>100 Images</li>
-						</ul>
-						<a href="#" class="btn btn-default btn-sm">Get started</a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="price-box">
-						<h2 class="pricing-plan">Regular</h2>
-						<div class="price"><sup class="currency">$</sup>19<small>/mo</small></div>
-						<p>Basic customer support for small business</p>
-						<hr>
-						<ul class="pricing-info">
-							<li>15 projects</li>
-							<li>40 Pages</li>
-							<li>40 Emails</li>
-							<li>200 Images</li>
-						</ul>
-						<a href="#" class="btn btn-default btn-sm">Get started</a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="price-box popular">
-						<div class="popular-text">Popular</div>
-						<h2 class="pricing-plan">Plus</h2>
-						<div class="price"><sup class="currency">$</sup>79<small>/mo</small></div>
-						<p>Basic customer support for small business</p>
-						<hr>
-						<ul class="pricing-info">
-							<li>Unlimitted projects</li>
-							<li>100 Pages</li>
-							<li>100 Emails</li>
-							<li>700 Images</li>
-						</ul>
-						<a href="#" class="btn btn-primary btn-sm">Get started</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="gtco-section">
 		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center gtco-heading animate-box">
-					<h2>Frequently Ask Questions</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+			<div class="row">3
+				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h2>i.</h2>
+
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<ul class="fh5co-faq-list">
-						<li class="animate-box">
-							<h2>What is Traveler?</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-						</li>
-						<li class="animate-box">
-							<h2>What language are available?</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-						</li>
-						<li class="animate-box">
-							<h2>I have technical problem, who do I email?</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-						</li>
-						<li class="animate-box">
-							<h2>Can I have a username that is already taken?</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-						</li>
-						<li class="animate-box">
-							<h2>How do I use Traveler features?</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-						</li>
-						<li class="animate-box">
-							<h2>Is Traveler free??</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-						</li>
-					</ul>
+
+				<div class="col-lg-4 col-md-4 col-sm-6">
+					<a href="{{ asset('images/meet-the-team/jeez.png') }}" class="fh5co-card-item image-popup">
+						<figure>
+							<div class="overlay"><i class="ti-plus"></i></div>
+							<img src="{{ asset('images/meet-the-team/jeez.png') }}" width="100%" height="100%" alt="Image" class="img-responsive">
+						</figure>
+						<div class="fh5co-text">
+							<h2>Jezreel Malazarte</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
+							<p><span class="btn btn-primary"><a href="#">i.fa</a></span></p>
+						</div>
+					</a>
 				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6">
+					<a href="{{ asset('images/meet-the-team/guzman.jpg') }}" class="fh5co-card-item image-popup">
+						<figure>
+							<div class="overlay"><i class="ti-plus"></i></div>
+							<img src="{{ asset('images/meet-the-team/guzman.jpg') }}" width="100%" height="60%" alt="Image" class="img-responsive">
+						</figure>
+						<div class="fh5co-text">
+							<h2>Bryan Guzman</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
+							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6">
+					<a href="{{ asset('images/meet-the-team/suico.png') }}" class="fh5co-card-item image-popup">
+						<figure>
+							<div class="overlay"><i class="ti-plus"></i></div>
+							<img src="{{ asset('images/meet-the-team/suico.png') }}" width="100%" height="70%" alt="Image" class="img-responsive">
+						</figure>
+						<div class="fh5co-text">
+							<h2>Jemar Suico</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
+							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+						</div>
+					</a>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
 
-	
+
+
 	<div id="gtco-subscribe">
 		<div class="gtco-container">
 			<div class="row animate-box">
@@ -210,7 +177,6 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-	
 
 	<!-- jQuery -->
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -241,4 +207,5 @@
 
 	</body>
 </html>
+
 

@@ -29,7 +29,7 @@
 	<script>
 	    $(document).ready(function(){
 	     /*   $('.register').hide();*/
-
+             $('.register').hide();
 
 	        $('#log').on('click',function(e){
                 e.preventDefault();

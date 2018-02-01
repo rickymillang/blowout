@@ -93,11 +93,14 @@
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading animate-box">
-					<h2>Frequently Ask Questions</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					<h2>Blowout </h2>
+					<p>Boring party? It's a big NO We are your new online source that offers fantastic Party Planners,Caterings,lechons,cakes,party needs,intertainers
+                       ,packages, services and Blowouts such as House Party, Wedding Party, Beach Party, Kiddie Party & more for all
+                       life's celebrations. Our services also include an array of party organizer arrangement to suit your requirements
+                       from a simple yet stunning creation of party blowouts WE/YOU CAN CUSTOMIZE YOUR PARTY according to the theme you want.</p>
 				</div>
 			</div>
-			<div class="row">
+			{{--<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<ul class="fh5co-faq-list">
 						<li class="animate-box">
@@ -126,7 +129,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div>--}}
 		</div>
 	</div>
 
