@@ -15,13 +15,20 @@ class CreateEstablishmentsTable extends Migration
     {
         Schema::create('establishments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('e_type')->unsigned();
+            $table->integer('establishment_type_id')->unsigned();
             $table->string('name');
+            $table->text('description');
+            $table->string('phone')->unique();
+            $table->string('email')->unique();
+            $table->string('owner_name');
             $table->string('address');
             $table->string('image');
+            $table->string('dti_permit');
+            $table->integer('user_id')->unsigned();
+            $table->string('status');
 
             $table->timestamps();
-            $table->foreign('e_type')->references('id')->on('establishment_types');
+            $table->foreign('establishment_type_id')->references('id')->on('establishment_types');
 
         });
     }
