@@ -108,11 +108,12 @@ class EstablishmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $establishment = Establishment::find($id);
+        $establishment = Establishment::find($this->establishment_id);
         return view('establishments.edit', compact('establishment'))
-                ->with('establishment_types', $this->establishment_types);
+                ->with('establishment_types', $this->establishment_types)
+                ->with('establishment', $establishment);
     }
 
     /**
