@@ -148,7 +148,7 @@ class EstablishmentController extends Controller
         }
         if ($establishment->status == 0) {
             RoleUser::create([
-                'user_id' => $establishment->user,
+                'user_id' => $establishment->user->id,
                 'role_id' => 2,
             ]);
             $establishment->status = 1;
