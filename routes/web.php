@@ -52,6 +52,9 @@ Route::group(['prefix' => 'establishment_types', 'middleware' => ['auth', 'role:
 
 Route::group(['prefix' => 'packages', 'middleware' => ['auth', 'role:establishment.admin']], function () {
     Route::get('/', 'PackageController@index');
+    Route::get('/create', 'PackageController@create');
+    Route::get('/{id}/edit', 'PackageController@edit');
+    Route::post('/', 'PackageController@store');
 });
 
 
