@@ -17,7 +17,6 @@ class EstablishmentController extends Controller
      */
     public function __construct() {
         $this->middleware(function ($request, $next) {
-            $this->establishment_id = auth()->user()->establishment->id;
             $this->establishment_types = EstablishmentType::pluck('name','id');
             $this->establishments = Establishment::where('status', 1)->get();
             $this->unapproved_establishments = Establishment::where('status', 0)->get();
@@ -116,7 +115,8 @@ class EstablishmentController extends Controller
      */
     public function edit()
     {
-        $establishment = Establishment::find($this->establishment_id);
+        $establishment_id = auth()->user()->establishment->id;
+        $establishment = Establishment::find($establishment_id);
         return view('establishments.edit', compact('establishment'))
                 ->with('establishment_types', $this->establishment_types)
                 ->with('establishment', $establishment);
