@@ -27,6 +27,13 @@
             <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
         @endrole
 
+        <li role="presentation">
+            <a href="/notifications"><span class="fa fa-globe"></span> Notifications
+                @if (count(Auth::user()->unreadNotifications))
+                    <span class="label label-danger">{{ count(Auth::user()->unreadNotifications) }}</span>
+                @endif
+            </a>
+        </li>
     </ul>
 
     @if(!auth()->user()->hasRole('establishment.admin') && !auth()->user()->hasRole('superadmin'))

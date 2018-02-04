@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\EstablishmentType;
 use App\Establishment;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\EstablishmentApproved;
+use App\Notifications\EstablishmentRegistered;
 use App\RoleUser;
 use App\Product;
 use App\Service;
@@ -93,6 +95,14 @@ class EstablishmentController extends Controller
                         'image' => $image,
                         'status' => 0
                         ]);
+
+        foreach ($this->admnistrators as $admin) {
+            $admin->notify(new EstablishmentRegistered([
+                'name' => $request->name,
+                'user_id' => auth()->user()->id,
+                'message' => 'New establishment has registered'
+            ]));
+        }
 
         session()->flash('message', 'You have successfully registered your establishment!');
 
@@ -200,9 +210,16 @@ class EstablishmentController extends Controller
                 'user_id' => $establishment->user->id,
                 'role_id' => 2,
             ]);
+
             $establishment->status = 1;
 
             $establishment->save();
+
+            $establishment->user->notify(new EstablishmentApproved([
+                'name' => $establishment->name,
+                'message' => 'Your establishment has been approved'
+            ]));
+
             session()->flash('message', 'Establishment has been successfully approved.');
 
             return redirect()->back();
