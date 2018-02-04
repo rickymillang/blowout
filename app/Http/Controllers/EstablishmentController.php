@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\EstablishmentType;
 use App\Establishment;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\EstablishmentApproved;
 use App\RoleUser;
 
 class EstablishmentController extends Controller
@@ -180,9 +181,16 @@ class EstablishmentController extends Controller
                 'user_id' => $establishment->user->id,
                 'role_id' => 2,
             ]);
+
             $establishment->status = 1;
 
             $establishment->save();
+
+            $establishment->user->notify(new EstablishmentApproved([
+                'name' => $establishment->name,
+                'message' => 'Your establishment has been approved'
+            ]));
+
             session()->flash('message', 'Establishment has been successfully approved.');
 
             return redirect()->back();
