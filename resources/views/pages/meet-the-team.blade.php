@@ -57,7 +57,7 @@
 	<!--[if lt IE 9]>
 	<script src="{{ asset('js/respond.min.js') }}"></script>
 	<![endif]-->
-
+cw
 	</head>
 	<body>
 
@@ -76,7 +76,7 @@
 				<div class="col-md-12 col-md-offset-0 text-center">
 					<div class="row row-mt-15em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>>Meet the Awesome team!</h1>
+							<h1>Meet the Awesome team!</h1>
 						</div>
 
 					</div>
@@ -88,9 +88,9 @@
 
 	<div class="gtco-section">
 		<div class="gtco-container">
-			<div class="row">3
+			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-					<h2>i.</h2>
+					<h2></h2>
 
 				</div>
 			</div>
