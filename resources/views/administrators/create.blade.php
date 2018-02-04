@@ -3,14 +3,10 @@
 @section('heading', 'Add Administrators')
 
 @section('content')
-	<div class="container" style="margin-bottom:10px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="/administrators" class="btn btn-success">View Administrators</a>
-            </div>
-        </div>
-    </div>
+    <a href="/administrators" class="btn btn-success">View Administrators</a>
+
     <hr>
+
     <form class="form-horizontal" method="POST" action="/administrators">
 		{{ csrf_field() }}
 
