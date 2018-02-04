@@ -12,4 +12,9 @@ class Product extends Model
     {
     	return $this->morphToMany(Package::class, 'packageable');
     }
+
+    public function product_type()
+    {
+    	return $this->belongsTo(ProductType::class);
+    }
 }

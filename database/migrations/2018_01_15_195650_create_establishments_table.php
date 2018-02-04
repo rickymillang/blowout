@@ -23,7 +23,7 @@ class CreateEstablishmentsTable extends Migration
             $table->string('owner_name');
             $table->string('address');
             $table->string('image')->nullable();
-            $table->string('dti_permit')->nullable();
+            $table->string('business_permit')->nullable();
             $table->integer('user_id')->unsigned();
             $table->string('status');
 
