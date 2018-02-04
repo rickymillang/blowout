@@ -7,6 +7,7 @@ use App\EstablishmentType;
 use App\Establishment;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\EstablishmentApproved;
+use App\Notifications\EstablishmentRegistered;
 use App\RoleUser;
 
 class EstablishmentController extends Controller
@@ -91,6 +92,14 @@ class EstablishmentController extends Controller
                         'image' => $image,
                         'status' => 0
                         ]);
+
+        foreach ($this->admnistrators as $admin) {
+            $admin->notify(new EstablishmentRegistered([
+                'name' => $request->name,
+                'user_id' => auth()->user()->id,
+                'message' => 'New establishment has registered'
+            ]));
+        }
 
         session()->flash('message', 'You have successfully registered your establishment!');
 
