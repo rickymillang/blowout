@@ -7,6 +7,9 @@ use App\EstablishmentType;
 use App\Establishment;
 use Illuminate\Support\Facades\Storage;
 use App\RoleUser;
+use App\Product;
+use App\Service;
+use App\Package;
 
 class EstablishmentController extends Controller
 {
@@ -102,9 +105,18 @@ class EstablishmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($establishment)
     {
-        //
+       $establishment = Establishment::find($establishment);
+       $products =  Product::where('establishment_id',$establishment->id)->get();
+       $services = Service::where('establishment_id',$establishment->id)->get();
+       $packages = Package::where('establishment_id',$establishment->id)->get();
+
+        return view('pages.establishments.show')
+                    ->with('establishment',$establishment)
+                    ->with('products',$products)
+                    ->with('services',$services)
+                    ->with('packages',$packages);
     }
 
     /**
@@ -140,6 +152,12 @@ class EstablishmentController extends Controller
             'owner_name' => 'required'
         ]);
 
+        if (request()->hasFile('image')) {
+            $image = Storage::putFile('images/establishment', $request->file('image'));
+        } else {
+            $image = "images/establishment/avatar_building.jpg";
+        }
+
         $establishment = Establishment::find($id);
 
         $establishment->name = $request->name;
@@ -148,8 +166,10 @@ class EstablishmentController extends Controller
         $establishment->email = $request->email;
         $establishment->address = $request->address;
         $establishment->owner_name = $request->owner_name;
-
+        $establishment->image = $image;
         $establishment->save();
+
+
 
         session()->flash('message', 'Establishment successfully saved');
 

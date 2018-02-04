@@ -57,7 +57,67 @@
 	<!--[if lt IE 9]>
 	<script src="{{ asset('js/respond.min.js') }}"></script>
 	<![endif]-->
-cw
+    <style>
+        blockquote{
+          display:block;
+          background: #fff;
+          padding: 15px 20px 15px 45px;
+          margin: 0 0 20px;
+          position: relative;
+
+          /*Font*/
+          font-family: Georgia, serif;
+          font-size: 16px;
+          line-height: 1.2;
+          color: #666;
+          text-align: justify;
+
+          /*Borders - (Optional)*/
+          border-left: 5px solid #09C6AB;
+          border-right: 2px solid #09C6AB;
+
+          /*Box Shadow - (Optional)*/
+          -moz-box-shadow: 2px 2px 15px #ccc;
+          -webkit-box-shadow: 2px 2px 15px #ccc;
+          box-shadow: 2px 2px 5px #ccc;
+        }
+
+        blockquote::before{
+          content: "\201C"; /*Unicode for Left Double Quote*/
+
+          /*Font*/
+          font-family: Georgia, serif;
+          font-size: 60px;
+          font-weight: bold;
+          color: #999;
+
+          /*Positioning*/
+          position: absolute;
+          left: 10px;
+          top:5px;
+        }
+
+        blockquote::after{
+          /*Reset to make sure*/
+          content: "";
+        }
+
+        blockquote a{
+          text-decoration: none;
+          background: #eee;
+          cursor: pointer;
+          padding: 0 3px;
+          color: #c76c0c;
+        }
+
+        blockquote a:hover{
+         color: #666;
+        }
+
+        blockquote em{
+          font-style: italic;
+        }
+    </style>
 	</head>
 	<body>
 
@@ -104,8 +164,9 @@ cw
 						</figure>
 						<div class="fh5co-text">
 							<h2>Jezreel Malazarte</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary"><a href="#">i.fa</a></span></p>
+							<blockquote><p>Code never lies, comments sometimes do</p></blockquote>
+
+							<p><span class="btn btn-primary">Hustler</span></p>
 						</div>
 					</a>
 				</div>
@@ -117,8 +178,8 @@ cw
 						</figure>
 						<div class="fh5co-text">
 							<h2>Bryan Guzman</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+							<blockquote><p>Computer do not solve problems, they execute solutions</p></blockquote>
+							<p><span class="btn btn-primary">Hacker</span></p>
 						</div>
 					</a>
 				</div>
@@ -126,12 +187,12 @@ cw
 					<a href="{{ asset('images/meet-the-team/suico.png') }}" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="{{ asset('images/meet-the-team/suico.png') }}" width="100%" height="70%" alt="Image" class="img-responsive">
+							<img src="{{ asset('images/meet-the-team/suico.png') }}" width="90%" height="65%" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Jemar Suico</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+							<blockquote><p>Code is like humor. when you have to explain it, it's bad.</p></blockquote>
+							<p><span class="btn btn-primary">Hipster</span></p>
 						</div>
 					</a>
 				</div>

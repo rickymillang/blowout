@@ -50,7 +50,8 @@
     <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+	<link rel="stylesheet" href="{{ asset('css/vendor/star-rating/css/star-rating.css') }}">
+    <link href="{{ asset('css/vendor/star-rating/themes/krajee-svg/theme.css') }}" media="all" rel="stylesheet" type="text/css" />
 	<!-- Modernizr JS -->
 	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 	<!-- FOR IE9 below -->
@@ -69,7 +70,7 @@
 	<!-- <div class="page-inner"> -->
 	@include('include.nav')
 
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_6.jpg)">
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url('{{asset('images/banner.png')}}')">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
@@ -96,20 +97,25 @@
 			</div>
 			<div class="row">
 
+                @foreach($establishments as $est)
+
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_1.jpg" class="fh5co-card-item image-popup">
+					<a href="/establishments/{{ $est->id }}" class="fh5co-card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_1.jpg" alt="Image" class="img-responsive">
+							<img src="{{ asset('storage/'.$est->image) }}" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
-							<h2>New York, USA</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
+							<h2>{{ ucfirst($est->name) }}</h2>
+							<p style="text-align: left">{{ str_limit($est->description,250) }}</p>
+							<p><span class="btn btn-primary">Visit</span></p>
 						</div>
+
+                        {{--<input id="input-id" name="input-name" type="number" class="rating" min=1 max=10 step=2 data-size="lg" data-rtl="true">--}}
 					</a>
 				</div>
 
+                @endforeach
 			</div>
 		</div>
 	</div>
@@ -173,11 +179,18 @@
 
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-
-
+<script src="{{ asset('js/vendor/star-rating/js/star-rating.js') }}"></script>
+<script src="{{ asset('js/vendor/star-rating/themes/krajee-svg/theme.js')}}"></script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $("#input-id").rating();
 
+            // with plugin options
+            $("#input-id").rating({min:1, max:10, step:2, size:'lg'});
+        });
+    </script>
 	</body>
 </html>
 

@@ -21,6 +21,12 @@
 						<li><a href="/about-us">About Us</a></li>
 						<li><a href="/meet-the-team">Meet The Team</a></li>
 						<li><a href="/contact-us">Contact Us</a></li>
+						<li class="notify-container"><a href="#">
+
+                                <span class="notify-bubble">1</span>
+                                <span class="btn-notify fa fa-shopping-cart fa-2x"></span>
+
+                          </a></li>
 					</ul>
 				</div>
 			</div>

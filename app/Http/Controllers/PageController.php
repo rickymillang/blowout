@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Establishment;
+use App\EstablishmentType;
 
 class PageController extends Controller
 {
+    public function __construct(){
+        $this->establishments = Establishment::where('status',1)->get();
+    }
         public function lists(){
-            return view('pages.establishment');
+
+            return view('pages.establishment')
+                        ->with('establishments',$this->establishments);
         }
 
         public function about_us()

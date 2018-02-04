@@ -19,7 +19,7 @@
 		<div class="form-group">
 			<label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="description">
+				<textarea type="text" class="form-control" name="description"></textarea>
 			</div>
 		</div>
 		<div class="form-group">

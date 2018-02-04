@@ -3,7 +3,8 @@
 @section('heading', 'Register Establishment')
 
 @section('content')
-<form class="form-horizontal" method="POST" action="/establishments" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="/establishments" enctype="multipart/form-data"
+      xmlns="http://www.w3.org/1999/html">
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -15,7 +16,7 @@
     <div class="form-group">
         <label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
         <div class="col-md-6">
-            <input type="text" name="description" id="description" class="form-control"/>
+            <textarea type="text" name="description" id="description" class="form-control"/> </textarea>
         </div>
     </div>
     <div class="form-group">

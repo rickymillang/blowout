@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->integer('establishment_id')->unsigned();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->decimal('price');
             $table->timestamps();
         });

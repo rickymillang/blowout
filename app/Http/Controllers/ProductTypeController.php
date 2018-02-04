@@ -14,7 +14,7 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $product_types = ProductType::where('estalishment_id', auth()->user()->establishment->id)->get();
+        $product_types = ProductType::where('establishment_id', auth()->user()->establishment->id)->get();
 
         return view('product_types.index', compact('product_types'));
     }

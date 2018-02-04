@@ -26,6 +26,11 @@ Route::get('/meet-the-team','PageController@meet_the_team');
 Route::resource('/products', 'ProductController');
 Route::resource('/product_types', 'ProductTypeController');
 Route::resource('/establishments','EstablishmentController');
+Route::patch('establishments/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
+Route::patch('establishments/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);
+
+Route::get('establishment/edit', ['middleware' => ['auth', 'role:establishment.admin'], 'uses' => 'EstablishmentController@edit']);
+
 Route::resource('/services', 'ServiceController');
 
 Route::group(['prefix' => 'customers', 'middleware' => ['auth', 'role:superadmin']], function() {
@@ -58,10 +63,6 @@ Route::group(['prefix' => 'packages', 'middleware' => ['auth', 'role:establishme
 });
 
 
-Route::patch('establishments/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
-Route::patch('establishments/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);
-
-Route::get('establishment/edit', ['middleware' => ['auth', 'role:establishment.admin'], 'uses' => 'EstablishmentController@edit']);
 
 Route::get('change_password', 'ChangePasswordController@edit');
 Route::patch('change_password', 'ChangePasswordController@update');
