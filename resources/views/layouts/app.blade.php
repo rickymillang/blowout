@@ -51,6 +51,26 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="fa fa-globe"></span>
+                                    @if (count(Auth::user()->unreadNotifications))
+                                        <span class="label label-danger">{{ count(Auth::user()->unreadNotifications) }}</span>
+                                    @endif
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @foreach(Auth::user()->unreadNotifications as $notification)
+                                            @include ('notifications.' . snake_case(class_basename($notification->type)))
+                                        @endforeach
+
+                                        <a href="/notifications" class="text-center">
+                                            <strong>See All Notifications</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     <img src="{{ asset(auth()->user()->avatar) }}" alt="" style="border-radius: 50%"  width="30px" height="30px"/> {{ Auth::user()->name }} <span class="caret"></span>
