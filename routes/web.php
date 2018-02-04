@@ -65,3 +65,14 @@ Route::get('establishment/edit', ['middleware' => ['auth', 'role:establishment.a
 
 Route::get('change_password', 'ChangePasswordController@edit');
 Route::patch('change_password', 'ChangePasswordController@update');
+
+Route::get('/notifications', 'NotificationController@index');
+
+Route::delete('profile/{user}/notifications', function(App\User $user) {
+    $user->notifications->map(function($n) {
+        $n->markAsRead();
+    });
+
+    return back();
+});
+
