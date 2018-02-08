@@ -16,7 +16,7 @@
 							<h1>"Code is like humor. when you have to explain it, it's bad.
 </h1>
 						</div>
-
+                @if(!auth()->check())
 						{{--Login --}}
 						<div class="col-md-4 col-md-push-1 animate-box login" data-animate-effect="fadeInRight">
 							<div class="form-wrap">
@@ -116,6 +116,7 @@
                             </div>
                         </div>
                         {{--End of registration--}}
+                        @endif
 					</div>
 
 

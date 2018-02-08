@@ -26,6 +26,8 @@
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 
+	<script src="{{ asset('js/cart.js') }}"></script>
+
 	<script>
 	    $(document).ready(function(){
 	     /*   $('.register').hide();*/

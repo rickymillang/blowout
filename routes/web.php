@@ -23,6 +23,8 @@ Route::get('/about-us','PageController@about_us');
 Route::get('/contact-us','PageController@contact_us');
 Route::get('/meet-the-team','PageController@meet_the_team');
 
+Route::resource('/cart','CartController');
+Route::post('/cart/delete-all','CartController@delete_all');
 Route::resource('/products', 'ProductController');
 Route::resource('/product_types', 'ProductTypeController');
 Route::resource('/establishments','EstablishmentController');

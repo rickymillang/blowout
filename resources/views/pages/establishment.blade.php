@@ -58,7 +58,50 @@
 	<!--[if lt IE 9]>
 	<script src="{{ asset('js/respond.min.js') }}"></script>
 	<![endif]-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+     <style type="text/css">
+            .container {
+              margin: 100px auto;
+              text-align: center;
+            }
 
+            .notify-container {
+              position: relative;
+            	display: inline-block;
+              margin-top: 10px;
+            }
+
+              .notify-bubble {
+                position: absolute;
+                top: -20px;
+                right: -3px;
+                padding: 2px 5px 2px 6px;
+                background-color: #0ec6c2;
+                color: white;
+                font-size: 0.65em;
+                border-radius: 50%;
+                box-shadow: 1px 1px 1px gray;
+                display: block;
+              }
+            .total{
+                        padding:15px;
+                    }
+           /* .btn {
+              background: #ccc;
+
+              &:hover {
+                background: darken(silver, 10%);
+              }
+
+              &:focus,
+              &:focus:active,
+              &:active {
+                outline: none;
+                box-shadow: none;
+              }
+            }*/
+
+        </style>
 	</head>
 	<body>
 
@@ -183,6 +226,8 @@
 <script src="{{ asset('js/vendor/star-rating/themes/krajee-svg/theme.js')}}"></script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
+
+	<script src="{{ asset('js/cart.js') }}"></script>
     <script>
         $(document).ready(function(){
             $("#input-id").rating();
