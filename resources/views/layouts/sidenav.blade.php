@@ -24,9 +24,8 @@
         @role('customer', 'establishment.admin')
             <li role="presentation"><a href="#"><span class="fa fa-credit-card"></span> Payments</a></li>
             <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Invoices</a></li>
-            <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
+            <li role="presentation"><a href="/messages"><span class="fa fa-envelope"></span> Messages</a></li>
         @endrole
-
         <li role="presentation">
             <a href="/notifications"><span class="fa fa-globe"></span> Notifications
                 @if (count(Auth::user()->unreadNotifications))

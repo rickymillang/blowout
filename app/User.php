@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar'
+        'name', 'email', 'password','avatar', 'provider', 'provider_id'
     ];
 
     /**
@@ -32,5 +32,15 @@ class User extends Authenticatable
     public function establishment()
     {
         return $this->hasOne(Establishment::class);
+    }
+
+    public function received_messages()
+    {
+        return $this->hasMany(Message::class, 'to_user_id');
+    }
+
+    public function sent_messages()
+    {
+        return $this->hasMany(Message::class, 'from_user_id');
     }
 }

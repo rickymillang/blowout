@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\EstablishmentType;
 use App\Establishment;
-use Illuminate\Support\Facades\Storage;
+use App\EstablishmentType;
 use App\Notifications\EstablishmentApproved;
 use App\Notifications\EstablishmentRegistered;
 use App\RoleUser;
 use App\Product;
 use App\Service;
 use App\Package;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EstablishmentController extends Controller
 {
@@ -25,6 +26,7 @@ class EstablishmentController extends Controller
             $this->establishment_types = EstablishmentType::pluck('name','id');
             $this->establishments = Establishment::where('status', 1)->get();
             $this->unapproved_establishments = Establishment::where('status', 0)->get();
+            $this->admnistrators = User::withRole('superadmin')->get();
 
             return $next($request);
         });
@@ -199,7 +201,8 @@ class EstablishmentController extends Controller
 
     public function approve($id)
     {
-        $establishment = Establishment::find($id);
+        $establishment = Establishment::with('user')->find($id);
+
         if (!$establishment) {
             session()->flash('error', 'Establishment does not exist');
 
