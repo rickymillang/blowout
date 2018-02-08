@@ -20,7 +20,7 @@ class ProductController extends Controller
 
             $this->product_types = ProductType::where('establishment_id', auth()->user()->establishment->id)->pluck('name','id');
 
-            $this->products = Product::where('establishment_id', $this->establishment_id)->get();
+            $this->products = Product::with('product_types')->where('establishment_id', $this->establishment_id)->get();
 
             return $next($request);
         });

@@ -44,6 +44,8 @@
 												<div class="row form-group">
 													<div class="col-md-12">
 														<input type="submit" value="Login" class="btn btn-info btn-block"><br/>
+														 <a href="{{ url('/login/google') }}" class="btn">Google</a>
+														 <a href="{{ url('/login/facebook') }}" class="btn">Facebook</a>
 														<div class="reg">
                                                             <a href="javascript:(0);" data-id="2" id="log">
                                                             Dont have account yet?
