@@ -56,12 +56,17 @@
           }
       });
   }
-
+    function trappings(){
+        toastr.options.closeButton = true;
+        toastr.options.positionClass = 'toast-bottom-center';
+        toastr.options.showDuration = 1000;
+        toastr['info']('You must login first!');
+    }
     function addCart(id,item_type){
 
         var quantity = $('#quantity'+id).val();
 
-        if(quantity > 0) {
+        if(quantity > 0 || item_type != 1) {
             $.ajax({
                 url: urlAddCart,
                 type: "POST",
@@ -94,7 +99,8 @@
                     toastr.options.showDuration = 1000;
                     toastr['success']('Items has been added to cart!');
                 },
-                error: function () {
+                error: function (data) {
+                    console.log(data);
                     toastr['warning']('Fail to add item to cart!');
                 }
             });

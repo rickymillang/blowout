@@ -22,4 +22,8 @@ class Package extends Model
     {
         return $this->morphedByMany(Service::class, 'packageable');
     }
+
+    public function getEstablishment(){
+        return  $this->hasOne('App\Establishment','id','establishment_id');
+    }
 }

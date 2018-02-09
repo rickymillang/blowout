@@ -65,11 +65,10 @@
                                       <tbody>
                                       @if(auth()->check())
                                         @foreach($cart as $c)
-
                                             <tr id="item{{ $c->id }}">
-                                                <td><img src="{{ asset("storage/".$c->getItem->image) }}"style="max-width:100px;" height="35px" width="35px"></td>
-                                                <td>{{ $c->getItem->name}}</td>
-                                                <td>{{ $c->getItem->price }}</td>
+                                                <td><img src="{{ $c->item_type == 1? asset("storage/".$c->getItem->image) : asset("storage/".$c->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
+                                                <td>{{ $c->getItem->name}} </td>
+                                                <td>{{ number_format($c->getItem->price,2) }}</td>
                                                 <td>{{ $c->quantity }}</td>
                                                 <td><button onclick="deleteItem({{$c->id}});" class="btn btn-danger" style="font-size:10px;padding:5px 10px;" id="cartItem{{ $c->id }}" ><span class="fa fa-trash"></span></button></td>
                                             </tr>

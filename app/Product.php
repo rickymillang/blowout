@@ -17,4 +17,8 @@ class Product extends Model
     {
     	return $this->belongsTo(ProductType::class);
     }
+
+    public function getEstablishment(){
+        return  $this->hasOne('App\Establishment','id','establishment_id');
+    }
 }

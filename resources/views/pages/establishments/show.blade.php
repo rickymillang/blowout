@@ -173,7 +173,7 @@
                                 </p>
                             <div class="group">
                                 <button class="btn btn-primary btn-xs">Price : {{ number_format($p->price,2)  }}</button>
-                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#prod{{ $p->id }}"><span class="fa fa-cart-plus"></span> Cart</button>
+                                <button class="btn btn-primary btn-xs" @if(auth()->check())data-toggle="modal" data-target="#prod{{ $p->id }}" @else onclick="trappings();" @endif> <span class="fa fa-cart-plus"></span> Cart</button>
                             </div>
                         </div>
 
@@ -195,7 +195,6 @@
                         <div class="row">
                         <div class="col-md-6">
                             <figure>
-
                                 <img src="{{ asset('storage/'.$p->image) }}" alt="Image" >
                             </figure>
                             </div>
@@ -209,7 +208,7 @@
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
-                        <button type="button" class="btn btn-success btn-xs" onclick="addCart('{{ $p->id }}',1);"><span class="fa fa-cart-plus"></span> Add to cart</button>
+                        <button type="button" class="btn btn-success btn-xs"  onclick="addCart('{{ $p->id }}',1);" ><span class="fa fa-cart-plus"></span> Add to cart</button>
                       </div>
                     </div>
 
@@ -217,13 +216,12 @@
                 </div>
                 @endforeach
 			</div>
-
 			<div class="row">
                 <h3>Services</h3>
                 <br/>
                 @foreach($services as $s)
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="{{ asset('storage/'.$establishment->image) }}" class="fh5co-card-item image-popup">
+                     <div class="fh5co-card-item">
                         <figure>
                             <div class="overlay"><i class="ti-plus"></i></div>
                             <img src="{{ asset('storage/'.$establishment->image) }}" alt="Image" class="img-responsive">
@@ -231,15 +229,14 @@
                         <div class="fh5co-text">
                             <h2>{{ ucfirst($s->name) }}</h2>
                             <br/>
-
                         <div class="group">
                             <button class="btn btn-primary btn-xs">Price : {{ number_format($s->price,2)  }}</button>
-                            <button class="btn btn-primary btn-xs"><span class="fa fa-cart-plus"></span> Cart</button>
+                            <button class="btn btn-primary btn-xs" onclick="addCart('{{ $s->id }}',2);"><span class="fa fa-cart-plus"></span> Cart</button>
                         </div>
                         </div>
 
                         <div class="ui large star rating"></div>
-                    </a>
+                   </div>
                 </div>
                 @endforeach
             </div>
@@ -260,10 +257,9 @@
 
                         <div class="group">
                             <button class="btn btn-primary btn-xs">Price : {{ number_format($pack->price,2)  }}</button>
-                            <button class="btn btn-primary btn-xs"><span class="fa fa-cart-plus"></span> Cart</button>
+                            <button class="btn btn-primary btn-xs" onclick="addCart('{{ $pack->id }}',3);"><span class="fa fa-cart-plus"></span> Cart</button>
                         </div>
                         </div>
-
                         <div class="ui large star rating"></div>
                     </a>
                 </div>

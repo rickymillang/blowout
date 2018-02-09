@@ -35,12 +35,16 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-
+        if($request->item_type == 1) {
+            $quantity = $request->quantity;
+        }else{
+            $quantity = 1;
+        }
         $cart = Cart::where('item_id',$request->id)->first();
 
         if(count($cart) > 0){
             $cart->update([
-                'quantity' => $cart->quantity + $request->quantity
+                'quantity' => $cart->quantity + $quantity
             ]);
 
             $cart->save();
@@ -51,7 +55,7 @@ class CartController extends Controller
             $cart = Cart::create([
                 'item_id' => $request->id,
                 'item_type' => $request->item_type,
-                'quantity' => $request->quantity,
+                'quantity' => $quantity,
                 'user' => auth()->user()->id
             ]);
 
@@ -64,7 +68,7 @@ class CartController extends Controller
                             'name' => $cart->getItem->name,
                             'price' => $cart->getItem->price,
                             'exist' => $exist,
-                            'add_amount' => number_format((int) ($cart->getItem->price * $request->quantity),2)
+                            'add_amount' => number_format((int) ($cart->getItem->price * $quantity),2)
                         ]);
     }
 
