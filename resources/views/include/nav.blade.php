@@ -29,6 +29,42 @@
                           </a>
 
                           </li>
+                         @if(auth()->check())
+                        <li class="has-dropdown">
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    <img src="{{ asset(auth()->user()->avatar) }}" alt="" style="border-radius: 50%"  width="30px" height="30px"/> <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown">
+                                    <li>
+                                        <a href="#"> Profile</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="/change_password"> Change Password</a>
+
+                                    </li>
+                                    @role('establishment.admin')
+                                    <li>
+                                        <a href="/establishment/edit">My Establishment</a>
+
+                                    </li>
+                                    @endrole
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
 
 					</ul>
 				</div>
@@ -88,7 +124,9 @@
 
                               <div class="row">
                                 <div class="col-md-6">Total Quantity : </div>
-                                <div class="col-md-6"><span class="pull-right">{{ count($cart) }}</span></div>
+                                <div class="col-md-6"><span class="pull-right totalQuantityDisplay">{{ count($cart) }}</span></div>
+
+                                 <input type="hidden" class="totalQuantity" value="{{ count($cart) }}"/>
                               </div>
                           </div>
 

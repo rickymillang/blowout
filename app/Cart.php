@@ -20,9 +20,10 @@ class Cart extends Model
         if($this->item_type == 1){
             return $this->hasOne('App\Product','id','item_id');
         }elseif($this->item_type == 2){
-            return $this->hasOne('App\Package','id','item_id');
+            return $this->hasOne('App\Service','id','item_id');
         }elseif($this->item_type == 3){
-            return $this->hasOne('App\Services','id','item_id');
+
+            return $this->hasOne('App\Package','id','item_id');
         }
     }
 }

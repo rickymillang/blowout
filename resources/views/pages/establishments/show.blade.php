@@ -46,7 +46,7 @@
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -153,6 +153,56 @@
 				</div>
 			</div>
 
+			<!-- Scratch Modal -->
+            <div id="scratch" class="modal fade" role="dialog">
+                      <div class="modal-dialog" >
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+
+                             </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
+                            <button type="button" class="btn btn-success btn-xs"   ><span class="fa fa-cart-plus"></span> Add to cart</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+             </div>
+            <!-- End of Modal Scratch -->
+
+            <!-- Wizard Modal -->
+                <div id="wizard" class="modal fade" role="dialog">
+                          <div class="modal-dialog" >
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="color:white">Organize from Wizard</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="row">
+
+                                 </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
+                                <button type="button" class="btn btn-success btn-xs"   ><span class="fa fa-cart-plus"></span> Add to cart</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                 </div>
+              <!-- End of Modal Wizard -->
+
 			<div class="row">
 			    <h3>Products</h3>
 			    <br/>
@@ -181,7 +231,7 @@
                    </div>
                 </div>
 
-                <!-- Modal -->
+                <!-- Product Modal -->
                 <div id="prod{{ $p->id }}" class="modal fade" role="dialog">
                   <div class="modal-dialog">
 
@@ -202,7 +252,7 @@
                                 <p style="text-align: left">Description : {{ str_limit($p->description,250) }}
                                     <br/>Type : {{ $p->product_type->name }}
                                 </p>
-                                <input type="number" name="quantity" id="quantity{{ $p->id }}" placeholder="0" class="form-control"/>
+                                <input type="number" name="quantity" id="quantity{{ $p->id }}"  placeholder="0" class="form-control"/>
                             </div>
                         </div>
                       </div>
@@ -324,7 +374,7 @@
 	<!-- Magnific Popup -->
 	<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
-
+    <script src="{{ asset('vendor/number/jquery.number.js') }}"></script>
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
@@ -345,6 +395,7 @@
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
 
+	<script src="{{ asset('js/scratch.js') }}"></script>
 	</body>
 </html>
 

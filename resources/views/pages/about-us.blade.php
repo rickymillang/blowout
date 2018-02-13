@@ -46,6 +46,7 @@
         	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
         	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
+            <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
             <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
         	<!-- Theme style  -->
         	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -237,6 +238,20 @@
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 
+	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+     <script>
+          var token = "{{csrf_token()}}";
+          var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
+          var myurl = "{{ URL::to('/') }}";
+         var urlAddCart = "{{ URL::to('/cart') }}";
+         var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
+         var urldeleteCartItem = "{{ URL::to('/cart') }}";
+         $(function() {
+          $('.btn-notify').click(function() {
+          	$('.notify-bubble').show(400);
+        	});
+        });
+        </script>
 
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>

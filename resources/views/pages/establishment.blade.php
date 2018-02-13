@@ -47,11 +47,10 @@
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/vendor/star-rating/css/star-rating.css') }}">
-    <link href="{{ asset('css/vendor/star-rating/themes/krajee-svg/theme.css') }}" media="all" rel="stylesheet" type="text/css" />
 	<!-- Modernizr JS -->
 	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 	<!-- FOR IE9 below -->
@@ -222,20 +221,26 @@
 
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('js/vendor/star-rating/js/star-rating.js') }}"></script>
-<script src="{{ asset('js/vendor/star-rating/themes/krajee-svg/theme.js')}}"></script>
+
+	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+	 <script>
+          var token = "{{csrf_token()}}";
+          var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
+          var myurl = "{{ URL::to('/') }}";
+         var urlAddCart = "{{ URL::to('/cart') }}";
+         var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
+         var urldeleteCartItem = "{{ URL::to('/cart') }}";
+         $(function() {
+          $('.btn-notify').click(function() {
+          	$('.notify-bubble').show(400);
+        	});
+        });
+        </script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 
 	<script src="{{ asset('js/cart.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-            $("#input-id").rating();
 
-            // with plugin options
-            $("#input-id").rating({min:1, max:10, step:2, size:'lg'});
-        });
-    </script>
 	</body>
 </html>
 

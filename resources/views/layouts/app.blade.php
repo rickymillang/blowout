@@ -15,6 +15,8 @@
 	<link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
+
     @yield('custom_css')
 </head>
 <body>
@@ -33,7 +35,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Blowout') }}
+                       <img src="{{ asset('images/blowout_fav.png') }}" style="float: left;margin-top: -10px;" width="50px" height="40px" alt=""/>&nbsp;&nbsp;  <b style="color:#0b548e">{{ config('app.name', 'Blowout') }} </b><em>.</em>
                     </a>
                 </div>
 
