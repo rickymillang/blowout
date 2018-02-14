@@ -12,9 +12,9 @@
         </h3>
 
         1 <span class="fa fa-star"></span>
-        <div class="progress" style="margin-bottom:0;">
+        <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}%;">
-            {{ $one_star_ratings }}
+            {{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}
           </div>
         </div>
         2 <span class="fa fa-star"></span>
