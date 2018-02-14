@@ -69,6 +69,11 @@
     </div>
     <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
+        <input type="checkbox" name="terms" required> I agree to the <a href="/agreement">Terms and Conditions</a>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
             <button class="btn btn-primary btn-fullwidth">Register</button>
         </div>
     </div>
