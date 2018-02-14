@@ -14,31 +14,31 @@
         1 <span class="fa fa-star"></span>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}%;">
-            {{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}
+            {{ round(($one_star_ratings / $total_ratings_count) * 100, 2) }}%
           </div>
         </div>
         2 <span class="fa fa-star"></span>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ round(($two_star_ratings / $total_ratings_count) * 100, 2) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ round(($two_star_ratings / $total_ratings_count) * 100, 2) }}%;">
-            {{ round(($two_star_ratings / $total_ratings_count) * 100, 2) }}
+            {{ round(($two_star_ratings / $total_ratings_count) * 100, 2) }}%
           </div>
         </div>
         3 <span class="fa fa-star"></span>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ round(($three_star_ratings / $total_ratings_count) * 100, 2) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ round(($three_star_ratings / $total_ratings_count) * 100, 2) }}%;">
-            {{ round(($three_star_ratings / $total_ratings_count) * 100, 2) }}
+            {{ round(($three_star_ratings / $total_ratings_count) * 100, 2) }}%
           </div>
         </div>
         4 <span class="fa fa-star"></span>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ round(($four_star_ratings / $total_ratings_count) * 100, 2) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ round(($four_star_ratings / $total_ratings_count) * 100, 2) }}%;">
-            {{ round(($four_star_ratings / $total_ratings_count) * 100, 2) }}
+            {{ round(($four_star_ratings / $total_ratings_count) * 100, 2) }}%
           </div>
         </div>
         5 <span class="fa fa-star"></span>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ round(($five_star_ratings / $total_ratings_count) * 100, 2) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ round(($five_star_ratings / $total_ratings_count) * 100, 2) }}%;">
-            {{ round(($five_star_ratings / $total_ratings_count) * 100, 2) }}
+            {{ round(($five_star_ratings / $total_ratings_count) * 100, 2) }}%
           </div>
         </div>
         <hr />
