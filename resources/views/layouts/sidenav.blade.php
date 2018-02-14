@@ -20,6 +20,7 @@
             <li role="presentation"><a href="/establishment_types"><span class="fa fa-file-text-o"></span> Establishment Types</a></li>
             <li role="presentation"><a href="/establishments"><span class="fa fa-building"></span> Establishments</a></li>
             <li role="presentation"><a href="/customers"><span class="fa fa-group"></span> Customers</a></li>
+
             <li role="presentation"><a href="/administrators"><span class="fa fa-user"></span> Administrators</a></li>
         @endrole
         @role('customer', 'establishment.admin')
@@ -27,6 +28,7 @@
             <li role="presentation"><a href="#"><span class="fa fa-envelope"></span> Invoices</a></li>
             <li role="presentation"><a href="/messages"><span class="fa fa-envelope"></span> Messages</a></li>
         @endrole
+        <li role="presentation"><a href="/reports"><span class="fa fa-flag"></span> Reports</a></li>
         <li role="presentation">
             <a href="/notifications"><span class="fa fa-globe"></span> Notifications
                 @if (count(Auth::user()->unreadNotifications))
