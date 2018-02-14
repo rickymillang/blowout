@@ -83,3 +83,5 @@ Route::post('messages/{id}', 'MessageController@store');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('agreement', 'AgreementController@index');
