@@ -69,6 +69,8 @@ Route::patch('change_password', 'ChangePasswordController@update');
 
 Route::get('/notifications', 'NotificationController@index');
 
+Route::get('ratings', 'RatingController@index');
+
 Route::delete('profile/{user}/notifications', function(App\User $user) {
     $user->notifications->map(function($n) {
         $n->markAsRead();
