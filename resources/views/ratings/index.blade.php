@@ -46,6 +46,11 @@
             <h4>
                 {{ $rating->user->name }} rated {{ $rating->rating }} <span class="fa fa-star"></span> on {{ $rating->updated_at->toFormattedDateString() }}
             </h4>
+            @if($rating->comment)
+                <blockquote>
+                    {{ $rating->comment }}
+                </blockquote>
+            @endif
         @endforeach
     @else
         <h5><em>There are no ratings</em></h5>
