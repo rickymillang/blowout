@@ -76,7 +76,8 @@ class EstablishmentController extends Controller
             'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments'],
             'email' => 'required|email|unique:establishments',
             'establishment_type' => 'required',
-            'image' => 'image'
+            'image' => 'image',
+            'terms' => 'required'
         ]);
 
         if (request()->hasFile('image')) {
