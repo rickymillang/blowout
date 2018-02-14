@@ -9,7 +9,7 @@ class RatingController extends Controller
 {
     public function index()
     {
-    	$ratings = Rating::where('establishment_id', auth()->user()->establishment->id)->get();
+    	$ratings = Rating::where('establishment_id', auth()->user()->establishment->id)->orderBy('updated_at', 'DESC')->get();
     	$total_ratings_count = Rating::where('establishment_id', auth()->user()->establishment->id)->count();
     	$sum_ratings = Rating::where('establishment_id', auth()->user()->establishment->id)->sum('rating');
     	$one_star_ratings = Rating::where('rating', 1)->where('establishment_id', auth()->user()->establishment->id)->count();
