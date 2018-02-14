@@ -47,6 +47,7 @@
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -56,7 +57,10 @@
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="{{ asset('js/respond.min.js') }}"></script>
+
 	<![endif]-->
+
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <style>
         blockquote{
           display:block;
@@ -117,7 +121,49 @@
         blockquote em{
           font-style: italic;
         }
-    </style>
+
+            .container {
+              margin: 100px auto;
+              text-align: center;
+            }
+
+            .notify-container {
+              position: relative;
+            	display: inline-block;
+              margin-top: 10px;
+            }
+
+              .notify-bubble {
+                position: absolute;
+                top: -20px;
+                right: -3px;
+                padding: 2px 5px 2px 6px;
+                background-color: #0ec6c2;
+                color: white;
+                font-size: 0.65em;
+                border-radius: 50%;
+                box-shadow: 1px 1px 1px gray;
+                display: block;
+              }
+            .total{
+                padding:15px;
+            }
+           /* .btn {
+              background: #ccc;
+
+              &:hover {
+                background: darken(silver, 10%);
+              }
+
+              &:focus,
+              &:focus:active,
+              &:active {
+                outline: none;
+                box-shadow: none;
+              }
+            }*/
+
+        </style>
 	</head>
 	<body>
 
@@ -262,9 +308,24 @@
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 
-
+	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+     <script>
+          var token = "{{csrf_token()}}";
+          var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
+          var myurl = "{{ URL::to('/') }}";
+         var urlAddCart = "{{ URL::to('/cart') }}";
+         var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
+         var urldeleteCartItem = "{{ URL::to('/cart') }}";
+         $(function() {
+          $('.btn-notify').click(function() {
+          	$('.notify-bubble').show(400);
+        	});
+        });
+        </script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
+
+	<script src="{{ asset('js/cart.js') }}"></script>
 
 	</body>
 </html>

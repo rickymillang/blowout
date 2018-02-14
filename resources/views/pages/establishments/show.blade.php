@@ -46,7 +46,7 @@
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -55,7 +55,9 @@
 	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
+
 	<script src="{{ asset('js/respond.min.js') }}"></script>
+
 
 
 
@@ -85,7 +87,9 @@
             box-shadow: 1px 1px 1px gray;
             display: block;
           }
-
+        .total{
+            padding:15px;
+        }
        /* .btn {
           background: #ccc;
 
@@ -149,40 +153,125 @@
 				</div>
 			</div>
 
+			<!-- Scratch Modal -->
+            <div id="scratch" class="modal fade" role="dialog">
+                      <div class="modal-dialog" >
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+
+                             </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
+                            <button type="button" class="btn btn-success btn-xs"   ><span class="fa fa-cart-plus"></span> Add to cart</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+             </div>
+            <!-- End of Modal Scratch -->
+
+            <!-- Wizard Modal -->
+                <div id="wizard" class="modal fade" role="dialog">
+                          <div class="modal-dialog" >
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="color:white">Organize from Wizard</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="row">
+
+                                 </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
+                                <button type="button" class="btn btn-success btn-xs"   ><span class="fa fa-cart-plus"></span> Add to cart</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                 </div>
+              <!-- End of Modal Wizard -->
+
 			<div class="row">
 			    <h3>Products</h3>
 			    <br/>
 			    @foreach($products as $p)
 			    <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="{{ asset('storage/'.$p->image) }}" class="fh5co-card-item image-popup">
-                        <figure>
-                            <div class="overlay"><i class="ti-plus"></i></div>
-                            <img src="{{ asset('storage/'.$p->image) }}" alt="Image" class="img-responsive">
-                        </figure>
-                        <div class="fh5co-text">
-                            <h2>{{ ucfirst($p->name) }}</h2>
-                            <br/>
-                            <p style="text-align: left">Description : {{ str_limit($p->description,250) }}
-                                <br/>Type : {{ $p->product_type->name }}
-                            </p>
-                        <div class="group">
-                            <button class="btn btn-primary btn-xs">Price : {{ number_format($p->price,2)  }}</button>
-                            <button class="btn btn-primary btn-xs"><span class="fa fa-cart-plus"></span> Cart</button>
-                        </div>
+                   <div class="fh5co-card-item">
+                        <a href="{{ asset('storage/'.$p->image) }}" class="image-popup">
+                            <figure>
+                                <div class="overlay"><i class="ti-plus"></i></div>
+                                <img src="{{ asset('storage/'.$p->image) }}" alt="Image" class="img-responsive">
+                            </figure>
+                             </a>
+                            <div class="fh5co-text">
+                                <h2>{{ ucfirst($p->name) }}</h2>
+                                <br/>
+                                <p style="text-align: left">Description : {{ str_limit($p->description,250) }}
+                                    <br/>Type : {{ $p->product_type->name }}
+                                </p>
+                            <div class="group">
+                                <button class="btn btn-primary btn-xs">Price : {{ number_format($p->price,2)  }}</button>
+                                <button class="btn btn-primary btn-xs" @if(auth()->check())data-toggle="modal" data-target="#prod{{ $p->id }}" @else onclick="trappings();" @endif> <span class="fa fa-cart-plus"></span> Cart</button>
+                            </div>
                         </div>
 
                         <div class="ui large star rating"></div>
-                    </a>
+                   </div>
+                </div>
+
+                <!-- Product Modal -->
+                <div id="prod{{ $p->id }}" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{ $p->name }}</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                            <figure>
+                                <img src="{{ asset('storage/'.$p->image) }}" alt="Image" >
+                            </figure>
+                            </div>
+                            <div class="col-md-6">
+                                <p style="text-align: left">Description : {{ str_limit($p->description,250) }}
+                                    <br/>Type : {{ $p->product_type->name }}
+                                </p>
+                                <input type="number" name="quantity" id="quantity{{ $p->id }}"  placeholder="0" class="form-control"/>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
+                        <button type="button" class="btn btn-success btn-xs"  onclick="addCart('{{ $p->id }}',1);" ><span class="fa fa-cart-plus"></span> Add to cart</button>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
                 @endforeach
 			</div>
-
 			<div class="row">
                 <h3>Services</h3>
                 <br/>
                 @foreach($services as $s)
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="{{ asset('storage/'.$establishment->image) }}" class="fh5co-card-item image-popup">
+                     <div class="fh5co-card-item">
                         <figure>
                             <div class="overlay"><i class="ti-plus"></i></div>
                             <img src="{{ asset('storage/'.$establishment->image) }}" alt="Image" class="img-responsive">
@@ -190,15 +279,14 @@
                         <div class="fh5co-text">
                             <h2>{{ ucfirst($s->name) }}</h2>
                             <br/>
-
                         <div class="group">
                             <button class="btn btn-primary btn-xs">Price : {{ number_format($s->price,2)  }}</button>
-                            <button class="btn btn-primary btn-xs"><span class="fa fa-cart-plus"></span> Cart</button>
+                            <button class="btn btn-primary btn-xs" onclick="addCart('{{ $s->id }}',2);"><span class="fa fa-cart-plus"></span> Cart</button>
                         </div>
                         </div>
 
                         <div class="ui large star rating"></div>
-                    </a>
+                   </div>
                 </div>
                 @endforeach
             </div>
@@ -219,10 +307,9 @@
 
                         <div class="group">
                             <button class="btn btn-primary btn-xs">Price : {{ number_format($pack->price,2)  }}</button>
-                            <button class="btn btn-primary btn-xs"><span class="fa fa-cart-plus"></span> Cart</button>
+                            <button class="btn btn-primary btn-xs" onclick="addCart('{{ $pack->id }}',3);"><span class="fa fa-cart-plus"></span> Cart</button>
                         </div>
                         </div>
-
                         <div class="ui large star rating"></div>
                     </a>
                 </div>
@@ -287,19 +374,28 @@
 	<!-- Magnific Popup -->
 	<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
-
+    <script src="{{ asset('vendor/number/jquery.number.js') }}"></script>
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-
-	<!-- Main -->
-	<script src="{{ asset('js/main.js') }}"></script>
-    <script>
-    $(function() {
+	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+     <script>
+      var token = "{{csrf_token()}}";
+      var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
+      var myurl = "{{ URL::to('/') }}";
+     var urlAddCart = "{{ URL::to('/cart') }}";
+     var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
+     var urldeleteCartItem = "{{ URL::to('/cart') }}";
+     $(function() {
       $('.btn-notify').click(function() {
       	$('.notify-bubble').show(400);
     	});
     });
     </script>
+	<!-- Main -->
+	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('js/cart.js') }}"></script>
+
+	<script src="{{ asset('js/scratch.js') }}"></script>
 	</body>
 </html>
 
