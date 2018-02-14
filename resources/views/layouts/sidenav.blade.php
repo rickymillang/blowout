@@ -14,6 +14,7 @@
             <li role="presentation"><a href="/products"><span class="fa fa-tasks"></span> Products</a></li>
             <li role="presentation"><a href="/services"><span class="fa fa-tags"></span> Services</a></li>
             <li role="presentation"><a href="/packages"><span class="fa fa-window-restore"></span> Packages</a></li>
+            <li role="presentation"><a href="/ratings"><span class="fa fa-star"></span> Ratings</a></li>
         @endrole
         @role('superadmin')
             <li role="presentation"><a href="/establishment_types"><span class="fa fa-file-text-o"></span> Establishment Types</a></li>
