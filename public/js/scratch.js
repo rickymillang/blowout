@@ -39,7 +39,8 @@ function add_to_cart(id){
                 console.log(data);
                 $('#scratch_cart').prepend("<tr><td><img src=" + myurl + "/storage/" + data.image + " alt='' style='max-width:100px;' height='20px' width='20px'/></td><td>"+data.name+"</td><td>"+quantity+"</td><td></td></tr>");
                 $('#s_productQuantity'+id).val("");
-                $('#s_totalAmount')
+                $('#s_totalAmount').val(quantity + total);
+                $('#s_totalAmountDisplay').html(quantity + total);
                 toastr.options.closeButton = true;
                 toastr.options.positionClass = 'toast-bottom-center';
                 toastr.options.showDuration = 1000;
