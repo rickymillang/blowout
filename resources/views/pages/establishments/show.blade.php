@@ -51,6 +51,8 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
+	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />q
 	<!-- Modernizr JS -->
 	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 	<!-- FOR IE9 below -->
@@ -155,21 +157,80 @@
 
 			<!-- Scratch Modal -->
             <div id="scratch" class="modal fade" role="dialog">
-                      <div class="modal-dialog" >
+                      <div class="modal-dialog modal-lg">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
+
                           </div>
                           <div class="modal-body">
+                          <h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>
+                          <br/>
                             <div class="row">
+                                <div class="col-md-8 section_product">
+                                    @foreach($establishment->product_types as $pt )
 
-                             </div>
+                                        <button id="pt{{ $pt->id }}" onclick="show_product_list({{$pt->id}});" class="btn btn-info btn-block">{{ $pt->name }}</button>
+
+                                        {{--{{ $establishment->products->where('product_type_id',$pt->id) }}--}}
+
+                                         <div class="table product_type_list{{ $pt->id }}" id="plist" style="display:none">
+                                         <button class="btn btn-success btn-block">{{ $pt->name }} Selection</button>
+
+                                          <table class="table table-collapsed" id="table_scratch">
+                                               <thead>
+                                                   <tr>
+                                                       <th ></th>
+                                                       <th >Item Name</th>
+                                                       <th >Price</th>
+                                                       <th >Quantity</th>
+                                                       <th ></th>
+                                                   </tr>
+                                               </thead>
+                                               <tbody>
+                                                @foreach($establishment->products->where('product_type_id',$pt->id) as $product)
+                                                    <tr>
+                                                         <td><img src="{{ asset("storage/".$product->image) }}" style="max-width:100px;" height="30px" width="30px"></td>
+                                                        <td>{{ $product->name }}</td>
+                                                        <td>{{ $product->price }}</td>
+                                                        <td><input type="number" id="s_productQuantity{{ $product->id }}" placeholder="0" style="width:60px;"/></td>
+                                                        <td><button class="btn btn-success" style="font-size:10px;padding:5px 10px;" onclick="add_to_cart({{ $product->id }})"><span class="fa fa-cart-plus"></span>Add</button></td>
+                                                    </tr>
+                                                 @endforeach
+                                                </tbody>
+                                          </table>
+                                      </div>
+                                    @endforeach
+                                </div>
+                                <div class="col-md-4">
+                                     <h4> Your Cart Item </h4>
+                                    <div class="table">
+                                        <table class="table table-striped" id="scratch_cart">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Name</th>
+                                                    <th>#</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <span class="pull-right">Total: <i id="s_totalAmountDisplay" >0.00</i></span>
+                                    <input type="hidden" value="0" id="s_totalAmount"/>
+                                </div>
+                                </div>
+
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
-                            <button type="button" class="btn btn-success btn-xs"   ><span class="fa fa-cart-plus"></span> Add to cart</button>
+                            <button type="button" class="btn btn-warning pull-left" id="scratch_back">Back</button>
+                            <button type="button" class="btn btn-success">Checkout</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>
+
                           </div>
                         </div>
 
@@ -370,7 +431,8 @@
 
 	<!-- Stellar Parallax -->
 	<script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
-
+    <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
+	 <script src="{{asset('vendor/icheck/icheck.js')}}"></script>
 	<!-- Magnific Popup -->
 	<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
@@ -382,14 +444,23 @@
       var token = "{{csrf_token()}}";
       var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
       var myurl = "{{ URL::to('/') }}";
-     var urlAddCart = "{{ URL::to('/cart') }}";
-     var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
-     var urldeleteCartItem = "{{ URL::to('/cart') }}";
+      var urlAddCart = "{{ URL::to('/cart') }}";
+      var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
+      var urldeleteCartItem = "{{ URL::to('/cart') }}";
+      var urlGetProductDetails = "{{ URL::to('/cart/get-product-details') }}";
      $(function() {
       $('.btn-notify').click(function() {
       	$('.notify-bubble').show(400);
     	});
     });
+
+
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue',
+        increaseArea: '20%' // optional
+    });
+
     </script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>

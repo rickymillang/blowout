@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Product;
 
 class CartController extends Controller
 {
@@ -130,5 +131,12 @@ class CartController extends Controller
         $cart = Cart::where('user',$request->user_id)->delete();
 
         return redirect()->back();
+    }
+
+    public function getProductDetails(Request $request,$id){
+
+        $product = Product::find($id);
+
+        return json_encode($product);
     }
 }
