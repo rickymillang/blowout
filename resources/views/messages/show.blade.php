@@ -3,6 +3,8 @@
 @section('heading', 'View Message')
 
 @section('content')
+    <h4><a href="/messages">&lt; Back to Messages</a></h4>
+    <hr>
 	<h4>{{ $user->name }}</h4>
 	<div class="container-fluid">
 		@foreach($messages as $message)
