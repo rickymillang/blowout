@@ -91,7 +91,10 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 Route::get('agreement', 'AgreementController@index');
 
 Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:establishment.admin,customer']], function() {
-    Route::get('/', 'ReportController@index');
+
     Route::get('/create', 'ReportController@create');
     Route::post('/', 'ReportController@store');
+});
+Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:superadmin']], function() {
+    Route::get('/', 'ReportController@index');
 });
