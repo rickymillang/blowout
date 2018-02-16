@@ -12,7 +12,7 @@
 					<a href="/messages/{{ $message->from_user_id }}">{{ $message->sender->name }}</a>
         		@endif
         		</a>
-            	{{ $message->message }}
+            	<em>{{ $message->message }}</em>
             	<span class="pull-right">{{ $message->created_at->diffForHumans() }}</span>
             </h4>
         </div>
