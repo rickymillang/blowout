@@ -14,7 +14,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('admin')) {
+        if (auth()->user()->hasRole('superadmin')) {
             $reports = Report::all();
         } else if (auth()->user()->hasRole('establishment.admin') || auth()->user()->hasRole('customer')) {
             $reports = Report::where('user_id', auth()->user()->id)->get();

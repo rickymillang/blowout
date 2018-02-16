@@ -14,7 +14,8 @@ class MessageController extends Controller
                 $query->selectRaw('max(`id`)')
                     ->from('messages')
                     ->where('to_user_id', '=', auth()->user()->id)
-                    ->orWhere('from_user_id', '=', auth()->user()->id);
+                    ->orWhere('from_user_id', '=', auth()->user()->id)
+                    ->groupBy('to_user_id', 'from_user_id');
             })->select('to_user_id', 'from_user_id', 'message', 'created_at')
             ->orderBy('created_at')
             ->get();
