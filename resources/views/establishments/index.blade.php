@@ -41,11 +41,11 @@
                                         <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
                                         <a href="/establishments/{{ $establishment->id }}/deactivate" class="btn btn-danger btn-xs"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('deactivate-establishment').submit();">
+                                                     document.getElementById('deactivate-establishment{{ $establishment->id }}').submit();">
                                             Deactivate
                                         </a>
 
-                                        <form id="deactivate-establishment" action="/establishments/{{ $establishment->id }}/deactivate" method="POST" style="display: none;">
+                                        <form id="deactivate-establishment{{ $establishment->id }}" action="/establishments/{{ $establishment->id }}/deactivate" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                             {{ method_field('PATCH')}}
                                         </form>
@@ -100,11 +100,11 @@
                                         <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
                                         <a href="/establishments/{{ $unapproved_establishment->id }}/approve" class="btn btn-success btn-xs"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('approve-establishment').submit();">
+                                                     document.getElementById('approve-establishment{{ $unapproved_establishment->id }}').submit();">
                                             Approve
                                         </a>
 
-                                        <form id="approve-establishment" action="/establishments/{{ $unapproved_establishment->id }}/approve" method="POST" style="display: none;">
+                                        <form id="approve-establishment{{ $unapproved_establishment->id }}" action="/establishments/{{ $unapproved_establishment->id }}/approve" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                             {{ method_field('PATCH')}}
                                         </form>
