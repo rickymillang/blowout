@@ -6,13 +6,14 @@ use App\Establishment;
 use App\EstablishmentType;
 use App\Notifications\EstablishmentApproved;
 use App\Notifications\EstablishmentRegistered;
-use App\RoleUser;
-use App\Product;
-use App\Service;
 use App\Package;
+use App\Product;
+use App\RoleUser;
+use App\Service;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Semaphore;
 
 class EstablishmentController extends Controller
 {
@@ -223,6 +224,8 @@ class EstablishmentController extends Controller
                 'name' => $establishment->name,
                 'message' => 'Your establishment has been approved'
             ]));
+
+            Semaphore::send($establishment->phone, 'Congratulations! Your establishment, ' . $establishment->name . ' has been approved. You may now start selling!');
 
             session()->flash('message', 'Establishment has been successfully approved.');
 
