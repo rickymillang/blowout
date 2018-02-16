@@ -95,6 +95,6 @@ Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:establishmen
     Route::get('/create', 'ReportController@create');
     Route::post('/', 'ReportController@store');
 });
-Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:superadmin']], function() {
+Route::group(['prefix' => 'reports', 'middleware' => ['auth']], function() {
     Route::get('/', 'ReportController@index');
 });
