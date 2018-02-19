@@ -13,9 +13,9 @@
                 <div style="border:#3097D1 solid 1px;padding:5px 8px;border-radius:2px;margin-bottom:5px;">
                     <h4>
         				@if($message->from_user_id == auth()->user()->id)
-        					<a href="/messages/{{ $message->to_user_id }}">{{ $message->receiver->name }}</a>
+        					<a href="/messages/{{ $message->to_user_id }}/show">{{ $message->receiver->name }}</a>
                 		@elseif($message->to_user_id == auth()->user()->id)
-        					<a href="/messages/{{ $message->from_user_id }}">{{ $message->sender->name }}</a>
+        					<a href="/messages/{{ $message->from_user_id }}/show">{{ $message->sender->name }}</a>
                 		@endif
                 		</a>
                     	<em>{{ $message->message }}</em>
