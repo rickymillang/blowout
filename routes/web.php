@@ -26,6 +26,7 @@ Route::get('/meet-the-team','PageController@meet_the_team');
 Route::resource('/cart','CartController');
 Route::post('/cart/delete-all','CartController@delete_all');
 Route::post('/cart/get-product-details/{id}','CartController@getProductDetails');
+Route::post('/cart/get-product-list/{id}','CartController@getProductList');
 Route::resource('/products', 'ProductController');
 Route::resource('/product_types', 'ProductTypeController');
 Route::resource('/establishments','EstablishmentController');

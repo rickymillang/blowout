@@ -15,7 +15,7 @@ class MenuViewComposer {
 
         if(auth()->check()) {
 
-            $cart = Cart::where('user', auth()->user()->id)->get();
+            $cart = Cart::where('user', auth()->user()->id)->where('organize_from',1)->get();
 
             foreach ($cart as $c) {
                 $total_amount[] = $c->getItem->price * $c->quantity;

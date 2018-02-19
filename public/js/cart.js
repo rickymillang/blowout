@@ -26,7 +26,7 @@
   });
 
   function deleteItem(id){
-    var cartItemTotal = 0;
+      var cartItemTotal = 0;
       var cartTotal = 0;
       cartItemTotal = parseInt($('.cartItemTotal').val());
 
@@ -104,9 +104,10 @@
                         $('.totalQuantityDisplay').html(new_quantity);
                         $('.totalQuantity').val(new_quantity);
                         $('#table_cart').append("<tr id='item"+data.cart.id+"'><td><img src=" + myurl + "/storage/" + data.image + " alt='' style='max-width:100px;' height='35px' width='35px'/></td><td>" + data.name + "</td><td>" + data.price + "</td><td>" + data.cart.quantity + "</td><td><button onclick='deleteItem("+data.cart.id+")' class='btn btn-danger' style='font-size:10px;padding:5px 10px;' id='" + data.cart.id + "'><span class='fa fa-trash'></span></button</td></tr>");
+                        $('#item_summary_scratch').append("<tr id='item_scratch"+data.cart.id+"'><td><img src=" + myurl + "/storage/" + data.image + " alt='' style='max-width:100px;' height='35px' width='35px'/></td><td>" + data.name + "</td><td>" + data.price + "</td><td>" + data.cart.quantity + "</td><td><button onclick='deleteItem("+data.cart.id+")' class='btn btn-danger' style='font-size:10px;padding:5px 10px;' id='" + data.cart.id + "'><span class='fa fa-trash'></span></button</td></tr>");
                     }else{
                         $('tr#item'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
-
+                        $('tr#item_summary_scratch'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
                     }
                     console.log(data);
                         toastr.options.closeButton = true;
@@ -123,3 +124,25 @@
             alert('Please input quantity!');
         }
     }
+
+  function getProductList(id){
+      $.ajax({
+          url: urlGetProductList+"/"+id,
+          type: "POST",
+          data: {_token: token},
+          dataType: "json",
+            success: function(data){
+
+                console.log(data.cart);
+
+                                $.each(data.cart,function(idx,obj){
+                                    console.log(obj);
+                    $('#item_summary_scratch').append("<tr><td></td><td>Item Name</td><td>"+0.00+"</td><td>1</td><td></td></tr>");
+                });
+            },
+           error: function(data){
+
+             }
+
+      });
+  }
