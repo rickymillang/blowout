@@ -1,4 +1,4 @@
-@extends('master.layouts.master')
+@extends('template.layouts.master')
 
 @section('title', 'Establishment Types')
 
