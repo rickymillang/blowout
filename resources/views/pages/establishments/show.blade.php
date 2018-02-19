@@ -104,6 +104,11 @@
         }
 
 
+           #map {
+            height: 300px;
+            width: 100%;
+           }
+
           .scratc-notify-bubble {
             position: absolute;
             top: 10px;
@@ -183,7 +188,6 @@
                 	</select>
                 	<br/>
                 	  <h3>Location</h3>
-                	  <br>
                 	  <div id="map"></div>
 				</div>
 			</div>
@@ -676,7 +680,7 @@
 
          <script>
               function initMap() {
-                var uluru = {lat: 10.301553, lng: 123.870529};
+                var uluru = {lat:  {{$establishment->latitude }}, lng: {{ $establishment->longitude }}};
                 var map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 15,
                   center: uluru
@@ -687,7 +691,9 @@
                 });
               }
             </script>
-
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_KEY')}}&callback=initMap">
+            </script>
 
 	</body>
 </html>
