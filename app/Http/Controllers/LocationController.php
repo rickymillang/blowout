@@ -31,7 +31,7 @@ class LocationController extends Controller
     		$establishment->save();
     	}
 
-    	session()->flash('success', 'Location updated successfully');
+    	session()->flash('message', 'Location updated successfully');
 
     	return redirect()->back();
 
