@@ -181,6 +181,10 @@
                         <option value="3">Wizard</option>
 
                 	</select>
+                	<br/>
+                	  <h3>Location</h3>
+                	  <br>
+                	  <div id="map"></div>
 				</div>
 			</div>
 
@@ -193,6 +197,7 @@
                           <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
+
 
                           </div>
                           <div class="modal-body" id="smartwizard">
@@ -619,8 +624,6 @@
 
                    }else if(stepPosition === 'final'){
                        $("#next-btn").addClass('disabled');
-                        getProductList({{ auth()->user()->id }});
-
                    }else{
 
 
@@ -670,6 +673,21 @@
 
             });
         </script>
+
+         <script>
+              function initMap() {
+                var uluru = {lat: 10.301553, lng: 123.870529};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: uluru
+                });
+                var marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map
+                });
+              }
+            </script>
+
 
 	</body>
 </html>
