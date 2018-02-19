@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
      public function __construct(){
         $this->middleware(function ($request, $next) {
-            dd(auth()->user()->establishment);
+
             $this->establishment_id = auth()->user()->establishment->id;
 
 
