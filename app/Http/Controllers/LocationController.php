@@ -21,8 +21,8 @@ class LocationController extends Controller
     	$longitude = $request->longitude;
 
     	$request->validate([
-    		'longitude' => 'required',
-    		'latitude' => 'required'
+    		'longitude' => 'required|numeric',
+    		'latitude' => 'required|numeric'
     	]);
 
     	if ($establishment) {
@@ -34,7 +34,5 @@ class LocationController extends Controller
     	session()->flash('message', 'Location updated successfully');
 
     	return redirect()->back();
-
-
     }
 }
