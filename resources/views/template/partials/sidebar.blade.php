@@ -120,6 +120,12 @@
                         <span class="nav-label">Payments</span>
                     </a>
                 </li>
+                <li {{ url()->current() == url('locations/edit') ? 'class=active' : '' }}>
+                    <a href="/locations/edit">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="nav-label">Locations</span>
+                    </a>
+                </li>
                 <li {{ url()->current() == url('invoices') ? 'class=active' : '' }}>
                     <a href="/invoices">
                         <i class="fa fa-envelope"></i>

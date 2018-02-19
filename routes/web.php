@@ -98,3 +98,6 @@ Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:establishmen
 Route::group(['prefix' => 'reports', 'middleware' => ['auth']], function() {
     Route::get('/', 'ReportController@index');
 });
+
+Route::get('locations/edit', 'LocationController@edit');
+Route::patch('locations/', 'LocationController@update');
