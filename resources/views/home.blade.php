@@ -1,7 +1,14 @@
-@extends('layouts.app')
+@extends('template.layouts.master')
 
-@section('heading', 'Dashboard')
+@section('title', 'Home')
 
 @section('content')
-Welcome to your blowout dashboard!
+	<div class="ibox float-e-margins">
+	    <div class="ibox-title">
+	        <h5>Dashboard</h5>
+	    </div>
+	    <div class="ibox-content">
+
+	    </div>
+	</div>
 @endsection

@@ -1,41 +1,49 @@
-@extends('layouts.app')
+@extends('template.layouts.master')
 
-@section('heading', 'View Products')
+@section('title', 'Products')
 
 @section('content')
-    <a href="/products/create" class="btn btn-success">Add Product</a>
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>View Products</h5>
+        </div>
 
-    <hr>
+        <div class="ibox-content">
+            <a href="/products/create" class="btn btn-success">Add Product</a>
 
-    <table class="table table-striped table-hover" id="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Product Type</th>
-                <th>Price</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($products as $product)
-                <tr>
-                    <td><img src="{{ asset("storage/".$product->image) }}"style="max-width:100px;" height="35px" width="35px"></td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
-                    <td>{{ $product->product_type->name }}</td>
-                    <td>{{ $product->price }}</td>
+            <hr>
 
-                    <td>
-                        <a href="/products/{{ $product->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
+            <table class="table table-striped table-hover" id="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Product Type</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($products as $product)
+                        <tr>
+                            <td><img src="{{ asset("storage/".$product->image) }}"style="max-width:100px;" height="35px" width="35px"></td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->product_type->name }}</td>
+                            <td>{{ $product->price }}</td>
 
-                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                            <td>
+                                <a href="/products/{{ $product->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
+
+                                <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection
 
 @section('custom_css')
