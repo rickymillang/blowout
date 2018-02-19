@@ -179,7 +179,7 @@
 				</div >
 				<div class="col-lg-4 col-md-6 col-sm-18">
 				    <h3 align="left">Organize from : </h3>
-                	<select name="setup" id="setup" class="form-control">
+                	<select name="setup" id="setup" class="form-control" @if(!auth()->check()) disabled @endif>
                 	    <option>Select Setup</option>
                         <option value="1" selected>Template</option>
                         <option value="2">Scratch</option>
