@@ -25,6 +25,8 @@ class CreateEstablishmentsTable extends Migration
             $table->string('image')->nullable();
             $table->string('business_permit')->nullable();
             $table->integer('user_id')->unsigned();
+            $table->float('latitude', 10, 6)->nullable();
+            $table->float('longitude', 10, 6)->nullable();
             $table->string('status');
 
             $table->timestamps();

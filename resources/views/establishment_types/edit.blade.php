@@ -1,26 +1,33 @@
-@extends('layouts.app')
+@extends('template.layouts.master')
 
-@section('heading', 'Edit Establishment Type')
+@section('title', 'Establishment Types')
 
 @section('content')
-    <a href="/establishment_types" class="btn btn-success">View Establishment Types</a>
+	<div class="ibox float-e-margins">
+	    <div class="ibox-title">
+	    	<h5>Edit Establishment Type</h5>
+	    </div>
+	    <div class="ibox-content">
+		    <a href="/establishment_types" class="btn btn-success">View Establishment Types</a>
 
-    <hr>
+		    <hr>
 
-    <form class="form-horizontal" method="POST" action="/establishment_types/{{ $establishment_type->id }}">
-		{{ csrf_field() }}
-		{{ method_field('PATCH')}}
-		<div class="form-group">
-			<label for="name" class="col-md-2 col-md-offset-2 control-label">Name</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="name" value="{{ $establishment_type->name }}">
-			</div>
+		    <form class="form-horizontal" method="POST" action="/establishment_types/{{ $establishment_type->id }}">
+				{{ csrf_field() }}
+				{{ method_field('PATCH')}}
+				<div class="form-group">
+					<label for="name" class="col-md-2 col-md-offset-2 control-label">Name</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="name" value="{{ $establishment_type->name }}">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-6 col-md-offset-4">
+						<button class="btn btn-primary btn-fullwidth">Submit</button>
+					</div>
+				</div>
+		    </form>
 		</div>
-
-		<div class="form-group">
-			<div class="col-md-6 col-md-offset-4">
-				<button class="btn btn-primary btn-fullwidth">Submit</button>
-			</div>
-		</div>
-    </form>
+	</div>
 @endsection

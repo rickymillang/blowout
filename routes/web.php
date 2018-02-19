@@ -73,6 +73,8 @@ Route::patch('change_password', 'ChangePasswordController@update');
 
 Route::get('/notifications', 'NotificationController@index');
 
+Route::get('ratings', 'RatingController@index');
+
 Route::delete('profile/{user}/notifications', function(App\User $user) {
     $user->notifications->map(function($n) {
         $n->markAsRead();
@@ -82,8 +84,22 @@ Route::delete('profile/{user}/notifications', function(App\User $user) {
 });
 
 Route::get('messages', 'MessageController@index');
-Route::get('messages/{id}', 'MessageController@show');
+Route::get('messages/{id}/show', 'MessageController@show');
 Route::post('messages/{id}', 'MessageController@store');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('agreement', 'AgreementController@index');
+
+Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:establishment.admin,customer']], function() {
+
+    Route::get('/create', 'ReportController@create');
+    Route::post('/', 'ReportController@store');
+});
+Route::group(['prefix' => 'reports', 'middleware' => ['auth']], function() {
+    Route::get('/', 'ReportController@index');
+});
+
+Route::get('locations/edit', 'LocationController@edit');
+Route::patch('locations/', 'LocationController@update');

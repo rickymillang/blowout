@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "49ad04f43979d1fa77a892e9338758f2",
+
+    "content-hash": "a486b616e623c966923a6d53014d7f7c",
+
     "packages": [
         {
             "name": "components/bootstrap",
@@ -740,6 +742,53 @@
                 "svg"
             ],
             "time": "2017-11-03T07:22:19+00:00"
+        },
+        {
+            "name": "kurtdcdg/semaphore-laravel",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kurtdcdg/semaphore-laravel.git",
+                "reference": "7dc20b72e0b79a0928265c098497e32091be4ed6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kurtdcdg/semaphore-laravel/zipball/7dc20b72e0b79a0928265c098497e32091be4ed6",
+                "reference": "7dc20b72e0b79a0928265c098497e32091be4ed6",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "php": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Semaphore\\SemaphoreServiceProvider"
+                    ],
+                    "aliases": {
+                        "Semaphore": "Semaphore\\Semaphore"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Semaphore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kurt Dacudag",
+                    "email": "kurtperaldacudag@gmail.com"
+                }
+            ],
+            "description": "A Laravel wrapper for Kickstart.ph Semaphore",
+            "time": "2018-02-16T04:53:15+00:00"
         },
         {
             "name": "laravel/framework",
