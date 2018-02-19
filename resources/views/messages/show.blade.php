@@ -1,6 +1,6 @@
 @extends('template.layouts.master')
 
-@section('title', 'Lol')
+@section('title', 'Messages')
 
 @section('content')
 	<div class="ibox float-e-margins">
