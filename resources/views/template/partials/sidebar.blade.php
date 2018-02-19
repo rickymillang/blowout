@@ -152,13 +152,15 @@
             </li>
 
             @if(!auth()->user()->hasRole('establishment.admin') && !auth()->user()->hasRole('superadmin'))
-                <li class="special_link">
-                    <a href="/establishments/create"><i class="fa fa-plus"></i> <span class="nav-label">Register Establishment</span></a>
-                </li>
-            @elseif($establishment = \App\Establishment::where('user_id', auth()->user()->id)->first())
-                <li class="special_link">
-                    <a href="/#" class="disabled"><i class="fa fa-plus"></i> <span class="nav-label">Establishment Pending</span></a>
-                </li>
+                @if($establishment = \App\Establishment::where('user_id', auth()->user()->id)->first())
+                    <li class="special_link">
+                        <a href="/#" class="disabled"><i class="fa fa-plus"></i> <span class="nav-label">Establishment Pending</span></a>
+                    </li>
+                @else
+                    <li class="special_link">
+                        <a href="/establishments/create"><i class="fa fa-plus"></i> <span class="nav-label">Register Establishment</span></a>
+                    </li>
+                @endif
             @endif
 
         </ul>
