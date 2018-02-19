@@ -101,3 +101,5 @@ Route::group(['prefix' => 'reports', 'middleware' => ['auth']], function() {
 
 Route::get('locations/edit', 'LocationController@edit');
 Route::patch('locations/', 'LocationController@update');
+
+Route::get('calendar', 'CalendarController@index');
