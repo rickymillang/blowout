@@ -82,7 +82,7 @@ Route::delete('profile/{user}/notifications', function(App\User $user) {
 });
 
 Route::get('messages', 'MessageController@index');
-Route::get('messages/{id}', 'MessageController@show');
+Route::get('messages/{id}/show', 'MessageController@show');
 Route::post('messages/{id}', 'MessageController@store');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
