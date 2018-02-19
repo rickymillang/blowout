@@ -67,7 +67,7 @@
                 </li>
                 <li {{ url()->current() == url('packages') ? 'class=active' : '' }}>
                     <a href="/packages">
-                        <i class="fa fa-package"></i>
+                        <i class="fa fa-dropbox"></i>
 
                         <span class="nav-label">Packages</span>
                     </a>
