@@ -8,13 +8,27 @@
 	    	<h5>Terms and Conditions</h5>
 	    </div>
 	    <div class="ibox-content">
-		    <ol>
-		        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, libero nemo atque. Atque debitis facere accusamus molestias. Quidem eius dolorem quis tenetur voluptas voluptatum sint saepe quasi, blanditiis, animi fugit!</li>
-		        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur modi sapiente perspiciatis quos exercitationem! Modi iure fugiat quia, laborum sapiente veniam architecto debitis voluptatibus dicta temporibus voluptas. Veniam, placeat, soluta!</li>
-		        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-		        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quo, molestiae molestias iure doloremque ratione facere dolorem cupiditate suscipit similique tenetur optio. Culpa beatae hic eos. Iste aliquid officia ullam</li>
-		        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt est maxime odio labore eveniet, accusantium placeat aliquid at inventore officia, ducimus modi aperiam praesentium quis sunt consequuntur, sed voluptatum iste.</li>
-		    </ol>
+	    	<p>
+	    		Introduction:
+	    	</p>
+	    	<p>
+	    		These terms and conditions apply to the establishment owners who uses the Online Services provided for any
+	    		payment made to BlowOut. Kindly read these terms and conditions
+	    		carefully. By authorizing a payment to BlowOut through the online payment service, it
+	    		would be treated as a deemed acceptance to these terms and conditions. BlowOut reserves all the
+	    		rights to amend these terms and conditions at any time without giving prior notice. It is the
+	    		responsibility of the Establishment Owners to have read the terms and conditions before using the Service.
+
+	    		Key terms:
+	    		The following is a summary of the key terms of this service:
+	    	</p>
+
+	    	<ol>
+	    		<li>Payment(s) through this Service may only be made with a Paypal Accounts payment fees from the Establishment Owners.</li>
+	    		<li>Before using our Website, it is recommended that the Owners shall make necessary enquiry about the charges or fees payable against the PayPal Accounts used.</li>
+	    		<li>Are management will not interfere any transaction between customers and establishment owners.
+	    	Every 30 days, we will collect 5% of your income upon using are system. </li>
+	    	</ol>
 		</div>
 	</div>
 @endsection
