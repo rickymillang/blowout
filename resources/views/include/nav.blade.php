@@ -38,6 +38,10 @@
 
                                 <ul class="dropdown">
                                     <li>
+                                        <a href="/dashboard"> Dashboard</a>
+
+                                    </li>
+                                    <li>
                                         <a href="#"> Profile</a>
 
                                     </li>

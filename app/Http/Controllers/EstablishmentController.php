@@ -110,7 +110,7 @@ class EstablishmentController extends Controller
 
         session()->flash('message', 'You have successfully registered your establishment!');
 
-        return redirect('/home');
+        return redirect('/dashboard');
     }
 
     /**

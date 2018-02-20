@@ -17,4 +17,12 @@ class Establishment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function product_types(){
+        return $this->hasMany('App\ProductType','establishment_id','id');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Product','establishment_id','id');
+    }
 }

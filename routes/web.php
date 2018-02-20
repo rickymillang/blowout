@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/establishment/list','PageController@lists');
 Route::get('/about-us','PageController@about_us');
 Route::get('/contact-us','PageController@contact_us');
@@ -25,6 +25,8 @@ Route::get('/meet-the-team','PageController@meet_the_team');
 
 Route::resource('/cart','CartController');
 Route::post('/cart/delete-all','CartController@delete_all');
+Route::post('/cart/get-product-details/{id}','CartController@getProductDetails');
+Route::post('/cart/get-product-list/{id}','CartController@getProductList');
 Route::resource('/products', 'ProductController');
 Route::resource('/product_types', 'ProductTypeController');
 Route::resource('/establishments','EstablishmentController');

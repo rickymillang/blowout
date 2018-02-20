@@ -8,7 +8,7 @@
         </div>
     </div>
     <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" class="active"><a href="#"><span class="fa fa-home"></span> Home</a></li>
+        <li role="presentation" class="active"><a href="/dashboard"><span class="fa fa-home"></span> Dashboard</a></li>
         @role('establishment.admin')
             <li role="presentation"><a href="/product_types"><span class="fa fa-tags"></span> Product Types</a></li>
             <li role="presentation"><a href="/products"><span class="fa fa-tasks"></span> Products</a></li>

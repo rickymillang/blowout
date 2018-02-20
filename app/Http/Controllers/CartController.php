@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Product;
 
 class CartController extends Controller
 {
@@ -40,6 +41,7 @@ class CartController extends Controller
         }else{
             $quantity = 1;
         }
+
         $cart = Cart::where('item_id',$request->id)->first();
 
         if(count($cart) > 0){
@@ -56,7 +58,8 @@ class CartController extends Controller
                 'item_id' => $request->id,
                 'item_type' => $request->item_type,
                 'quantity' => $quantity,
-                'user' => auth()->user()->id
+                'user' => auth()->user()->id,
+                'organize_from' => 1
             ]);
 
             $exist = 0;
@@ -116,12 +119,14 @@ class CartController extends Controller
     {
         $cart = Cart::find($id);
 
+        $quantity = $cart->quantity;
         $cart_amount = $cart->getItem->price * $cart->quantity;
 
         $cart->delete();
         return json_encode([
             'cart' => $cart,
-            'amount' => $cart_amount
+            'amount' => $cart_amount,
+            'quantity' => $quantity
         ]);
     }
 
@@ -130,5 +135,60 @@ class CartController extends Controller
         $cart = Cart::where('user',$request->user_id)->delete();
 
         return redirect()->back();
+    }
+
+    public function getProductDetails(Request $request,$id){
+
+        $item_type = 1;
+
+        if($item_type == 1) {
+            $quantity = $request->quantity;
+        }else{
+            $quantity = 1;
+        }
+
+        $product = Product::find($id);
+
+        $cart = Cart::where('item_id',$request->id)->first();
+
+        if(count($cart) > 0){
+            $cart->update([
+                'quantity' => $cart->quantity + $quantity
+            ]);
+
+            $cart->save();
+
+            $exist = 1;
+        }else {
+
+            $cart = Cart::create([
+                'item_id' => $request->id,
+                'item_type' => $item_type,
+                'quantity' => $request->quantity,
+                'user' => auth()->user()->id,
+                'organize_from' => 1
+            ]);
+
+            $exist = 0;
+        }
+
+        return json_encode(['product'=>$product,
+                            'cart'=> $cart,
+                            'exist' => $exist
+                    ]);
+    }
+
+    public function getProductList(Request $request,$id){
+
+        $cart = Cart::where('user',$id)->get();
+
+        $cart_list = [];
+
+        /*foreach($cart as $c){
+            $cart['id'] = $cart->id;
+            $cart
+        }*/
+
+        return json_encode(['cart'=>$cart]);
     }
 }
