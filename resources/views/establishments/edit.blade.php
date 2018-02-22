@@ -13,42 +13,42 @@
                 {{ method_field('PATCH') }}
 
            		<div class="form-group">
-           			<label for="name" class="col-md-2 col-md-offset-2 control-label">Name</label>
+           			<label for="name" class="col-md-2 col-md-offset-2 control-label">Name <span class="text-danger">*</span></label>
            			<div class="col-md-6">
            				<input type="text" name="name" id="name" class="form-control" value="{{ $establishment->name }}" />
            			</div>
            		</div>
 
                 <div class="form-group">
-                    <label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
+                    <label for="description" class="col-md-2 col-md-offset-2 control-label">Description <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <input type="text" name="description" id="description" class="form-control" value="{{ $establishment->description }}" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone" class="col-md-2 col-md-offset-2 control-label">Phone</label>
+                    <label for="phone" class="col-md-2 col-md-offset-2 control-label">Phone <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <input type="text" name="phone" id="phone" class="form-control" value="{{ $establishment->phone }}" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="col-md-2 col-md-offset-2 control-label">Email</label>
+                    <label for="email" class="col-md-2 col-md-offset-2 control-label">Email <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <input type="email" name="email" id="email" class="form-control" value="{{ $establishment->email }}" />
                     </div>
                 </div>
 
            		<div class="form-group">
-                       <label for="address" class="col-md-2 col-md-offset-2 control-label">Address</label>
+                       <label for="address" class="col-md-2 col-md-offset-2 control-label">Address <span class="text-danger">*</span></label>
            			<div class="col-md-6">
            				<input type="text" name="address" id="address" class="form-control" value="{{ $establishment->address }}" />
            			</div>
                  </div>
 
                  <div class="form-group">
-                    <label for="owner_name" class="col-md-2 col-md-offset-2 control-label">Owner Name</label>
+                    <label for="owner_name" class="col-md-2 col-md-offset-2 control-label">Owner Name <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <input type="text" name="owner_name" id="owner_name" class="form-control" value="{{ $establishment->owner_name }}" />
                     </div>
@@ -66,6 +66,8 @@
            				<button class="btn btn-primary btn-fullwidth">Update</button>
            			</div>
            		</div>
+
+              @include('template.partials.required')
             </form>
         </div>
     </div>

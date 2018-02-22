@@ -16,19 +16,19 @@
 				{{ csrf_field() }}
 				{{ method_field('PATCH')}}
 				<div class="form-group">
-					<label for="name" class="col-md-2 col-md-offset-2 control-label">Service Name</label>
+					<label for="name" class="col-md-2 col-md-offset-2 control-label">Service Name <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="name" value="{{ $service->name }}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
+					<label for="description" class="col-md-2 col-md-offset-2 control-label">Description <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="description" value="{{ $service->description }}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price</label>
+					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="number" class="form-control" name="price" value="{{ $service->price }}">
 					</div>
@@ -38,6 +38,8 @@
 						<button class="btn btn-primary btn-fullwidth">Submit</button>
 					</div>
 				</div>
+
+				@include('template.partials.required')
 		    </form>
 		</div>
 	</div>

@@ -16,19 +16,19 @@
 				{{ csrf_field() }}
 
 				<div class="form-group">
-					<label for="name" class="col-md-2 col-md-offset-2 control-label">Product Name</label>
+					<label for="name" class="col-md-2 col-md-offset-2 control-label">Product Name <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="name">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="description" class="col-md-2 col-md-offset-2 control-label">Description</label>
+					<label for="description" class="col-md-2 col-md-offset-2 control-label">Description <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="description">
 					</div>
 				</div>
 				<div class="form-group">
-		            <label for="product_type" class="col-md-2 col-md-offset-2 control-label">Product Type</label>
+		            <label for="product_type" class="col-md-2 col-md-offset-2 control-label">Product Type <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<select id="product_type" class="form-control" name="product_type">
 		                	@foreach($product_types as $key => $value)
@@ -39,7 +39,7 @@
 
 		        </div>
 				<div class="form-group">
-					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price</label>
+					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="price">
 					</div>
@@ -55,6 +55,8 @@
 						<button class="btn btn-primary btn-fullwidth">Submit</button>
 					</div>
 				</div>
+
+				@include('template.partials.required')
 		    </form>
 		</div>
 	</div>

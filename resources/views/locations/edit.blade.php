@@ -13,13 +13,13 @@
                 {{ method_field('PATCH') }}
 
                 <div class="form-group">
-                    <label for="name" class="col-md-2 col-md-offset-2 control-label">Latitude</label>
+                    <label for="name" class="col-md-2 col-md-offset-2 control-label">Latitude <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="latitude" value="{{ $location->latitude }}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-md-2 col-md-offset-2 control-label" >Longitude</label>
+                    <label for="name" class="col-md-2 col-md-offset-2 control-label" >Longitude <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="longitude" value="{{ $location->longitude }}">
                     </div>
@@ -30,6 +30,8 @@
                         <button class="btn btn-primary">Submit</button>
                     </div>
                 </div>
+
+                @include('template.partials.required')
             </form>
             @if($location->latitude && $location->longitude)
                 <input id="pac-input" class="form-control" type="text" placeholder="Search Box">
