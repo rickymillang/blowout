@@ -11,6 +11,7 @@
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Action</th>
@@ -19,6 +20,7 @@
                 <tbody>
                     @foreach($customers as $customer)
                         <tr>
+                            <td><img src="{{ asset($customer->avatar) }}" style="max-width:64px;"></td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>
