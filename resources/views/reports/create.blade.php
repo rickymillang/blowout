@@ -12,13 +12,13 @@
 				{{ csrf_field() }}
 
 				<div class="form-group">
-					<label for="title" class="col-md-2 col-md-offset-2 control-label">Title</label>
+					<label for="title" class="col-md-2 col-md-offset-2 control-label">Title <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="title">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="message" class="col-md-2 col-md-offset-2 control-label">Message</label>
+					<label for="message" class="col-md-2 col-md-offset-2 control-label">Message <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<textarea type="text" class="form-control" name="message"></textarea>
 					</div>
@@ -28,6 +28,8 @@
 						<button class="btn btn-primary btn-fullwidth">Submit</button>
 					</div>
 				</div>
+
+				@include('template.partials.required')
 		    </form>
 		 </div>
 	</div>

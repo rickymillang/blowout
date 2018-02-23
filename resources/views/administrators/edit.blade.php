@@ -16,13 +16,13 @@
 				{{ csrf_field() }}
 				{{ method_field('PATCH')}}
 				<div class="form-group">
-					<label for="name" class="col-md-2 col-md-offset-2 control-label">Name</label>
+					<label for="name" class="col-md-2 col-md-offset-2 control-label">Name <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="name" value="{{ $administrator->name }}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="description" class="col-md-2 col-md-offset-2 control-label">Email</label>
+					<label for="description" class="col-md-2 col-md-offset-2 control-label">Email <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="email" class="form-control" name="email" value="{{ $administrator->email }}">
 					</div>
@@ -38,6 +38,8 @@
 						<button class="btn btn-primary btn-fullwidth">Submit</button>
 					</div>
 				</div>
+
+				@include('template.partials.required')
 		    </form>
 		</div>
 	</div>

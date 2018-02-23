@@ -225,7 +225,7 @@ class EstablishmentController extends Controller
                 'message' => 'Your establishment has been approved'
             ]));
 
-            Semaphore::send($establishment->phone, 'Congratulations! Your establishment, ' . $establishment->name . ' has been approved. You may now start selling!');
+            Semaphore::send($establishment->phone, 'Congratulations! Your establishment, ' . $establishment->name . ' has been approved. You may now start selling!', 'Semaphore');
 
             session()->flash('message', 'Establishment has been successfully approved.');
 

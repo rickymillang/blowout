@@ -6,12 +6,14 @@
         @include('template.partials.navbar')
     </div>
     <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-sm-4">
-            <h2>@yield('title')</h2>
+        <div class="col-sm-12">
+            <h2>@yield('title') <a href="{{ url()->previous() }}" class="btn btn-primary pull-right"><span class="fa fa-arrow-left"></span> Back</a></h2>
+
             <ol class="breadcrumb">
                 @yield('breadcrumbs')
             </ol>
         </div>
+
     </div>
 
     <div class="wrapper wrapper-content">

@@ -128,13 +128,20 @@
                 </li>
                 <li {{ url()->current() == url('invoices') ? 'class=active' : '' }}>
                     <a href="/invoices">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-tasks"></i>
                         <span class="nav-label">Invoices</span>
+                    </a>
+                </li>
+                <li {{ url()->current() == url('calendar') ? 'class=active' : '' }}>
+                    <a href="/calendar">
+                        <i class="fa fa-calendar"></i>
+
+                        <span class="nav-label">Calendar</span>
                     </a>
                 </li>
                 <li {{ url()->current() == url('messages') ? 'class=active' : '' }}>
                     <a href="/messages">
-                        <i class="fa fa-tasks"></i>
+                        <i class="fa fa-envelope"></i>
                         <span class="nav-label">Messages</span>
                     </a>
                 </li>

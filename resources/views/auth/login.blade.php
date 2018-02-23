@@ -9,7 +9,7 @@
         {{ csrf_field() }}
 
         <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" name="email" required>
+            <input type="email" class="form-control" placeholder="Email" name="email" required value="{{ old('email') }}">
         </div>
 
         <div class="form-group">
