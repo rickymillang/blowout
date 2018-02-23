@@ -13,17 +13,19 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user')->unsigned();
             $table->integer('product_order')->unsigned();
             $table->string('deliver_address');
             $table->integer('payment_type')->unsigned();
             $table->dateTime('date_deliver');
+            $table->integer('status')->unsigned();
             $table->timestamps();
 
             $table->foreign('user')->references('id')->on('users');
             $table->foreign('product_order')->references('id')->on('product_order');
+            $table->foreign('status')->references('id')->on('order_statuses');
         });
     }
 
