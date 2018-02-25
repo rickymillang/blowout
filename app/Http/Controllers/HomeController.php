@@ -58,6 +58,8 @@ class HomeController extends Controller
             $administrators_count = User::withRole('superadmin')->count();
 
             return view('home', compact('establishment_types_count', 'establishments_count', 'customers_count', 'administrators_count'));
+        } else {
+            return view('home');
         }
 
 
