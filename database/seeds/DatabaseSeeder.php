@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
             RoleTableSeeder::class,
             PermissionRoleTableSeeder::class,
             UserTableSeeder::class,
-            EstablishmentTypeTableSeeder::class
-            ]);
+            EstablishmentTypeTableSeeder::class,
+            OrderStatusesTableSeeder::class,
+            ItemTypesTableSeeder::class,
+            PaymentMethodTableSeeder::class
+        ]);
     }
 }
