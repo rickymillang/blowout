@@ -2,6 +2,15 @@
 
 @section('title', 'Services')
 
+@section('breadcrumbs')
+    <li>
+        <a href="/services">Services</a>
+    </li>
+    <li class="active">
+        <strong>Edit Service</strong>
+    </li>
+@endsection
+
 @section('content')
 	<div class="ibox float-e-margins">
 	    <div class="ibox-title">

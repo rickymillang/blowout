@@ -1,15 +1,15 @@
 @extends('template.layouts.master')
 
-@section('title', 'Establishment Types')
+@section('title', 'Report Types')
 
 @section('content')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>View Establishment Types</h5>
+            <h5>View Report Types</h5>
         </div>
 
         <div class="ibox-content">
-            <a href="/establishment_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Establishment Type</a>
+            <a href="/report_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Report Type</a>
 
             <hr>
 
@@ -21,11 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($establishment_types as $establishment_type)
+                    @foreach($report_types as $report_type)
                         <tr>
-                            <td>{{ $establishment_type->name }}</td>
+                            <td>{{ $report_type->name }}</td>
                             <td>
-                            	<a href="/establishment_types/{{ $establishment_type->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
+                            	<a href="/report_types/{{ $report_type->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
                             </td>
                         </tr>
                     @endforeach

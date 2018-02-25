@@ -2,6 +2,15 @@
 
 @section('title', 'Establishment Types')
 
+@section('breadcrumbs')
+    <li>
+        <a href="/establishment_types">Establishment Types</a>
+    </li>
+    <li class="active">
+        <strong>Edit Establishment Type</strong>
+    </li>
+@endsection
+
 @section('content')
 	<div class="ibox float-e-margins">
 	    <div class="ibox-title">

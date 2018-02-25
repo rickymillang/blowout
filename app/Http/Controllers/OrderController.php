@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\ProductOrder;
 use Illuminate\Http\Request;
 
-class CalendarController extends Controller
+class OrderController extends Controller
 {
     public function index()
     {
     	$orders = Order::all();
-    	return view('calendars.index', compact('orders'));
+
+    	return view('orders.index', compact('orders'));
     }
 }

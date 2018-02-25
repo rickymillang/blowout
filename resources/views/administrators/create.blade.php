@@ -2,10 +2,19 @@
 
 @section('title', 'Administrators')
 
+@section('breadcrumbs')
+    <li>
+        <a href="/administrators">Administrators</a>
+    </li>
+    <li class="active">
+        <strong>Add Administrator</strong>
+    </li>
+@endsection
+
 @section('content')
 	<div class="ibox float-e-margins">
         <div class="ibox-title">
-        	<h5>Create Administrator</h5>
+        	<h5>Add Administrator</h5>
         </div>
         <div class="ibox-content">
 		    <a href="/administrators" class="btn btn-success">View Administrators</a>

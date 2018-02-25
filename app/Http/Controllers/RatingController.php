@@ -17,6 +17,7 @@ class RatingController extends Controller
     	$three_star_ratings = Rating::where('rating', 3)->where('establishment_id', auth()->user()->establishment->id)->count();
     	$four_star_ratings = Rating::where('rating', 4)->where('establishment_id', auth()->user()->establishment->id)->count();
     	$five_star_ratings = Rating::where('rating', 5)->where('establishment_id', auth()->user()->establishment->id)->count();
+
     	if ($total_ratings_count) {
     		$average_rating = $sum_ratings / $total_ratings_count;
     	} else {

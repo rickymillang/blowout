@@ -36,7 +36,7 @@
                     BO
                 </div>
             </li>
-            <li {{ url()->current() == url('home') ? 'class=active' : '' }}>
+            <li {{ url()->current() == url('dashboard') ? 'class=active' : '' }}>
                 <a href="/dashboard">
                     <i class="fa fa-home"></i>
                     <span class="nav-label">Dashboard</span>
@@ -59,23 +59,30 @@
                 </li>
                 <li {{ url()->current() == url('products') || url()->current() == url('products/create') ? 'class=active' : '' }}>
                     <a href="/products">
-                        <i class="fa fa-tasks"></i>
+                        <i class="fa fa-cutlery"></i>
 
                         <span class="nav-label">Products</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('services') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('services') || url()->current() == url('services/create') ? 'class=active' : '' }}>
                     <a href="/services">
-                        <i class="fa fa-tags"></i>
+                        <i class="fa fa-briefcase"></i>
 
                         <span class="nav-label">Services</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('packages') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('packages') || url()->current() == url('packages/create') ? 'class=active' : '' }}>
                     <a href="/packages">
                         <i class="fa fa-dropbox"></i>
 
                         <span class="nav-label">Packages</span>
+                    </a>
+                </li>
+                <li {{ url()->current() == url('orders') ? 'class=active' : '' }}>
+                    <a href="/orders">
+                        <i class="fa fa-cart-plus"></i>
+
+                        <span class="nav-label">Orders</span>
                     </a>
                 </li>
                  <li {{ url()->current() == url('locations/edit') ? 'class=active' : '' }}>
@@ -94,13 +101,14 @@
             @endrole
 
             @role('superadmin')
-                <li {{ url()->current() == url('establishment_types') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('establishment_types') || url()->current() == url('establishment_types/create') ? 'class=active' : '' }}>
                     <a href="/establishment_types">
                         <i class="fa fa-file-text-o"></i>
 
                         <span class="nav-label">Establishment Types</span>
                     </a>
                 </li>
+
                 <li {{ url()->current() == url('establishments') ? 'class=active' : '' }}>
                     <a href="/establishments">
                         <i class="fa fa-building"></i>
@@ -108,6 +116,15 @@
                         <span class="nav-label">Establishments</span>
                     </a>
                 </li>
+
+                <li {{ url()->current() == url('report_types') || url()->current() == url('report_types/create') ? 'class=active' : '' }}>
+                    <a href="/report_types">
+                        <i class="fa fa-file-text"></i>
+
+                        <span class="nav-label">Report Types</span>
+                    </a>
+                </li>
+
                 <li {{ url()->current() == url('customers') ? 'class=active' : '' }}>
                     <a href="/customers">
                         <i class="fa fa-group"></i>
@@ -115,7 +132,8 @@
                         <span class="nav-label">Customers</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('administrators') ? 'class=active' : '' }}>
+
+                <li {{ url()->current() == url('administrators') || url()->current() == url('administrators/create') ? 'class=active' : '' }}>
                     <a href="/administrators">
                         <i class="fa fa-user"></i>
 
@@ -182,8 +200,6 @@
                     </li>
                 @endif
             @endif
-
         </ul>
-
     </div>
 </nav>

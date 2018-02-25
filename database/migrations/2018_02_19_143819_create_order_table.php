@@ -21,8 +21,6 @@ class CreateOrderTable extends Migration
             $table->dateTime('delivery_date');
             $table->integer('status')->unsigned();
             $table->timestamps();
-            $table->foreign('user')->references('id')->on('users');
-            $table->foreign('status')->references('id')->on('order_statuses');
         });
     }
 
