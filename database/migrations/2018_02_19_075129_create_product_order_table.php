@@ -20,8 +20,6 @@ class CreateProductOrderTable extends Migration
             $table->integer('item_type')->unsigned();
             $table->integer('quantity');
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 
