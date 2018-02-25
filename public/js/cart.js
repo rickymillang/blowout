@@ -82,10 +82,10 @@
                 data: {id: id, item_type: item_type, quantity: quantity, _token: token},
                 dataType: "json",
                 success: function (data) {
-                    console.log(data.cart.quantity);
+                    console.log(data.cart);
                     var totalCartItem = $('.cartItemTotal').val();
                     var new_total_amount = $.number(parseInt($('.totalAmount').val()) + parseInt(data.add_amount),2);
-                    var new_quantity =  parseInt($('.totalQuantity').val()) +  parseInt(data.cart.quantity);
+                    var new_quantity =  parseInt($('.totalQuantity').val()) +  parseInt(quantity);
                     $('#prod'+id).modal('toggle');
 
                     $('.totalAmountDisplay').html('Php '+new_total_amount);
@@ -107,8 +107,8 @@
                     }else{
                         $('tr#item'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
                         $('tr#item_summary_scratch'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
-                        $('.cartItemTotalBubble').text(parseInt($('.cartItemTotal').val())+ parseInt(data.cart.quantity));
-                        $('.cartItemTotal').val(parseInt($('.cartItemTotal').val())+ parseInt(data.cart.quantity));
+                        $('.cartItemTotalBubble').text(parseInt($('.cartItemTotal').val())+ parseInt(quantity));
+                        $('.cartItemTotal').val(parseInt($('.cartItemTotal').val())+ parseInt(quantity));
                         $('.totalQuantityDisplay').html(new_quantity);
                         $('.totalQuantity').val(new_quantity);
                     }
