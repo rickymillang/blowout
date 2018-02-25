@@ -36,8 +36,8 @@
                     BO
                 </div>
             </li>
-            <li {{ url()->current() == url('home') ? 'class=active' : '' }}>
-                <a href="/home">
+            <li {{ url()->current() == url('dashboard') ? 'class=active' : '' }}>
+                <a href="/dashboard">
                     <i class="fa fa-home"></i>
                     <span class="nav-label">Home</span>
                 </a>
@@ -53,19 +53,19 @@
                 </li>
                 <li {{ url()->current() == url('products') || url()->current() == url('products/create') ? 'class=active' : '' }}>
                     <a href="/products">
-                        <i class="fa fa-tasks"></i>
+                        <i class="fa fa-cutlery"></i>
 
                         <span class="nav-label">Products</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('services') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('services') || url()->current() == url('services/create') ? 'class=active' : '' }}>
                     <a href="/services">
-                        <i class="fa fa-tags"></i>
+                        <i class="fa fa-briefcase"></i>
 
                         <span class="nav-label">Services</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('packages') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('packages') || url()->current() == url('packages/create') ? 'class=active' : '' }}>
                     <a href="/packages">
                         <i class="fa fa-dropbox"></i>
 
@@ -82,7 +82,7 @@
             @endrole
 
             @role('superadmin')
-                <li {{ url()->current() == url('establishment_types') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('establishment_types') || url()->current() == url('establishment_types/create') ? 'class=active' : '' }}>
                     <a href="/establishment_types">
                         <i class="fa fa-file-text-o"></i>
 
@@ -103,7 +103,7 @@
                         <span class="nav-label">Customers</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('administrators') ? 'class=active' : '' }}>
+                <li {{ url()->current() == url('administrators') || url()->current() == url('administrators/create') ? 'class=active' : '' }}>
                     <a href="/administrators">
                         <i class="fa fa-user"></i>
 
@@ -175,8 +175,6 @@
                     </li>
                 @endif
             @endif
-
         </ul>
-
     </div>
 </nav>
