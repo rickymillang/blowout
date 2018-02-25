@@ -50,6 +50,12 @@
             <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
         	<!-- Theme style  -->
         	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+              <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
+            	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
+            	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
+                <link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
+
 
         	<!-- Modernizr JS -->
         	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
@@ -58,49 +64,106 @@
         	<script src="{{ asset('js/respond.min.js') }}"></script>
         	<![endif]-->
         	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-                	 <style type="text/css">
-                            .container {
-                              margin: 100px auto;
-                              text-align: center;
-                            }
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+                <style type="text/css">
+                    .container {
+                      margin: 100px auto;
+                      text-align: center;
+                    }
 
-                            .notify-container {
-                              position: relative;
-                            	display: inline-block;
-                              margin-top: 10px;
-                            }
+                    .notify-container {
+                      position: relative;
+                    	display: inline-block;
+                      margin-top: 10px;
+                    }
 
-                              .notify-bubble {
-                                position: absolute;
-                                top: -20px;
-                                right: -3px;
-                                padding: 2px 5px 2px 6px;
-                                background-color: #0ec6c2;
-                                color: white;
-                                font-size: 0.65em;
-                                border-radius: 50%;
-                                box-shadow: 1px 1px 1px gray;
-                                display: block;
-                              }
-                            .total{
-                                padding:15px;
-                            }
-                           /* .btn {
-                              background: #ccc;
+                      .notify-bubble {
+                        position: absolute;
+                        top: -15px;
+                        right: 0;
+                        padding: 2px 5px 2px 6px;
+                        background-color: #0ec6c2;
+                        color: white;
+                        font-size: 0.65em;
+                        border-radius: 50%;
+                        box-shadow: 1px 1px 1px gray;
+                        display: block;
+                      }
+                    .total{
+                        padding:15px;
+                    }
 
-                              &:hover {
-                                background: darken(silver, 10%);
-                              }
 
-                              &:focus,
-                              &:focus:active,
-                              &:active {
-                                outline: none;
-                                box-shadow: none;
-                              }
-                            }*/
+                       #map {
+                        height: 300px;
+                        width: 100%;
+                       }
 
-                        </style>
+                      .scratc-notify-bubble {
+                        position: absolute;
+                        top: 10px;
+                        right: 25px;
+                        padding: 5px 10px 5px 10px;
+                        background-color: #ffffff;
+                        color: rgba(163, 163, 163, 0.86);
+                        font-size: 0.65em;
+                        border-radius: 50%;
+                       /* box-shadow: 1px 1px 1px gray;*/
+                        display: block;
+                      }
+
+                      h4{
+                          color:#5cb85c;
+                          font-weight: bold;
+                        }
+
+                      h3{
+                        color:#808080;
+                      }
+
+                     .modal-content{
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size:12px;
+                    }
+
+                    .modal-content > .steps > button{
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                     font-size:12px;
+                    }
+
+                      ::-webkit-scrollbar {
+                          width: 8px;
+                          background-color: rgba(126, 242, 255, 0.98);
+                      }
+
+                      ::-webkit-scrollbar-thumb {
+                          width: 8px;
+                          background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
+                      }
+
+                       hr{
+                          border-color:#5cb85c;
+                       }
+
+                   /* .btn {
+                      background: #ccc;
+
+                      &:hover {
+                        background: darken(silver, 10%);
+                      }
+
+                      &:focus,
+                      &:focus:active,
+                      &:active {
+                        outline: none;
+                        box-shadow: none;
+                      }
+                    }*/
+
+                </style>
 
 	</head>
 	<body>
@@ -216,7 +279,6 @@
 	
 
 	<!-- jQuery -->
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<!-- jQuery Easing -->
 	<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
 	<!-- Bootstrap -->
@@ -239,6 +301,11 @@
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
      <script>
           var token = "{{csrf_token()}}";
           var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
@@ -251,11 +318,22 @@
           	$('.notify-bubble').show(400);
         	});
         });
+
         </script>
+        <script>
+                 $(document).ready(function(){
+                      $('input').iCheck({
+                                    checkboxClass: 'icheckbox_minimal-blue',
+                                    radioClass: 'iradio_minimal-blue',
+                                    increaseArea: '20%' // optional
+                                });
+                 });
+                </script>
 
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 
+    <script src="{{ asset('js/template.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
 	</body>
 </html>

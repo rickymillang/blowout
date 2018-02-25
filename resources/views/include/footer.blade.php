@@ -18,11 +18,16 @@
 	<!-- Magnific Popup -->
 	<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
-
+     <script src="{{asset('vendor/icheck/icheck.js')}}"></script>
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
      <script>
           var token = "{{csrf_token()}}";
           var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
@@ -39,13 +44,19 @@
 
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
-
+    <script src="{{ asset('js/template.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
 
 	<script>
 	    $(document).ready(function(){
 	     /*   $('.register').hide();*/
              $('.register').hide();
+
+             $('input').iCheck({
+                    checkboxClass: 'icheckbox_minimal-blue',
+                    radioClass: 'iradio_minimal-blue',
+                    increaseArea: '20%' // optional
+                });
 
 	        $('#log').on('click',function(e){
                 e.preventDefault();

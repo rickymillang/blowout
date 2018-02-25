@@ -57,6 +57,7 @@ class MenuViewComposer {
 
         }
 
+
         $view->with('cart_template',$cart_template)
             ->with('cart_scratch',$cart_scratch)
             ->with('cart_wizard',$cart_wizard)

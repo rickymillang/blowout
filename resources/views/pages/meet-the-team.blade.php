@@ -51,6 +51,13 @@
     <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	  <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
+    	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
+    	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
+        <link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
+
+
 
 	<!-- Modernizr JS -->
 	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
@@ -61,109 +68,106 @@
 	<![endif]-->
 
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <style>
-        blockquote{
-          display:block;
-          background: #fff;
-          padding: 15px 20px 15px 45px;
-          margin: 0 0 20px;
-          position: relative;
+                        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+                        	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+                        	<script src="{{ asset('js/jquery.min.js') }}"></script>
+                        	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+                <style type="text/css">
+                    .container {
+                      margin: 100px auto;
+                      text-align: center;
+                    }
 
-          /*Font*/
-          font-family: Georgia, serif;
-          font-size: 16px;
-          line-height: 1.2;
-          color: #666;
-          text-align: justify;
+                    .notify-container {
+                      position: relative;
+                    	display: inline-block;
+                      margin-top: 10px;
+                    }
 
-          /*Borders - (Optional)*/
-          border-left: 5px solid #09C6AB;
-          border-right: 2px solid #09C6AB;
+                      .notify-bubble {
+                        position: absolute;
+                        top: -15px;
+                        right: 0;
+                        padding: 2px 5px 2px 6px;
+                        background-color: #0ec6c2;
+                        color: white;
+                        font-size: 0.65em;
+                        border-radius: 50%;
+                        box-shadow: 1px 1px 1px gray;
+                        display: block;
+                      }
+                    .total{
+                        padding:15px;
+                    }
 
-          /*Box Shadow - (Optional)*/
-          -moz-box-shadow: 2px 2px 15px #ccc;
-          -webkit-box-shadow: 2px 2px 15px #ccc;
-          box-shadow: 2px 2px 5px #ccc;
-        }
 
-        blockquote::before{
-          content: "\201C"; /*Unicode for Left Double Quote*/
+                       #map {
+                        height: 300px;
+                        width: 100%;
+                       }
 
-          /*Font*/
-          font-family: Georgia, serif;
-          font-size: 60px;
-          font-weight: bold;
-          color: #999;
+                      .scratc-notify-bubble {
+                        position: absolute;
+                        top: 10px;
+                        right: 25px;
+                        padding: 5px 10px 5px 10px;
+                        background-color: #ffffff;
+                        color: rgba(163, 163, 163, 0.86);
+                        font-size: 0.65em;
+                        border-radius: 50%;
+                       /* box-shadow: 1px 1px 1px gray;*/
+                        display: block;
+                      }
 
-          /*Positioning*/
-          position: absolute;
-          left: 10px;
-          top:5px;
-        }
+                      h4{
+                          color:#5cb85c;
+                          font-weight: bold;
+                        }
 
-        blockquote::after{
-          /*Reset to make sure*/
-          content: "";
-        }
+                      h3{
+                        color:#808080;
+                      }
 
-        blockquote a{
-          text-decoration: none;
-          background: #eee;
-          cursor: pointer;
-          padding: 0 3px;
-          color: #c76c0c;
-        }
+                     .modal-content{
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size:12px;
+                    }
 
-        blockquote a:hover{
-         color: #666;
-        }
+                    .modal-content > .steps > button{
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                     font-size:12px;
+                    }
 
-        blockquote em{
-          font-style: italic;
-        }
+                      ::-webkit-scrollbar {
+                          width: 8px;
+                          background-color: rgba(126, 242, 255, 0.98);
+                      }
 
-            .container {
-              margin: 100px auto;
-              text-align: center;
-            }
+                      ::-webkit-scrollbar-thumb {
+                          width: 8px;
+                          background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
+                      }
 
-            .notify-container {
-              position: relative;
-            	display: inline-block;
-              margin-top: 10px;
-            }
+                       hr{
+                          border-color:#5cb85c;
+                       }
 
-              .notify-bubble {
-                position: absolute;
-                top: -20px;
-                right: -3px;
-                padding: 2px 5px 2px 6px;
-                background-color: #0ec6c2;
-                color: white;
-                font-size: 0.65em;
-                border-radius: 50%;
-                box-shadow: 1px 1px 1px gray;
-                display: block;
-              }
-            .total{
-                padding:15px;
-            }
-           /* .btn {
-              background: #ccc;
+                   /* .btn {
+                      background: #ccc;
 
-              &:hover {
-                background: darken(silver, 10%);
-              }
+                      &:hover {
+                        background: darken(silver, 10%);
+                      }
 
-              &:focus,
-              &:focus:active,
-              &:active {
-                outline: none;
-                box-shadow: none;
-              }
-            }*/
+                      &:focus,
+                      &:focus:active,
+                      &:active {
+                        outline: none;
+                        box-shadow: none;
+                      }
+                    }*/
 
-        </style>
+                </style>
 	</head>
 	<body>
 
@@ -304,11 +308,16 @@
 	<!-- Magnific Popup -->
 	<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
-
+     <script src="{{asset('vendor/icheck/icheck.js')}}"></script>
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
      <script>
           var token = "{{csrf_token()}}";
           var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
@@ -321,10 +330,22 @@
           	$('.notify-bubble').show(400);
         	});
         });
+
+
+        </script>
+        <script>
+         $(document).ready(function(){
+              $('input').iCheck({
+                            checkboxClass: 'icheckbox_minimal-blue',
+                            radioClass: 'iradio_minimal-blue',
+                            increaseArea: '20%' // optional
+                        });
+         });
         </script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 
+    <script src="{{ asset('js/template.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
 
 	</body>
