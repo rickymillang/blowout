@@ -89,6 +89,7 @@
                         <span class="nav-label">Establishment Types</span>
                     </a>
                 </li>
+
                 <li {{ url()->current() == url('establishments') ? 'class=active' : '' }}>
                     <a href="/establishments">
                         <i class="fa fa-building"></i>
@@ -96,6 +97,15 @@
                         <span class="nav-label">Establishments</span>
                     </a>
                 </li>
+
+                <li {{ url()->current() == url('report_types') || url()->current() == url('report_types/create') ? 'class=active' : '' }}>
+                    <a href="/report_types">
+                        <i class="fa fa-file-text"></i>
+
+                        <span class="nav-label">Report Types</span>
+                    </a>
+                </li>
+
                 <li {{ url()->current() == url('customers') ? 'class=active' : '' }}>
                     <a href="/customers">
                         <i class="fa fa-group"></i>
@@ -103,6 +113,7 @@
                         <span class="nav-label">Customers</span>
                     </a>
                 </li>
+
                 <li {{ url()->current() == url('administrators') || url()->current() == url('administrators/create') ? 'class=active' : '' }}>
                     <a href="/administrators">
                         <i class="fa fa-user"></i>
