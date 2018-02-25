@@ -58,8 +58,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
 	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
 	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
-	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"  />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
+    <link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
 
 
 
@@ -70,11 +70,13 @@
 
 	<script src="{{ asset('js/respond.min.js') }}"></script>
 
+    	<![endif]-->
 
-
-
-	<![endif]-->
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+            	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+            	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+            	<script src="{{ asset('js/jquery.min.js') }}"></script>
+            	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <style type="text/css">
         .container {
           margin: 100px auto;
@@ -184,209 +186,7 @@
 				</div>
 			</div>
 
-			<!-- Scratch Modal -->
-            <div id="scratch" class="modal fade" role="dialog">
-                      <div class="modal-dialog modal-lg">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
-
-
-                          </div>
-                          <div class="modal-body" id="smartwizard">
-                          {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
-
-                             <ul>
-                                 <li><a href="#step-1">Step 1<br /><small>Shopping</small></a></li>
-                                 <li><a href="#step-2">Step 2<br /><small>Information Details</small></a></li>
-                                 <li><a href="#step-3">Step 3<br /><small>Order Summary</small></a></li>
-
-                             </ul>
-                                <div>
-
-                            <br/>
-                                     <div id="step-1" class="">
-
-                                           <div class="row">
-
-                                             <div class="col-md-8 section_product">
-
-                                                 @foreach($establishment->product_types as $pt )
-
-                                                     <button id="pt{{ $pt->id }}" onclick="show_product_list({{$pt->id}});" class="btn btn-info btn-block">{{ $pt->name }}</button>
-
-                                                     {{--{{ $establishment->products->where('product_type_id',$pt->id) }}--}}
-
-                                                      <div class="table product_type_list{{ $pt->id }}" id="plist" style="display:none">
-                                                      <button class="btn btn-success btn-block">{{ $pt->name }} Selection</button>
-
-                                                       <table class="table table-collapsed" id="table_scratch">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th ></th>
-                                                                    <th >Item Name</th>
-                                                                    <th >Price</th>
-                                                                    <th >Quantity</th>
-                                                                    <th ></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                             @foreach($establishment->products->where('product_type_id',$pt->id) as $product)
-                                                                 <tr>
-                                                                     <td><img src="{{ asset("storage/".$product->image) }}" style="max-width:100px;" height="30px" width="30px"></td>
-                                                                     <td>{{ $product->name }}</td>
-                                                                     <td>{{ $product->price }}</td>
-                                                                     <td><input type="number" id="s_productQuantity{{ $product->id }}" placeholder="0" style="width:60px;"/></td>
-                                                                     <td><button class="btn btn-success" style="font-size:10px;padding:5px 10px;" onclick="add_to_cart({{ $product->id }})"><span class="fa fa-cart-plus"></span></button></td>
-                                                                 </tr>
-                                                              @endforeach
-                                                             </tbody>
-                                                       </table>
-                                                   </div>
-                                                 @endforeach
-                                             </div>
-                                             <div class="col-md-4">
-                                                  <button class="btn btn-success btn-block"><span class="fa fa-shopping-cart pull-left"></span> Your Cart Item  <span class="scratc-notify-bubble scratch-total-display">0</span></button>
-                                                  <input type="hidden" id="s_totalQuantity" value="0"/>
-                                                 <div class="table">
-                                                     <table class="table table-striped" id="scratch_cart">
-                                                         <thead>
-                                                             <tr>
-                                                                 <th></th>
-                                                                 <th>Name</th>
-                                                                 <th>Price</th>
-                                                                 <th>#</th>
-                                                                 <th></th>
-                                                             </tr>
-                                                         </thead>
-                                                         <tbody>
-                                                         </tbody>
-                                                     </table>
-                                                 </div>
-                                                 <span class="pull-right">Total: <span id="s_totalAmountDisplay" >0.00</span></span>
-                                                 <input type="hidden" value="0" id="s_totalAmount"/>
-                                             </div>
-
-
-                                          {{-- <div class="modal-footer">
-                                            <button type="button" class="btn btn-warning pull-left" id="scratch_back"><span class="fa fa-arrow-left"></span> Back</button>
-                                             <button type="button" class="btn btn-success">Checkout</button>
-                                             <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>
-
-                                           </div>--}}
-
-                                       </div>
-                                     </div>
-                                     <div id="step-2" class="">
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                            <h3>Information Details</h3>
-                                             <div class="form-group">
-                                                <label for="inf-name" style="color:#808080">Delivery Address</label>
-                                                <input type="text" class="form-control" name="delivery_address" id="delivery_address"/>
-                                             </div>
-
-                                                  <label for="inf-name" style="color:#808080">Delivery Date</label>
-                                                <div class='input-group date' id='datetimepicker1' style="position:relative;">
-
-                                                   <input type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-
-
-                                           </div>
-
-                                           <div class="col-md-6">
-                                           <h3>Payment Method</h3>
-                                           <div class="form-group">
-                                               <input type="radio" name="payment_type" value="cod" id="cod" class="form-control"/>
-                                              <img src="{{ asset('images/cod.png') }}" alt="Cash on Delivery" width="30%" style="margin-left: 5px;" height="20%"/>
-                                           </div>
-                                            <div class="form-group">
-                                              <input type="radio" name="payment_type" value="cod" id="paypal" class="form-control"/>
-                                              <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" style="margin-left: 5px;" alt="PayPal Logo">
-                                          </div>
-                                           </div>
-
-                                         </div>
-
-                                     </div>
-                                     <div id="step-3" class="">
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <h3>Product </h3>
-                                                <div class="table">
-                                                <table class="table collapsed" id="item_summary_scratch">
-                                                   <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Name</th>
-                                                        <th>Price</th>
-                                                        <th>Quantity</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                    </tbody>
-                                                </table>
-                                                </div>
-                                             </div>
-                                             <div class="col-md-6">
-                                                   <h3>Information Details</h3>
-                                                   Name             : Guzman G. Guzman
-                                                   <br/>
-                                                   Contact No.      :  0923538564
-                                                    <br/>
-                                                   Delivery Address : Sitio Mansanita Tisa, Cebu City
-                                                   <br/>
-                                                   Delivery Date    : February 20,2018
-                                                   <br/>
-                                                   <br>
-                                                   <h3>Payment Method</h3>
-                                                   Type :  Cash on Delivery
-
-                                             </div>
-                                         </div>
-                                     </div>
-
-                            </div>
-
-                        </div>
-
-
-                      </div>
-                    </div>
-             </div>
-            <!-- End of Modal Scratch -->
-
-            <!-- Wizard Modal -->
-                <div id="wizard" class="modal fade" role="dialog">
-                          <div class="modal-dialog" >
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                              <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" style="color:white">Organize from Wizard</h4>
-                              </div>
-                              <div class="modal-body">
-                                <div class="row">
-                                 </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel</button>
-                                <button type="button" class="btn btn-success btn-xs"   ><span class="fa fa-cart-plus"></span> Add to cart</button>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                 </div>
-              <!-- End of Modal Wizard -->
 
 			<div class="row">
 			    <h3>Products</h3>
@@ -541,7 +341,6 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<!-- jQuery Easing -->
 	<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
 	<!-- Bootstrap -->
@@ -564,21 +363,18 @@
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
     <script type="text/javascript">
                 $(function () {
                     $('#datetimepicker1').datetimepicker();
                 });
             </script>
 
-    <script type="text/javascript">
-    $(document).ready(function(){
-      $('#smartwizard').smartWizard('theme','arrows');
-    });
-    </script>
      <script>
       var token = "{{csrf_token()}}";
       var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
@@ -602,73 +398,70 @@
     });
 
     </script>
-	<!-- Main -->
-	<script src="{{ asset('js/main.js') }}"></script>
-	<script src="{{ asset('js/cart.js') }}"></script>
+    <script>
+        $(document).ready(function() {
 
-	<script src="{{ asset('js/scratch.js') }}"></script>
-	<script type="text/javascript">
-            $(document).ready(function(){
-
-                // Step show event
-                $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
-                   //alert("You are on step "+stepNumber+" now");
-                   if(stepPosition === 'first'){
-                       $("#prev-btn").addClass('disabled');
+            $("#smartwizard_template").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+                //alert("You are on step "+stepNumber+" now");
+                if (stepPosition === 'first') {
+                    $("#prev-btn").addClass('disabled');
+                } else if (stepPosition === 'final') {
 
 
-
-                   }else if(stepPosition === 'final'){
-                       $("#next-btn").addClass('disabled');
-                   }else{
+                    $("#next-btn").addClass('disabled');
 
 
-                       $("#prev-btn").removeClass('disabled');
-                       $("#next-btn").removeClass('disabled');
-                   }
-                });
+                } else {
 
 
-
-                // Toolbar extra buttons
-                var product     =  $('<button></button>').text('Store').addClass('btn btn-warning pull-left').attr('id','scratch_back').on('click', function(){  $('#scratch_back').hide();
-                                                                                                                                                     $('.section_product>button').show();
-                                                                                                                                                     $('.section_product>.table').hide(); });
-                var btnFinish = $('<button class="btn btn-success">Checkout</button>');
-                var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
-                  $('#scratch_back').hide();
-
-                // Smart Wizard
-                $('#smartwizard').smartWizard({
-                        selected: 0,
-                        theme:  'arrows',
-                        transitionEffect:'fade',
-                        showStepURLhash: true,
-                        toolbarSettings: {toolbarPosition: 'bottom',
-                                          toolbarExtraButtons: [product,btnFinish, btnCancel]
-                                        }
-                });
-
-
-                $("#prev-btn").on("click", function() {
-                    // Navigate previous
-                    $('#smartwizard').smartWizard("prev");
-                    return true;
-                });
-
-                $("#next-btn").on("click", function() {
-                    // Navigate next
-                    $('#smartwizard').smartWizard("next");
-                    return true;
-                });
-
-
-                      $(".sw-next-btn").hide();
-                     $(".sw-prev-btn").hide();
+                    $("#prev-btn").removeClass('disabled');
+                    $("#next-btn").removeClass('disabled');
+                }
 
 
             });
-        </script>
+
+
+            var btnFinish = $('<button type="button" class="btn btn-success checkout_from_scratch" disabled value="">Checkout</button>');
+            var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
+
+
+            $('#smartwizard_template').smartWizard({
+                selected: 0,
+                theme:  'arrows',
+                transitionEffect:'fade',
+                showStepURLhash: true,
+                toolbarSettings: {toolbarPosition: 'bottom',
+                    toolbarExtraButtons: [btnFinish, btnCancel]
+                }
+            });
+
+
+            $("#prev-btn").on("click", function () {
+                // Navigate previous
+                $('#smartwizard_template').smartWizard("prev");
+                return true;
+            });
+
+            $("#next-btn").on("click", function () {
+                // Navigate next
+                $('#smartwizard_template').smartWizard("next");
+                return true;
+            });
+
+
+            $(".sw-next-btn").hide();
+            $(".sw-prev-btn").hide();
+
+
+        });
+    </script>
+	<!-- Main -->
+	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('js/cart.js') }}"></script>
+    {{--<script src="{{ asset('js/template.js') }}"></script>--}}
+	<script src="{{ asset('js/scratch.js') }}"></script>
+
 
          <script>
               function initMap() {

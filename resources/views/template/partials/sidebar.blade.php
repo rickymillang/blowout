@@ -42,6 +42,12 @@
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
+            <li {{ url()->current() == url('home') ? 'class=active' : '' }}>
+                <a href="/establishment/list">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">View establishment</span>
+                </a>
+            </li>
 
             @role('establishment.admin')
                 <li {{ url()->current() == url('product_types') || url()->current() == url('product_types/create') ? 'class=active' : '' }}>
