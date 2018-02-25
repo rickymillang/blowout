@@ -1,32 +1,33 @@
 @extends('template.layouts.master')
 
-@section('title', 'Establishment Types')
+@section('title', 'Orders')
 
 @section('content')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>View Establishment Types</h5>
+            <h5>View Orders</h5>
         </div>
 
         <div class="ibox-content">
-            <a href="/establishment_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Establishment Type</a>
-
-            <hr>
-
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Action</th>
+                        <th>Customer</th>
+                        <th>Delivery Address</th>
+                        <th>Delivery Date</th>
+                        <th>Payment Type</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($establishment_types as $establishment_type)
+                    @foreach($orders as $order)
                         <tr>
-                            <td>{{ $establishment_type->name }}</td>
-                            <td>
-                            	<a href="/establishment_types/{{ $establishment_type->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
-                            </td>
+                            <td>{{ $order->users->name }}</td>
+                            <td>{{ $order->delivery_address }}</td>
+                            <td>{{ $order->delivery_date }}</td>
+                            <td>{{ $order->payment_types->name }}</td>
+                            <td>{{ $order->statuses->name }}</td>
+
                         </tr>
                     @endforeach
                 </tbody>

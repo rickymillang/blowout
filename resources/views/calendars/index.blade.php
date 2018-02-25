@@ -23,11 +23,6 @@
 	<script src="{{ asset('template/js/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 	<script>
 		$(document).ready(function() {
-		    var date = new Date();
-		    var d = date.getDate();
-		    var m = date.getMonth();
-		    var y = date.getFullYear();
-
 		    $('#calendar').fullCalendar({
 		        header: {
 		            left: 'prev,next today',
@@ -37,11 +32,13 @@
 		        editable: false,
 		        droppable: false,
 		        events: [
+		        	@foreach($orders as $order)
 		            {
-		                title: 'Catering Reservation',
-		                start: new Date(y, m, d+1),
-		                url: '{{ url('home') }}'
+		                title: '{{ $order->users->name }}: {{ $order->delivery_address }}',
+		                start: '{{ $order->delivery_date }}',
+		                url: '{{ url('dashboard') }}'
 		            },
+		            @endforeach
 
 		        ]
 		    });

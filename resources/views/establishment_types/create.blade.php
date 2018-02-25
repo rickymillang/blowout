@@ -1,6 +1,15 @@
 @extends('template.layouts.master')
 
-@section('title', 'Establishments')
+@section('title', 'Establishment Types')
+
+@section('breadcrumbs')
+    <li>
+        <a href="/establishment_types">Establishment Types</a>
+    </li>
+    <li class="active">
+        <strong>Add Establishment Type</strong>
+    </li>
+@endsection
 
 @section('content')
 	<div class="ibox float-e-margins">

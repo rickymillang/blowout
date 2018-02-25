@@ -53,9 +53,10 @@
                     <label for="establishment_type" class="col-md-2 col-md-offset-2 control-label">Type <span class="text-danger">*</span></label>
                     <div class="col-md-6">
                         <select name="establishment_type" id="establishment_type" class="form-control">
-                            <option >select establishment type</option>
+                            <option>Select establishment type</option>
+
                             @foreach($establishment_types as $key => $value)
-                            <option value="{{$key}}">{{ $value }}</option>
+                                <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
                     </div>

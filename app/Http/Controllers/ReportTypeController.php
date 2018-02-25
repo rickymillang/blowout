@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Report;
 use App\ReportType;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class ReportTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('superadmin')) {
-            $reports = Report::all();
-        } else if (auth()->user()->hasRole('establishment.admin') || auth()->user()->hasRole('customer')) {
-            $reports = Report::where('user_id', auth()->user()->id)->get();
-        }
+        $report_types = ReportType::all();
 
-        return view('reports.index', compact('reports'));
+        return view('report_types.index', compact('report_types'));
     }
 
     /**
@@ -31,9 +26,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        $report_types = ReportType::pluck('name', 'id');
-
-        return view('reports.create', compact('report_types'));
+        return view('report_types.create');
     }
 
     /**
@@ -45,17 +38,14 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string',
-            'message' => 'required'
+            'name' => 'required|string|unique:report_types'
         ]);
 
-        $administrator = Report::create([
-            'title' => $request->title,
-            'message' => $request->message,
-            'user_id' => auth()->user()->id
+        ReportType::create([
+            'name' => $request->name
         ]);
 
-        session()->flash('message', 'Report successfully sent');
+        session()->flash('message', 'Report type successfully saved');
 
         return redirect()->back();
     }
@@ -63,10 +53,10 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Report  $report
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show($id)
     {
         //
     }
@@ -74,33 +64,47 @@ class ReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Report  $report
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Report $report)
+    public function edit($id)
     {
-        //
+        $report_type = ReportType::find($id);
+
+        return view('report_types.edit', compact('report_type'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Report  $report
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report)
+    public function update(Request $request, $id)
     {
-        //
+        $report_type = ReportType::find($id);
+
+        $request->validate([
+            'name' => 'required|string|unique:report_types,id'
+        ]);
+
+        $report_type->name = $request->name;
+
+        $report_type->save();
+
+        session()->flash('message', 'Report type successfully saved');
+
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Report  $report
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report)
+    public function destroy($id)
     {
         //
     }

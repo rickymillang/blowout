@@ -25,7 +25,7 @@
                             <td>{{ $customer->email }}</td>
                             <td>
                             	<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#customer{{ $customer->id }}">Delete</button>
-                            	<div id="customer{{ $customer->id }}"class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
+                            	<div id="customer{{ $customer->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
                             		<div class="modal-dialog modal-sm" role="document">
                             			<div class="modal-content">
                             				<div class="modal-header">
@@ -36,15 +36,16 @@
                             				</div>
                             				<div class="modal-footer">
                             					<button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+
                             					<a href="/customer/{{ $customer->id }}" class="btn btn-danger btn-xs"
                             					    onclick="event.preventDefault();
-                            					             document.getElementById('delete-customer').submit();">
+                            					             document.getElementById('delete-customer{{ $customer->id }}').submit();">
                             					    Delete
                             					</a>
 
-                            					<form id="delete-customer" action="/customers/{{ $customer->id }}" method="POST" style="display: none;">
+                            					<form id="delete-customer{{ $customer->id }}" action="/customers/{{ $customer->id }}" method="POST" style="display: none;">
                             					    {{ csrf_field() }}
-                            					    {{ method_field('DELETE')}}
+                            					    {{ method_field('DELETE') }}
                             					</form>
                             				</div>
                             			</div>

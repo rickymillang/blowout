@@ -21,7 +21,6 @@ class CreateCartTable extends Migration
             $table->integer('user')->unsigned();
             $table->integer('organize_from')->unsigned();
             $table->timestamps();
-            $table->foreign('user')->references('id')->on('users');
       /*   $table->foreign('item_type')->references('id')->on('item_type');*/
 
         });

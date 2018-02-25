@@ -18,6 +18,7 @@ class CreateReportsTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->text('message');
+            $table->integer('report_type_id');
             $table->timestamps();
         });
     }
