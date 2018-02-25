@@ -24,6 +24,16 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="report_type" class="col-md-2 col-md-offset-2 control-label">Report Type</label>
+					<div class="col-md-6">
+						<select name="report_type" id="report_type">
+							@foreach($report_types as $key => $value)
+								<option value="{{ $key }}">{{ $value }}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<div class="col-md-6 col-md-offset-4">
 						<button class="btn btn-primary btn-fullwidth">Submit</button>
 					</div>
