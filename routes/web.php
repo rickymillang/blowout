@@ -27,61 +27,7 @@ Route::resource('/cart','CartController');
 Route::post('/cart/delete-all','CartController@delete_all');
 Route::post('/cart/get-product-details/{id}','CartController@getProductDetails');
 Route::post('/cart/get-product-list/{id}','CartController@getProductList');
-Route::resource('/products', 'ProductController');
-Route::resource('/product_types', 'ProductTypeController');
-Route::resource('/establishments','EstablishmentController');
-Route::patch('establishments/{id}/approve', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@approve']);
-Route::patch('establishments/{id}/deactivate', ['middleware' => ['auth', 'role:superadmin'], 'uses' => 'EstablishmentController@deactivate']);
 
-Route::get('establishment/edit', ['middleware' => ['auth', 'role:establishment.admin'], 'uses' => 'EstablishmentController@edit']);
-
-Route::resource('/services', 'ServiceController');
-
-Route::group(['prefix' => 'customers', 'middleware' => ['auth', 'role:superadmin']], function() {
-    Route::get('/', 'CustomerController@index');
-    Route::delete('/{id}', 'CustomerController@destroy');
-});
-
-Route::group(['prefix' => 'administrators', 'middleware' => ['auth', 'role:superadmin']], function() {
-    Route::get('/', 'AdministratorController@index');
-    Route::delete('/{id}', 'AdministratorController@destroy');
-    Route::get('/create', 'AdministratorController@create');
-    Route::post('/', 'AdministratorController@store');
-    Route::get('/{id}/edit', 'AdministratorController@edit');
-    Route::patch('/{id}', 'AdministratorController@update');
-});
-
-Route::group(['prefix' => 'establishment_types', 'middleware' => ['auth', 'role:superadmin']], function () {
-    Route::get('/', 'EstablishmentTypeController@index');
-    Route::get('/create', 'EstablishmentTypeController@create');
-    Route::post('/', 'EstablishmentTypeController@store');
-    Route::get('/{id}/edit', 'EstablishmentTypeController@edit');
-    Route::patch('/{id}', 'EstablishmentTypeController@update');
-});
-
-Route::group(['prefix' => 'packages', 'middleware' => ['auth', 'role:establishment.admin']], function () {
-    Route::get('/', 'PackageController@index');
-    Route::get('/create', 'PackageController@create');
-    Route::get('/{id}/edit', 'PackageController@edit');
-    Route::post('/', 'PackageController@store');
-});
-
-
-
-Route::get('change_password', 'ChangePasswordController@edit');
-Route::patch('change_password', 'ChangePasswordController@update');
-
-Route::get('/notifications', 'NotificationController@index');
-
-Route::get('ratings', 'RatingController@index');
-
-Route::delete('profile/{user}/notifications', function(App\User $user) {
-    $user->notifications->map(function($n) {
-        $n->markAsRead();
-    });
-
-    return back();
-});
 
 Route::get('messages', 'MessageController@index');
 Route::get('messages/{id}/show', 'MessageController@show');
@@ -90,18 +36,60 @@ Route::post('messages/{id}', 'MessageController@store');
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('agreement', 'AgreementController@index');
-
 Route::group(['prefix' => 'reports', 'middleware' => ['auth', 'role:establishment.admin,customer']], function() {
-
     Route::get('/create', 'ReportController@create');
     Route::post('/', 'ReportController@store');
 });
-Route::group(['prefix' => 'reports', 'middleware' => ['auth']], function() {
-    Route::get('/', 'ReportController@index');
+
+Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() {
+    Route::get('calendar', 'CalendarController@index');
+
+    Route::get('locations/edit', 'LocationController@edit');
+    Route::patch('locations', 'LocationController@update');
+
+    Route::resource('services', 'ServiceController');
+
+    Route::resource('products', 'ProductController');
+
+    Route::resource('product_types', 'ProductTypeController');
+
+    Route::resource('packages', 'PackageController');
+
+    Route::get('ratings', 'RatingController@index');
+
+    Route::get('establishment/edit', 'EstablishmentController@edit');
+
+    Route::get('orders', 'OrderController@index');
 });
 
-Route::get('locations/edit', 'LocationController@edit');
-Route::patch('locations/', 'LocationController@update');
+Route::group(['middleware', ['auth', 'role:superadmin']], function() {
+    Route::resource('establishment_types', 'EstablishmentTypeController');
 
-Route::get('calendar', 'CalendarController@index');
+    Route::resource('establishments', 'EstablishmentController');
+    Route::patch('establishments/{id}/approve', 'EstablishmentController@approve');
+    Route::patch('establishments/{id}/deactivate', 'EstablishmentController@deactivate');
+
+    Route::resource('administrators', 'AdministratorController');
+
+    Route::get('customers', 'CustomerController@index');
+    Route::delete('customers/{id}', 'CustomerController@destroy');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('notifications', 'NotificationController@index');
+
+    Route::get('change_password', 'ChangePasswordController@edit');
+    Route::patch('change_password', 'ChangePasswordController@update');
+
+    Route::get('agreement', 'AgreementController@index');
+
+    Route::delete('profile/{user}/notifications', function(App\User $user) {
+        $user->notifications->map(function($n) {
+            $n->markAsRead();
+        });
+
+        return back();
+    });
+
+    Route::get('/reports', 'ReportController@index');
+});
