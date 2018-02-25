@@ -65,6 +65,8 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
 Route::group(['middleware', ['auth', 'role:superadmin']], function() {
     Route::resource('establishment_types', 'EstablishmentTypeController');
 
+    Route::resource('report_types', 'ReportTypeController');
+
     Route::resource('establishments', 'EstablishmentController');
     Route::patch('establishments/{id}/approve', 'EstablishmentController@approve');
     Route::patch('establishments/{id}/deactivate', 'EstablishmentController@deactivate');
