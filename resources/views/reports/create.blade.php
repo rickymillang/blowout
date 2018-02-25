@@ -26,7 +26,9 @@
 				<div class="form-group">
 					<label for="report_type" class="col-md-2 col-md-offset-2 control-label">Report Type</label>
 					<div class="col-md-6">
-						<select name="report_type" id="report_type">
+						<select name="report_type" id="report_type" class="form-control">
+							<option>Select report type</option>
+
 							@foreach($report_types as $key => $value)
 								<option value="{{ $key }}">{{ $value }}</option>
 							@endforeach
