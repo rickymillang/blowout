@@ -12,12 +12,17 @@
 
 
 					<div class="row row-mt-15em">
+<<<<<<< HEAD
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
 							<h1>"Your Vision , Your Event , You Way"
 </h1>
+=======
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h1>"Code is like humor. when you have to explain it, it's bad."</h1>
+>>>>>>> d4a342ecd0fff92f831e4dc9a8cf7074e59d3f62
 						</div>
-                @if(!auth()->check())
-						{{--Login --}}
+                {{--@if(!auth()->check())
+						--}}{{--Login --}}{{--
 						<div class="col-md-4 col-md-push-1 animate-box login" data-animate-effect="fadeInRight">
 							<div class="form-wrap">
 								<div class="tab">
@@ -61,9 +66,9 @@
 							</div>
 						</div>
 
-						{{--End og Login--}}
+						--}}{{--End og Login--}}{{--
 
-						{{--Register--}}
+						--}}{{--Register--}}{{--
 						<div class="col-md-4 col-md-push-1 animate-box register" data-animate-effect="fadeInRight">
                             <div class="form-wrap">
                                 <div class="tab">
@@ -117,8 +122,8 @@
                                 </div>
                             </div>
                         </div>
-                        {{--End of registration--}}
-                        @endif
+                        --}}{{--End of registration--}}{{--
+                        @endif--}}
 					</div>
 
 

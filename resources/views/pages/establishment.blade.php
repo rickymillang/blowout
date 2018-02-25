@@ -58,7 +58,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
     	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
     	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
-    	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"  />
+    	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
 
 
@@ -78,7 +78,7 @@
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     	<script src="{{ asset('js/jquery.min.js') }}"></script>
-    	 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 
         <style type="text/css">
@@ -145,8 +145,6 @@
               }
 
 
-
-
               h4{
                 color:#5cb85c;
                 font-weight: bold;
@@ -185,9 +183,9 @@
                     background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
                 }
 
-             hr{
-                border-color:#5cb85c;
-             }
+                 hr{
+                    border-color:#5cb85c;
+                 }
 
            /* .btn {
               background: #ccc;
@@ -624,7 +622,7 @@
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
-    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="{{ asset('js/summary.js') }}"></script>
@@ -647,6 +645,7 @@
            var urlgetSetUpProductList = "{{ URL::to('/cart/get-setup-product-list') }}";
            var urlgetUserinformation = "{{ URL::to('/cart/get-user-information') }}";
            var urlCheckOutFromScratch = "{{ URL::to('/cart/checkout-from-scratch') }}";
+
           $(function() {
            $('.btn-notify').click(function() {
            	$('.notify-bubble').show(400);
