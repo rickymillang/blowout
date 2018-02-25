@@ -11,7 +11,6 @@
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
-                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Phone</th>
@@ -25,7 +24,6 @@
                 <tbody>
                     @foreach($establishments as $establishment)
                         <tr>
-                            <td><img src="{{ asset($establishment->image) }}" style="max-width:64px;"></td>
                             <td>{{ $establishment->name }}</td>
                             <td>{{ $establishment->description }}</td>
                             <td>{{ $establishment->phone }}</td>
@@ -72,7 +70,7 @@
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
-                        <th>Image</th>
+                        <!--<th>Image</th>-->
                         <th>Name</th>
                         <th>Description</th>
                         <th>Phone</th>
@@ -86,7 +84,7 @@
                 <tbody>
                     @foreach($unapproved_establishments as $unapproved_establishment)
                         <tr>
-                            <td><img src="{{ asset($unapproved_establishment->image) }}" style="max-width:64px;"></td>
+                           <!-- <td><img src="{{ asset($unapproved_establishment->image) }}" style="max-width:64px;"></td>-->
                             <td>{{ $unapproved_establishment->name }}</td>
                             <td>{{ $unapproved_establishment->description }}</td>
                             <td>{{ $unapproved_establishment->phone }}</td>
