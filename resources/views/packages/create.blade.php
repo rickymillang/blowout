@@ -2,6 +2,15 @@
 
 @section('title', 'Packages')
 
+@section('breadcrumbs')
+    <li>
+        <a href="/packages">Packages</a>
+    </li>
+    <li class="active">
+        <strong>Add Package</strong>
+    </li>
+@endsection
+
 @section('content')
 	<div class="ibox float-e-margins">
 	    <div class="ibox-title">
