@@ -7,6 +7,7 @@
         <div class="ibox-title">
             <h5>View Establishment Types</h5>
         </div>
+
         <div class="ibox-content">
             <a href="/establishment_types/create" class="btn btn-success"><span class="fa fa-plus"></span> Add Establishment Type</a>
 
