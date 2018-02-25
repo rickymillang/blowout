@@ -21,9 +21,9 @@
 						<li><a href="/about-us">About Us</a></li>
 						<li><a href="/meet-the-team">Meet The Team</a></li>
 						<li><a href="/contact-us">Contact Us</a></li>
-						<li class="notify-container"> <a href="javascript:void(0);" class="itemCart" @if(count($cart) != 0) data-toggle="modal" data-target="#cart" @endif>
-                                <input type="hidden" class="cartItemTotal" value="{{ count($cart) }}"/>
-                                <span class="notify-bubble cartItemTotalBubble" >{{ count($cart) }}</span>
+						<li class="notify-container"> <a href="javascript:void(0);" class="itemCart" @if(count($cart_template) != 0) data-toggle="modal" data-target="#cart" @endif>
+                                <input type="hidden" class="cartItemTotal" value="{{ count($cart_template) }}"/>
+                                <span class="notify-bubble cartItemTotalBubble" >{{ count($cart_template) }}</span>
                                 <span class="btn-notify fa fa-shopping-cart fa-2x"></span>
 
                           </a>
@@ -104,7 +104,7 @@
                                       </thead>
                                       <tbody>
                                       @if(auth()->check())
-                                        @foreach($cart as $c)
+                                        @foreach($cart_template as $c)
                                             <tr id="item{{ $c->id }}">
                                                 <td><img src="{{ $c->item_type == 1? asset("storage/".$c->getItem->image) : asset("storage/".$c->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
                                                 <td>{{ $c->getItem->name}} </td>
@@ -122,15 +122,15 @@
                           <div class="total">
                               <div class="row">
                                 <div class="col-md-6">Total Amount : </div>
-                                <div class="col-md-6"><span class="pull-right totalAmountDisplay" >Php {{ number_format(array_sum($total_amount),2) }}</span></div>
-                                <input type="hidden" class="totalAmount" value="{{ array_sum($total_amount) }}"/>
+                                <div class="col-md-6"><span class="pull-right totalAmountDisplay" >Php {{ number_format(array_sum($total_amount_template),2) }}</span></div>
+                                <input type="hidden" class="totalAmount" value="{{ array_sum($total_amount_template) }}"/>
                               </div>
 
                               <div class="row">
                                 <div class="col-md-6">Total Quantity : </div>
-                                <div class="col-md-6"><span class="pull-right totalQuantityDisplay">{{ count($cart) }}</span></div>
+                                <div class="col-md-6"><span class="pull-right totalQuantityDisplay">{{ count($cart_template) }}</span></div>
 
-                                 <input type="hidden" class="totalQuantity" value="{{ count($cart) }}"/>
+                                 <input type="hidden" class="totalQuantity" value="{{ count($cart_template) }}"/>
                               </div>
                           </div>
 

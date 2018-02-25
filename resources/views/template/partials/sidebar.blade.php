@@ -37,9 +37,9 @@
                 </div>
             </li>
             <li {{ url()->current() == url('home') ? 'class=active' : '' }}>
-                <a href="/home">
+                <a href="/dashboard">
                     <i class="fa fa-home"></i>
-                    <span class="nav-label">Home</span>
+                    <span class="nav-label">Dashboard</span>
                 </a>
             </li>
 
@@ -72,6 +72,12 @@
                         <span class="nav-label">Packages</span>
                     </a>
                 </li>
+                 <li {{ url()->current() == url('locations/edit') ? 'class=active' : '' }}>
+                        <a href="/locations/edit">
+                            <i class="fa fa-map-marker"></i>
+                            <span class="nav-label">Locations</span>
+                        </a>
+                    </li>
                 <li {{ url()->current() == url('ratings') ? 'class=active' : '' }}>
                     <a href="/ratings">
                         <i class="fa fa-star"></i>
@@ -120,12 +126,7 @@
                         <span class="nav-label">Payments</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('locations/edit') ? 'class=active' : '' }}>
-                    <a href="/locations/edit">
-                        <i class="fa fa-map-marker"></i>
-                        <span class="nav-label">Locations</span>
-                    </a>
-                </li>
+
                 <li {{ url()->current() == url('invoices') ? 'class=active' : '' }}>
                     <a href="/invoices">
                         <i class="fa fa-tasks"></i>

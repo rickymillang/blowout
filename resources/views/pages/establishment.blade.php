@@ -110,14 +110,14 @@
                 padding:15px;
             }
 
-                .my-card{
-                        width: 100%;
-                        height: 400px;
-                        padding: 20px;
-                        border: 1px solid rgba(212, 212, 212, 0.11);
-                        margin-bottom: 15px;
-                        box-shadow: 3px 5px 12px #c7c7c7;
-                }
+            .my-card{
+                    width: 100%;
+                    height: 400px;
+                    padding: 20px;
+                    border: 1px solid rgba(212, 212, 212, 0.11);
+                    margin-bottom: 15px;
+                    box-shadow: 3px 5px 12px #c7c7c7;
+            }
 
                #map {
                 height: 300px;
@@ -144,15 +144,50 @@
                 display: block;
               }
 
-              h3{
-                color:#808080;
+
+
+
+              h4{
+                color:#5cb85c;
+                font-weight: bold;
               }
+
+
 
               .address{
               margin-top: 10px;
                 padding:5px;
                 color:#b9b2b2;
               }
+              .steps {
+                  max-height: calc(100vh - 300px);
+                  overflow-y: auto;
+                  overflow-x: hidden;
+              }
+
+              .modal-content{
+              font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+              font-size:12px;
+              }
+
+              .modal-content > .steps > button{
+              font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+               font-size:12px;
+              }
+
+                ::-webkit-scrollbar {
+                    width: 8px;
+                    background-color: rgba(126, 242, 255, 0.98);
+                }
+
+                ::-webkit-scrollbar-thumb {
+                    width: 8px;
+                    background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
+                }
+
+             hr{
+                border-color:#5cb85c;
+             }
 
            /* .btn {
               background: #ccc;
@@ -203,22 +238,22 @@
 			<div class="row">
 			<div class="col-lg-9">
 
-			    <button class="btn ">
+			    <button class="btn btn-primary filter-button" value="1">
 			        Catering
 			    </button>
-			     <button class="btn">
+			     <button class="btn btn-primary filter-button" value="2">
                     Lechon
                 </button>
-                 <button class="btn">
+                 <button class="btn btn-primary filter-button" value="4">
                     Cake
                 </button>
-                 <button class="btn">
+                 <button class="btn btn-primary filter-button" value="6">
                     Planner
                 </button>
-                 <button class="btn">
+                 <button class="btn btn-primary filter-button" value="5">
                     Entertainer
                 </button>
-                 <button class="btn">
+                 <button class="btn btn-primary filter-button" value="3">
                     Party Needs
                 </button>
 
@@ -239,56 +274,47 @@
 			<br/>
 
 
-                @foreach($establishments as $est)
+             @foreach($establishments as $est)
+             <div id="establishment">
              <div class="my-card">
 
-				<div class="col-lg-4">
+                    <div class="col-lg-4">
 
-                    	<h4 class="est-name">{{ ucfirst($est->name) }}</h4>
+                            <h4 class="est-name">{{ ucfirst($est->name) }}</h4>
 
-					<img src="{{ asset('storage/'.$est->image) }}" alt="Image"  width="95%" height="100%">
-					<div class="row rating">
-                    <div class="col-sm-1">
-                        <div id="rateYoDisplay{{ $est->id }}"></div>
-                    </div>
-                      <div class="col-lg-3">
-                      <div id="rateYo{{ $est->id }}" ></div>
-                      <script>
-
-                      					var rate_id = {{ $est->id }};
-                      					    $("#rateYo"+rate_id).rateYo({
-                                                  rating: 3.6,
-                                                  ratedFill: "#ffff00",
-                                                   starWidth: "18px"
-                                                });
-                                               $("#rateYoDisplay"+rate_id).html($("#rateYo"+rate_id).rateYo("rating"));
-                      					</script>
-                      </div>
-                        <br/>
-                        <div class="col-lg-12">
-                          <span class="address"><i class="fas fa-map-marker-alt" style="color:rgba(210, 17, 29, 0.80)"></i>&nbsp; {{ $est->address }}</span>
+                        <img src="{{ asset('storage/'.$est->image) }}" alt="Image"  width="95%" height="100%">
+                        <div class="row rating">
+                           <div class="col-sm-1">
+                             <div id="rateYoDisplay{{ $est->id }}"></div>
+                           </div>
+                          <div class="col-lg-3">
+                          <div id="rateYo{{ $est->id }}" ></div>
+                          </div>
+                            <br/>
+                            <div class="col-lg-12">
+                              <span class="address"><i class="fas fa-map-marker-alt" style="color:rgba(210, 17, 29, 0.80)"></i>&nbsp; {{ $est->address }}</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-lg-4">
+                        <br/>
+                            <div>
+
+                                <p style="text-align: left">{{ str_limit($est->description,250) }}</p>
+                                 <p><span class="btn btn-primary btn-sm" onclick="organize({{ $est->id  }})"><i class="fas fa-eye"></i> More</span>
+                                 <input type="hidden" id="current_estab{{ $est->id }}" value="{{ $est->id }}"/>
+                                <span class="btn btn-success bt-sm"><i class="fas fa-bookmark"></i> Bookmark</span></p>
+
+                            </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <br/>
+                         <div id="map{{ $est->id }}" style=" height: 300px;width: 100%;"></div>
+                    </div>
+                </div> <!--end of my card-->
 
 
-                        {{--<input id="input-id" name="input-name" type="number" class="rating" min=1 max=10 step=2 data-size="lg" data-rtl="true">--}}
-
-				</div>
-				<div class="col-lg-4">
-                    <br/>
-						<div>
-
-							<p style="text-align: left">{{ str_limit($est->description,250) }}</p>
-							<p><span class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> More</span><span class="btn btn-success bt-sm"><i class="fas fa-bookmark"></i> Bookmark</span></p>
-
-						</div>
-				</div>
-				<div class="col-lg-4">
-                <br/>
-				 <div id="map{{ $est->id }}" style=" height: 300px;width: 100%;"></div>
-
-				 <script>
-
+                <script>
                   function initMap{{ $est->id }}() {
                       var uluru{{ $est->id  }} = {lat:{{ $est->latitude }}, lng:{{ $est->longitude  }}};
 
@@ -303,189 +329,237 @@
                       });
                     }
 
-				 </script>
-				  <script async defer
+
+                      var rate_id = {{ $est->id }};
+                     $("#rateYo"+rate_id).rateYo({
+                           rating: 3.6,
+                           ratedFill: "#ffff00",
+                            starWidth: "18px"
+                         });
+                        $("#rateYoDisplay"+rate_id).html($("#rateYo"+rate_id).rateYo("rating"));
+                 </script>
+
+                  <script async defer
                                      src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_KEY')}}&callback=initMap{{ $est->id }}">
-                                     </script>
+                   </script>
 
-				</div>
-
-				<div id="scratch" class="modal fade" role="dialog">
-                          <div class="modal-dialog modal-lg">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                              <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
-                              </div>
-                              <div class="modal-body" id="smartwizard">
-                              {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
-
-                                 <ul>
-                                     <li><a href="#step-1">Step 1<br /><small>Shopping</small></a></li>
-                                     <li><a href="#step-2">Step 2<br /><small>Information Details</small></a></li>
-                                     <li><a href="#step-3">Step 3<br /><small>Order Summary</small></a></li>
-
-                                 </ul>
-                                    <div>
-
-                                <br/>
-                                         <div id="step-1" class="">
-
-                                               <div class="row">
-
-                                                 <div class="col-md-8 section_product">
-
-                                                     @foreach($est->product_types as $pt )
-
-                                                         <button id="pt{{ $pt->id }}" onclick="show_product_list({{$pt->id}});" class="btn btn-info btn-block">{{ $pt->name }}</button>
-
-                                                         {{--{{ $establishment->products->where('product_type_id',$pt->id) }}--}}
-
-                                                          <div class="table product_type_list{{ $pt->id }}" id="plist" style="display:none">
-                                                          <button class="btn btn-success btn-block">{{ $pt->name }} Selection</button>
-
-                                                           <table class="table table-collapsed" id="table_scratch">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th ></th>
-                                                                        <th >Item Name</th>
-                                                                        <th >Price</th>
-                                                                        <th >Quantity</th>
-                                                                        <th ></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                 @foreach($est->products->where('product_type_id',$pt->id) as $product)
-                                                                     <tr>
-                                                                         <td><img src="{{ asset("storage/".$product->image) }}" style="max-width:100px;" height="30px" width="30px"></td>
-                                                                         <td>{{ $product->name }}</td>
-                                                                         <td>{{ $product->price }}</td>
-                                                                         <td><input type="number" id="s_productQuantity{{ $product->id }}" placeholder="0" style="width:60px;"/></td>
-                                                                         <td><button class="btn btn-success" style="font-size:10px;padding:5px 10px;" onclick="add_to_cart({{ $product->id }})"><span class="fa fa-cart-plus"></span></button></td>
-                                                                     </tr>
-                                                                  @endforeach
-                                                                 </tbody>
-                                                           </table>
-                                                       </div>
-                                                     @endforeach
-                                                 </div>
-                                                 <div class="col-md-4">
-                                                      <button class="btn btn-success btn-block"><span class="fa fa-shopping-cart pull-left"></span> Your Cart Item  <span class="scratc-notify-bubble scratch-total-display">0</span></button>
-                                                      <input type="hidden" id="s_totalQuantity" value="0"/>
-                                                     <div class="table">
-                                                         <table class="table table-striped" id="scratch_cart">
-                                                             <thead>
-                                                                 <tr>
-                                                                     <th></th>
-                                                                     <th>Name</th>
-                                                                     <th>Price</th>
-                                                                     <th>#</th>
-                                                                     <th></th>
-                                                                 </tr>
-                                                             </thead>
-                                                             <tbody>
-                                                             </tbody>
-                                                         </table>
-                                                     </div>
-                                                     <span class="pull-right">Total: <span id="s_totalAmountDisplay" >0.00</span></span>
-                                                     <input type="hidden" value="0" id="s_totalAmount"/>
-                                                 </div>
-
-
-                                              {{-- <div class="modal-footer">
-                                                <button type="button" class="btn btn-warning pull-left" id="scratch_back"><span class="fa fa-arrow-left"></span> Back</button>
-                                                 <button type="button" class="btn btn-success">Checkout</button>
-                                                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>
-
-                                               </div>--}}
-
-                                           </div>
-                                         </div>
-                                         <div id="step-2" class="">
-                                             <div class="row">
-                                                <div class="col-md-6">
-                                                <h3>Information Details</h3>
-                                                 <div class="form-group">
-                                                    <label for="inf-name" style="color:#808080">Delivery Address</label>
-                                                    <input type="text" class="form-control" name="delivery_address" id="delivery_address"/>
-                                                 </div>
-
-                                                      <label for="inf-name" style="color:#808080">Delivery Date</label>
-                                                    <div class='input-group date' id='datetimepicker1' style="position:relative;">
-
-                                                       <input type='text' class="form-control" />
-                                                            <span class="input-group-addon">
-                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                            </span>
-                                                        </div>
-                                               </div>
-
-                                               <div class="col-md-6">
-                                               <h3>Payment Method</h3>
-                                               <div class="form-group">
-                                                   <input type="radio" name="payment_type" value="cod" id="cod" class="form-control"/>
-                                                  <img src="{{ asset('images/cod.png') }}" alt="Cash on Delivery" width="30%" style="margin-left: 5px;" height="20%"/>
-                                               </div>
-                                                <div class="form-group">
-                                                  <input type="radio" name="payment_type" value="cod" id="paypal" class="form-control"/>
-                                                  <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" style="margin-left: 5px;" alt="PayPal Logo">
-                                              </div>
-                                               </div>
-
-                                             </div>
-
-                                         </div>
-                                         <div id="step-3" class="">
-                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <h3>Product </h3>
-                                                    <div class="table">
-                                                    <table class="table collapsed" id="item_summary_scratch">
-                                                       <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>Name</th>
-                                                            <th>Price</th>
-                                                            <th>Quantity</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-
-                                                        </tbody>
-                                                    </table>
-                                                    </div>
-                                                 </div>
-                                                 <div class="col-md-6">
-                                                       <h3>Information Details</h3>
-                                                       Name             : Guzman G. Guzman
-                                                       <br/>
-                                                       Contact No.      :  0923538564
-                                                        <br/>
-                                                       Delivery Address : Sitio Mansanita Tisa, Cebu City
-                                                       <br/>
-                                                       Delivery Date    : February 20,2018
-                                                       <br/>
-                                                       <br>
-                                                       <h3>Payment Method</h3>
-                                                       Type :  Cash on Delivery
-
-                                                 </div>
-                                             </div>
-                                         </div>
-
-                                </div>
-
-                            </div>
-
-
-                          </div>
-                        </div>
-                 </div>
-                </div>
+               </div>
                 @endforeach
 
+
+
+                 <!--Start of model div -->
+                <div id="scratch-setup" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
+                      </div>
+                      <div class="modal-body" id="smartwizard">
+                      {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
+
+                         <ul>
+                             <li><a href="#step-1">Step 1<br /><small>Shopping</small></a></li>
+                             <li><a href="#step-2">Step 2<br /><small>Delivery Information</small></a></li>
+                             <li><a href="#step-3">Step 3<br /><small>Order Summary</small></a></li>
+
+                         </ul>
+                            <div>
+
+                        <br/>
+                                 <div id="step-1" class="steps">
+
+                                       <div class="row">
+
+                                         <div class="col-md-8 section_product">
+
+
+                                         </div>
+                                         <div class="col-md-4">
+                                              <button class="btn btn-success btn-block"><span class="fa fa-shopping-cart pull-left"></span> Your Cart Item  <span class="scratc-notify-bubble scratch-total-display">{{ $cart_scratch_total_quantity }}</span></button>
+                                              <input type="hidden" id="s_totalQuantity" value="{{ $cart_scratch_total_quantity }}"/>
+                                             <div class="table">
+                                                 <table class="table table-striped" id="scratch_cart">
+                                                     <thead>
+                                                             <tr>
+                                                                 <th></th>
+                                                                 <th>Name</th>
+                                                                 <th>Price</th>
+                                                                 <th>#</th>
+                                                                 <th></th>
+                                                             </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                            @foreach($cart_scratch as $cs)
+                                                            <tr id="scratch_item{{ $cs->id }}">
+                                                                <td><img src="{{ $cs->item_type == 1? asset("storage/".$cs->getItem->image) : asset("storage/".$cs->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
+                                                                <td>{{ $cs->getItem->name}} </td>
+                                                                <td>{{ number_format($cs->getItem->price,2) }}</td>
+                                                                <td>{{ $cs->quantity }}</td>
+                                                                <td><button class='btn btn-danger ' onclick='scratch_deleteItem({{ $cs->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
+                                                            </tr>
+                                                            @endforeach
+                                                     </tbody>
+                                                 </table>
+                                             </div>
+                                             <span class="pull-right">Total: <span id="s_totalAmountDisplay" >{{ number_format(array_sum($total_amount_scratch),2) }}</span></span>
+                                             <input type="hidden" value="{{ array_sum($total_amount_scratch) }}" id="s_totalAmount"/>
+                                         </div>
+
+
+                                      {{-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning pull-left" id="scratch_back"><span class="fa fa-arrow-left"></span> Back</button>
+                                         <button type="button" class="btn btn-success">Checkout</button>
+                                         <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>
+
+                                       </div>--}}
+
+                                   </div>
+                                 </div>
+                                 <div id="step-2" class="steps">
+                                     <div class="row">
+                                        <div class="col-md-6">
+                                        <h4>Information Details</h4>
+
+                                         <div class="form-group">
+                                            <label for="inf-number-quests" style="color:#808080">Number of Quests</label>
+                                            <input type="number" class="form-control" name="number_guests" id="number_guests"/>
+                                         </div>
+                                         <div class="form-group">
+                                            <label for="inf-name" style="color:#808080">Delivery Address</label>
+                                            <input type="text" class="form-control" name="delivery_address" id="delivery_address"/>
+                                         </div>
+
+                                              <label for="inf-name" style="color:#808080">Delivery Date</label>
+                                            <div class='input-group date' id='datetimepicker1' style="position:relative;">
+
+                                               <input type='text' class="form-control" id="delivery_date"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                             </div>
+                                       </div>
+
+                                       <div class="col-md-6">
+                                       <h4>Payment Method</h4>
+                                       <div class="form-group">
+                                           <input type="radio" name="payment_type" value="1" id="payment_type" checked="checked"  class="form-control"/>
+                                          <img src="{{ asset('images/cod.png') }}" alt="Cash on Delivery" width="30%" style="margin-left: 5px;" height="20%"/>
+                                       </div>
+                                        <div class="form-group">
+                                          <input type="radio" name="payment_type" value="2" id="payment_type" class="form-control"/>
+                                          <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" style="margin-left: 5px;" alt="PayPal Logo">
+                                      </div>
+                                       </div>
+
+                                     </div>
+
+                                 </div>
+                                 <div id="step-3" class="steps">
+                                     <div class="row">
+                                        <div class="col-md-5">
+                                            <h4>Delivery Information</h4>
+
+                                            <hr/>
+                                            <table id="table_delivery_information">
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td width="20%" align="center">:</td>
+                                                    <td id="di_name"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Contact No.  </td>
+                                                    <td width="20%" align="center">:</td>
+                                                    <td id="di_contact"></td>
+                                                 </tr>
+                                                  <tr>
+                                                      <td>No. of Quests</td>
+                                                      <td width="20%" align="center">:</td>
+                                                      <td id="no_guests"></td>
+                                                   </tr>
+                                                 <tr>
+                                                     <td>Delivery Address</td>
+                                                     <td width="20%" align="center">:</td>
+                                                     <td id="di_address"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Delivery Date</td>
+                                                      <td width="20%" align="center">:</td>
+                                                      <td id="di_date"></td>
+                                                   </tr>
+                                            </table>
+
+
+
+                                           <br/>
+                                           <br>
+                                           <h4>Payment Method</h4>
+                                           <hr/>
+
+                                           <table id="table_payment_method">
+                                           <tr>
+                                               <td>Type</td>
+                                               <td width="20%" align="center">:</td>
+                                               <td id="pm_payment_method"></td>
+                                           </tr>
+                                           </table>
+
+
+                                         </div>
+                                         <div class="col-md-7">
+
+                                                <h4>Product Item</h4>
+                                                <hr/>
+                                                <div class="table">
+                                                <table class="table collapsed" id="item_summary_scratch">
+                                                   <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Name</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="item_summary_scratch_body">
+
+                                                    </tbody>
+                                                </table>
+
+                                                <table>
+                                                    <tr>
+                                                        <td style="color:#5cb85c">Total Item Quantity</td>
+                                                        <td width="20%" align="center">:</td>
+                                                        <td id="scratch_total_cart_quantity" align="right">0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="color:#5cb85c">Total Amount</td>
+                                                        <td width="20%" align="center">:</td>
+                                                        <td id="scratch_total_cart_amount" align="right">0.00</td>
+                                                    </tr>
+                                                </table>
+                                                </div>
+                                                <hr/>
+                                                <div class="col-md-12">
+                                                <div class="pull-right">
+                                                    <input type="checkbox" class="form-control" id="terms_and_condition_checkout_scratch"/>
+                                                    <label for=""><a href="#">I hereby accept the term and conditions</a></label>
+                                                </div>
+                                                </div>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                        </div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+         </div>
 		</div>
 	</div>
 
@@ -553,9 +627,13 @@
     	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
+    <script src="{{ asset('js/summary.js') }}"></script>
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
-
+    <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker1').datetimepicker();
+                });
+            </script>
 	  <script>
            var token = "{{csrf_token()}}";
            var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
@@ -565,6 +643,10 @@
            var urldeleteCartItem = "{{ URL::to('/cart') }}";
            var urlGetProductDetails = "{{ URL::to('/cart/get-product-details') }}";
            var urlGetProductList = "{{ URL::to('/cart/get-product-list') }}";
+           var urlgetCartScratchSummary = "{{ URL::to('/cart/get-cart-scratch-summary') }}";
+           var urlgetSetUpProductList = "{{ URL::to('/cart/get-setup-product-list') }}";
+           var urlgetUserinformation = "{{ URL::to('/cart/get-user-information') }}";
+           var urlCheckOutFromScratch = "{{ URL::to('/cart/checkout-from-scratch') }}";
           $(function() {
            $('.btn-notify').click(function() {
            	$('.notify-bubble').show(400);
@@ -575,80 +657,185 @@
 
 
          $('input').iCheck({
-             checkboxClass: 'icheckbox_minimal-blue',
-             radioClass: 'iradio_minimal-blue',
+             checkboxClass: 'icheckbox_minimal-green',
+             radioClass: 'iradio_minimal-green',
              increaseArea: '20%' // optional
          });
 
+
+
+         function organize(id){
+                 var setup = $("#setup option:selected").val();
+                 var url = "/establishments/"+id;
+
+
+                if(setup == 1){
+                       $(location).attr('href',url);
+                }else{
+                   $("#scratch-setup").modal("toggle");
+
+                    $.ajax({
+                       url:urlgetSetUpProductList+"/"+id,
+                       type: "POST",
+                       data: {id: id, _token: token},
+                       dataType: "text",
+                       success: function (data) {
+
+                        $('.section_product').html(data);
+                       },
+                       error: function (data){
+                       console.log(data);
+                       console.log('error');
+                       }
+
+                    });
+
+                }
+         }
+
+         $(".filter-button").on("click",function(){
+                var type_id = $(this).val();
+
+                 $.ajax({
+                    url: urlAddCart,
+                    type: "POST",
+                    data: {type_id: type_id, _token: token},
+                    dataType: "json",
+                    success: function (data) {},
+                    error: function (data){}
+                    });
+
+         });
+
          </script>
+         <script type="text/javascript">
+                                $(document).ready(function(){
+                                        var user_id = {{ auth()->user()->id  }};
+
+
+                                     $("#terms_and_condition_checkout_scratch").on('ifUnchecked', function(event) {
+
+                                            //Uncheck all checkboxes
+
+                                            $('.checkout_from_scratch').attr('disabled','disabled');
+                                        });
+                                        //When checking the checkbox
+                                        $("#terms_and_condition_checkout_scratch").on('ifChecked', function(event) {
+                                            //Check all checkoxes
+                                           $('.checkout_from_scratch').removeAttr('disabled');
+                                        });
+
+                                    // Step show event
+                                    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+                                       //alert("You are on step "+stepNumber+" now");
+                                       if(stepPosition === 'first'){
+                                           $("#prev-btn").addClass('disabled');
+                                            $('.checkout_from_scratch').hide();
+                                       }else if(stepPosition === 'final'){
+
+
+                                           $("#next-btn").addClass('disabled');
+                                           getSummary({{ auth()->user()->id}});
+                                           getUserinformation({{ auth()->user()->id  }});
+                                           $('.checkout_from_scratch').show();
+
+                                                var number_guests = $('#number_guests').val();
+                                                      var delivery_address = $('#delivery_address').val();
+                                                      var delivery_date = $('#delivery_date').val();
+
+                                               if(number_guests != '' && delivery_address != '' && delivery_date != '' ){
+                                                      $("#next-btn").addClass('disabled');
+                                                      getSummary({{ auth()->user()->id}});
+                                                      getUserinformation({{ auth()->user()->id  }});
+                                                      $('.checkout_from_scratch').show();
+                                               }else{
+                                                    $('#smartwizard').smartWizard("prev");
+
+                                                     toastr.options.closeButton = true;
+                                                    toastr.options.positionClass = 'toast-bottom-center';
+                                                    toastr.options.showDuration = 1000;
+                                                    toastr['warning']('All field are required!');
+
+                                               }
+                                       }else{
+
+                                           $('.checkout_from_scratch').hide();
+                                           $("#prev-btn").removeClass('disabled');
+                                           $("#next-btn").removeClass('disabled');
+                                       }
+                                    });
+
+                                    // Toolbar extra buttons
+                                    var product     =  $('<button></button>').text('Product').addClass('btn btn-warning pull-left').attr('id','scratch_back').on('click', function(){  $('#scratch_back').hide();
+                                                                                                                                                                         $('.section_product>button').show();
+                                                                                                                                                                         $('.section_product>.table').hide(); });
+                                    var btnFinish = $('<button type="button" class="btn btn-success checkout_from_scratch" disabled value="'+user_id+'">Checkout</button>');
+                                    var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
+                                      $('#scratch_back').hide();
+
+                                    // Smart Wizard
+                                    $('#smartwizard').smartWizard({
+                                            selected: 0,
+                                            theme:  'arrows',
+                                            transitionEffect:'fade',
+                                            showStepURLhash: true,
+                                            toolbarSettings: {toolbarPosition: 'bottom',
+                                                              toolbarExtraButtons: [product,btnFinish, btnCancel]
+                                                            }
+                                    });
+
+
+                                    $("#prev-btn").on("click", function() {
+                                        // Navigate previous
+                                        $('#smartwizard').smartWizard("prev");
+                                        return true;
+                                    });
+
+                                    $("#next-btn").on("click", function() {
+                                        // Navigate next
+                                        $('#smartwizard').smartWizard("next");
+                                        return true;
+                                    });
+
+                                    $(".sw-next-btn").hide();
+                                    $(".sw-prev-btn").hide();
+                                    $('.checkout').hide();
+
+                                    $('.checkout_from_scratch').on('click',function(){
+                                            var number_guests = $('#number_guests').val();
+                                            var delivery_address = $('#delivery_address').val();
+                                            var delivery_date = $('#delivery_date').val();
+                                            var payment_type = $('input[name=payment_type]:checked').val();
+                                            var id = $(this).val();
+                                            var organize_from = 2;
+
+                                            $.ajax({
+                                                url: urlCheckOutFromScratch+"/"+id,
+                                                type: "POST",
+                                                data: {id: id,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,organize_from:organize_from, _token: token},
+                                                dataType: "json",
+                                                success: function (data) {
+                                                     if(data){
+                                                         toastr.options.closeButton = true;
+                                                        toastr.options.positionClass = 'toast-bottom-center';
+                                                        toastr.options.showDuration = 1000;
+                                                        toastr['success']('Your Order has been processed,just wait for confirmation!');
+
+                                                        $('#scratch-setup').modal('toggle');
+                                                     }
+                                                },
+                                                error: function (data) {
+                                                }
+                                            });
+                                        });
+                                });
+                        </script>
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 
 	<script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/scratch.js') }}"></script>
-    <script type="text/javascript">
-                $(document).ready(function(){
 
-
-                    // Step show event
-                    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
-                       //alert("You are on step "+stepNumber+" now");
-                       if(stepPosition === 'first'){
-                           $("#prev-btn").addClass('disabled');
-
-
-
-                       }else if(stepPosition === 'final'){
-                           $("#next-btn").addClass('disabled');
-                       }else{
-
-
-                           $("#prev-btn").removeClass('disabled');
-                           $("#next-btn").removeClass('disabled');
-                       }
-                    });
-
-
-
-                    // Toolbar extra buttons
-                    var product     =  $('<button></button>').text('Store').addClass('btn btn-warning pull-left').attr('id','scratch_back').on('click', function(){  $('#scratch_back').hide();
-                                                                                                                                                         $('.section_product>button').show();
-                                                                                                                                                         $('.section_product>.table').hide(); });
-                    var btnFinish = $('<button class="btn btn-success">Checkout</button>');
-                    var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
-                      $('#scratch_back').hide();
-
-                    // Smart Wizard
-                    $('#smartwizard').smartWizard({
-                            selected: 0,
-                            theme:  'arrows',
-                            transitionEffect:'fade',
-                            showStepURLhash: true,
-                            toolbarSettings: {toolbarPosition: 'bottom',
-                                              toolbarExtraButtons: [product,btnFinish, btnCancel]
-                                            }
-                    });
-
-
-                    $("#prev-btn").on("click", function() {
-                        // Navigate previous
-                        $('#smartwizard').smartWizard("prev");
-                        return true;
-                    });
-
-                    $("#next-btn").on("click", function() {
-                        // Navigate next
-                        $('#smartwizard').smartWizard("next");
-                        return true;
-                    });
-
-
-                          $(".sw-next-btn").hide();
-                         $(".sw-prev-btn").hide();
-
-
-                });
-            </script>
 
 
 	</body>

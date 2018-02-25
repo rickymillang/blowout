@@ -9,7 +9,11 @@ class ProductOrder extends Model
 
     protected $table = 'product_order';
 
-    protected $fillable = ['item_id','item_type','quantity'];
+    protected $fillable = ['order_id','item_id','item_type','quantity'];
+
+    public function getOrder(){
+        return $this->hasOne('App\Order','id','order_id');
+    }
 
 
 }
