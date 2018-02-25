@@ -12,7 +12,7 @@ class ProductOrder extends Model
     protected $fillable = ['order_id','item_id','item_type','quantity'];
 
     public function getOrder(){
-        return $this->hasOne('App\Order','id','order_id');
+        return $this->belongsTo('App\Order','id','order_id');
     }
 
 
