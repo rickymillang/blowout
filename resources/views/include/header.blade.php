@@ -41,6 +41,14 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
+	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
+	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
+    <link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
+
+
+
 	<!-- Modernizr JS -->
 	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 	<!-- FOR IE9 below -->
@@ -48,7 +56,11 @@
 	<script src="{{ asset('js/respond.min.js') }}"></script>
 	<![endif]-->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-     <style type="text/css">
+                	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+                	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+                	<script src="{{ asset('js/jquery.min.js') }}"></script>
+                	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        <style type="text/css">
             .container {
               margin: 100px auto;
               text-align: center;
@@ -62,8 +74,8 @@
 
               .notify-bubble {
                 position: absolute;
-                top: -20px;
-                right: -3px;
+                top: -15px;
+                right: 0;
                 padding: 2px 5px 2px 6px;
                 background-color: #0ec6c2;
                 color: white;
@@ -75,6 +87,59 @@
             .total{
                 padding:15px;
             }
+
+
+               #map {
+                height: 300px;
+                width: 100%;
+               }
+
+              .scratc-notify-bubble {
+                position: absolute;
+                top: 10px;
+                right: 25px;
+                padding: 5px 10px 5px 10px;
+                background-color: #ffffff;
+                color: rgba(163, 163, 163, 0.86);
+                font-size: 0.65em;
+                border-radius: 50%;
+               /* box-shadow: 1px 1px 1px gray;*/
+                display: block;
+              }
+
+              h4{
+                  color:#5cb85c;
+                  font-weight: bold;
+                }
+
+              h3{
+                color:#808080;
+              }
+
+             .modal-content{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size:12px;
+            }
+
+            .modal-content > .steps > button{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+             font-size:12px;
+            }
+
+              ::-webkit-scrollbar {
+                  width: 8px;
+                  background-color: rgba(126, 242, 255, 0.98);
+              }
+
+              ::-webkit-scrollbar-thumb {
+                  width: 8px;
+                  background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
+              }
+
+               hr{
+                  border-color:#5cb85c;
+               }
+
            /* .btn {
               background: #ccc;
 

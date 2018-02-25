@@ -38,10 +38,10 @@
           success : function(data){
               $('#item'+id).remove();
 
-              cartTotal = cartItemTotal - 1;
+              cartTotal = cartItemTotal - data.quantity;
               var new_total_amount = $.number(parseInt($('.totalAmount').val()) - parseInt(data.amount),2);
 
-              var new_quantity =  parseInt($('.totalQuantity').val()) -  1;
+              var new_quantity =  parseInt($('.totalQuantity').val()) -  parseInt(data.quantity);
               $('.cartItemTotalBubble').text(cartTotal);
               $('.cartItemTotal').val(cartTotal);
 
@@ -74,7 +74,6 @@
         toastr['info']('You must login first!');
     }
     function addCart(id,item_type){
-
         var quantity = $('#quantity'+id).val();
         if(quantity > 0 || item_type != 1) {
             $.ajax({
@@ -86,7 +85,7 @@
                     console.log(data.cart.quantity);
                     var totalCartItem = $('.cartItemTotal').val();
                     var new_total_amount = $.number(parseInt($('.totalAmount').val()) + parseInt(data.add_amount),2);
-                    var new_quantity =  parseInt($('.totalQuantity').val()) +  1;
+                    var new_quantity =  parseInt($('.totalQuantity').val()) +  parseInt(data.cart.quantity);
                     $('#prod'+id).modal('toggle');
 
                     $('.totalAmountDisplay').html('Php '+new_total_amount);
@@ -99,8 +98,8 @@
                     }
 
                     if(data.exist == 0) {
-                        $('.cartItemTotalBubble').text(parseInt($('.cartItemTotal').val())+1);
-                        $('.cartItemTotal').val(parseInt($('.cartItemTotal').val())+1);
+                        $('.cartItemTotalBubble').text(parseInt($('.cartItemTotal').val())+ parseInt(data.cart.quantity));
+                        $('.cartItemTotal').val(parseInt($('.cartItemTotal').val())+ parseInt(data.cart.quantity));
                         $('.totalQuantityDisplay').html(new_quantity);
                         $('.totalQuantity').val(new_quantity);
                         $('#table_cart').append("<tr id='item"+data.cart.id+"'><td><img src=" + myurl + "/storage/" + data.image + " alt='' style='max-width:100px;' height='35px' width='35px'/></td><td>" + data.name + "</td><td>" + data.price + "</td><td>" + data.cart.quantity + "</td><td><button onclick='deleteItem("+data.cart.id+")' class='btn btn-danger' style='font-size:10px;padding:5px 10px;' id='" + data.cart.id + "'><span class='fa fa-trash'></span></button</td></tr>");
@@ -109,8 +108,8 @@
                         $('tr#item'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
                         $('tr#item_summary_scratch'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
                     }
-                    console.log(data);
-                        toastr.options.closeButton = true;
+                    console.log(data.cart);
+                    toastr.options.closeButton = true;
                     toastr.options.positionClass = 'toast-bottom-center';
                     toastr.options.showDuration = 1000;
                     toastr['success']('Items has been added to cart!');

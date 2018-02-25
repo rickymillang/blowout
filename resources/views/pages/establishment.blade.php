@@ -391,6 +391,7 @@
                                                              </tr>
                                                      </thead>
                                                      <tbody>
+                                                     @if(auth()->check())
                                                             @foreach($cart_scratch as $cs)
                                                             <tr id="scratch_item{{ $cs->id }}">
                                                                 <td><img src="{{ $cs->item_type == 1? asset("storage/".$cs->getItem->image) : asset("storage/".$cs->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
@@ -400,6 +401,7 @@
                                                                 <td><button class='btn btn-danger ' onclick='scratch_deleteItem({{ $cs->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
                                                             </tr>
                                                             @endforeach
+                                                      @endif
                                                      </tbody>
                                                  </table>
                                              </div>
@@ -707,131 +709,135 @@
          });
 
          </script>
+
+         @if(auth()->check()))
          <script type="text/javascript">
-                                $(document).ready(function(){
-                                        var user_id = {{ auth()->user()->id  }};
+        $(document).ready(function(){
+                var user_id = {{ auth()->user()->id  }};
 
 
-                                     $("#terms_and_condition_checkout_scratch").on('ifUnchecked', function(event) {
+             $("#terms_and_condition_checkout_scratch").on('ifUnchecked', function(event) {
 
-                                            //Uncheck all checkboxes
+                    //Uncheck all checkboxes
 
-                                            $('.checkout_from_scratch').attr('disabled','disabled');
-                                        });
-                                        //When checking the checkbox
-                                        $("#terms_and_condition_checkout_scratch").on('ifChecked', function(event) {
-                                            //Check all checkoxes
-                                           $('.checkout_from_scratch').removeAttr('disabled');
-                                        });
+                    $('.checkout_from_scratch').attr('disabled','disabled');
+                });
+                //When checking the checkbox
+                $("#terms_and_condition_checkout_scratch").on('ifChecked', function(event) {
+                    //Check all checkoxes
+                   $('.checkout_from_scratch').removeAttr('disabled');
+                });
 
-                                    // Step show event
-                                    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
-                                       //alert("You are on step "+stepNumber+" now");
-                                       if(stepPosition === 'first'){
-                                           $("#prev-btn").addClass('disabled');
-                                            $('.checkout_from_scratch').hide();
-                                       }else if(stepPosition === 'final'){
-
-
-                                           $("#next-btn").addClass('disabled');
-                                           getSummary({{ auth()->user()->id}});
-                                           getUserinformation({{ auth()->user()->id  }});
-                                           $('.checkout_from_scratch').show();
-
-                                                var number_guests = $('#number_guests').val();
-                                                      var delivery_address = $('#delivery_address').val();
-                                                      var delivery_date = $('#delivery_date').val();
-
-                                               if(number_guests != '' && delivery_address != '' && delivery_date != '' ){
-                                                      $("#next-btn").addClass('disabled');
-                                                      getSummary({{ auth()->user()->id}});
-                                                      getUserinformation({{ auth()->user()->id  }});
-                                                      $('.checkout_from_scratch').show();
-                                               }else{
-                                                    $('#smartwizard').smartWizard("prev");
-
-                                                     toastr.options.closeButton = true;
-                                                    toastr.options.positionClass = 'toast-bottom-center';
-                                                    toastr.options.showDuration = 1000;
-                                                    toastr['warning']('All field are required!');
-
-                                               }
-                                       }else{
-
-                                           $('.checkout_from_scratch').hide();
-                                           $("#prev-btn").removeClass('disabled');
-                                           $("#next-btn").removeClass('disabled');
-                                       }
-                                    });
-
-                                    // Toolbar extra buttons
-                                    var product     =  $('<button></button>').text('Product').addClass('btn btn-warning pull-left').attr('id','scratch_back').on('click', function(){  $('#scratch_back').hide();
-                                                                                                                                                                         $('.section_product>button').show();
-                                                                                                                                                                         $('.section_product>.table').hide(); });
-                                    var btnFinish = $('<button type="button" class="btn btn-success checkout_from_scratch" disabled value="'+user_id+'">Checkout</button>');
-                                    var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
-                                      $('#scratch_back').hide();
-
-                                    // Smart Wizard
-                                    $('#smartwizard').smartWizard({
-                                            selected: 0,
-                                            theme:  'arrows',
-                                            transitionEffect:'fade',
-                                            showStepURLhash: true,
-                                            toolbarSettings: {toolbarPosition: 'bottom',
-                                                              toolbarExtraButtons: [product,btnFinish, btnCancel]
-                                                            }
-                                    });
+            // Step show event
+            $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+               //alert("You are on step "+stepNumber+" now");
+               if(stepPosition === 'first'){
+                   $("#prev-btn").addClass('disabled');
+                    $('.checkout_from_scratch').hide();
+               }else if(stepPosition === 'final'){
 
 
-                                    $("#prev-btn").on("click", function() {
-                                        // Navigate previous
-                                        $('#smartwizard').smartWizard("prev");
-                                        return true;
-                                    });
+                   $("#next-btn").addClass('disabled');
+                   getSummary({{ auth()->user()->id}});
+                   getUserinformation({{ auth()->user()->id  }});
+                   $('.checkout_from_scratch').show();
 
-                                    $("#next-btn").on("click", function() {
-                                        // Navigate next
-                                        $('#smartwizard').smartWizard("next");
-                                        return true;
-                                    });
+                        var number_guests = $('#number_guests').val();
+                              var delivery_address = $('#delivery_address').val();
+                              var delivery_date = $('#delivery_date').val();
 
-                                    $(".sw-next-btn").hide();
-                                    $(".sw-prev-btn").hide();
-                                    $('.checkout').hide();
+                       if(number_guests != '' && delivery_address != '' && delivery_date != '' ){
+                              $("#next-btn").addClass('disabled');
+                              getSummary({{ auth()->user()->id}});
+                              getUserinformation({{ auth()->user()->id  }});
+                              $('.checkout_from_scratch').show();
+                       }else{
+                            $('#smartwizard').smartWizard("prev");
 
-                                    $('.checkout_from_scratch').on('click',function(){
-                                            var number_guests = $('#number_guests').val();
-                                            var delivery_address = $('#delivery_address').val();
-                                            var delivery_date = $('#delivery_date').val();
-                                            var payment_type = $('input[name=payment_type]:checked').val();
-                                            var id = $(this).val();
-                                            var organize_from = 2;
+                             toastr.options.closeButton = true;
+                            toastr.options.positionClass = 'toast-bottom-center';
+                            toastr.options.showDuration = 1000;
+                            toastr['warning']('All field are required!');
 
-                                            $.ajax({
-                                                url: urlCheckOutFromScratch+"/"+id,
-                                                type: "POST",
-                                                data: {id: id,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,organize_from:organize_from, _token: token},
-                                                dataType: "json",
-                                                success: function (data) {
-                                                     if(data){
-                                                         toastr.options.closeButton = true;
-                                                        toastr.options.positionClass = 'toast-bottom-center';
-                                                        toastr.options.showDuration = 1000;
-                                                        toastr['success']('Your Order has been processed,just wait for confirmation!');
+                       }
+               }else{
 
-                                                        $('#scratch-setup').modal('toggle');
-                                                     }
-                                                },
-                                                error: function (data) {
-                                                }
-                                            });
-                                        });
-                                });
-                        </script>
+                   $('.checkout_from_scratch').hide();
+                   $("#prev-btn").removeClass('disabled');
+                   $("#next-btn").removeClass('disabled');
+               }
+            });
+
+            // Toolbar extra buttons
+            var product     =  $('<button></button>').text('Product').addClass('btn btn-warning pull-left').attr('id','scratch_back').on('click', function(){  $('#scratch_back').hide();
+                                                                                                                                                 $('.section_product>button').show();
+                                                                                                                                                 $('.section_product>.table').hide(); });
+            var btnFinish = $('<button type="button" class="btn btn-success checkout_from_scratch" disabled value="'+user_id+'">Checkout</button>');
+            var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
+              $('#scratch_back').hide();
+
+            // Smart Wizard
+            $('#smartwizard').smartWizard({
+                    selected: 0,
+                    theme:  'arrows',
+                    transitionEffect:'fade',
+                    showStepURLhash: true,
+                    toolbarSettings: {toolbarPosition: 'bottom',
+                                      toolbarExtraButtons: [product,btnFinish, btnCancel]
+                                    }
+            });
+
+
+            $("#prev-btn").on("click", function() {
+                // Navigate previous
+                $('#smartwizard').smartWizard("prev");
+                return true;
+            });
+
+            $("#next-btn").on("click", function() {
+                // Navigate next
+                $('#smartwizard').smartWizard("next");
+                return true;
+            });
+
+            $(".sw-next-btn").hide();
+            $(".sw-prev-btn").hide();
+            $('.checkout').hide();
+
+            $('.checkout_from_scratch').on('click',function(){
+                    var number_guests = $('#number_guests').val();
+                    var delivery_address = $('#delivery_address').val();
+                    var delivery_date = $('#delivery_date').val();
+                    var payment_type = $('input[name=payment_type]:checked').val();
+                    var id = $(this).val();
+                    var organize_from = 2;
+
+                    $.ajax({
+                        url: urlCheckOutFromScratch+"/"+id,
+                        type: "POST",
+                        data: {id: id,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,organize_from:organize_from, _token: token},
+                        dataType: "json",
+                        success: function (data) {
+                             if(data){
+                                 toastr.options.closeButton = true;
+                                toastr.options.positionClass = 'toast-bottom-center';
+                                toastr.options.showDuration = 1000;
+                                toastr['success']('Your Order has been processed,just wait for confirmation!');
+
+                                $('#scratch-setup').modal('toggle');
+                             }
+                        },
+                        error: function (data) {
+                        }
+                    });
+                });
+        });
+</script>
+@endif
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 
+    <script src="{{ asset('js/template.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/scratch.js') }}"></script>
 

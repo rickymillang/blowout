@@ -91,8 +91,8 @@
 
           .notify-bubble {
             position: absolute;
-            top: -20px;
-            right: -3px;
+            top: -15px;
+            right: 0;
             padding: 2px 5px 2px 6px;
             background-color: #0ec6c2;
             color: white;
@@ -124,9 +124,38 @@
             display: block;
           }
 
+          h4{
+              color:#5cb85c;
+              font-weight: bold;
+            }
+
           h3{
             color:#808080;
           }
+
+         .modal-content{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size:12px;
+        }
+
+        .modal-content > .steps > button{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         font-size:12px;
+        }
+
+          ::-webkit-scrollbar {
+              width: 8px;
+              background-color: rgba(126, 242, 255, 0.98);
+          }
+
+          ::-webkit-scrollbar-thumb {
+              width: 8px;
+              background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
+          }
+
+           hr{
+              border-color:#5cb85c;
+           }
 
        /* .btn {
           background: #ccc;
@@ -368,7 +397,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
+
     <script type="text/javascript">
                 $(function () {
                     $('#datetimepicker1').datetimepicker();
@@ -398,7 +427,7 @@
     });
 
     </script>
-    <script>
+   {{-- <script>
         $(document).ready(function() {
 
             $("#smartwizard_template").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
@@ -455,11 +484,11 @@
 
 
         });
-    </script>
+    </script>--}}
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
-    {{--<script src="{{ asset('js/template.js') }}"></script>--}}
+    <script src="{{ asset('js/template.js') }}"></script>
 	<script src="{{ asset('js/scratch.js') }}"></script>
 
 
@@ -476,7 +505,7 @@
                 });
               }
             </script>
-        <script async defer
+           <script async defer
             src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_KEY')}}&callback=initMap">
             </script>
 
