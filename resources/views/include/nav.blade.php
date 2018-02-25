@@ -28,7 +28,7 @@
                                 <input type="hidden" class="cartItemTotal" value="{{ $cart_template_total_quantity }}"/>
                                 <span class="notify-bubble cartItemTotalBubble" >{{ $cart_template_total_quantity }}</span>
                                 <span class="btn-notify fa fa-shopping-cart fa-lg"></span>
- 
+
                           </a>
 
                           </li>

@@ -107,6 +107,10 @@
                     }else{
                         $('tr#item'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
                         $('tr#item_summary_scratch'+data.cart.id+' td:nth-last-child(2)').text(data.cart.quantity);
+                        $('.cartItemTotalBubble').text(parseInt($('.cartItemTotal').val())+ parseInt(data.cart.quantity));
+                        $('.cartItemTotal').val(parseInt($('.cartItemTotal').val())+ parseInt(data.cart.quantity));
+                        $('.totalQuantityDisplay').html(new_quantity);
+                        $('.totalQuantity').val(new_quantity);
                     }
                     console.log(data.cart);
                     toastr.options.closeButton = true;
