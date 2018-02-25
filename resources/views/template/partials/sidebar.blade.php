@@ -78,6 +78,13 @@
                         <span class="nav-label">Packages</span>
                     </a>
                 </li>
+                <li {{ url()->current() == url('orders') ? 'class=active' : '' }}>
+                    <a href="/orders">
+                        <i class="fa fa-cart-plus"></i>
+
+                        <span class="nav-label">Orders</span>
+                    </a>
+                </li>
                  <li {{ url()->current() == url('locations/edit') ? 'class=active' : '' }}>
                         <a href="/locations/edit">
                             <i class="fa fa-map-marker"></i>
