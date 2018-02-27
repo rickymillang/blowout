@@ -18,6 +18,7 @@
                         <th>Email</th>
                         <th>User</th>
                         <th>Address</th>
+                        <th>Business Permit</th>
                         <th>Type</th>
                         <th>Action</th>
                     </tr>
@@ -25,13 +26,14 @@
                 <tbody>
                     @foreach($establishments as $establishment)
                         <tr>
-                            <td><img src="{{ asset($establishment->image) }}" style="max-width:64px;"></td>
+                            <td><img src="{{ asset('storage/' . $establishment->image) }}" style="max-width:100px;max-height:100px;"></td>
                             <td>{{ $establishment->name }}</td>
                             <td>{{ $establishment->description }}</td>
                             <td>{{ $establishment->phone }}</td>
                             <td>{{ $establishment->email }}</td>
                             <td>{{ $establishment->user->name }}</td>
         					<td>{{ $establishment->address }}</td>
+                            <td>{{ asset('storage/' . $establishment->business_permit) }}</td>
         					<td>{{ $establishment->establishment_type->name }}</td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#establishment{{ $establishment->id }}">Deactivate</button>
@@ -79,6 +81,7 @@
                         <th>Email</th>
                         <th>User</th>
                         <th>Address</th>
+                        <th>Business Permit</th>
                         <th>Type</th>
                         <th>Action</th>
                     </tr>
@@ -86,13 +89,14 @@
                 <tbody>
                     @foreach($unapproved_establishments as $unapproved_establishment)
                         <tr>
-                            <td><img src="{{ asset($unapproved_establishment->image) }}" style="max-width:64px;"></td>
+                            <td><img src="{{ asset('storage/' . $unapproved_establishment->image) }}" style="max-width:100px;max-height:100px;"></td>
                             <td>{{ $unapproved_establishment->name }}</td>
                             <td>{{ $unapproved_establishment->description }}</td>
                             <td>{{ $unapproved_establishment->phone }}</td>
                             <td>{{ $unapproved_establishment->email }}</td>
                             <td>{{ $unapproved_establishment->user->name }}</td>
                             <td>{{ $unapproved_establishment->address }}</td>
+                            <td>{{ asset('storage/' . $establishment->business_permit) }}</td>
                             <td>{{ $unapproved_establishment->establishment_type->name }}</td>
                             <td>
                                 <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#unapproved-establishment{{ $unapproved_establishment->id }}">Approve</button>
