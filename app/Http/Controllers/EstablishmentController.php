@@ -79,7 +79,7 @@ class EstablishmentController extends Controller
             'establishment_type' => 'required',
             'image' => 'image|max:5000',
             'terms' => 'required',
-            'business_permit' => 'required|file|mimes:doc,pdf,docx,zip|max:5000'
+            'business_permit' => 'required|file|mimes:doc,pdf,docx,zip|max:10000'
         ]);
 
         if (request()->hasFile('image')) {

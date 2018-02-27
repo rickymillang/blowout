@@ -20,7 +20,7 @@
                 <tbody>
                     @foreach($customers as $customer)
                         <tr>
-                            <td><img src="{{ asset($customer->avatar) }}" style="max-width:64px;"></td>
+                            <td><img src="{{ asset($customer->avatar) }}"  style="max-width:100px;max-height:100px;"></td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>
