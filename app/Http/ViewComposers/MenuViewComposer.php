@@ -35,6 +35,7 @@ class MenuViewComposer {
                 }
             }
 
+
             $cart_scratch = Cart::where('user', auth()->user()->id)->where('organize_from',2)->get();
 
             if($cart_scratch != null){

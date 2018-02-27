@@ -176,8 +176,6 @@
 	</head>
 	<body>
 
-	<div class="gtco-loader"></div>
-
 	<div id="page">
 
 
@@ -209,7 +207,7 @@
 					<p style="text-align: left">{{ $establishment->description }}</p>
 				</div >
 				<div class="col-lg-4 col-md-6 col-sm-18">
-
+                      <input type="hidden" value="{{ $establishment->id }}" id="template_establishment_id"/>
                 	  <h3>Location</h3>
                 	  <div id="map"></div>
 				</div>
@@ -392,7 +390,7 @@
 	<!-- Datepicker -->
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('vendor/toastr/toastr.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/techlab/smartwizard/dist/js/jquery.smartWizard.min.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
@@ -400,7 +398,7 @@
 
     <script type="text/javascript">
                 $(function () {
-                    $('#datetimepicker1').datetimepicker();
+                    $('#datetimepicker2').datetimepicker();
                 });
             </script>
 
@@ -413,6 +411,10 @@
       var urldeleteCartItem = "{{ URL::to('/cart') }}";
       var urlGetProductDetails = "{{ URL::to('/cart/get-product-details') }}";
       var urlGetProductList = "{{ URL::to('/cart/get-product-list') }}";
+      var urlgetCartTemplateSummary = "{{ URL::to('/cart/get-cart-template-summary') }}";
+      var urlgetTemplateUserinformation = "{{ URL::to('/cart/get-user-template-information') }}";
+      var urlCheckOutFromTemplate = "{{ URL::to('/cart/get-checkout-from-template') }}";
+
      $(function() {
       $('.btn-notify').click(function() {
       	$('.notify-bubble').show(400);
@@ -427,64 +429,7 @@
     });
 
     </script>
-   {{-- <script>
-        $(document).ready(function() {
 
-            $("#smartwizard_template").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
-                //alert("You are on step "+stepNumber+" now");
-                if (stepPosition === 'first') {
-                    $("#prev-btn").addClass('disabled');
-                } else if (stepPosition === 'final') {
-
-
-                    $("#next-btn").addClass('disabled');
-
-
-                } else {
-
-
-                    $("#prev-btn").removeClass('disabled');
-                    $("#next-btn").removeClass('disabled');
-                }
-
-
-            });
-
-
-            var btnFinish = $('<button type="button" class="btn btn-success checkout_from_scratch" disabled value="">Checkout</button>');
-            var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
-
-
-            $('#smartwizard_template').smartWizard({
-                selected: 0,
-                theme:  'arrows',
-                transitionEffect:'fade',
-                showStepURLhash: true,
-                toolbarSettings: {toolbarPosition: 'bottom',
-                    toolbarExtraButtons: [btnFinish, btnCancel]
-                }
-            });
-
-
-            $("#prev-btn").on("click", function () {
-                // Navigate previous
-                $('#smartwizard_template').smartWizard("prev");
-                return true;
-            });
-
-            $("#next-btn").on("click", function () {
-                // Navigate next
-                $('#smartwizard_template').smartWizard("next");
-                return true;
-            });
-
-
-            $(".sw-next-btn").hide();
-            $(".sw-prev-btn").hide();
-
-
-        });
-    </script>--}}
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
