@@ -13,7 +13,7 @@
 					<div class="row row-mt-15em">
 
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1><center>"Your Vision , Your Event , You Way"</center></h1>
+							<h1><center>"Your Vision , Your Event , Your Way"</center></h1>
 
 						</div>
                 
