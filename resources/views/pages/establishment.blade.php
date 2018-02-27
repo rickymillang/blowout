@@ -375,6 +375,7 @@
                                          <div class="col-md-8 section_product">
 
 
+
                                          </div>
                                          <div class="col-md-4">
                                               <button class="btn btn-success btn-block"><span class="fa fa-shopping-cart pull-left"></span> Your Cart Item  <span class="scratc-notify-bubble scratch-total-display">{{ $cart_scratch_total_quantity }}</span></button>
@@ -401,6 +402,16 @@
                                                                 <td><button class='btn btn-danger ' onclick='scratch_deleteItem({{ $cs->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
                                                             </tr>
                                                             @endforeach
+
+                                                             @foreach($cart_wizard as $cw)
+                                                                <tr id="wizard_item{{ $cw->id }}">
+                                                                    <td><img src="{{ $cw->item_type == 1? asset("storage/".$cw->getItem->image) : asset("storage/".$cw->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
+                                                                    <td>{{ $cw->getItem->name}} </td>
+                                                                    <td>{{ number_format($cw->getItem->price,2) }}</td>
+                                                                    <td>{{ $cw->quantity }}</td>
+                                                                    <td><button class='btn btn-danger' onclick='scratch_deleteItem({{ $cw->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
+                                                                </tr>
+                                                             @endforeach
                                                       @endif
                                                      </tbody>
                                                  </table>
@@ -645,7 +656,7 @@
            var urlGetProductList = "{{ URL::to('/cart/get-product-list') }}";
            var urlgetCartScratchSummary = "{{ URL::to('/cart/get-cart-scratch-summary') }}";
            var urlgetSetUpProductList = "{{ URL::to('/cart/get-setup-product-list') }}";
-           var urlgetUserinformation = "{{ URL::to('/cart/get-user-information') }}";
+           var urlgetUserinformation = "{{ URL::to('/cart/get-user-scratch-information') }}";
            var urlCheckOutFromScratch = "{{ URL::to('/cart/checkout-from-scratch') }}";
 
           $(function() {
@@ -678,7 +689,7 @@
                     $.ajax({
                        url:urlgetSetUpProductList+"/"+id,
                        type: "POST",
-                       data: {id: id, _token: token},
+                       data: {id: id,setup:setup, _token: token},
                        dataType: "text",
                        success: function (data) {
 
@@ -736,11 +747,11 @@
                     $('.checkout_from_scratch').hide();
                }else if(stepPosition === 'final'){
 
-
+/*
                    $("#next-btn").addClass('disabled');
                    getSummary({{ auth()->user()->id}});
                    getUserinformation({{ auth()->user()->id  }});
-                   $('.checkout_from_scratch').show();
+                   $('.checkout_from_scratch').show();*/
 
                         var number_guests = $('#number_guests').val();
                               var delivery_address = $('#delivery_address').val();
@@ -748,8 +759,8 @@
 
                        if(number_guests != '' && delivery_address != '' && delivery_date != '' ){
                               $("#next-btn").addClass('disabled');
-                              getSummary({{ auth()->user()->id}});
-                              getUserinformation({{ auth()->user()->id  }});
+                              getSummary(user_id)/* 1st param user id, 2nd param is  organize_type   */;
+                              getUserinformation(user_id);
                               $('.checkout_from_scratch').show();
                        }else{
                             $('#smartwizard').smartWizard("prev");

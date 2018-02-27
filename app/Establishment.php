@@ -25,4 +25,12 @@ class Establishment extends Model
     public function products(){
         return $this->hasMany('App\Product','establishment_id','id');
     }
+
+    public function packages(){
+        return $this->hasMany('App\Package','establishment_id','id');
+    }
+
+    public function services(){
+        return $this->hasMany('App\Service','establishment_id','id');
+    }
 }
