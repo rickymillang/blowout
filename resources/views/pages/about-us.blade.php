@@ -167,9 +167,7 @@
 
 	</head>
 	<body>
-		
-	<div class="gtco-loader"></div>
-	
+
 	<div id="page">
 
 	
@@ -193,8 +191,6 @@
 			</div>
 		</div>
 	</header>
-	
-	
 
 
 	<div class="gtco-section">

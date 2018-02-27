@@ -171,8 +171,6 @@
 	</head>
 	<body>
 
-	<div class="gtco-loader"></div>
-
 	<div id="page">
 
 
