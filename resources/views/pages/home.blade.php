@@ -10,123 +10,14 @@
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0 text-left">
 
-
 					<div class="row row-mt-15em">
-<<<<<<< HEAD
-						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>"Your Vision , Your Event , You Way"
-</h1>
-=======
+
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>"Code is like humor. when you have to explain it, it's bad."</h1>
->>>>>>> d4a342ecd0fff92f831e4dc9a8cf7074e59d3f62
+							<h1><center>"Your Vision , Your Event , You Way"</center></h1>
+
 						</div>
-                {{--@if(!auth()->check())
-						--}}{{--Login --}}{{--
-						<div class="col-md-4 col-md-push-1 animate-box login" data-animate-effect="fadeInRight">
-							<div class="form-wrap">
-								<div class="tab">
-
-									<div class="tab-content">
-										<div class="tab-content-inner active" data-content="signup">
-											<h3>Login</h3>
-											<form class="form-horizontal" method="POST" action="{{ route('login') }}">
-											 {{ csrf_field() }}
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="email" class="control-label">Email </label>
-														 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
-													</div>
-												</div>
-												<div class="row form-group">
-                                                    <div class="col-md-12">
-                                                        <label for="email" class="control-label">Password</label>
-                                                          <input id="password" type="password" class="form-control" name="password" required placeholder="Password">
-                                                    </div>
-                                                </div>
-
-
-												<div class="row form-group">
-													<div class="col-md-12">
-														<input type="submit" value="Login" class="btn btn-info btn-block"><br/>
-														 <a href="{{ url('/login/google') }}" class="btn">Google</a>
-														 <a href="{{ url('/login/facebook') }}" class="btn">Facebook</a>
-														<div class="reg">
-                                                            <a href="javascript:(0);" data-id="2" id="log">
-                                                            Dont have account yet?
-                                                            <br/>
-                                                            Sign up Now!</a>
-                                                        </div>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						--}}{{--End og Login--}}{{--
-
-						--}}{{--Register--}}{{--
-						<div class="col-md-4 col-md-push-1 animate-box register" data-animate-effect="fadeInRight">
-                            <div class="form-wrap">
-                                <div class="tab">
-
-                                    <div class="tab-content">
-                                        <div class="tab-content-inner active" data-content="signup">
-                                            <h3>Sign Up</h3>
-                                             <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                                                {{ csrf_field() }}
-                                                <div class="row form-group">
-                                                    <div class="col-md-12">
-                                                        <label for="name" class="control-label">Name</label>
-                                                             <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Name">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row form-group">
-                                                    <div class="col-md-12">
-                                                        <label for="email" class="control-label">Email</label>
-                                                          <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Email">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row form-group">
-                                                    <div class="col-md-12">
-                                                        <label for="password" class="control-label">Password</label>
-                                                          <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required placeholder="Password">
-                                                    </div>
-                                                </div>
-
-                                                 <div class="row form-group">
-                                                    <div class="col-md-12">
-                                                        <label for="password-confirm" class="control-label">Confirm Password</label>
-                                                       <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
-                                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-                                                    <div class="col-md-12">
-                                                        <input type="submit" value="Sign up" class="btn btn-info btn-block"><br/>
-                                                        <div class="reg">
-                                                            <a href="javascript:(0);" id="regi" data-id="1">
-                                                            Already Signed up?
-                                                            <br/>
-                                                            Log in Now!</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        --}}{{--End of registration--}}{{--
-                        @endif--}}
+                
 					</div>
-
-
 				</div>
 			</div>
 		</div>
@@ -142,20 +33,48 @@
 			</div>
 			<div class="row">
 
-				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_1.jpg" class="fh5co-card-item image-popup">
+				<div class="col-lg-3 col-md-3 col-sm-5">
+					<a href="" class="fh5co-card-item">
 						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_1.jpg" alt="Image" class="img-responsive">
+							<img src="{{ asset('images/meet-the-team/jeez.png') }}" width="100%" height="100%" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
-							<h2>New York, USA</h2>
+							<h2>Setup</h2>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
-							<p><span class="btn btn-primary">Schedule a Trip</span></p>
 						</div>
 					</a>
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="col-lg-3 col-md-3 col-sm-5">
+					<a href="" class="fh5co-card-item">
+						<figure>
+						</figure>
+						<div class="fh5co-text">
+							<h2>Setup</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-5">
+					<a href="" class="fh5co-card-item">
+						<figure>
+						</figure>
+						<div class="fh5co-text">
+							<h2>Receive Notification</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-5">
+					<a href="" class="fh5co-card-item">
+						<figure>
+						</figure>
+						<div class="fh5co-text">
+							<h2>Setup</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia..</p>
+						</div>
+					</a>
+				</div>
+			<!-- 	<div class="col-lg-4 col-md-4 col-sm-6">
 					<a href="images/img_2.jpg" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
@@ -224,45 +143,55 @@
 						</div>
 					</a>
 				</div>
-
+ -->
 			</div>
 		</div>
 	</div>
 
 	<div id="gtco-features">
-		<div class="gtco-container">
+		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center gtco-heading animate-box">
-					<h2>How It Works</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+				<div class="col-md-10 col-md-offset-1 text-center gtco-heading animate-box">
+					<h2>It has never been so simple to organize party</h2>
+					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4 col-sm-6">
+				<div class="col-md-3 col-sm-6">
 					<div class="feature-center animate-box" data-animate-effect="fadeIn">
-						<span class="icon">
-							<i>1</i>
+						<span>
+							<img src="{{ asset('images/icon/1st.png') }}">
 						</span>
-						<h3>Lorem ipsum dolor sit amet</h3>
-						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						
+						<h3><br/>Setup</h3>
+						<p>Select options to organize your party</p>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-md-3 col-sm-6">
 					<div class="feature-center animate-box" data-animate-effect="fadeIn">
-						<span class="icon">
-							<i>2</i>
+						<span>
+							<img src="{{ asset('images/icon/2nd.png') }}" >
 						</span>
-						<h3>Consectetur adipisicing elit</h3>
-						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						<h3><br/>Tell us what are your needs</h3>
+						<p>Answer quick question about what types of services you are looking for.</p>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-md-3 col-sm-6">
 					<div class="feature-center animate-box" data-animate-effect="fadeIn">
-						<span class="icon">
-							<i>3</i>
+						<span>
+							<img src="{{ asset('images/icon/4th.png') }}" style="width: 50%; height: 50%;">
 						</span>
-						<h3>Dignissimos asperiores vitae</h3>
-						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						<h3>Hired the best service</h3>
+						<p>Compare services profiles and reviews to hire the best organizer.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+						<span>
+							<img src="{{ asset('images/icon/3rd.png') }}" style="width: 50%; height: 50%;">
+						</span>
+						<h3>Receive Notification</h3>
+						<p>Within hours or days you will receive reply based on your needs.</p>
 					</div>
 				</div>
 
