@@ -77,8 +77,9 @@ class EstablishmentController extends Controller
             'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments'],
             'email' => 'required|email|unique:establishments',
             'establishment_type' => 'required',
-            'image' => 'image',
-            'terms' => 'required'
+            'image' => 'image|max:500000',
+            'terms' => 'required',
+            'business_permit' => 'required|file|mimes:doc,pdf,docx,zip'
         ]);
 
         if (request()->hasFile('image')) {
@@ -86,6 +87,11 @@ class EstablishmentController extends Controller
         } else {
             $image = "images/establishment/avatar_building.jpg";
         }
+
+        if (request()->hasFile('business_permit')) {
+            $business_permit = Storage::putFile('files/establishment', $request->file('business_permit'));
+        }
+
 
         $establishment = Establishment::create([
                         'name' => $request->name,
@@ -97,7 +103,8 @@ class EstablishmentController extends Controller
                         'establishment_type_id' => $request->establishment_type,
                         'user_id' => auth()->user()->id,
                         'image' => $image,
-                        'status' => 0
+                        'status' => 0,
+                        'business_permit' => $business_permit
                         ]);
 
         foreach ($this->admnistrators as $admin) {

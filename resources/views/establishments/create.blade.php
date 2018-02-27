@@ -15,37 +15,37 @@
                 <div class="form-group">
                     <label for="name" class="col-md-2 col-md-offset-2 control-label">Establishment Name <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input type="text" name="name" id="name" class="form-control"/>
+                        <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description" class="col-md-2 col-md-offset-2 control-label">Description <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <textarea type="text" name="description" id="description" class="form-control"/> </textarea>
+                        <textarea type="text" name="description" id="description" class="form-control" value="{{ old('description') }}"/> </textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="owner_name" class="col-md-2 col-md-offset-2 control-label">Owner Name <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input type="text" name="owner_name" id="owner_name" class="form-control"/>
+                        <input type="text" name="owner_name" id="owner_name" class="form-control" value="{{ old('owner_name') }}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-md-2 col-md-offset-2 control-label">Email Address <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input type="email" name="email" id="email" class="form-control"/>
+                        <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="col-md-2 col-md-offset-2 control-label">Phone <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input type="number" name="phone" id="phone" class="form-control"/>
+                        <input type="number" name="phone" id="phone" class="form-control" value="{{ old('phone') }}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address" class="col-md-2 col-md-offset-2 control-label">Address <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input type="text" name="address" id="address" class="form-control"/>
+                        <input type="text" name="address" id="address" class="form-control" value="{{ old('address') }}"/>
                     </div>
 
                 </div>
@@ -68,9 +68,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dti_permit" class="col-md-2 col-md-offset-2 control-label">DTI Permit <span class="text-danger">*</span></label>
+                    <label for="business_permit" class="col-md-2 col-md-offset-2 control-label">Business Permit <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input id="dti_permit" type="file" name="dti_permit">
+                        <input id="business_permit" type="file" name="business_permit">
                     </div>
                 </div>
                 <div class="form-group">
