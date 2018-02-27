@@ -29,8 +29,11 @@ Route::post('/cart/get-product-details/{id}','CartController@getProductDetails')
 Route::post('/cart/get-product-list/{id}','CartController@getProductList');
 Route::post('/cart/get-cart-scratch-summary/{id}','CartController@getCartScratchSummary');
 Route::post('/cart/get-setup-product-list/{id}','CartController@getSetUpProductList');
-Route::post('/cart/get-user-information/{id}','CartController@getUserInformation');
+Route::post('/cart/get-user-scratch-information/{id}','CartController@getUserInformation');
 Route::post('/cart/checkout-from-scratch/{id}','CartController@CheckoutFromScratch');
+Route::post('/cart/get-cart-template-summary/{id}','CartController@getCartTemplateSummary');
+Route::post('/cart/get-user-template-information/{id}','CartController@getTemplateUserInformation');
+Route::post('/cart/get-checkout-from-template/{id}','CartController@getCheckoutFromTemplate');
 
 
 Route::get('messages', 'MessageController@index');
