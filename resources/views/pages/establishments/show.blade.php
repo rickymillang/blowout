@@ -176,8 +176,6 @@
 	</head>
 	<body>
 
-	<div class="gtco-loader"></div>
-
 	<div id="page">
 
 
@@ -209,7 +207,7 @@
 					<p style="text-align: left">{{ $establishment->description }}</p>
 				</div >
 				<div class="col-lg-4 col-md-6 col-sm-18">
-
+                      <input type="hidden" value="{{ $establishment->id }}" id="template_establishment_id"/>
                 	  <h3>Location</h3>
                 	  <div id="map"></div>
 				</div>
@@ -400,7 +398,7 @@
 
     <script type="text/javascript">
                 $(function () {
-                    $('#datetimepicker1').datetimepicker();
+                    $('#datetimepicker2').datetimepicker();
                 });
             </script>
 

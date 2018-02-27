@@ -160,7 +160,7 @@
                                              </div>
 
                                                   <label for="inf-name" style="color:#808080">Delivery Date</label>
-                                             <div class='input-group date' id='datetimepicker1' style="position:relative;">
+                                             <div class='input-group date' id='datetimepicker2' style="position:relative;">
 
                                                <input type='text' class="form-control" id="template_delivery_date"/>
                                                     <span class="input-group-addon">

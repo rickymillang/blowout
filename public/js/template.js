@@ -90,9 +90,10 @@ $(document).ready(function() {
         var template_delivery_address = $('#template_delivery_address').val();
         var template_delivery_date = $('#template_delivery_date').val();
         var template_payment_type = $('input[name=template_payment_type]:checked').val();
+        var establishment = $('#template_establishment_id').val();
         var id = $(this).val();
         var organize_from = 1;
-alert(template_delivery_date);
+
         toastr.options.closeButton = true;
         toastr.options.positionClass = 'toast-bottom-center';
         toastr.options.showDuration = 1000;
@@ -100,7 +101,7 @@ alert(template_delivery_date);
         $.ajax({
             url: urlCheckOutFromTemplate+"/"+id,
             type: "POST",
-            data: {id: id,template_number_guests:template_number_guests,template_delivery_address:template_delivery_address,template_delivery_date:template_delivery_date,template_payment_type:template_payment_type,organize_from:organize_from, _token: token},
+            data: {id: id,establishment:establishment,template_number_guests:template_number_guests,template_delivery_address:template_delivery_address,template_delivery_date:template_delivery_date,template_payment_type:template_payment_type,organize_from:organize_from, _token: token},
             dataType: "json",
             success: function (data) {
                 if(data){

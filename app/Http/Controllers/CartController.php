@@ -11,6 +11,7 @@ use App\ProductOrder;
 use App\Order;
 use App\PaymentMethod;
 use Carbon\Carbon;
+use Semaphore;
 use Illuminate\Support\Facades\DB;
 
 
@@ -242,7 +243,8 @@ class CartController extends Controller
             foreach ($establishment->product_types as $pt) {
 
                 $result .= '<button id="pt' . $pt->id . '" onclick="show_product_list(' . $pt->id . ');" class="btn btn-info btn-block">' . $pt->name . '</button>
-                                <div class="table product_type_list' . $pt->id . '" id="plist" style="display:none">
+                            <input type="hidden" value="'.$id.'" id="establishment_id">
+                            <div class="table product_type_list' . $pt->id . '" id="plist" style="display:none">
                               <button class="btn btn-success btn-block">' . $pt->name . 'Selection</button>
 
                                <table class="table table-collapsed" id="table_scratch">
@@ -399,6 +401,7 @@ class CartController extends Controller
 
         $order = Order::create([
                 'user'=> $id,
+                'establishment_id' => $request->establishment,
                 'payment_type' => $request->payment_type,
                 'delivery_date' => Carbon::parse($request->delivery_date)->format('Y-m-d H:m:i'),
                 'delivery_address' => $request->delivery_address,
@@ -406,6 +409,10 @@ class CartController extends Controller
                 ]);
 
         $item = $cart = Cart::where('user',$id)->where('organize_from',$request->organize_from)->get();
+
+        $user = User::find($id);
+
+        $establishment = Establishment::find($request->establishment);
 
         if($order){
             foreach($item as $i) {
@@ -419,6 +426,8 @@ class CartController extends Controller
 
             $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
             $result = true;
+
+           /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
 
             return json_encode($result);
         }else{
@@ -503,6 +512,12 @@ class CartController extends Controller
 
         $item = $cart = Cart::where('user',$id)->where('organize_from',$request->organize_from)->get();
 
+
+        $user = User::find($id);
+
+        $establishment = Establishment::find($request->establishment);
+
+
         if($order){
             foreach($item as $i) {
                 $product_order = ProductOrder::create([
@@ -515,6 +530,9 @@ class CartController extends Controller
 
             $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
             $result = true;
+
+            /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
+
 
             return json_encode($result);
         }else{

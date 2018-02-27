@@ -206,7 +206,6 @@
     	</head>
 	<body>
 
-	<div class="gtco-loader"></div>
 
 	<div id="page">
 
@@ -354,7 +353,7 @@
                     <div class="modal-content">
                       <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" style="color:white">Organize from Scratch</h4>
+                        <h4 class="modal-title" id="modal-title-setup" style="color:white">Organize from Scratch</h4>
                       </div>
                       <div class="modal-body" id="smartwizard">
                       {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
@@ -391,8 +390,9 @@
                                                                  <th></th>
                                                              </tr>
                                                      </thead>
-                                                     <tbody>
-                                                     @if(auth()->check())
+                                                       @if(auth()->check())
+                                                     <tbody id="scratch_item_cart">
+
                                                             @foreach($cart_scratch as $cs)
                                                             <tr id="scratch_item{{ $cs->id }}">
                                                                 <td><img src="{{ $cs->item_type == 1? asset("storage/".$cs->getItem->image) : asset("storage/".$cs->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
@@ -403,17 +403,22 @@
                                                             </tr>
                                                             @endforeach
 
-                                                             @foreach($cart_wizard as $cw)
-                                                                <tr id="wizard_item{{ $cw->id }}">
-                                                                    <td><img src="{{ $cw->item_type == 1? asset("storage/".$cw->getItem->image) : asset("storage/".$cw->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
-                                                                    <td>{{ $cw->getItem->name}} </td>
-                                                                    <td>{{ number_format($cw->getItem->price,2) }}</td>
-                                                                    <td>{{ $cw->quantity }}</td>
-                                                                    <td><button class='btn btn-danger' onclick='scratch_deleteItem({{ $cw->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
-                                                                </tr>
-                                                             @endforeach
-                                                      @endif
+
+
                                                      </tbody>
+
+                                                     <tbody id="wizard_item_cart">
+                                                         @foreach($cart_wizard as $cw)
+                                                            <tr id="wizard_item{{ $cw->id }}">
+                                                                <td><img src="{{ $cw->item_type == 1? asset("storage/".$cw->getItem->image) : asset("storage/".$cw->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
+                                                                <td>{{ $cw->getItem->name}} </td>
+                                                                <td>{{ number_format($cw->getItem->price,2) }}</td>
+                                                                <td>{{ $cw->quantity }}</td>
+                                                                <td><button class='btn btn-danger' onclick='scratch_deleteItem({{ $cw->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
+                                                            </tr>
+                                                         @endforeach
+                                                     </tbody>
+                                                     @endif
                                                  </table>
                                              </div>
                                              <span class="pull-right">Total: <span id="s_totalAmountDisplay" >{{ number_format(array_sum($total_amount_scratch),2) }}</span></span>
@@ -665,7 +670,8 @@
          	});
          });
 
-
+            $('tbody#scratch_item_cart').hide();
+            $('tbody#wizard_item_cart').hide();
 
 
          $('input').iCheck({
@@ -684,6 +690,15 @@
                 if(setup == 1){
                        $(location).attr('href',url);
                 }else{
+
+                    if(setup == 2){
+                         $('tbody#scratch_item_cart').show();
+
+                    }else{
+                         $('tbody#wizard_item_cart').show();
+                         $('#modal-title-setup').html('Organize from Wizard');
+                    }
+
                    $("#scratch-setup").modal("toggle");
 
                     $.ajax({
@@ -697,7 +712,6 @@
                        },
                        error: function (data){
                        console.log(data);
-                       console.log('error');
                        }
 
                     });
@@ -742,11 +756,11 @@
             // Step show event
             $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
                //alert("You are on step "+stepNumber+" now");
+
                if(stepPosition === 'first'){
                    $("#prev-btn").addClass('disabled');
                     $('.checkout_from_scratch').hide();
                }else if(stepPosition === 'final'){
-
 /*
                    $("#next-btn").addClass('disabled');
                    getSummary({{ auth()->user()->id}});
@@ -756,6 +770,7 @@
                         var number_guests = $('#number_guests').val();
                               var delivery_address = $('#delivery_address').val();
                               var delivery_date = $('#delivery_date').val();
+
 
                        if(number_guests != '' && delivery_address != '' && delivery_date != '' ){
                               $("#next-btn").addClass('disabled');
@@ -768,7 +783,7 @@
                              toastr.options.closeButton = true;
                             toastr.options.positionClass = 'toast-bottom-center';
                             toastr.options.showDuration = 1000;
-                            toastr['warning']('All field are required!');
+                            toastr['warning']('All field are requireda!');
 
                        }
                }else{
@@ -820,16 +835,18 @@
                     var delivery_address = $('#delivery_address').val();
                     var delivery_date = $('#delivery_date').val();
                     var payment_type = $('input[name=payment_type]:checked').val();
+                    var establishment = $('#establishment_id').val();
                     var id = $(this).val();
                     var organize_from = 2;
 
                     $.ajax({
                         url: urlCheckOutFromScratch+"/"+id,
                         type: "POST",
-                        data: {id: id,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,organize_from:organize_from, _token: token},
+                        data: {id: id,establishment:establishment,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,organize_from:organize_from, _token: token},
                         dataType: "json",
                         success: function (data) {
                              if(data){
+
                                  toastr.options.closeButton = true;
                                 toastr.options.positionClass = 'toast-bottom-center';
                                 toastr.options.showDuration = 1000;
@@ -847,8 +864,6 @@
 @endif
 	<!-- Main -->
 	<script src="{{ asset('js/main.js') }}"></script>
-
-    <script src="{{ asset('js/template.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/scratch.js') }}"></script>
 
