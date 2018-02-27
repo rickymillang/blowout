@@ -10,6 +10,8 @@
 
     <title>@yield('title') | {{ config('app.name', 'Blowout') }}</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/blowout_fav.ico') }}">
+
     <link href="{{ asset('template/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('template/css/animate.css') }}" rel="stylesheet">
