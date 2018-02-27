@@ -68,9 +68,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dti_permit" class="col-md-2 col-md-offset-2 control-label">DTI Permit <span class="text-danger">*</span></label>
+                    <label for="business_permit" class="col-md-2 col-md-offset-2 control-label">Business Permit <span class="text-danger">*</span></label>
                     <div class="col-md-6">
-                        <input id="dti_permit" type="file" name="dti_permit">
+                        <input id="business_permit" type="file" name="business_permit">
                     </div>
                 </div>
                 <div class="form-group">
