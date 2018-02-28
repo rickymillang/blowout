@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\OrderApproved;
+use App\Notifications\OrderCanceled;
 use App\Notifications\OrderCompleted;
 use App\Notifications\OrderDeclined;
 use App\Notifications\OrderDelivering;
@@ -39,8 +40,12 @@ class OrderController extends Controller
     	$request->validate([
     		'status' => 'required|numeric'
     	]);
+        if (auth()->user()->hasRole('establishment.admin')) {
+            $order = Order::where('id', $id)->where('establishment_id', auth()->user()->establishment->id)->first();
+        } else if (auth()->user()->hasRole('customer')) {
+            $order = Order::where('id', $id)->where('user', auth()->user()->id)->first();
+        }
 
-    	$order = Order::where('id', $id)->where('establishment_id', auth()->user()->establishment->id)->first();
 
     	$status = $request->status;
 
@@ -59,6 +64,11 @@ class OrderController extends Controller
     				    'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
     				    'message' => 'Your order has been approved'
     				]));
+                } else if ($status == 2) {
+                    $order->establishment->user->notify(new OrderCanceled([
+                        'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                        'message' => 'Order has been canceled'
+                    ]));
     			} else if ($status == 3) {
     				$message = 'Hi, ' . $order->users->name . '. Your order has been completed';
 
@@ -82,7 +92,7 @@ class OrderController extends Controller
     				]));
     			}
 
-    			// Semaphore::send($order->users->contact, $message);
+    			// Semaphore::send($order->confirmation_number, $message);
 
     			session()->flash('message', 'You have successfully changed the order status');
 
