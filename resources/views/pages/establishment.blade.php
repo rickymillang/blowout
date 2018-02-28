@@ -291,7 +291,7 @@
                         <div class="row rating">
                            <div class="col-sm-1">
                              <div id="rateYoDisplay{{ $est->id }}" style="margin-top: -5px;"></div>
-                          
+
                            </div>
                            <div class="col-sm-4"><div id="rateYo{{ $est->id }}" ></div></div>
                            @if(auth()->check())
@@ -739,6 +739,21 @@
                                 toastr['success']('Your Order has been processed,just wait for confirmation!');
 
                                 $('#scratch-setup').modal('toggle');
+                                $('#wizard-setup').modal('toggle');
+                                $('#item_summary_scratch>tbody').empty();
+                                $('#number_guests').val("");
+                                $('#delivery_address').val("");
+                                $('#delivery_date').val("");
+                                $('#confirmation_number').val("");
+                                $('#establishment_id').val("");
+                                $('#di_name').text('');
+                                $('#di_contact').text('');
+                                $('#di_address').text('');
+                                $('#di_date').text('');
+                                $('#no_guests').text(0);
+                                $('#scratch_total_cart_quantity').text(0);
+                                $('#scratch_total_cart_amount').text(0);
+                                window.location.replace(reseturl);
                              }
                         },
                         error: function (data) {

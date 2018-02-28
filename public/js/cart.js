@@ -41,7 +41,7 @@
               $('#item'+id).remove();
 
               cartTotal = cartItemTotal - data.quantity;
-              var new_total_amount = $.number(parseInt($('.totalAmount').val()) - parseInt(data.amount),2);
+              var new_total_amount =parseInt($('.totalAmount').val()) - parseInt(data.amount);
 
               var new_quantity =  parseInt($('.totalQuantity').val()) -  parseInt(data.quantity);
               $('.cartItemTotalBubble').text(cartTotal);
