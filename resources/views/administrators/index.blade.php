@@ -31,7 +31,7 @@
                             <td>{{ $administrator->email }}</td>
                             <td>
                             	<a href="/administrators/{{ $administrator->id }}/edit" class="btn btn-warning btn-xs">Edit</a>
-                                @if(auth()->user()->id != 1)
+                                @if(auth()->user()->id == 1)
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#admin{{ $administrator->id }}">Delete</button>
                                 @endif
                             	<div id="admin{{ $administrator->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">

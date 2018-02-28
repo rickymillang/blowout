@@ -80,6 +80,9 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
     Route::get('orders', 'OrderController@index');
     Route::get('orders/{id}/edit', 'OrderController@edit');
     Route::patch('orders/{id}', 'OrderController@update');
+
+    Route::get('payments', 'PaymentController@index');
+
 });
 
 
@@ -116,4 +119,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::get('/reports', 'ReportController@index');
+
+    Route::get('profile', 'ProfileController@index');
+    Route::get('profile/edit', 'ProfileController@update');
 });

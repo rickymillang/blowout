@@ -43,13 +43,15 @@ class PackageController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:packages',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'description' => 'required'
         ]);
 
         $package = Package::create([
             'name' => $request->name,
             'price' => $request->price,
-            'establishment_id' => $this->establishment_id
+            'establishment_id' => $this->establishment_id,
+            'description' => $request->description
         ]);
 
         if (filled($request->service)) {
@@ -68,7 +70,7 @@ class PackageController extends Controller
             ]);
         }
 
-        session()->flash('success', 'Package has been created');
+        session()->flash('message', 'Package has been created');
 
         return redirect('/packages/' . $package->id . '/edit');
     }
@@ -90,7 +92,31 @@ class PackageController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $package = Package::find($id);
+
+        if (filled($request->service)) {
+            Packageable::insert([
+                'package_id' => $package->id,
+                'packageable_id' => $request->service,
+                'packageable_type' => 'App\Service'
+            ]);
+        }
+
+        if (filled($request->product)) {
+            Packageable::insert([
+                'package_id' => $package->id,
+                'packageable_id' => $request->product,
+                'packageable_type' => 'App\Product'
+            ]);
+        }
+
+        $package->price = $request->price;
+
+        $package->save();
+
+        session()->flash('message', 'Package has been updated');
+
+        return redirect('/packages/' . $package->id . '/edit');
     }
 
     public function destroy($id)
