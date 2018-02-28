@@ -90,7 +90,27 @@ class PackageController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $package = Package::find($id);
+
+        if (filled($request->service)) {
+            Packageable::insert([
+                'package_id' => $package->id,
+                'packageable_id' => $request->service,
+                'packageable_type' => 'App\Service'
+            ]);
+        }
+
+        if (filled($request->product)) {
+            Packageable::insert([
+                'package_id' => $package->id,
+                'packageable_id' => $request->product,
+                'packageable_type' => 'App\Product'
+            ]);
+        }
+
+        session()->flash('message', 'Package has been updated');
+
+        return redirect('/packages/' . $package->id . '/edit');
     }
 
     public function destroy($id)
