@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
     Route::get('establishment/edit', 'EstablishmentController@edit');
 
     Route::get('orders', 'OrderController@index');
+    Route::get('orders/{id}/edit', 'OrderController@edit');
 });
 
 Route::group(['middleware', ['auth', 'role:superadmin']], function() {
