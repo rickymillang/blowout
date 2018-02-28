@@ -57,16 +57,20 @@
 					<div class="col-md-6">
 						<select class="form-control" name="status">
 		                	<option>Select Order Status</option>
-		                	@if($order->status == 7)
-			                	<option value="7" {{ $order->status == 7 ? 'selected' : '' }}>Pending</option>
-			                	<option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Approved</option>
-			                	<option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Declined</option>
-		                	@elseif($order->status == 1)
-		                		<option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Approved</option>
-		                		<option value="5" {{ $order->status == 5 ? 'selected' : '' }}>On-Delivery</option>
-							@elseif($order->status == 5)
-								<option value="5" {{ $order->status == 5 ? 'selected' : '' }}>On-Delivery</option>
-								<option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Completed</option>
+		                	@if(auth()->user()->hasRole('establishment.admin'))
+			                	@if($order->status == 7)
+				                	<option value="7" {{ $order->status == 7 ? 'selected' : '' }}>Pending</option>
+				                	<option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Approved</option>
+				                	<option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Declined</option>
+			                	@elseif($order->status == 1)
+			                		<option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Approved</option>
+			                		<option value="5" {{ $order->status == 5 ? 'selected' : '' }}>On-Delivery</option>
+								@elseif($order->status == 5)
+									<option value="5" {{ $order->status == 5 ? 'selected' : '' }}>On-Delivery</option>
+									<option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Completed</option>
+			                	@endif
+			                @elseif(auth()->user()->hasRole('customer'))
+			                	<option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Canceled</option>
 		                	@endif
 
 		            	</select>
