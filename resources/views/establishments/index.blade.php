@@ -13,6 +13,7 @@
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Owner Name</th>
                         <th>Description</th>
                         <th>Phone</th>
                         <th>Email</th>
@@ -27,6 +28,7 @@
                         <tr>
                             <td><img src="{{ asset('storage/' . $establishment->image) }}" style="max-width:100px;max-height:100px;"></td>
                             <td>{{ $establishment->name }}</td>
+                            <td>{{ $establishment->owner_name }}</td>
                             <td>{{ $establishment->description }}</td>
                             <td>{{ $establishment->phone }}</td>
                             <td>{{ $establishment->email }}</td>
