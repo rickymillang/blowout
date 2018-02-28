@@ -7,207 +7,208 @@
 -->
 <html>
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Blowout | Establishments</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="GetTemplates.co" />
+        	<meta charset="utf-8">
+        	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        	<title>Blowout | Establishments</title>
+        	<meta name="viewport" content="width=device-width, initial-scale=1">
+        	<meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+        	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+        	<meta name="author" content="GetTemplates.co" />
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+          	<!-- Facebook and Twitter integration -->
+        	<meta property="og:title" content=""/>
+        	<meta property="og:image" content=""/>
+        	<meta property="og:url" content=""/>
+        	<meta property="og:site_name" content=""/>
+        	<meta property="og:description" content=""/>
+        	<meta name="twitter:title" content="" />
+        	<meta name="twitter:image" content="" />
+        	<meta name="twitter:url" content="" />
+        	<meta name="twitter:card" content="" />
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-  <!-- Include Bootstrap CSS -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+          <!-- Include Bootstrap CSS -->
+             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="{{ asset('css/icomoon.css')}}">
-	<!-- Themify Icons-->
-	<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        	<!-- Animate.css -->
+        	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+        	<!-- Icomoon Icon Fonts-->
+        	<link rel="stylesheet" href="{{ asset('css/icomoon.css')}}">
+        	<!-- Themify Icons-->
+        	<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+        	<!-- Bootstrap  -->
+        	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+        	<!-- Magnific Popup -->
+        	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+        	<!-- Magnific Popup -->
+        	<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
-    <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
-	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
-	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
-    <link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
+        	<!-- Owl Carousel  -->
+        	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+        	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
+            <link rel="icon" type="image/x-icon"  href="{{ asset('/images/blow.ico') }}">
+        	<!-- Theme style  -->
+        	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 
+            <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css')}}"/>
+        	<link rel="stylesheet" href="{{ asset('vendor/icheck/skins/all.css')}}"  />
+        	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard.css')}}"  />
+        	<link rel="stylesheet" href="{{ asset('vendor/techlab/smartwizard/dist/css/smart_wizard_theme_arrows.css')}}"/>
+        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"  />
 
-	<!-- Modernizr JS -->
-	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
 
-	<script src="{{ asset('js/respond.min.js') }}"></script>
 
-    	<![endif]-->
+        	<!-- Modernizr JS -->
+        	<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
+        	<!-- FOR IE9 below -->
+        	<!--[if lt IE 9]>
 
-    		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-            	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-            	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-            	<script src="{{ asset('js/jquery.min.js') }}"></script>
-            	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        	<script src="{{ asset('js/respond.min.js') }}"></script>
 
-    <style type="text/css">
-        .container {
-          margin: 100px auto;
-          text-align: center;
-        }
 
-        .notify-container {
-          position: relative;
-        	display: inline-block;
-          margin-top: 10px;
-        }
 
-          .notify-bubble {
-            position: absolute;
-            top: -15px;
-            right: 0;
-            padding: 2px 5px 2px 6px;
-            background-color: #0ec6c2;
-            color: white;
-            font-size: 0.65em;
-            border-radius: 50%;
-            box-shadow: 1px 1px 1px gray;
-            display: block;
-          }
-        .total{
-            padding:15px;
-        }
 
-        #reviewOutput{
-             border: 1px solid  #d1d1d1;
-             padding:10px;
-             margin-bottom: 10px;
-             background-color: #FFFFFF;
-              box-shadow: 0.5px 1px #8888886b;
-        }
+        	<![endif]-->
+        	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+        	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        	<script src="{{ asset('js/jquery.min.js') }}"></script>
+        	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
-          .modal-rate-content{
-                    padding:20px;
-                    text-align: center;
+
+            <style type="text/css">
+
+                .container {
+                  margin: 100px auto;
+                  text-align: center;
+                }
+
+                .notify-container {
+                  position: relative;
+                	display: inline-block;
+                  margin-top: 10px;
+                }
+
+                  .notify-bubble {
+                    position: absolute;
+                    top: -20px;
+                    right: -3px;
+                    padding: 2px 5px 2px 6px;
+                    background-color: #0ec6c2;
+                    color: white;
+                    font-size: 0.65em;
+                    border-radius: 50%;
+                    box-shadow: 1px 1px 1px gray;
+                    display: block;
+                  }
+                .total{
+                    padding:15px;
+                }
+
+                .modal-rate-content{
+                padding:20px;
+                text-align: center;
+                }
+
+                .my-card{
+                        width: 100%;
+                        height: 400px;
+                        padding: 20px;
+                        border: 1px solid rgba(212, 212, 212, 0.11);
+                        margin-bottom: 15px;
+                        box-shadow: 3px 5px 12px #c7c7c7;
+                }
+
+                   #map {
+                    height: 300px;
+                    width: 100%;
+                   }
+
+                   .rating{
+                    margin-top: 5%;
+                   }
+                   .est-name{
+                   color:#b9b2b2;
+                   }
+
+                  .scratc-notify-bubble {
+                    position: absolute;
+                    top: 10px;
+                    right: 25px;
+                    padding: 5px 10px 5px 10px;
+                    background-color: #ffffff;
+                    color: rgba(163, 163, 163, 0.86);
+                    font-size: 0.65em;
+                    border-radius: 50%;
+                   /* box-shadow: 1px 1px 1px gray;*/
+                    display: block;
+                  }
+
+
+                  h4{
+                    color:#5cb85c;
+                    font-weight: bold;
+                  }
+
+
+
+                  .address{
+                  margin-top: 10px;
+                    padding:5px;
+                    color:#b9b2b2;
+                  }
+                  .steps {
+                      max-height: calc(100vh - 300px);
+                      overflow-y: auto;
+                      overflow-x: hidden;
+                  }
+
+                  .modal-content{
+                  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                  font-size:12px;
+                  }
+
+                  .modal-content > .steps > button{
+                  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                   font-size:12px;
+                  }
+
+                    ::-webkit-scrollbar {
+                        width: 8px;
+                        background-color: rgba(126, 242, 255, 0.98);
                     }
 
+                    ::-webkit-scrollbar-thumb {
+                        width: 8px;
+                        background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
+                    }
 
-        #reviewForm{
-            border: 1px solid  #d1d1d1;
-            padding:20px;
-            border-radius: 20px;
-        }
+                     hr{
+                        border-color:#5cb85c;
+                     }
 
-        #reviewNameForm{
-            background-color: #0ec6c2;
-            color:white;
-        }
+               /* .btn {
+                  background: #ccc;
 
-        #btn-message {
-            position: fixed;
-            bottom: 20px;
-            right:70px;
-            z-index:99999;
-            opacity: 0.7;
-        }
+                  &:hover {
+                    background: darken(silver, 10%);
+                  }
 
+                  &:focus,
+                  &:focus:active,
+                  &:active {
+                    outline: none;
+                    box-shadow: none;
+                  }
+                }*/
 
-           #map {
-            height: 300px;
-            width: 100%;
-           }
-
-          .scratc-notify-bubble {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            padding: 5px 10px 5px 10px;
-            background-color: #ffffff;
-            color: rgba(163, 163, 163, 0.86);
-            font-size: 0.65em;
-            border-radius: 50%;
-           /* box-shadow: 1px 1px 1px gray;*/
-            display: block;
-          }
-
-          h4{
-              color:#5cb85c;
-              font-weight: bold;
-            }
-
-          h3{
-            color:#808080;
-          }
-
-         .modal-content{
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size:12px;
-        }
-
-        .modal-content > .steps > button{
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-         font-size:12px;
-        }
-
-          ::-webkit-scrollbar {
-              width: 8px;
-              background-color: rgba(126, 242, 255, 0.98);
-          }
-
-          ::-webkit-scrollbar-thumb {
-              width: 8px;
-              background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
-          }
-
-           hr{
-              border-color:#5cb85c;
-           }
-
-       /* .btn {
-          background: #ccc;
-
-          &:hover {
-            background: darken(silver, 10%);
-          }
-
-          &:focus,
-          &:focus:active,
-          &:active {
-            outline: none;
-            box-shadow: none;
-          }
-        }*/
-
-    </style>
-	</head>
+            </style>
+        	</head>
 	<body>
 
 	<div id="page">

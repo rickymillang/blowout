@@ -13,6 +13,7 @@ use App\ProductOrder;
 use App\Order;
 use App\PaymentMethod;
 use Carbon\Carbon;
+use App\Notifications\OrderReceived;
 use Semaphore;
 use Illuminate\Support\Facades\DB;
 
