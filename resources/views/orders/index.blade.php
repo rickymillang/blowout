@@ -12,28 +12,33 @@
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
-                        <th>Customer</th>
-                        <th>Delivery Address</th>
-                        <th>Delivery Date</th>
-                        <th>Payment Type</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        @role('establishment.admin')
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Delivery Address</th>
+                            <th>Delivery Date</th>
+                            <th>Payment Type</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        @endrole
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($orders as $order)
                         <tr>
-                            <td>{{ $order->users->name }}</td>
-                            <td>{{ $order->delivery_address }}</td>
-                            <td>{{ $order->delivery_date }}</td>
-                            <td>{{ $order->payment_types->name }}</td>
-                            <td>{{ $order->statuses->name }}</td>
-                            <td>
-                                @if($order->status == 7 || $order->status == 1 || $order->satus == 3)
-                                    <a href="/orders/{{ $order->id }}/edit" class="btn btn-xs btn-warning">Edit Status</a>
-                                @endif
-                            </td>
-
+                            @role('establishment.admin')
+                                <td>{{ $order->users->name }}</td>
+                                <td>{{ $order->delivery_address }}</td>
+                                <td>{{ $order->delivery_date }}</td>
+                                <td>{{ $order->payment_types->name }}</td>
+                                <td>{{ $order->statuses->name }}</td>
+                                <td>
+                                    @if($order->status == 7 || $order->status == 1 || $order->satus == 3)
+                                        <a href="/orders/{{ $order->id }}/edit" class="btn btn-xs btn-warning">Edit Status</a>
+                                    @endif
+                                </td>
+                            @endrole
                         </tr>
                     @endforeach
                 </tbody>

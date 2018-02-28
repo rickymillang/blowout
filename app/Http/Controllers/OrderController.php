@@ -15,7 +15,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-    	$orders = Order::where('establishment_id', auth()->user()->establishment->id)->get();
+        if (auth()->user()->hasRole('establishment.admin')) {
+            $orders = Order::where('establishment_id', auth()->user()->establishment->id)->get();
+        } else if (auth()->user()->hasRole('customer')) {
+            $orders = Order::where('user_id', auth()->user()->id)->get();
+        }
 
     	return view('orders.index', compact('orders'));
     }
