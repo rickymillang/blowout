@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach($establishments as $establishment)
                         <tr>
-                            <td><img src="{{ asset($establishment->image) }}" style="max-width:64px;"></td>
+                            <td><img src="{{ asset('storage/' . $establishment->image) }}" style="max-width:100px;max-height:100px;"></td>
                             <td>{{ $establishment->name }}</td>
                             <td>{{ $establishment->description }}</td>
                             <td>{{ $establishment->phone }}</td>
@@ -34,6 +34,7 @@
         					<td>{{ $establishment->address }}</td>
         					<td>{{ $establishment->establishment_type->name }}</td>
                             <td>
+                                <a href="{{ asset('storage/' . $establishment->business_permit) }}" class="btn btn-warning btn-sm" target="_blank"> Download Permit</a>
                                 <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#establishment{{ $establishment->id }}">Deactivate</button>
                                 <div id="establishment{{ $establishment->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
                                     <div class="modal-dialog modal-sm" role="document">
@@ -86,7 +87,7 @@
                 <tbody>
                     @foreach($unapproved_establishments as $unapproved_establishment)
                         <tr>
-                            <td><img src="{{ asset($unapproved_establishment->image) }}" style="max-width:64px;"></td>
+                            <td><img src="{{ asset('storage/' . $unapproved_establishment->image) }}" style="max-width:100px;max-height:100px;"></td>
                             <td>{{ $unapproved_establishment->name }}</td>
                             <td>{{ $unapproved_establishment->description }}</td>
                             <td>{{ $unapproved_establishment->phone }}</td>
@@ -95,6 +96,7 @@
                             <td>{{ $unapproved_establishment->address }}</td>
                             <td>{{ $unapproved_establishment->establishment_type->name }}</td>
                             <td>
+                                <a href="{{ asset('storage/' . $unapproved_establishment->business_permit) }}" class="btn btn-warning btn-sm" target="_blank"> Download Permit</a>
                                 <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#unapproved-establishment{{ $unapproved_establishment->id }}">Approve</button>
                                 <div id="unapproved-establishment{{ $unapproved_establishment->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
                                     <div class="modal-dialog modal-sm" role="document">

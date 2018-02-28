@@ -17,6 +17,7 @@
                         <th>Delivery Date</th>
                         <th>Payment Type</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,11 @@
                             <td>{{ $order->delivery_date }}</td>
                             <td>{{ $order->payment_types->name }}</td>
                             <td>{{ $order->statuses->name }}</td>
+                            <td>
+                                @if($order->status == 7 || $order->status == 1 || $order->satus == 3)
+                                    <a href="/orders/{{ $order->id }}/edit" class="btn btn-xs btn-warning">Edit Status</a>
+                                @endif
+                            </td>
 
                         </tr>
                     @endforeach

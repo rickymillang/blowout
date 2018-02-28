@@ -86,12 +86,12 @@ class LoginController extends Controller
         if ($authUser) {
             return $authUser;
         }
-
         $user = User::create([
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => $provider,
-            'provider_id' => $user->id
+            'provider_id' => $user->id,
+            'avatar' => $user->getAvatar()
         ]);
 
         RoleUser::create([
