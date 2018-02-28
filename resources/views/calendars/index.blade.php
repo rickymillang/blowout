@@ -36,7 +36,7 @@
 		            {
 		                title: '{{ $order->users->name }}: {{ $order->delivery_address }}',
 		                start: '{{ $order->delivery_date }}',
-		                url: '{{ url('dashboard') }}'
+		                url: '{{ url('orders') }}'
 		            },
 		            @endforeach
 
