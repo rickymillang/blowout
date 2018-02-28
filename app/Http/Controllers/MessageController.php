@@ -57,4 +57,24 @@ class MessageController extends Controller
 
         return redirect()->back();
     }
+
+    public function SendMessage(Request $request)
+    {
+        $result = false;
+
+
+
+        $message = Message::create([
+            'message' => $request->message,
+            'from_user_id' => auth()->user()->id,
+            'to_user_id' => (int) $request->owner_id
+        ]);
+
+        if($message){
+            $result = true;
+        }
+
+
+      return json_encode($result);
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Establishment;
+use App\Package;
+use App\Service;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\Product;
@@ -55,7 +57,9 @@ class CartController extends Controller
             $quantity = 1;
         }
 
-        $cart = Cart::where('item_id',$request->id)->first();
+        $establishment = Establishment::find($request->establishment_id);
+
+        $cart = Cart::where('item_id',$request->id)->where('organize_from')->first();
 
         if(count($cart) > 0){
             $cart->update([
@@ -80,11 +84,11 @@ class CartController extends Controller
 
         return json_encode([
                             'cart' => $cart,
-                            'image' => $cart->getItem->image,
+                            'image' => $request->item_type == 1?$cart->getItem->image : $establishment->image,
                             'name' => $cart->getItem->name,
                             'price' => $cart->getItem->price,
                             'exist' => $exist,
-                            'add_amount' => number_format((int) ($cart->getItem->price * $quantity),2)
+                            'add_amount' => number_format(($cart->getItem->price * $quantity),2)
                         ]);
     }
 
@@ -168,7 +172,7 @@ class CartController extends Controller
 
         $product = Product::find($id);
 
-        $cart = Cart::where('item_id',$request->id)->first();
+        $cart = Cart::where('item_id',$request->id)->where('organize_from',2)->first();
 
         if(count($cart) > 0){
             $cart->update([
@@ -404,6 +408,7 @@ class CartController extends Controller
                 'establishment_id' => $request->establishment,
                 'payment_type' => $request->payment_type,
                 'delivery_date' => Carbon::parse($request->delivery_date)->format('Y-m-d H:m:i'),
+                'confirmation_number' => $request->confirmation_number,
                 'delivery_address' => $request->delivery_address,
                 'status' => 7
                 ]);
@@ -505,8 +510,10 @@ class CartController extends Controller
         $order = Order::create([
             'user'=> $id,
             'payment_type' => $request->template_payment_type,
+            'confirmation_number' => $request->template_confirmation_number,
             'delivery_date' => Carbon::parse($request->template_delivery_date)->format('Y-m-d H:m:i'),
             'delivery_address' => $request->template_payment_type,
+            'establishment_id' => $request->establishment,
             'status' => 7
         ]);
 
@@ -536,9 +543,258 @@ class CartController extends Controller
 
             return json_encode($result);
         }else{
+            return json_encode($result);
+        }
+    }
+
+    /**
+     * Wizard functions
+     * * */
+
+    public function getWizardSetupProductList(Request $request,$id)
+    {
+        $result = '';
+
+        $establishment = Establishment::find($id);
+        $services_item_type = 2; //for item type
+        $package_item_type = 3;
+
+        $result .= '<button id="pt1" onclick="wizard_show_product_list(1);" class="btn btn-info btn-block">Packages</button>';
+
+        $result .= '<div class="table wizard_product_type_list1" id="plist" style="display:none">
+                              <button class="btn btn-success btn-block">Packages Selection</button>
+
+                               <table class="table table-collapsed" id="table_wizard">
+                                    <thead>
+                                        <tr>
+                                            <th ></th>
+                                            <th >Item Name</th>
+                                            <th >Price</th>
+                                            <th >Quantity</th>
+                                            <th ></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+
+
+        foreach ($establishment->packages as $package) {
+
+            $result .= '<tr>
+                 <td><img src="' . asset("storage/" . $establishment->image) . '" style="max-width:100px;" height="30px" width="30px"></td>
+                 <td>' . $package->name . '</td>
+                 <td>' . $package->price . '</td>
+                 <td><input type="number" id="w_packageQuantity' . $package->id . '" placeholder="0" style="width:60px;"/></td>
+                 <td><button class="btn btn-success" style="font-size:10px;padding:5px 10px;" onclick="add_to_wizard_cart(' . $package->id . ','.$package_item_type.')"><span class="fa fa-cart-plus"></span></button></td>
+             </tr>';
+
+        }
+
+
+        $result .= '</tbody>
+                       </table>
+                   </div>';
+
+
+        $result .= '<button id="pt2" onclick="wizard_show_product_list(2);" class="btn btn-info btn-block">Services</button>
+                    <input type="hidden" value="'.$id.'" id="w_establishment_id">
+                    ';
+
+        $result .= '<div class="table wizard_product_type_list2" id="plist" style="display:none">
+                              <button class="btn btn-success btn-block">Services Selection</button>
+
+                               <table class="table table-collapsed" id="table_wizard">
+                                    <thead>
+                                        <tr>
+                                            <th ></th>
+                                            <th >Item Name</th>
+                                            <th >Price</th>
+                                            <th >Quantity</th>
+                                            <th ></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+
+        foreach ($establishment->services as $services) {
+
+            $result .= '<tr>
+                 <td><img src="' . asset("storage/" . $establishment->image) . '" style="max-width:100px;" height="30px" width="30px"></td>
+                 <td>' . $services->name . '</td>
+                 <td>' . $services->price . '</td>
+                 <td><input type="number" id="w_serviceQuantity' . $services->id . '" placeholder="0" style="width:60px;"/></td>
+                 <td><button class="btn btn-success" style="font-size:10px;padding:5px 10px;" onclick="add_to_wizard_cart(' . $services->id . ','.$services_item_type.')"><span class="fa fa-cart-plus"></span></button></td>
+             </tr>';
+
+        }
+
+        $result .= '</tbody>
+                       </table>
+                   </div>';
+
+        $result .= '<script>
+
+                    function wizard_show_product_list(id){
+                            $("#wizard_back").show();
+                            $(".wizard_product_type_list"+id).css("display","block");
+                            $(".w_section_product>button").hide();
+                        }
+                </script>';
+
+
+        return $result;
+    }
+
+    public function getWizardProductDetails(Request $request,$id){
+
+        if($request->item_type == 2) {
+            $product = Service::find($id);
+
+            $image = $product->getEstablishment->image;
+        }else{
+            $product = Package::find($id);
+            $image = $product->establishment->image;
+        }
+
+        $cart = Cart::where('item_id',$request->id)->where('item_type',$request->item_type)->first();
+
+        if(count($cart) > 0){
+            $cart->update([
+                'quantity' => $cart->quantity + $request->quantity
+            ]);
+
+            $cart->save();
+
+            $exist = 1;
+        }else {
+
+            $cart = Cart::create([
+                'item_id' => $request->id,
+                'item_type' => $request->item_type,
+                'quantity' => $request->quantity,
+                'user' => auth()->user()->id,
+                'organize_from' => 3
+            ]);
+
+            $exist = 0;
+        }
+
+        return json_encode(['product'=>$product,
+            'image'=>$image,
+            'cart'=> $cart,
+            'exist' => $exist
+        ]);
+    }
+
+    public function getDeleteWizardCartItem(Request $request,$id){
+        $cart = Cart::find($id);
+
+        $quantity = $cart->quantity;
+        $cart_amount = $cart->getItem->price * $cart->quantity;
+
+        $cart->delete();
+        return json_encode([
+            'cart' => $cart,
+            'amount' => $cart_amount,
+            'quantity' => $quantity
+        ]);
+    }
+
+    public function getCartWizardSummary(Request $request,$id){
+
+        $cart = DB::table('cart as c')
+            ->select('c.item_id',
+                'c.item_type',
+                'c.quantity',
+                'c.user',
+                'c.organize_from'/*,
+                's.name as s_name',
+                's.price as s_price',
+                'pac.name as p_name',
+                'pac.price as p_price'*/
+            )
+          /*  ->join('services as s', 's.id', '=', 'c.item_id')
+            ->join('packages as pac', 'pac.id', '=', 'c.item_id')
+            ->where()*/
+            ->where('c.user',$id)
+            ->where('c.organize_from',3)
+            ->get();
+
+
+
+        return json_encode(['cart' => $cart]);
+
+    }
+
+    public function getWizardUserInformation(Request $request,$id){
+        $total_quantity = 0;
+        $total_amount = [];
+
+
+        $user = User::find($id);
+
+        $cart = Cart::where('user',$id)->where('organize_from',$request->organize_from)->get();
+
+        if($cart != null){
+
+            foreach ($cart as $c) {
+                $total_amount[] = $c->getItem->price * $c->quantity;
+                $total_quantity += $c->quantity;
+            }
+        }
+
+        $payment = PaymentMethod::find($request->payment_type);
+
+        $delivery_date = Carbon::parse($request->delivery_date)->format('M d, Y h:m A' );
+
+        return json_encode(['user'=>$user,
+            'cart'=>$cart,
+            'request' => $request->all(),
+            'payment_type' => $payment->name,
+            'delivery_date' => $delivery_date,
+            'total_amount' => number_format(array_sum($total_amount),2),
+            'total_quantity' => $total_quantity
+        ]);
+    }
+
+    public function CheckoutFromWizard(Request $request,$id){
+        $result = false;
+
+        $order = Order::create([
+            'user'=> $id,
+            'establishment_id' => $request->establishment,
+            'payment_type' => $request->payment_type,
+            'delivery_date' => Carbon::parse($request->delivery_date)->format('Y-m-d H:m:i'),
+            'delivery_address' => $request->delivery_address,
+            'confirmation_number' => $request->confirmation_number,
+            'status' => 7
+        ]);
+
+        $item = $cart = Cart::where('user',$id)->where('organize_from',$request->organize_from)->get();
+
+        $user = User::find($id);
+
+        $establishment = Establishment::find($request->establishment);
+
+        if($order){
+            foreach($item as $i) {
+                $product_order = ProductOrder::create([
+                    'order_id' => $order->id,
+                    'item_id' => $i->item_id,
+                    'item_type' => $i->item_type,
+                    'quantity' => $i->quantity
+                ]);
+            }
+
+            $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
+            $result = true;
+
+            /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
+
+            return json_encode($result);
+        }else{
 
 
             return json_encode($result);
         }
     }
+
 }

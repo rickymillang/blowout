@@ -105,6 +105,14 @@
             padding:15px;
         }
 
+        #btn-message {
+            position: fixed;
+            bottom: 20px;
+            right:70px;
+            z-index:99999;
+            opacity: 0.7;
+        }
+
 
            #map {
             height: 300px;
@@ -308,7 +316,7 @@
                 <br/>
                 @foreach($packages as $pack)
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="{{ asset('storage/'.$establishment->image) }}" class="fh5co-card-item image-popup">
+                    <div class="fh5co-card-item">
                         <figure>
                             <div class="overlay"><i class="ti-plus"></i></div>
                             <img src="{{ asset('storage/'.$establishment->image) }}" alt="Image" class="img-responsive">
@@ -323,7 +331,7 @@
                         </div>
                         </div>
                         <div class="ui large star rating"></div>
-                    </a>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -360,7 +368,35 @@
 
 	@include('include.footer-menu')
 	<!-- </div> -->
+	    @if(auth()->check()))
+        <button class="btn btn-primary btn-xs"  {{--style="font-size:10px;padding:5px 10px;" --}} id="btn-message" data-toggle="modal" data-target="#message-modal"><span class="fas fa-envelope"></span></button>
 
+        <!-- Modal -->
+        <div id="message-modal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ ucfirst($establishment->name) }} Message Section</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="message">Compose Message</label>
+                    <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Compose Message"></textarea>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" id="send-message">Send Message</button>
+                <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        @endif
 	</div>
 
 	<div class="gototop js-top">
@@ -397,14 +433,14 @@
 
 
     <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker2').datetimepicker();
-                });
+
             </script>
 
      <script>
       var token = "{{csrf_token()}}";
       var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
+      var establishment_id = "{{ $establishment->id }}";
+      var owner_id = "{{ $establishment->user_id }}";
       var myurl = "{{ URL::to('/') }}";
       var urlAddCart = "{{ URL::to('/cart') }}";
       var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
@@ -414,6 +450,8 @@
       var urlgetCartTemplateSummary = "{{ URL::to('/cart/get-cart-template-summary') }}";
       var urlgetTemplateUserinformation = "{{ URL::to('/cart/get-user-template-information') }}";
       var urlCheckOutFromTemplate = "{{ URL::to('/cart/get-checkout-from-template') }}";
+      var urlSendMessage = "{{ URL::to('message/send-message')}} ";
+       var reseturl = "/establishments/"+establishment_id+"#step-1";
 
      $(function() {
       $('.btn-notify').click(function() {

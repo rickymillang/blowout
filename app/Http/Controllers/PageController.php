@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Establishment;
+use App\Rating;
 use App\EstablishmentType;
 
 class PageController extends Controller
 {
     public function __construct(){
         $this->establishments = Establishment::where('status',1)->get();
+
     }
+
         public function lists(){
 
             return view('pages.establishment')

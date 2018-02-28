@@ -155,9 +155,14 @@
                                                 <input type="number" class="form-control" name="template_number_guests" id="template_number_guests"/>
                                              </div>
                                              <div class="form-group">
+                                                 <label for="inf-name" style="color:#808080">Confirmation Number</label>
+                                                 <input type="text" class="form-control" name="template_confirmation_number" id="template_confirmation_number"/>
+                                              </div>
+                                             <div class="form-group">
                                                 <label for="inf-name" style="color:#808080">Delivery Address</label>
                                                 <input type="text" class="form-control" name="template_delivery_address" id="template_delivery_address"/>
                                              </div>
+
 
                                                   <label for="inf-name" style="color:#808080">Delivery Date</label>
                                              <div class='input-group date' id='datetimepicker2' style="position:relative;">

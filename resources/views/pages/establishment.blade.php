@@ -110,6 +110,11 @@
                 padding:15px;
             }
 
+            .modal-rate-content{
+            padding:20px;
+            text-align: center;
+            }
+
             .my-card{
                     width: 100%;
                     height: 400px;
@@ -276,22 +281,29 @@
              <div class="my-card">
 
                     <div class="col-lg-4">
+                        <div class="row">
 
                             <h4 class="est-name">{{ ucfirst($est->name) }}</h4>
 
-                        <img src="{{ asset('storage/'.$est->image) }}" alt="Image"  width="95%" height="100%">
+                            <img src="{{ asset('storage/'.$est->image) }}" alt="Image"  width="95%" height="100%">
+                        </div>
+
                         <div class="row rating">
                            <div class="col-sm-1">
-                             <div id="rateYoDisplay{{ $est->id }}"></div>
+                             <div id="rateYoDisplay{{ $est->id }}" style="margin-top: -5px;"></div>
+                          
                            </div>
-                          <div class="col-lg-3">
-                          <div id="rateYo{{ $est->id }}" ></div>
+                           <div class="col-sm-4"><div id="rateYo{{ $est->id }}" ></div></div>
+                           @if(auth()->check())
+                                                   <div class="col-sm-6"><button class="btn btn-sm btn-warning pull-left" style="font-size:10px;padding:5px 10px" onclick="openRateMe({{ $est->id }})">Rate Us</button></div>
+                            @endif
                           </div>
-                            <br/>
+                          <div class="row">
                             <div class="col-lg-12">
                               <span class="address"><i class="fas fa-map-marker-alt" style="color:rgba(210, 17, 29, 0.80)"></i>&nbsp; {{ $est->address }}</span>
                             </div>
-                        </div>
+                            </div>
+
                     </div>
                     <div class="col-lg-4">
                         <br/>
@@ -310,6 +322,36 @@
                     </div>
                 </div> <!--end of my card-->
 
+                <div id="rateMe{{ $est->id }}" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                      <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                             <div class="col-md-10">
+                                        <div class="modal-rate-content">
+                                             <img src="{{ asset('storage/'.$est->image) }}" alt="Image"  width="40%" height="50%" class="img-circle">
+                                             <br/>
+                                             <br/>
+                                             <h4 class="est-name" style="margin-top: 5px;">{{ ucfirst($est->name) }}</h4>
+                                            <h5>How was our services? </h5>
+                                            <h5>Rate us now!</h5>
+
+                                                 <span id="rateMeNow{{ $est->id }}" ></span>
+                                                <input type="hidden" id="rateMeNowVal{{ $est->id }}" value="0"/>
+                                         </div>
+                             </div>
+                              <div class="col-md-1"></div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
 
                 <script>
                   function initMap{{ $est->id }}() {
@@ -327,13 +369,33 @@
                     }
 
 
-                      var rate_id = {{ $est->id }};
-                     $("#rateYo"+rate_id).rateYo({
-                           rating: 3.6,
+
+                     $("#rateYo"+""+"{{ $est->id }}").rateYo({
+                           rating: {{ $est->totalRatings()  }},
                            ratedFill: "#ffff00",
                             starWidth: "18px"
                          });
-                        $("#rateYoDisplay"+rate_id).html($("#rateYo"+rate_id).rateYo("rating"));
+
+
+
+
+                        $("#rateYoDisplay"+""+"{{ $est->id }}").html($("#rateYo"+""+"{{ $est->id }}").rateYo("rating"));
+
+                         $("#rateMeNow"+""+"{{ $est->id }}").rateYo({
+
+                                    ratedFill: "#ffff00",
+                                    starWidth: "30px"
+                                 });
+
+                           $("#rateMeNow"+""+"{{ $est->id }}").on("click",function(){
+                                var rateVal = $(this).rateYo("rating");
+
+                                RateMe("{{ $est->id }}",rateVal);
+
+                                $("#rateMe"+""+"{{ $est->id }}").modal("toggle");
+                           });
+
+
                  </script>
 
                   <script async defer
@@ -344,238 +406,10 @@
                 @endforeach
 
 
+                @include('pages.modal.scratch-setup')
 
-                 <!--Start of model div -->
-                <div id="scratch-setup" class="modal fade" role="dialog">
-                  <div class="modal-dialog modal-lg">
+                @include('pages.modal.wizard-setup')
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="modal-title-setup" style="color:white">Organize from Scratch</h4>
-                      </div>
-                      <div class="modal-body" id="smartwizard">
-                      {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
-
-                         <ul>
-                             <li><a href="#step-1">Step 1<br /><small>Shopping</small></a></li>
-                             <li><a href="#step-2">Step 2<br /><small>Delivery Information</small></a></li>
-                             <li><a href="#step-3">Step 3<br /><small>Order Summary</small></a></li>
-
-                         </ul>
-                            <div>
-
-                        <br/>
-                                 <div id="step-1" class="steps">
-
-                                       <div class="row">
-
-                                         <div class="col-md-8 section_product">
-
-
-
-                                         </div>
-                                         <div class="col-md-4">
-                                              <button class="btn btn-success btn-block"><span class="fa fa-shopping-cart pull-left"></span> Your Cart Item  <span class="scratc-notify-bubble scratch-total-display">{{ $cart_scratch_total_quantity }}</span></button>
-                                              <input type="hidden" id="s_totalQuantity" value="{{ $cart_scratch_total_quantity }}"/>
-                                             <div class="table">
-                                                 <table class="table table-striped" id="scratch_cart">
-                                                     <thead>
-                                                             <tr>
-                                                                 <th></th>
-                                                                 <th>Name</th>
-                                                                 <th>Price</th>
-                                                                 <th>#</th>
-                                                                 <th></th>
-                                                             </tr>
-                                                     </thead>
-                                                       @if(auth()->check())
-                                                     <tbody id="scratch_item_cart">
-
-                                                            @foreach($cart_scratch as $cs)
-                                                            <tr id="scratch_item{{ $cs->id }}">
-                                                                <td><img src="{{ $cs->item_type == 1? asset("storage/".$cs->getItem->image) : asset("storage/".$cs->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
-                                                                <td>{{ $cs->getItem->name}} </td>
-                                                                <td>{{ number_format($cs->getItem->price,2) }}</td>
-                                                                <td>{{ $cs->quantity }}</td>
-                                                                <td><button class='btn btn-danger ' onclick='scratch_deleteItem({{ $cs->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
-                                                            </tr>
-                                                            @endforeach
-
-
-
-                                                     </tbody>
-
-                                                     <tbody id="wizard_item_cart">
-                                                         @foreach($cart_wizard as $cw)
-                                                            <tr id="wizard_item{{ $cw->id }}">
-                                                                <td><img src="{{ $cw->item_type == 1? asset("storage/".$cw->getItem->image) : asset("storage/".$cw->getItem->getEstablishment['image']) }}"style="max-width:100px;" height="35px" width="35px"></td>
-                                                                <td>{{ $cw->getItem->name}} </td>
-                                                                <td>{{ number_format($cw->getItem->price,2) }}</td>
-                                                                <td>{{ $cw->quantity }}</td>
-                                                                <td><button class='btn btn-danger' onclick='scratch_deleteItem({{ $cw->id }})' style='font-size:10px;padding:5px 10px;'><span class='fa fa-trash'></span></button></td>
-                                                            </tr>
-                                                         @endforeach
-                                                     </tbody>
-                                                     @endif
-                                                 </table>
-                                             </div>
-                                             <span class="pull-right">Total: <span id="s_totalAmountDisplay" >{{ number_format(array_sum($total_amount_scratch),2) }}</span></span>
-                                             <input type="hidden" value="{{ array_sum($total_amount_scratch) }}" id="s_totalAmount"/>
-                                         </div>
-
-
-                                      {{-- <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning pull-left" id="scratch_back"><span class="fa fa-arrow-left"></span> Back</button>
-                                         <button type="button" class="btn btn-success">Checkout</button>
-                                         <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>
-
-                                       </div>--}}
-
-                                   </div>
-                                 </div>
-                                 <div id="step-2" class="steps">
-                                     <div class="row">
-                                        <div class="col-md-6">
-                                        <h4>Information Details</h4>
-
-                                         <div class="form-group">
-                                            <label for="inf-number-quests" style="color:#808080">Number of Quests</label>
-                                            <input type="number" class="form-control" name="number_guests" id="number_guests"/>
-                                         </div>
-                                         <div class="form-group">
-                                            <label for="inf-name" style="color:#808080">Delivery Address</label>
-                                            <input type="text" class="form-control" name="delivery_address" id="delivery_address"/>
-                                         </div>
-
-                                              <label for="inf-name" style="color:#808080">Delivery Date</label>
-                                            <div class='input-group date' id='datetimepicker1' style="position:relative;">
-
-                                               <input type='text' class="form-control" id="delivery_date"/>
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                             </div>
-                                       </div>
-
-                                       <div class="col-md-6">
-                                       <h4>Payment Method</h4>
-                                       <div class="form-group">
-                                           <input type="radio" name="payment_type" value="1" id="payment_type" checked="checked"  class="form-control"/>
-                                          <img src="{{ asset('images/cod.png') }}" alt="Cash on Delivery" width="30%" style="margin-left: 5px;" height="20%"/>
-                                       </div>
-                                        <div class="form-group">
-                                          <input type="radio" name="payment_type" value="2" id="payment_type" class="form-control"/>
-                                          <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" style="margin-left: 5px;" alt="PayPal Logo">
-                                      </div>
-                                       </div>
-
-                                     </div>
-
-                                 </div>
-                                 <div id="step-3" class="steps">
-                                     <div class="row">
-                                        <div class="col-md-5">
-                                            <h4>Delivery Information</h4>
-
-                                            <hr/>
-                                            <table id="table_delivery_information">
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td width="20%" align="center">:</td>
-                                                    <td id="di_name"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Contact No.  </td>
-                                                    <td width="20%" align="center">:</td>
-                                                    <td id="di_contact"></td>
-                                                 </tr>
-                                                  <tr>
-                                                      <td>No. of Quests</td>
-                                                      <td width="20%" align="center">:</td>
-                                                      <td id="no_guests"></td>
-                                                   </tr>
-                                                 <tr>
-                                                     <td>Delivery Address</td>
-                                                     <td width="20%" align="center">:</td>
-                                                     <td id="di_address"></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>Delivery Date</td>
-                                                      <td width="20%" align="center">:</td>
-                                                      <td id="di_date"></td>
-                                                   </tr>
-                                            </table>
-
-
-
-                                           <br/>
-                                           <br>
-                                           <h4>Payment Method</h4>
-                                           <hr/>
-
-                                           <table id="table_payment_method">
-                                           <tr>
-                                               <td>Type</td>
-                                               <td width="20%" align="center">:</td>
-                                               <td id="pm_payment_method"></td>
-                                           </tr>
-                                           </table>
-
-
-                                         </div>
-                                         <div class="col-md-7">
-
-                                                <h4>Product Item</h4>
-                                                <hr/>
-                                                <div class="table">
-                                                <table class="table collapsed" id="item_summary_scratch">
-                                                   <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Name</th>
-                                                        <th>Price</th>
-                                                        <th>Quantity</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="item_summary_scratch_body">
-
-                                                    </tbody>
-                                                </table>
-
-                                                <table>
-                                                    <tr>
-                                                        <td style="color:#5cb85c">Total Item Quantity</td>
-                                                        <td width="20%" align="center">:</td>
-                                                        <td id="scratch_total_cart_quantity" align="right">0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="color:#5cb85c">Total Amount</td>
-                                                        <td width="20%" align="center">:</td>
-                                                        <td id="scratch_total_cart_amount" align="right">0.00</td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                                <hr/>
-                                                <div class="col-md-12">
-                                                <div class="pull-right">
-                                                    <input type="checkbox" class="form-control" id="terms_and_condition_checkout_scratch"/>
-                                                    <label for=""><a href="#">I hereby accept the term and conditions</a></label>
-                                                </div>
-                                                </div>
-                                         </div>
-                                     </div>
-                                 </div>
-
-                        </div>
-
-                    </div>
-
-
-                  </div>
-                </div>
-         </div>
 		</div>
 	</div>
 
@@ -663,15 +497,19 @@
            var urlgetSetUpProductList = "{{ URL::to('/cart/get-setup-product-list') }}";
            var urlgetUserinformation = "{{ URL::to('/cart/get-user-scratch-information') }}";
            var urlCheckOutFromScratch = "{{ URL::to('/cart/checkout-from-scratch') }}";
+           var urlgetWizardSetUpProductList = "{{ URL::to('/cart/get-wizard-setup-product-list') }}";
+           var urlGetWizardProductDetails = "{{ URL::to('/cart/get-wizard-product-details') }}";
+           var urldeleteWizardCartItem = "{{ URL::to('/cart/delete-wizard-cart-item') }}";
+           var urlgetCartWizardSummary = "{{ URL::to('/cart/get-cart-wizard-summary') }}";
+           var urlgetWizardUserinformation = "{{ URL::to('/cart/get-wizard-user-information') }}";
+           var urlCheckOutFromWizard = "{{ URL::to('/cart/checkout-from-wizard') }}";
 
-          $(function() {
-           $('.btn-notify').click(function() {
-           	$('.notify-bubble').show(400);
-         	});
-         });
 
-            $('tbody#scratch_item_cart').hide();
-            $('tbody#wizard_item_cart').hide();
+              $(function() {
+               $('.btn-notify').click(function() {
+                $('.notify-bubble').show(400);
+                });
+             });
 
 
          $('input').iCheck({
@@ -685,19 +523,13 @@
          function organize(id){
                  var setup = $("#setup option:selected").val();
                  var url = "/establishments/"+id;
+                 var reseturl = "/establishment/list#step-1";
 
-
+                    window.location.replace(reseturl);
                 if(setup == 1){
                        $(location).attr('href',url);
-                }else{
+                }else if(setup == 2){
 
-                    if(setup == 2){
-                         $('tbody#scratch_item_cart').show();
-
-                    }else{
-                         $('tbody#wizard_item_cart').show();
-                         $('#modal-title-setup').html('Organize from Wizard');
-                    }
 
                    $("#scratch-setup").modal("toggle");
 
@@ -707,7 +539,6 @@
                        data: {id: id,setup:setup, _token: token},
                        dataType: "text",
                        success: function (data) {
-
                         $('.section_product').html(data);
                        },
                        error: function (data){
@@ -716,7 +547,64 @@
 
                     });
 
-                }
+                }else{
+                     $("#wizard-setup").modal("toggle");
+
+                      $.ajax({
+                            url:urlgetWizardSetUpProductList+"/"+id,
+                            type: "POST",
+                            data: {id: id,setup:setup, _token: token},
+                            dataType: "text",
+                            success: function (data) {
+                             $('.w_section_product').html(data);
+                            },
+                            error: function (data){
+                            console.log(data);
+                            }
+
+                         });
+                 }
+
+
+         }
+
+         function openRateMe(rate){
+
+                            $('#rateMe'+rate).modal('toggle');
+         }
+
+         function RateMe(rate_id,rate){
+
+
+
+            var urlRateMeNow = "{{ URL::to('rate') }}";
+
+                    toastr.options.closeButton = true;
+                    toastr.options.positionClass = 'toast-bottom-center';
+                    toastr.options.showDuration = 1000;
+
+                    $.ajax({
+                        url: urlRateMeNow+"/"+rate_id,
+                        type: "POST",
+                        data: {
+                           rate:rate,
+                            user_id:user_id,
+                            _token: token
+                        },
+                        dataType: "json",
+                        success: function (data) {
+
+                            toastr['success']('Thank you for your time to rate us :)!');
+
+                        },
+                        error: function (data) {
+
+                            console.log(data);
+
+                            toastr['warning']('Fail to rate establishment!');
+                        }
+                    });
+
          }
 
          $(".filter-button").on("click",function(){
@@ -761,23 +649,19 @@
                    $("#prev-btn").addClass('disabled');
                     $('.checkout_from_scratch').hide();
                }else if(stepPosition === 'final'){
-/*
-                   $("#next-btn").addClass('disabled');
-                   getSummary({{ auth()->user()->id}});
-                   getUserinformation({{ auth()->user()->id  }});
-                   $('.checkout_from_scratch').show();*/
 
-                        var number_guests = $('#number_guests').val();
+
+                           var number_guests = $('#number_guests').val();
                               var delivery_address = $('#delivery_address').val();
                               var delivery_date = $('#delivery_date').val();
 
 
-                       if(number_guests != '' && delivery_address != '' && delivery_date != '' ){
+                    /*   if(number_guests != '' && delivery_address != '' && delivery_date != '' ){*/
                               $("#next-btn").addClass('disabled');
                               getSummary(user_id)/* 1st param user id, 2nd param is  organize_type   */;
                               getUserinformation(user_id);
                               $('.checkout_from_scratch').show();
-                       }else{
+                     /*  }else{
                             $('#smartwizard').smartWizard("prev");
 
                              toastr.options.closeButton = true;
@@ -785,7 +669,7 @@
                             toastr.options.showDuration = 1000;
                             toastr['warning']('All field are requireda!');
 
-                       }
+                       }*/
                }else{
 
                    $('.checkout_from_scratch').hide();
@@ -834,6 +718,8 @@
                     var number_guests = $('#number_guests').val();
                     var delivery_address = $('#delivery_address').val();
                     var delivery_date = $('#delivery_date').val();
+
+                      var confirmation_number = $('#confirmation_number').val();
                     var payment_type = $('input[name=payment_type]:checked').val();
                     var establishment = $('#establishment_id').val();
                     var id = $(this).val();
@@ -842,7 +728,7 @@
                     $.ajax({
                         url: urlCheckOutFromScratch+"/"+id,
                         type: "POST",
-                        data: {id: id,establishment:establishment,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,organize_from:organize_from, _token: token},
+                        data: {id: id,establishment:establishment,number_guests:number_guests,delivery_address:delivery_address,delivery_date:delivery_date,confirmation_number:confirmation_number,payment_type:payment_type,organize_from:organize_from, _token: token},
                         dataType: "json",
                         success: function (data) {
                              if(data){
@@ -866,6 +752,8 @@
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/scratch.js') }}"></script>
+    <script src="{{ asset('js/wizard.js') }}"></script>
+
 
 
 
