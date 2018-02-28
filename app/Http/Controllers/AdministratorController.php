@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdministratorController extends Controller
 {
@@ -65,7 +66,7 @@ class AdministratorController extends Controller
 
         return view('administrators.edit', compact('administrator'));
     }
-        
+
     public function update(Request $request, $id)
     {
         $administrator = User::find($id);
@@ -102,7 +103,7 @@ class AdministratorController extends Controller
         $administrator->delete();
 
         session()->flash('message', 'Administrator has been successfully deleted');
-        
+
         return redirect('/administrators');
     }
 }
