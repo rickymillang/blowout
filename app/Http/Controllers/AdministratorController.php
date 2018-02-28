@@ -34,7 +34,7 @@ class AdministratorController extends Controller
         ]);
 
         if (request()->hasFile('avatar')) {
-            $avatar = Storage::putFile('images', $request->file('avatar'));
+            $avatar = Storage::putFile('storage/images', $request->file('avatar'));
         } else {
             $avatar = "images/avatar.jpg";
         }
@@ -78,7 +78,7 @@ class AdministratorController extends Controller
         ]);
 
         if (request()->hasFile('avatar')) {
-            $avatar = Storage::putFile('images', $request->file('avatar'));
+            $avatar = Storage::putFile('storage/images', $request->file('avatar'));
             $administrator->avatar = $avatar;
         }
 
