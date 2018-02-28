@@ -59,7 +59,7 @@
            			<div class="col-md-6">
            				<input id="avatar" type="file" name="image">
 
-                        <img src="{{ asset($establishment->image) }}" alt="{{ $establishment->name }} Image" style="max-height:70px;max-width:400px;">
+                        <img src="{{ asset('storage/' . $establishment->image) }}" alt="{{ $establishment->name }} Image" style="max-height:70px;max-width:400px;">
            			</div>
            		</div>
 
