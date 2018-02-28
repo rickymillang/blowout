@@ -9,40 +9,82 @@
         </div>
 
         <div class="ibox-content">
-            <table class="table table-striped table-hover" id="table">
-                <thead>
-                    <tr>
-                        @role('establishment.admin')
+            @role('establishment.admin')
+                <h4>Establishment Orders</h4>
+                <table class="table table-striped table-hover" id="table1">
+                    <thead>
+                        <tr>
                             <th>Customer</th>
-                            <th>Items</th>
+                            <th>Products</th>
                             <th>Delivery Address</th>
                             <th>Delivery Date</th>
                             <th>Payment Type</th>
                             <th>Status</th>
                             <th>Action</th>
-                        @endrole
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($orders as $order)
-                        <tr>
-                            @role('establishment.admin')
-                                <td>{{ $order->users->name }}</td>
-                                <td>{{ $order->delivery_address }}</td>
-                                <td>{{ $order->delivery_date }}</td>
-                                <td>{{ $order->payment_types->name }}</td>
-                                <td>{{ $order->statuses->name }}</td>
-                                <td>
-                                    @if($order->status == 7 || $order->status == 1 || $order->satus == 3)
-                                        <a href="/orders/{{ $order->id }}/edit" class="btn btn-xs btn-warning">Edit Status</a>
-                                    @endif
-                                </td>
-                            @endrole
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @if($establishment_orders != null)
+                            @foreach($establishment_orders as $order)
+                                <tr>
+                                    <td>{{ $order->users->name }}</td>
+                                    <td>
+                                        <ul>
+                                            @foreach($order->product_orders as $products)
+                                                <li>{{ $products->getItem->name }}</li>
+                                            @endforeach
+                                        </ul>
+
+                                    </td>
+                                    <td>{{ $order->delivery_address }}</td>
+                                    <td>{{ $order->delivery_date }}</td>
+                                    <td>{{ $order->payment_types->name }}</td>
+                                    <td>{{ $order->statuses->name }}</td>
+                                    <td>
+                                        @if($order->status == 7 || $order->status == 1 || $order->satus == 3)
+                                            <a href="/orders/{{ $order->id }}/edit" class="btn btn-xs btn-warning">Edit Status</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            @endrole
+            @role('customer')
+                <hr>
+                <h4>Customer Orders</h4>
+                <table class="table table-striped table-hover" id="table1">
+                    <thead>
+                        <tr>
+                            <th>Establishment Name</th>
+                            <th>Delivery Address</th>
+                            <th>Delivery Date</th>
+                            <th>Payment Type</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if($customer_orders != null)
+                            @foreach($customer_orders as $order)
+                                <tr>
+                                    <td>{{ $order->establishment->name }}</td>
+                                    <td>{{ $order->delivery_address }}</td>
+                                    <td>{{ $order->delivery_date }}</td>
+                                    <td>{{ $order->payment_types->name }}</td>
+                                    <td>{{ $order->statuses->name }}</td>
+                                    <td>
+                                        @if($order->status == 7)
+                                            <a href="/orders/{{ $order->id }}/edit" class="btn btn-xs btn-warning">Edit Status</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            @endrole
         </div>
     </div>
 @endsection

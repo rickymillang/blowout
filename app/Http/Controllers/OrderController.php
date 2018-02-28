@@ -15,13 +15,16 @@ class OrderController extends Controller
 {
     public function index()
     {
+        $establishment_orders = null;
+        $customer_orders = null;
+
         if (auth()->user()->hasRole('establishment.admin')) {
-            $orders = Order::where('establishment_id', auth()->user()->establishment->id)->get();
+            $establishment_orders = Order::where('establishment_id', auth()->user()->establishment->id)->get();
         } else if (auth()->user()->hasRole('customer')) {
-            $orders = Order::where('user_id', auth()->user()->id)->get();
+            $customer_orders = Order::where('user', auth()->user()->id)->get();
         }
 
-    	return view('orders.index', compact('orders'));
+    	return view('orders.index', compact('establishment_orders', 'customer_orders'));
     }
 
     public function edit($id)
