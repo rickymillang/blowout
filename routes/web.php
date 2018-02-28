@@ -120,4 +120,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('profile', 'ProfileController@index');
     Route::get('profile/edit', 'ProfileController@update');
+
+    Route::get('orders', 'OrderController@index');
+    Route::get('orders/{id}/edit', 'OrderController@edit');
+    Route::patch('orders/{id}', 'OrderController@update');
 });
