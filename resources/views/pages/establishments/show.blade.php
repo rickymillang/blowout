@@ -77,6 +77,7 @@
             	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
             	<script src="{{ asset('js/jquery.min.js') }}"></script>
             	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
     <style type="text/css">
         .container {
           margin: 100px auto;
@@ -103,6 +104,31 @@
           }
         .total{
             padding:15px;
+        }
+
+        #reviewOutput{
+             border: 1px solid  #d1d1d1;
+             padding:10px;
+             margin-bottom: 10px;
+             background-color: #FFFFFF;
+              box-shadow: 0.5px 1px #8888886b;
+        }
+
+          .modal-rate-content{
+                    padding:20px;
+                    text-align: center;
+                    }
+
+
+        #reviewForm{
+            border: 1px solid  #d1d1d1;
+            padding:20px;
+            border-radius: 20px;
+        }
+
+        #reviewNameForm{
+            background-color: #0ec6c2;
+            color:white;
         }
 
         #btn-message {
@@ -335,36 +361,109 @@
                 </div>
                 @endforeach
             </div>
+
+            <div class="row">
+            <div class="col-sm-1">
+               <h3>Ratings </h3>
+            </div>
+             <div class="col-sm-1">
+
+                <h3><span id="rateYoDisplay{{ $establishment->id }}" style="margin-top: -5px;"></span></h3>
+
+
+
+            </div>
+            <div class="col-sm-3">
+
+                <span id="rateYo{{ $establishment->id }}" ></span>
+
+            </div>
+
+            <div class="col-sm-7">
+
+             @if(auth()->check())
+                 <button class="btn btn-sm btn-warning pull-right" style="font-size:14px;padding:5px 10px;" onclick="openRateMe({{ $establishment->id }})"><i class="fas fa-star"></i> Rate Us</button>
+                @endif
+            </div>
 		</div>
+
+		 <div id="rateMe{{ $establishment->id }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+
+                              <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                     <div class="col-md-10">
+                                                <div class="modal-rate-content">
+                                                     <img src="{{ asset('storage/'.$establishment->image) }}" alt="Image"  width="40%" height="50%" class="img-circle">
+                                                     <br/>
+                                                     <br/>
+                                                     <h4 class="est-name" style="margin-top: 5px;">{{ ucfirst($establishment->name) }}</h4>
+                                                    <h5>How was our services? </h5>
+                                                    <h5>Rate us now!</h5>
+
+                                                         <span id="rateMeNow{{ $establishment->id }}" ></span>
+                                                        <input type="hidden" id="rateMeNowVal{{ $establishment->id }}" value="0"/>
+                                                 </div>
+                                     </div>
+                                      <div class="col-md-1"></div>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+
+
+        <div class="row">
+        <div class="col-lg-12">
+
+            <button class="btn btn-primary btn-block" style="text-align: left">Reviews</button>
+            <br/>
+            @foreach($reviews as $r)
+            <div class="col-md-12" id="reviewOutput">
+                <div class="col-md-1" >
+                 <img src="{{ asset($r->getUser->avatar) }}" alt="" style="border-radius: 50%"  width="100%" height="100%"/>
+                </div>
+                <div class="col-md-11" >
+                   <h4 style="color: #09c6ab;">{{ $r->getUser->name }} <span style="font-size:12px;">{{ $r->getUser->email }}</span></h4>
+                   <p>{{ $r->reviews}}</p>
+                   <span class="pull-right" style="font-size:12px;font-style:italic">{{ $r->created_at->diffForhumans() }}</span>
+                </div>
+            </div>
+            @endforeach
+            <div id="reviewDisplay">
+
+            <form action="/reviews" method="POST">
+               {{ csrf_field() }}
+
+                    <div class="col-md-1" >
+                     <img src="{{ asset(auth()->user()->avatar) }}" alt="" style="border-radius: 50%"  width="100%" height="100%"/>
+                    </div>
+                    <div class="col-md-11" id="reviewForm">
+                        <div class="col-md-12">
+                         <h4 style="color: #09c6ab;">{{ ucfirst(auth()->user()->name)  }}</h4>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="review" id="review" cols="3" rows="2" class="form-control"></textarea>
+                            <input type="hidden" value="{{ auth()->user()->id }}" name="user_id"/>
+                            <input type="hidden" value="{{ $establishment->id }}" name="establishment_id"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+        </div>
+        </div>
 	</div>
 
 
-
-	<div id="gtco-subscribe">
-		<div class="gtco-container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-					<h2>Subscribe</h2>
-					<p>Be the first to know about the new templates.</p>
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2">
-					<form class="form-inline">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label for="email" class="sr-only">Email</label>
-								<input type="email" class="form-control" id="email" placeholder="Your Email">
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<button type="submit" class="btn btn-default btn-block">Subscribe</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	@include('include.footer-menu')
 	<!-- </div> -->
@@ -460,11 +559,75 @@
     });
 
 
+     $("#rateYo"+""+"{{ $establishment->id }}").rateYo({
+           rating: {{ $establishment->totalRatings()  }},
+           ratedFill: "#ffff00",
+            starWidth: "30px"
+         });
+
+         $("#rateMeNow"+""+"{{ $establishment->id }}").rateYo({
+                                            ratedFill: "#ffff00",
+                                            starWidth: "30px"
+                                         });
+
+          $("#rateMeNow"+""+"{{ $establishment->id }}").on("click",function(){
+                 var rateVal = $(this).rateYo("rating");
+
+                 RateMe("{{ $establishment->id }}",rateVal);
+
+                 $("#rateMe"+""+"{{ $establishment->id }}").modal("toggle");
+            });
+
+    $("#rateYoDisplay"+""+"{{ $establishment->id }}").html($("#rateYo"+""+"{{ $establishment->id }}").rateYo("rating"));
+
+
     $('input').iCheck({
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue',
         increaseArea: '20%' // optional
     });
+
+
+         function openRateMe(rate){
+
+                            $('#rateMe'+rate).modal('toggle');
+         }
+
+
+    function RateMe(rate_id,rate){
+
+
+
+                var urlRateMeNow = "{{ URL::to('rate') }}";
+
+                        toastr.options.closeButton = true;
+                        toastr.options.positionClass = 'toast-bottom-center';
+                        toastr.options.showDuration = 1000;
+
+                        $.ajax({
+                            url: urlRateMeNow+"/"+rate_id,
+                            type: "POST",
+                            data: {
+                               rate:rate,
+                                user_id:user_id,
+                                _token: token
+                            },
+                            dataType: "json",
+                            success: function (data) {
+
+                                toastr['success']('Thank you for your time to rate us :)!');
+
+                            },
+                            error: function (data) {
+
+                                console.log(data);
+
+                                toastr['warning']('Fail to rate establishment!');
+                            }
+                        });
+
+             }
+
 
     </script>
 

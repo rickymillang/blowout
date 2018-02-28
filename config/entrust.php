@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of Entrust,
  * a role & permission management solution for Laravel.
@@ -88,5 +87,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'role_foreign_key' => 'role_id',
+
 
 ];

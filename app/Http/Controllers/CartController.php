@@ -465,7 +465,7 @@ class CartController extends Controller
                 'p.price',
                 'p.image'
             )
-            ->join('products as p','p.id','=','c.item_id')
+            ->join('products as p','p.id','=','c.item_type')
             ->where('c.user',$id)
             ->where('c.organize_from',1)
             ->get();
@@ -528,6 +528,12 @@ class CartController extends Controller
 
 
         if($order){
+
+            $order->users->notify(new OrderReceived([
+                'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                'message' => 'Your order has been received'
+            ]));
+
             foreach($item as $i) {
                 $product_order = ProductOrder::create([
                     'order_id' => $order->id,
@@ -777,6 +783,17 @@ class CartController extends Controller
         $establishment = Establishment::find($request->establishment);
 
         if($order){
+
+            $order->users->notify(new OrderReceived([
+                'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                'message' => 'Your order has been received'
+            ]));
+
+            $order->users->notify(new OrderReceived([
+                'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                'message' => 'Your order has been received'
+            ]));
+
             foreach($item as $i) {
                 $product_order = ProductOrder::create([
                     'order_id' => $order->id,
