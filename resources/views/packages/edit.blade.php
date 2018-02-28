@@ -26,9 +26,16 @@
 				{{ method_field('PATCH') }}
 
 				<div class="form-group">
-					<label for="name" class="col-md-2 col-md-offset-2 control-label">Name <span class="text-danger">*</span></label>
+					<label for="name" class="col-md-2 col-md-offset-2 control-label">Name</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="name" value="{{ $package->name }}" disabled>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="description" class="col-md-2 col-md-offset-2 control-label">Description <span class="text-danger">*</span></label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="description" value="{{ $package->description }}">
 					</div>
 				</div>
 
@@ -54,6 +61,13 @@
 		            	</select>
 					</div>
 		        </div>
+
+				<div class="form-group">
+					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price <span class="text-danger">*</span></label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="price" value="{{ $package->price }}">
+					</div>
+				</div>
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-4">

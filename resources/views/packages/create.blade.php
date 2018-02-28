@@ -32,6 +32,13 @@
 				</div>
 
 				<div class="form-group">
+					<label for="description" class="col-md-2 col-md-offset-2 control-label">Description <span class="text-danger">*</span></label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="description">
+					</div>
+				</div>
+
+				<div class="form-group">
 		            <label for="product" class="col-md-2 col-md-offset-2 control-label">Product</label>
 					<div class="col-md-6">
 						<select id="product" class="form-control" name="product">
