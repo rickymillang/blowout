@@ -99,11 +99,12 @@ class AdministratorController extends Controller
         }
         $administrator = User::find($id);
 
-        if ($admin)
-        $administrator->delete();
+        if ($administrator) {
+            $administrator->delete();
 
-        session()->flash('message', 'Administrator has been successfully deleted');
+            session()->flash('message', 'Administrator has been successfully deleted');
 
-        return redirect('/administrators');
+            return redirect('/administrators');
+        }
     }
 }
