@@ -34,7 +34,7 @@
         					<td>{{ $establishment->address }}</td>
         					<td>{{ $establishment->establishment_type->name }}</td>
                             <td>
-                                <a href="{{ asset('storage/' . $establishment->business_permit) }}" class="btn btn-warning btn-sm" target="_blank"> Download Permit</a>
+                                <a href="{{ asset('storage/' . $establishment->business_permit) }}" class="btn btn-warning btn-xs" target="_blank"> Download Permit</a>
                                 <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#establishment{{ $establishment->id }}">Deactivate</button>
                                 <div id="establishment{{ $establishment->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
                                     <div class="modal-dialog modal-sm" role="document">
@@ -96,7 +96,7 @@
                             <td>{{ $unapproved_establishment->address }}</td>
                             <td>{{ $unapproved_establishment->establishment_type->name }}</td>
                             <td>
-                                <a href="{{ asset('storage/' . $unapproved_establishment->business_permit) }}" class="btn btn-warning btn-sm" target="_blank"> Download Permit</a>
+                                <a href="{{ asset('storage/' . $unapproved_establishment->business_permit) }}" class="btn btn-warning btn-xs" target="_blank"> Download Permit</a>
                                 <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#unapproved-establishment{{ $unapproved_establishment->id }}">Approve</button>
                                 <div id="unapproved-establishment{{ $unapproved_establishment->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-user">
                                     <div class="modal-dialog modal-sm" role="document">
