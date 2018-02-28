@@ -69,7 +69,7 @@
                     	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
                     	<script src="{{ asset('js/jquery.min.js') }}"></script>
                     	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-            <style type="text/css">
+                        <style type="text/css">
                 .container {
                   margin: 100px auto;
                   text-align: center;

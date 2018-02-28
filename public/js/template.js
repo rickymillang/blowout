@@ -1,5 +1,7 @@
 $(document).ready(function() {
-
+    $(function () {
+        $('#datetimepicker2').datetimepicker();
+    });
     $("#smartwizard_template").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
         //alert("You are on step "+stepNumber+" now");
         if (stepPosition === 'first') {
@@ -14,12 +16,12 @@ $(document).ready(function() {
             var template_delivery_date = $('#template_delivery_date').val();
 
 
-            if(template_number_guests != '' && template_delivery_address != '' && template_delivery_date != '' ){
+            if (template_number_guests != '' && template_delivery_address != '' && template_delivery_date != '') {
                 $("#next-btn").addClass('disabled');
                 getTemplateSummary(user_id);
                 getTemplateUserinformation(user_id);
                 $('.checkout_from_template').show();
-            }else{
+            } else {
                 $('#smartwizard_template').smartWizard("prev");
                 $('.checkout_from_template').hide();
                 toastr.options.closeButton = true;
@@ -41,16 +43,17 @@ $(document).ready(function() {
     });
 
 
-    var btnFinish = $('<button type="button" class="btn btn-success checkout_from_template" disabled value="'+user_id+'">Checkout</button>');
+    var btnFinish = $('<button type="button" class="btn btn-success checkout_from_template" disabled value="' + user_id + '">Checkout</button>');
     var btnCancel = $(' <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times-circle"></span> Cancel </button>');
 
 
     $('#smartwizard_template').smartWizard({
         selected: 0,
-        theme:  'arrows',
-        transitionEffect:'fade',
+        theme: 'arrows',
+        transitionEffect: 'fade',
         showStepURLhash: true,
-        toolbarSettings: {toolbarPosition: 'bottom',
+        toolbarSettings: {
+            toolbarPosition: 'bottom',
             toolbarExtraButtons: [btnFinish, btnCancel]
         }
     });
@@ -73,22 +76,24 @@ $(document).ready(function() {
     $(".sw-prev-btn").hide();
 
 
-    $("#terms_and_condition_checkout_template").on('ifUnchecked', function(event) {
+    $("#terms_and_condition_checkout_template").on('ifUnchecked', function (event) {
 
         //Uncheck all checkboxes
 
-        $('.checkout_from_template').attr('disabled','disabled');
+        $('.checkout_from_template').attr('disabled', 'disabled');
     });
     //When checking the checkbox
-    $("#terms_and_condition_checkout_template").on('ifChecked', function(event) {
+    $("#terms_and_condition_checkout_template").on('ifChecked', function (event) {
         //Check all checkoxes
         $('.checkout_from_template').removeAttr('disabled');
     });
 
-    $('.checkout_from_template').on('click',function(){
+    $('.checkout_from_template').on('click', function () {
         var template_number_guests = $('#template_template_number_guests').val();
         var template_delivery_address = $('#template_delivery_address').val();
         var template_delivery_date = $('#template_delivery_date').val();
+
+        var template_confirmation_number = $('#template_confirmation_number').val();
         var template_payment_type = $('input[name=template_payment_type]:checked').val();
         var establishment = $('#template_establishment_id').val();
         var id = $(this).val();
@@ -99,18 +104,42 @@ $(document).ready(function() {
         toastr.options.showDuration = 1000;
 
         $.ajax({
-            url: urlCheckOutFromTemplate+"/"+id,
+            url: urlCheckOutFromTemplate + "/" + id,
             type: "POST",
-            data: {id: id,establishment:establishment,template_number_guests:template_number_guests,template_delivery_address:template_delivery_address,template_delivery_date:template_delivery_date,template_payment_type:template_payment_type,organize_from:organize_from, _token: token},
+            data: {
+                id: id,
+                establishment: establishment,
+                template_confirmation_number: template_confirmation_number,
+                template_number_guests: template_number_guests,
+                template_delivery_address: template_delivery_address,
+                template_delivery_date: template_delivery_date,
+                template_payment_type: template_payment_type,
+                organize_from: organize_from,
+                _token: token
+            },
             dataType: "json",
             success: function (data) {
-                if(data){
+                if (data) {
 
                     toastr['success']('Your Order has been processed,just wait for confirmation!');
 
-                    $('#scratch-setup').modal('toggle');
+                    $('#cart').modal('toggle');
+                    $('#template_template_number_guests').val("");
+                    $('#template_delivery_address').val("");
+                    $('#template_delivery_date').val("");
+                    $('.totalAmountDisplay').html(0);
+                    $('.totalAmount').val(0);
+                    $('.totalQuantityDisplay').html(0);
+                    $('.totalQuantity').val(0);
+                    $('.cartItemTotal').val(0);
+                    $('.cartItemTotalBubble').html(0);
+                    $('#template_confirmation_number').val("");
+                    $('.itemCart').removeAttr('data-toggle');
+                    $('#table_cart>tbody').empty();
+                    $('#step-1').click();
+                    window.location.replace(reseturl);
                 }
-                else{
+                else {
                     toastr['warning']('Fail to processed order!');
                     console.log(data);
                 }
@@ -119,6 +148,40 @@ $(document).ready(function() {
                 toastr['warning']('Fail to processed order!');
                 console.log(data);
             }
+        });
+    });
+
+
+    $("#send-message").on("click", function () {
+
+        var message = $('#message').val();
+
+        toastr.options.closeButton = true;
+        toastr.options.positionClass = 'toast-bottom-center';
+        toastr.options.showDuration = 1000;
+
+        $.ajax({
+            url: urlSendMessage,
+            type: "POST",
+            data: {
+                message:message,
+                user_id:user_id,
+                owner_id: owner_id,
+                _token: token
+            },
+            dataType: "json",
+            success: function (data) {
+
+                toastr['success']('Message successfully send!');
+                $('#message-modal').modal('toggle');
+            },
+            error: function (data) {
+
+                console.log(data);
+
+                toastr['warning']('Fail to message!');
+            }
+
         });
     });
 });
@@ -151,17 +214,18 @@ function getTemplateUserinformation(id){
     var template_number_guests = $('#template_number_guests').val();
     var template_delivery_address = $('#template_delivery_address').val();
     var template_delivery_date = $('#template_delivery_date').val();
+    var template_confirmation_number = $('#template_confirmation_number').val();
     var template_payment_type = $('input[name=template_payment_type]:checked').val();
     var organize_from = 1;
     $.ajax({
         url: urlgetTemplateUserinformation+"/"+id,
         type: "POST",
-        data: {id: id,template_delivery_address:template_delivery_address,template_delivery_date:template_delivery_date,template_payment_type:template_payment_type,template_number_guests:template_number_guests,organize_from:organize_from, _token: token},
+        data: {id: id,template_confirmation_number:template_confirmation_number,template_delivery_address:template_delivery_address,template_delivery_date:template_delivery_date,template_payment_type:template_payment_type,template_number_guests:template_number_guests,organize_from:organize_from, _token: token},
         dataType: "json",
         success: function (data) {
             console.log(data.cart);
             $('#template_di_name').text(data.user.name);
-            $('#template_di_contact').text(data.user.contact);
+            $('#template_di_contact').text(data.request.template_confirmation_number);
             $('#template_di_address').text(data.request.template_delivery_address);
             $('#template_di_date').text(data.delivery_date);
             $('#template_pm_payment_method').text(data.payment_type);

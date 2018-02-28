@@ -33,4 +33,16 @@ class Establishment extends Model
     public function services(){
         return $this->hasMany('App\Service','establishment_id','id');
     }
+
+    public function totalRatings(){
+
+
+        $sum = ($this->ratings()->groupBy('establishment_id')->sum('rating') / $this->ratings()->count())/5;
+
+        return $sum;
+    }
+
+    public function ratings(){
+        return $this->hasMany('App\Rating','establishment_id','id');
+    }
 }
