@@ -118,7 +118,7 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $requestC
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -515,7 +515,7 @@ class CartController extends Controller
             'payment_type' => $request->template_payment_type,
             'confirmation_number' => $request->template_confirmation_number,
             'delivery_date' => Carbon::parse($request->template_delivery_date)->format('Y-m-d H:m:i'),
-            'delivery_address' => $request->template_payment_type,
+            'delivery_address' => $request->template_delivery_address,
             'establishment_id' => $request->establishment,
             'status' => 7
         ]);
@@ -547,7 +547,7 @@ class CartController extends Controller
             $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
             $result = true;
 
-            /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
+             Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');
 
 
             return json_encode($result);
@@ -807,7 +807,7 @@ class CartController extends Controller
             $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
             $result = true;
 
-            /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
+             Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');
 
             return json_encode($result);
         }else{

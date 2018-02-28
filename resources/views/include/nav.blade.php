@@ -209,7 +209,7 @@
                                                           <td id="template_di_contact"></td>
                                                        </tr>
                                                         <tr>
-                                                            <td>No. of Quests</td>
+                                                            <td>No. of Guests</td>
                                                             <td width="20%" align="center">:</td>
                                                             <td id="template_no_guests"></td>
                                                          </tr>

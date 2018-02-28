@@ -9,6 +9,7 @@ use App\Notifications\OrderDelivering;
 use App\Order;
 use App\OrderStatus;
 use App\ProductOrder;
+use Semaphore\Semaphore;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -81,8 +82,7 @@ class OrderController extends Controller
     				    'message' => 'Your order is now being delivered'
     				]));
     			}
-
-    			// Semaphore::send($order->users->contact, $message);
+                Semaphore::send($order->confirmation_number, $message);
 
     			session()->flash('message', 'You have successfully changed the order status');
 
