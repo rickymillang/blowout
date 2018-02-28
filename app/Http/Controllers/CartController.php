@@ -453,6 +453,8 @@ class CartController extends Controller
      * */
 
     public function getCartTemplateSummary(Request $request,$id){
+
+
         $cart = DB::table('cart as c')
             ->select('c.item_id',
                 'c.item_type',

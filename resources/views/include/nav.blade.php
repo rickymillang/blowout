@@ -23,6 +23,7 @@
 						<li><a href="/contact-us">Contact Us</a></li>
 						@if(!auth()->check())
 						<li><a href="/login">Login</a></li>
+						<li><a href="/register">Register</a></li>
 						@endif
 						<li class="notify-container"> <a href="javascript:void(0);" class="itemCart" @if($cart_template_total_quantity != 0) data-toggle="modal" data-target="#cart" @endif>
                                 <input type="hidden" class="cartItemTotal" value="{{ $cart_template_total_quantity }}"/>
