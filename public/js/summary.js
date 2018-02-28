@@ -25,18 +25,19 @@
         var number_guests = $('#number_guests').val();
         var delivery_address = $('#delivery_address').val();
         var delivery_date = $('#delivery_date').val();
+        var confirmation_number = $('#confirmation_number').val();
         var payment_type = $('input[name=payment_type]:checked').val();
         var organize_from = 2;
 
         $.ajax({
             url: urlgetUserinformation+"/"+id,
             type: "POST",
-            data: {id: id,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,number_guests:number_guests,organize_from:organize_from, _token: token},
+            data: {id: id,delivery_address:delivery_address,delivery_date:delivery_date,confirmation_number:confirmation_number,payment_type:payment_type,number_guests:number_guests,organize_from:organize_from, _token: token},
             dataType: "json",
             success: function (data) {
                 console.log(data.cart);
                 $('#di_name').text(data.user.name);
-                $('#di_contact').text(data.user.contact);
+                $('#di_contact').text(data.request.confirmation_number);
                 $('#di_address').text(data.request.delivery_address);
                 $('#di_date').text(data.delivery_date);
                 $('#pm_payment_method').text(data.payment_type);

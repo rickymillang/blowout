@@ -7,11 +7,13 @@
     $('.itemCart').on('click',function(){
        var cartVal = $('.cartItemTotal').val();
 
+
         if(cartVal == 0){
             toastr.options.closeButton = true;
             toastr.options.positionClass = 'toast-bottom-center';
             toastr.options.showDuration = 1000;
             toastr['info']('Your cart is empty!');
+            window.location.replace(reseturl);
         }
     });
 
@@ -39,7 +41,7 @@
               $('#item'+id).remove();
 
               cartTotal = cartItemTotal - data.quantity;
-              var new_total_amount = $.number(parseInt($('.totalAmount').val()) - parseInt(data.amount),2);
+              var new_total_amount =parseInt($('.totalAmount').val()) - parseInt(data.amount);
 
               var new_quantity =  parseInt($('.totalQuantity').val()) -  parseInt(data.quantity);
               $('.cartItemTotalBubble').text(cartTotal);
@@ -74,19 +76,22 @@
         toastr['info']('You must login first!');
     }
     function addCart(id,item_type){
+
         var quantity = $('#quantity'+id).val();
         if(quantity > 0 || item_type != 1) {
             $.ajax({
                 url: urlAddCart,
                 type: "POST",
-                data: {id: id, item_type: item_type, quantity: quantity, _token: token},
+                data: {id: id, item_type: item_type, quantity: quantity, establishment_id:establishment_id,_token: token},
                 dataType: "json",
                 success: function (data) {
-                    console.log(data.cart);
+                    console.log(data);
                     var totalCartItem = $('.cartItemTotal').val();
                     var new_total_amount = $.number(parseInt($('.totalAmount').val()) + parseInt(data.add_amount),2);
                     var new_quantity =  parseInt($('.totalQuantity').val()) +  parseInt(quantity);
-                    $('#prod'+id).modal('toggle');
+                    if(item_type == 1) {
+                        $('#prod' + id).modal('toggle');
+                    }
 
                     $('.totalAmountDisplay').html('Php '+new_total_amount);
                     $('.totalAmount').val(parseInt($('.totalAmount').val()) + parseInt(data.add_amount));

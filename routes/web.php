@@ -34,11 +34,19 @@ Route::post('/cart/checkout-from-scratch/{id}','CartController@CheckoutFromScrat
 Route::post('/cart/get-cart-template-summary/{id}','CartController@getCartTemplateSummary');
 Route::post('/cart/get-user-template-information/{id}','CartController@getTemplateUserInformation');
 Route::post('/cart/get-checkout-from-template/{id}','CartController@getCheckoutFromTemplate');
+Route::post('/cart/get-wizard-setup-product-list/{id}','CartController@getWizardSetupProductList');
+Route::post('/cart/get-wizard-product-details/{id}','CartController@getWizardProductDetails');
+Route::post('/cart/delete-wizard-cart-item/{id}','CartController@getDeleteWizardCartItem');
+Route::post('/cart/get-cart-wizard-summary/{id}','CartController@getCartWizardSummary');
+Route::post('/cart/get-wizard-user-information/{id}','CartController@getWizardUserInformation');
+Route::post('/cart/checkout-from-wizard/{id}','CartController@CheckoutFromWizard');
 
+Route::post('rate/{id}','RatingController@store');
 
 Route::get('messages', 'MessageController@index');
 Route::get('messages/{id}/show', 'MessageController@show');
 Route::post('messages/{id}', 'MessageController@store');
+Route::post('message/send-message','MessageController@SendMessage');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -62,6 +70,7 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
 
     Route::resource('packages', 'PackageController');
 
+
     Route::get('ratings', 'RatingController@index');
 
     Route::get('establishment/edit', 'EstablishmentController@edit');
@@ -72,6 +81,8 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
 
     Route::get('payments', 'PaymentController@index');
 });
+
+
 
 Route::group(['middleware', ['auth', 'role:superadmin']], function() {
     Route::resource('establishment_types', 'EstablishmentTypeController');

@@ -39,6 +39,10 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+       /* if(auth()->user()->hasRole('superadmin') != null || auth()->user()->hasRole('establishment.admin') != null){
+            $redirectTo = '/dashboard';
+        }*/
     }
 
     /**

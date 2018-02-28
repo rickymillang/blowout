@@ -18,6 +18,7 @@ class CreateOrderTable extends Migration
             $table->integer('user')->unsigned();
             $table->integer('establishment_id')->unsigned();
             $table->integer('payment_type')->unsigned();
+            $table->integer('confirmation_number');
             $table->string('delivery_address');
             $table->dateTime('delivery_date');
             $table->integer('status')->unsigned();

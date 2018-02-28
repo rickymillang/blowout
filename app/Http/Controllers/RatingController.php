@@ -27,4 +27,22 @@ class RatingController extends Controller
 
     	return view('ratings.index', compact('ratings', 'sum_ratings', 'average_rating', 'total_ratings_count', 'one_star_ratings', 'two_star_ratings', 'three_star_ratings', 'four_star_ratings', 'five_star_ratings'));
     }
+
+    public function store(Request $request,$id){
+
+        $result = false;
+
+        $rating = Rating::create([
+                    'user_id' => (int) $request->user_id,
+                    'establishment_id' => $id,
+                    'rating' => (double) $request->rate
+                ]);
+
+        if($rating){
+            $result = true;
+        }
+
+        return json_encode($request->all());
+
+    }
 }
