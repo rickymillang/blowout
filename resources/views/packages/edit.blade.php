@@ -21,8 +21,9 @@
 
 		    <hr>
 
-		    <form class="form-horizontal" method="POST" action="/establishment_types">
+		    <form class="form-horizontal" method="POST" action="/packages/{{ $package->id }}/">
 				{{ csrf_field() }}
+				{{ method_field('PATCH') }}
 
 				<div class="form-group">
 					<label for="name" class="col-md-2 col-md-offset-2 control-label">Name <span class="text-danger">*</span></label>
