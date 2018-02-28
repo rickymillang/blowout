@@ -38,7 +38,10 @@ class Establishment extends Model
 
         $sum = 0.00;
 
-        $sum = $this->ratings()->groupBy('establishment_id')->sum('rating') / $this->ratings()->count();
+        if($this->ratings()->count()) {
+
+            $sum = $this->ratings()->groupBy('establishment_id')->sum('rating') / $this->ratings()->count();
+        }
 
         return $sum;
     }

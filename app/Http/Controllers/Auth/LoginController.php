@@ -40,9 +40,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
 
-        if(auth()->user()->hasRole('superadmin') != null || auth()->user()->hasRole('establishment.admin') != null){
+       /* if(auth()->user()->hasRole('superadmin') != null || auth()->user()->hasRole('establishment.admin') != null){
             $redirectTo = '/dashboard';
-        }
+        }*/
     }
 
     /**
