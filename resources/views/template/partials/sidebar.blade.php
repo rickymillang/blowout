@@ -137,6 +137,13 @@
             @endrole
 
             @role('customer', 'establishment.admin')
+                <li {{ url()->current() == url('calendar') ? 'class=active' : '' }}>
+                    <a href="/calendar">
+                        <i class="fa fa-calendar"></i>
+
+                        <span class="nav-label">Calendar</span>
+                    </a>
+                </li>
                 <li {{ url()->current() == url('payments') ? 'class=active' : '' }}>
                     <a href="#">
                         <i class="fa fa-credit-card"></i>

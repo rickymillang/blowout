@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Establishment;
 use App\EstablishmentType;
+use App\Order;
 use App\Package;
 use App\Product;
 use App\ProductType;
@@ -46,8 +47,9 @@ class HomeController extends Controller
             } else {
                 $rating = 0;
             }
+            $orders_count = Order::where('establishment_id', auth()->user()->establishment->id)->count();
 
-            return view('home', compact('establishment', 'product_types_count', 'products_count', 'services_count', 'packages_count', 'rating'));
+            return view('home', compact('establishment', 'product_types_count', 'products_count', 'services_count', 'packages_count', 'rating', 'orders_count'));
         } else if (auth()->user()->hasRole('superadmin')) {
             $establishment_types_count = EstablishmentType::count();
 
