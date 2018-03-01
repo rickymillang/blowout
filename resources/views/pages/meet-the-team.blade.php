@@ -177,22 +177,24 @@
 	<!-- <div class="page-inner"> -->
 	@include('include.nav')
 
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_6.jpg)">
-		<div class="overlay"></div>
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12 col-md-offset-0 text-center">
-					<div class="row row-mt-15em">
-						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>Meet the Awesome team!</h1>
-						</div>
+		<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url('{{asset('images/banner.png')}}')">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-0 text-left">
 
-					</div>
+          <div class="row row-mt-15em">
 
-				</div>
-			</div>
-		</div>
-	</header>
+            <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+              <h1><center>Meet The Awesome Team</center></h1>
+
+            </div>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 	<div class="gtco-section">
 		<div class="gtco-container">

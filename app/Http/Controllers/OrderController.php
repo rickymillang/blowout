@@ -92,7 +92,7 @@ class OrderController extends Controller
     				]));
     			}
 
-    			// Semaphore::send($order->confirmation_number, $message);
+    			Semaphore::send($order->confirmation_number, $message);
 
     			session()->flash('message', 'You have successfully changed the order status');
 

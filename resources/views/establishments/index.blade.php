@@ -11,6 +11,7 @@
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Owner Name</th>
                         <th>Description</th>
@@ -74,7 +75,7 @@
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
-                        <!--<th>Image</th>-->
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Phone</th>
