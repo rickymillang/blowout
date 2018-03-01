@@ -121,5 +121,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/reports', 'ReportController@index');
 
     Route::get('profile', 'ProfileController@index');
-    Route::get('profile/edit', 'ProfileController@update');
+    Route::get('profile/edit', 'ProfileController@edit');
 });
