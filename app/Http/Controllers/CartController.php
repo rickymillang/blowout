@@ -13,6 +13,7 @@ use App\ProductOrder;
 use App\Order;
 use App\PaymentMethod;
 use Carbon\Carbon;
+use App\Notifications\OrderReceived;
 use Semaphore;
 use Illuminate\Support\Facades\DB;
 
@@ -117,7 +118,7 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $requestC
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -465,7 +466,7 @@ class CartController extends Controller
                 'p.price',
                 'p.image'
             )
-            ->join('products as p','p.id','=','c.item_id')
+            ->join('products as p','p.id','=','c.item_type')
             ->where('c.user',$id)
             ->where('c.organize_from',1)
             ->get();
@@ -514,7 +515,7 @@ class CartController extends Controller
             'payment_type' => $request->template_payment_type,
             'confirmation_number' => $request->template_confirmation_number,
             'delivery_date' => Carbon::parse($request->template_delivery_date)->format('Y-m-d H:m:i'),
-            'delivery_address' => $request->template_payment_type,
+            'delivery_address' => $request->template_delivery_address,
             'establishment_id' => $request->establishment,
             'status' => 7
         ]);
@@ -528,6 +529,12 @@ class CartController extends Controller
 
 
         if($order){
+
+            $order->users->notify(new OrderReceived([
+                'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                'message' => 'Your order has been received'
+            ]));
+
             foreach($item as $i) {
                 $product_order = ProductOrder::create([
                     'order_id' => $order->id,
@@ -540,7 +547,7 @@ class CartController extends Controller
             $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
             $result = true;
 
-            /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
+             Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');
 
 
             return json_encode($result);
@@ -777,6 +784,17 @@ class CartController extends Controller
         $establishment = Establishment::find($request->establishment);
 
         if($order){
+
+            $order->users->notify(new OrderReceived([
+                'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                'message' => 'Your order has been received'
+            ]));
+
+            $order->users->notify(new OrderReceived([
+                'order' => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
+                'message' => 'Your order has been received'
+            ]));
+
             foreach($item as $i) {
                 $product_order = ProductOrder::create([
                     'order_id' => $order->id,
@@ -789,7 +807,7 @@ class CartController extends Controller
             $delete_item = Cart::where('user',$id)->where('organize_from',$request->organize_from)->delete();
             $result = true;
 
-            /* Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');*/
+             Semaphore::send($establishment->phone, 'You have new order from, ' . ucfirst($user->name) . ' check your profile now!');
 
             return json_encode($result);
         }else{

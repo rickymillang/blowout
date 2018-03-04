@@ -3,7 +3,7 @@
 
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a href="index.html"><img src="{{ asset('images/blowout.png') }}" width="40%" height="40%" alt=""/> <em>.</em></a></div>
+					<div id="gtco-logo"><a href="/"><img src="{{ asset('images/blowout.png') }}" width="40%" height="40%" alt=""/> <em>.</em></a></div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
@@ -209,7 +209,7 @@
                                                           <td id="template_di_contact"></td>
                                                        </tr>
                                                         <tr>
-                                                            <td>No. of Quests</td>
+                                                            <td>No. of Guests</td>
                                                             <td width="20%" align="center">:</td>
                                                             <td id="template_no_guests"></td>
                                                          </tr>

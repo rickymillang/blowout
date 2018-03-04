@@ -294,8 +294,9 @@
 
                            </div>
                            <div class="col-sm-4"><div id="rateYo{{ $est->id }}" ></div></div>
+
                            @if(auth()->check())
-                                                   <div class="col-sm-6"><button class="btn btn-sm btn-warning pull-left" style="font-size:10px;padding:5px 10px" onclick="openRateMe({{ $est->id }})">Rate Us</button></div>
+                             <div class="col-sm-6"><button class="btn btn-sm btn-warning pull-left" style="font-size:10px;padding:5px 10px" onclick="openRateMe({{ $est->id }})">Rate Us</button></div>
                             @endif
                           </div>
                           <div class="row">

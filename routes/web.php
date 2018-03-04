@@ -43,6 +43,8 @@ Route::post('/cart/checkout-from-wizard/{id}','CartController@CheckoutFromWizard
 
 Route::post('rate/{id}','RatingController@store');
 
+Route::resource('reviews','ReviewController');
+
 Route::get('messages', 'MessageController@index');
 Route::get('messages/{id}/show', 'MessageController@show');
 Route::post('messages/{id}', 'MessageController@store');
@@ -114,11 +116,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/reports', 'ReportController@index');
 
     Route::get('profile', 'ProfileController@index');
+
     Route::get('profile/edit', 'ProfileController@update');
 
     Route::get('orders', 'OrderController@index');
     Route::get('orders/{id}/edit', 'OrderController@edit');
     Route::patch('orders/{id}', 'OrderController@update');
+
 });
 
 Route::get('establishment/register', 'Auth\EstablishmentRegisterController@index');

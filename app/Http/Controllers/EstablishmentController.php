@@ -11,6 +11,7 @@ use App\Product;
 use App\RoleUser;
 use App\Service;
 use App\User;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Semaphore;
@@ -28,6 +29,7 @@ class EstablishmentController extends Controller
             $this->establishments = Establishment::where('status', 1)->get();
             $this->unapproved_establishments = Establishment::where('status', 0)->get();
             $this->admnistrators = User::withRole('superadmin')->get();
+
 
             return $next($request);
         });
@@ -80,6 +82,7 @@ class EstablishmentController extends Controller
      */
     public function show($establishment)
     {
+        $reviews = Review::where('establishment_id',$establishment)->get();
        $establishment = Establishment::find($establishment);
        $products =  Product::where('establishment_id',$establishment->id)->get();
        $services = Service::where('establishment_id',$establishment->id)->get();
@@ -89,7 +92,8 @@ class EstablishmentController extends Controller
                     ->with('establishment',$establishment)
                     ->with('products',$products)
                     ->with('services',$services)
-                    ->with('packages',$packages);
+                    ->with('packages',$packages)
+                    ->with('reviews',$reviews);
     }
 
     /**

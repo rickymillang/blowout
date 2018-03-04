@@ -49,4 +49,8 @@ class Establishment extends Model
     public function ratings(){
         return $this->hasMany('App\Rating','establishment_id','id');
     }
+
+    public function getReviews(){
+        return $this->hasMany('App\Review','establishment_id','id');
+    }
 }

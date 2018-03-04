@@ -22,6 +22,7 @@ $(document).ready(function() {
                 getTemplateUserinformation(user_id);
                 $('.checkout_from_template').show();
             } else {
+
                 $('#smartwizard_template').smartWizard("prev");
                 $('.checkout_from_template').hide();
                 toastr.options.closeButton = true;
@@ -33,10 +34,22 @@ $(document).ready(function() {
 
 
         } else {
+            var amt = $('.totalAmount').val();
+
+            if(amt != ''){
+                $("#prev-btn").removeClass('disabled');
+                $("#next-btn").removeClass('disabled');
+            }else{
+                $('#smartwizard_template').smartWizard("prev");
+                $('.checkout_from_template').hide();
+                toastr.options.closeButton = true;
+                toastr.options.positionClass = 'toast-bottom-center';
+                toastr.options.showDuration = 1000;
+                toastr['warning']('You have no item to checkout!');
+
+            }
 
 
-            $("#prev-btn").removeClass('disabled');
-            $("#next-btn").removeClass('disabled');
         }
 
 
