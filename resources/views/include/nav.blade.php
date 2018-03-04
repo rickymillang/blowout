@@ -9,22 +9,19 @@
 					<ul>
 					    <li><a href="/">Home</a></li>
 						<li><a href="/establishment/list">Establishment</a></li>
-						{{--<li class="has-dropdown">
-							<a href="#">Travel</a>
-							<ul class="dropdown">
-								<li><a href="#">Europe</a></li>
-								<li><a href="#">Asia</a></li>
-								<li><a href="#">America</a></li>
-								<li><a href="#">Canada</a></li>
-							</ul>
-						</li>--}}
+
 						<li><a href="/about-us">About Us</a></li>
 						<li><a href="/meet-the-team">Meet The Team</a></li>
 						<li><a href="/contact-us">Contact Us</a></li>
 						@if(!auth()->check())
 						<li><a href="/login">Login</a></li>
-						<li><a href="/register">Register</a></li>
-            <li><a href="/establishment/register">Register Establishment</a></li>
+            <li class="has-dropdown">
+              <a href="#">Register</a>
+              <ul class="dropdown">
+                <li><a href="/register">Customer</a></li>
+                <li><a href="/establishment/register">Establishment</a></li>
+              </ul>
+            </li>
 						@endif
 						<li class="notify-container"> <a href="javascript:void(0);" class="itemCart" @if($cart_template_total_quantity != 0) data-toggle="modal" data-target="#cart" @endif>
                                 <input type="hidden" class="cartItemTotal" value="{{ $cart_template_total_quantity }}"/>

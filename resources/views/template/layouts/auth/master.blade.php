@@ -29,7 +29,7 @@
                 <h1 class="logo-name">BO</h1>
             </div>
 
-            <h3>Welcome to BlowOut 🎉</h3>
+            <h3>Welcome to <a href="/">BlowOut</a> 🎉</h3>
 
             @include('template.partials.alerts')
 
