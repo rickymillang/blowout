@@ -50,6 +50,15 @@
             </li>
 
             @role('establishment.admin')
+                @if(auth()->user()->establishment->status == 1)
+                <li {{ url()->current() == url('calendar') ? 'class=active' : '' }}>
+                    <a href="/calendar">
+                        <i class="fa fa-calendar"></i>
+
+                        <span class="nav-label">Calendar</span>
+                    </a>
+                </li>
+
                 <li {{ url()->current() == url('product_types') || url()->current() == url('product_types/create') ? 'class=active' : '' }}>
                     <a href="/product_types">
                         <i class="fa fa-tags"></i>
@@ -92,6 +101,7 @@
                         <span class="nav-label">Ratings</span>
                     </a>
                 </li>
+                @endif
             @endrole
 
             @role('superadmin')
@@ -137,13 +147,6 @@
             @endrole
 
             @role('customer', 'establishment.admin')
-                <li {{ url()->current() == url('calendar') ? 'class=active' : '' }}>
-                    <a href="/calendar">
-                        <i class="fa fa-calendar"></i>
-
-                        <span class="nav-label">Calendar</span>
-                    </a>
-                </li>
                 <li {{ url()->current() == url('payments') ? 'class=active' : '' }}>
                     <a href="#">
                         <i class="fa fa-credit-card"></i>
@@ -188,18 +191,6 @@
 
                 </a>
             </li>
-
-            @if(!auth()->user()->hasRole('establishment.admin') && !auth()->user()->hasRole('superadmin'))
-                @if($establishment = \App\Establishment::where('user_id', auth()->user()->id)->first())
-                    <li class="special_link">
-                        <a href="/#" class="disabled"><i class="fa fa-plus"></i> <span class="nav-label">Establishment Pending</span></a>
-                    </li>
-                @else
-                    <li class="special_link">
-                        <a href="/establishments/create"><i class="fa fa-plus"></i> <span class="nav-label">Register Establishment</span></a>
-                    </li>
-                @endif
-            @endif
         </ul>
     </div>
 </nav>

@@ -72,7 +72,6 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
 
     Route::resource('packages', 'PackageController');
 
-
     Route::get('ratings', 'RatingController@index');
 
     Route::get('establishment/edit', 'EstablishmentController@edit');
@@ -125,3 +124,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::patch('orders/{id}', 'OrderController@update');
 
 });
+
+Route::get('establishment/register', 'Auth\EstablishmentRegisterController@index');
+Route::post('establishment/register', 'Auth\EstablishmentRegisterController@store');

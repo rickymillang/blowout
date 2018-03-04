@@ -20,4 +20,10 @@
             @endforeach
         </ul>
     </div>
+@elseif (auth()->user())
+    @if (auth()->user()->hasRole('establishment.admin') && auth()->user()->establishment->status == 0)
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <strong>Sorry!</strong> Your account is not yet active
+    </div>
+    @endif
 @endif
