@@ -101,6 +101,13 @@
                         <span class="nav-label">Ratings</span>
                     </a>
                 </li>
+                <li {{ url()->current() == url('customers') ? 'class=active' : '' }}>
+                    <a href="/customers">
+                        <i class="fa fa-group"></i>
+
+                        <span class="nav-label">Customers</span>
+                    </a>
+                </li>
                 @endif
             @endrole
 
@@ -129,13 +136,7 @@
                     </a>
                 </li>
 
-                <li {{ url()->current() == url('customers') ? 'class=active' : '' }}>
-                    <a href="/customers">
-                        <i class="fa fa-group"></i>
 
-                        <span class="nav-label">Customers</span>
-                    </a>
-                </li>
 
                 <li {{ url()->current() == url('administrators') || url()->current() == url('administrators/create') ? 'class=active' : '' }}>
                     <a href="/administrators">
