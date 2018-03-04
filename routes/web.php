@@ -78,6 +78,11 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
 
     Route::get('payments', 'PaymentController@index');
 
+    Route::get('questions', 'QuestionController@index');
+    Route::get('questions/create', 'QuestionController@create');
+    Route::post('questions', 'QuestionController@store');
+    Route::get('questions/{id}/edit', 'QuestionController@edit');
+    Route::patch('questions/{id}', 'QuestionController@update');
 });
 
 
