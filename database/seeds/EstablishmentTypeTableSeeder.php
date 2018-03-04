@@ -31,5 +31,9 @@ class EstablishmentTypeTableSeeder extends Seeder
         EstablishmentType::create([
             'name' => 'Entertainer'
         ]);
+
+        EstablishmentType::create([
+            'name' => 'Event Planner'
+        ]);
     }
 }
