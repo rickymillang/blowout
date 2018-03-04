@@ -50,16 +50,7 @@ class EstablishmentController extends Controller
      */
     public function create()
     {
-        if (!auth()->user()->hasRole('admin')) {
-            if ($establishment = !Establishment::where('user_id', auth()->user()->id)->first()) {
-                return view('establishments.create')
-                    ->with('establishment_types', $this->establishment_types);
-            } else {
-                session()->flash('error_message', 'You can only add one establishment');
-
-                return redirect('/home');
-            }
-        }
+        return redirect('dashboard');
     }
 
     /**
