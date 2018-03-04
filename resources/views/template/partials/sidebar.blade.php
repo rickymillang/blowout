@@ -145,7 +145,7 @@
                     </a>
                 </li>
                 <li {{ url()->current() == url('payments') ? 'class=active' : '' }}>
-                    <a href="/payments">
+                    <a href="#">
                         <i class="fa fa-credit-card"></i>
 
                         <span class="nav-label">Payments</span>
@@ -159,7 +159,7 @@
                     </a>
                 </li>
                 <li {{ url()->current() == url('invoices') ? 'class=active' : '' }}>
-                    <a href="/invoices">
+                    <a href="#" >
                         <i class="fa fa-tasks"></i>
                         <span class="nav-label">Invoices</span>
                     </a>
