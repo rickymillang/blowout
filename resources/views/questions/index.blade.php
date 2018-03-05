@@ -1,27 +1,35 @@
 @extends('template.layouts.master')
 
-@section('title', 'Customers')
+@section('title', 'Questions')
 
 @section('content')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>View Customers</h5>
+            <h5>View Questions</h5>
         </div>
         <div class="ibox-content">
+            <a href="/questions/create" class="btn btn-success">Add Question</a>
+
+            <hr>
+
             <table class="table table-striped table-hover" id="table">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Question</th>
+                        <th>Items</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($customers as $customer)
+                    @foreach($questions as $question)
                         <tr>
-                            <td><img src="{{ asset($customer->avatar) }}"  style="max-width:100px;max-height:100px;"></td>
-                            <td>{{ $customer->name }}</td>
-                            <td>{{ $customer->email }}</td>
+                            <td>{{ $question->question }}</td>
+                            <td><ul>
+                                @foreach($question->question_items as $item)
+                                    <li>{{ $item->item . ': ' . $item->price }}</li>
+                                @endforeach
+                            </ul></td>
+                            <td><a class="btn btn-xs btn-primary" href="/questions/{{ $question->id }}/edit">Add Items</a></td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -50,16 +50,7 @@ class EstablishmentController extends Controller
      */
     public function create()
     {
-        if (!auth()->user()->hasRole('admin')) {
-            if ($establishment = !Establishment::where('user_id', auth()->user()->id)->first()) {
-                return view('establishments.create')
-                    ->with('establishment_types', $this->establishment_types);
-            } else {
-                session()->flash('error_message', 'You can only add one establishment');
-
-                return redirect('/home');
-            }
-        }
+        return redirect('dashboard');
     }
 
     /**
@@ -71,55 +62,7 @@ class EstablishmentController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'name' => 'required|string',
-            'description' => 'required',
-            'address' => 'required|string',
-            'owner_name' => 'required|string',
-            'phone' => ['required', 'regex:/(09|\+639|639)[0-9]{9}/', 'unique:establishments'],
-            'email' => 'required|email|unique:establishments',
-            'establishment_type' => 'required',
-            'image' => 'image|max:5000',
-            'terms' => 'required',
-            'business_permit' => 'required|file|mimes:doc,pdf,docx,zip|max:10000'
-        ]);
 
-        if (request()->hasFile('image')) {
-            $image = Storage::putFile('images/establishment', $request->file('image'));
-        } else {
-            $image = "images/establishment/avatar_building.jpg";
-        }
-
-        if (request()->hasFile('business_permit')) {
-            $business_permit = Storage::putFile('files/establishment', $request->file('business_permit'));
-        }
-
-
-        $establishment = Establishment::create([
-                        'name' => $request->name,
-                        'description' => $request->description,
-                        'address' => $request->address,
-                        'owner_name' => $request->owner_name,
-                        'phone' => $request->phone,
-                        'email' => $request->email,
-                        'establishment_type_id' => $request->establishment_type,
-                        'user_id' => auth()->user()->id,
-                        'image' => $image,
-                        'status' => 0,
-                        'business_permit' => $business_permit
-                        ]);
-
-        foreach ($this->admnistrators as $admin) {
-            $admin->notify(new EstablishmentRegistered([
-                'name' => $request->name,
-                'user_id' => auth()->user()->id,
-                'message' => 'New establishment has registered'
-            ]));
-        }
-
-        session()->flash('message', 'You have successfully registered your establishment!');
-
-        return redirect('/dashboard');
     }
 
     /**
@@ -222,11 +165,6 @@ class EstablishmentController extends Controller
             return redirect('/home');
         }
         if ($establishment->status == 0) {
-            RoleUser::create([
-                'user_id' => $establishment->user->id,
-                'role_id' => 2,
-            ]);
-
             $establishment->status = 1;
 
             $establishment->save();
@@ -236,7 +174,7 @@ class EstablishmentController extends Controller
                 'message' => 'Your establishment has been approved'
             ]));
 
-            Semaphore::send($establishment->phone, 'Congratulations! Your establishment, ' . $establishment->name . ' has been approved. You may now start selling!');
+            // Semaphore::send($establishment->phone, 'Congratulations! Your establishment, ' . $establishment->name . ' has been approved. You may now start selling!');
 
             session()->flash('message', 'Establishment has been successfully approved.');
 

@@ -72,13 +72,17 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
 
     Route::resource('packages', 'PackageController');
 
-
     Route::get('ratings', 'RatingController@index');
 
     Route::get('establishment/edit', 'EstablishmentController@edit');
 
     Route::get('payments', 'PaymentController@index');
 
+    Route::get('questions', 'QuestionController@index');
+    Route::get('questions/create', 'QuestionController@create');
+    Route::post('questions', 'QuestionController@store');
+    Route::get('questions/{id}/edit', 'QuestionController@edit');
+    Route::patch('questions/{id}', 'QuestionController@update');
 });
 
 
@@ -125,3 +129,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::patch('orders/{id}', 'OrderController@update');
 
 });
+
+Route::get('establishment/register', 'Auth\EstablishmentRegisterController@index');
+Route::post('establishment/register', 'Auth\EstablishmentRegisterController@store');
