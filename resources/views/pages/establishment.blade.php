@@ -155,8 +155,6 @@
                 font-weight: bold;
               }
 
-
-
               .address{
               margin-top: 10px;
                 padding:5px;
@@ -192,6 +190,27 @@
                     border-color:#5cb85c;
                  }
 
+				 .question-box{
+					 height: calc(100vh - 189px);
+					 min-height: 210px;
+					 overflow-y: auto;
+					 padding-bottom: 38px;
+					 padding-bottom: 38px;
+					 border : 1px solid rgba(69, 70, 70, 0.71);
+				 }
+
+				 .inputcontainer{
+					padding :10px;
+					 border : 1px solid rgba(69, 70, 70, 0.71);
+				 }
+
+			.question-wizard{
+				/*min-height: 148px;*/
+				width: 66.66667%;
+				margin: 0 auto;
+			}
+
+
            /* .btn {
               background: #ccc;
 
@@ -225,8 +244,9 @@
 				<div class="col-md-12 col-md-offset-0 text-center">
 					<div class="row row-mt-15em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h1>Establishments</h1>
+							<h1 class="question-header">Establishments</h1>
 						</div>
+
 
 					</div>
 
