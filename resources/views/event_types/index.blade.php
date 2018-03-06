@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $event_type->name }}</td>
                             <td>
-                                <a href="/event_types/{{ $event_type->id }}/edit">Edit</a>
+                                <a class="btn btn-xs btn-warning" href="/event_types/{{ $event_type->id }}/edit">Edit</a>
                             </td>
                         </tr>
                     @endforeach
