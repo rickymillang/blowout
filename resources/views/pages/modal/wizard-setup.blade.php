@@ -25,7 +25,6 @@
 
                          </ul>
                             <div>
-
                         <br/>
                                  <div id="step-1" class="steps">
                                     <div class="row">
