@@ -114,13 +114,6 @@
                         <span class="nav-label">Ratings</span>
                     </a>
                 </li>
-                <li {{ url()->current() == url('questions') || url()->current() == url('questions/create') ? 'class=active' : '' }}>
-                    <a href="/questions">
-                        <i class="fa fa-question"></i>
-
-                        <span class="nav-label">Questions</span>
-                    </a>
-                </li>
                 <li {{ url()->current() == url('customers') ? 'class=active' : '' }}>
                     <a href="/customers">
                         <i class="fa fa-group"></i>

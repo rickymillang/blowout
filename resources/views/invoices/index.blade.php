@@ -1,32 +1,30 @@
 @extends('template.layouts.master')
 
-@section('title', 'Event Types')
+@section('title', 'Invoices')
 
 @section('content')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>View Event Types</h5>
+            <h5>View Invoices</h5>
         </div>
 
         <div class="ibox-content">
-            <a href="/event_types/create" class="btn btn-success">Add Event Type</a>
-
-            <hr>
-
-            <table class="table table-striped table-hover" id="table">
+            <table class="table table-striped table-hover" id="table1">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Actions</th>
+                        <th>Order #</th>
+                        <th>Customer</th>
+                        <th>Payment Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($event_types as $event_type)
+                    @foreach($invoices as $invoice)
                         <tr>
-                            <td>{{ $event_type->name }}</td>
-                            <td>
-                                <a class="btn btn-xs btn-warning" href="/event_types/{{ $event_type->id }}/edit">Edit</a>
-                            </td>
+                            <td>{{ $invoice->order->id }}</td>
+                            <td>{{ $invoice->user->name }}</td>
+                            <td>{{ $invoice->payment_date }}</td>
+                            <td>View</td>
                         </tr>
                     @endforeach
                 </tbody>

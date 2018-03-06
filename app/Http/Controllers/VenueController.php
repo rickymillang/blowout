@@ -38,8 +38,14 @@ class VenueController extends Controller
     		'image' => 'required'
     	]);
 
+        if ($request->minimum_capacity >= $request->maximum_capacity) {
+            session()->flash('error_message', 'Minimum capacity must be lesser than maximum capacity');
+
+            return redirect()->back();
+        }
+
     	if (request()->hasFile('image')) {
-            $image = Storage::putFile('storage/images/venues/', $request->file('image'));
+            $image = Storage::putFile('storage/images/venues', $request->file('image'));
 
             $venue = Venue::create([
 	    		'name' => $request->name,
@@ -55,6 +61,48 @@ class VenueController extends Controller
 
 			return redirect()->back();
         }
+    }
+
+    public function edit($id)
+    {
+        $venue = Venue::find($id);
+
+        return view('venues.edit', compact('venue'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'minimum_capacity' => 'required|numeric',
+            'maximum_capacity' => 'required|numeric',
+            'price' => 'required',
+            'image' => 'required'
+        ]);
+
+        $venue = Venue::find($id);
+        if (request()->hasFile('image')) {
+            $image = Storage::putFile('storage/images/venues', $request->file('image'));
+        }
+
+        if ($request->minimum_capacity >= $request->maximum_capacity) {
+            session()->flash('error_message', 'Minimum capacity must be lesser than maximum capacity');
+
+            return redirect()->back();
+        }
+
+        $venue->name = $request->name;
+        $venue->address = $request->address;
+        $venue->minimum_capacity = $request->minimum_capacity;
+        $venue->maximum_capacity = $request->maximum_capacity;
+        $venue->price = $request->price;
+        $venue->image = $image;
+        $venue->save();
+
+        session()->flash('message', 'Venue has been successfully updated');
+
+        return redirect()->back();
     }
 
     public function addEventType(Request $request, $id)
@@ -132,4 +180,27 @@ class VenueController extends Controller
     	return redirect()->back();
     }
 
+    public function destroy($id)
+    {
+        $venue = Venue::find($id);
+
+        $venue->delete();
+
+        $event_type_venue = EventTypeVenue::where('venue_id', $id)->first();
+        if ($event_type_venue) {
+            $event_type_venue->delete();
+        }
+
+        $package_venue = PackageVenue::where('venue_id', $id)->first();
+        if ($package_venue) {
+            $package_venue->delete();
+        }
+
+        $service_venue = ServiceVenue::where('venue_id', $id)->first();
+        if ($service_venue) {
+            $service_venue->delete();
+        }
+        session()->flash('message', 'Venue has been successfully deleted');
+        return redirect('venues');
+    }
 }
