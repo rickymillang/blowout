@@ -40,6 +40,7 @@ Route::post('/cart/delete-wizard-cart-item/{id}','CartController@getDeleteWizard
 Route::post('/cart/get-cart-wizard-summary/{id}','CartController@getCartWizardSummary');
 Route::post('/cart/get-wizard-user-information/{id}','CartController@getWizardUserInformation');
 Route::post('/cart/checkout-from-wizard/{id}','CartController@CheckoutFromWizard');
+Route::post('/cart/get-venue/{id}','CartController@getVenue');
 
 Route::post('rate/{id}','RatingController@store');
 

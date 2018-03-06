@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Establishment;
 use App\Package;
 use App\Service;
+use App\Venue;
+use App\EventType;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\Product;
@@ -815,6 +817,28 @@ class CartController extends Controller
 
             return json_encode($result);
         }
+    }
+
+    public function getVenue(Request $request,$id){
+        $result = '';
+
+        $event_type = EventType::where('establishment_id',$id)->get();
+
+        foreach($event_type as $et){
+            $result .= ' <div id="inputcontainer"><input type="radio" name="question" id="question" value="'.$et->id.'" ><label for="question" style="padding-left:10px;">'.$et->name.'</label></div>';
+        }
+
+
+        /*$result .= '<script>
+            $(document).ready(function(){
+                $("input").iCheck({
+                 checkboxClass: "icheckbox_minimal-green",
+                 radioClass: "radio_minimal-green",
+                 increaseArea: "20%" });
+            });</script>';*/
+
+
+        return $result;
     }
 
 }

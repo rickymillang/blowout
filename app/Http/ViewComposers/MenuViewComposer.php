@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Cart;
+use App\EventType;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,6 @@ class MenuViewComposer {
             }
 
         }
-
 
         $view->with('cart_template',$cart_template)
             ->with('cart_scratch',$cart_scratch)

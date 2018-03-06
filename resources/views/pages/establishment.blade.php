@@ -79,9 +79,12 @@
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     	<script src="{{ asset('js/jquery.min.js') }}"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+		<script src="{{asset('vendor/icheck/icheck.js')}}"></script>
 
 
         <style type="text/css">
+
+
 
             .container {
               margin: 100px auto;
@@ -208,6 +211,29 @@
 					/*min-height: 148px;*/
 					width: 66.66667%;
 					margin: 0 auto;
+				}
+
+				.venue{
+					border : 1px solid rgba(199, 199, 199, 0.71);
+					padding:5px;
+				}
+
+				.venue-details{
+					padding:3px;
+					font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+					font-size:12px;
+				}
+
+				.venue-name{
+					margin-top: 5px;
+					margin-bottom: 5px;
+					text-align: center;
+					font-weight: 900;
+					color: rgba(2, 0, 1, 0.49);
+				}
+
+				.venue-address .venue-price .venue-guest-number{
+
 				}
 
 
@@ -486,7 +512,7 @@
 <!-- Stellar Parallax -->
 	<script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
-	 <script src="{{asset('vendor/icheck/icheck.js')}}"></script>
+
 	<!-- Magnific Popup -->
 	<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
@@ -524,6 +550,7 @@
            var urlgetCartWizardSummary = "{{ URL::to('/cart/get-cart-wizard-summary') }}";
            var urlgetWizardUserinformation = "{{ URL::to('/cart/get-wizard-user-information') }}";
            var urlCheckOutFromWizard = "{{ URL::to('/cart/checkout-from-wizard') }}";
+           var urlGetVenue = "{{ URL::to('/cart/get-venue') }}";
 
 
               $(function() {
@@ -544,7 +571,8 @@
          function organize(id){
                  var setup = $("#setup option:selected").val();
                  var url = "/establishments/"+id;
-                 var reseturl = "/establishment/list#step-1";
+          		 var establishment_id = id;
+             	 var reseturl = "/establishment/list#step-1";
 
                     window.location.replace(reseturl);
                 if(setup == 1){
@@ -558,7 +586,7 @@
                        url:urlgetSetUpProductList+"/"+id,
                        type: "POST",
                        data: {id: id,setup:setup, _token: token},
-                       dataType: "text",
+                       dataType: "html",
                        success: function (data) {
                         $('.section_product').html(data);
                        },
@@ -569,18 +597,21 @@
                     });
 
                 }else{
+
                      $("#wizard-setup").modal("toggle");
 
                       $.ajax({
-                            url:urlgetWizardSetUpProductList+"/"+id,
+                            url:urlGetVenue+"/"+id,
                             type: "POST",
                             data: {id: id,setup:setup, _token: token},
                             dataType: "text",
                             success: function (data) {
-                             $('.w_section_product').html(data);
+								console.log(data);
+                             $("#event-display").html(data);
                             },
                             error: function (data){
                             console.log(data);
+                            alert('wew');
                             }
 
                          });

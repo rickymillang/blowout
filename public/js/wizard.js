@@ -48,7 +48,9 @@ $("#w_smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDir
 
         }*/
     }else{
+        if(stepNumber){
 
+        }
         $('.checkout_from_wizard').hide();
         $("#prev-btn").removeClass('disabled');
         $("#next-btn").removeClass('disabled');
