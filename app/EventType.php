@@ -15,6 +15,6 @@ class EventType extends Model
 
     public function venues()
     {
-    	return $this->hasMany(Venue::class);
+    	return $this->belongsToMany(Venue::class);
     }
 }
