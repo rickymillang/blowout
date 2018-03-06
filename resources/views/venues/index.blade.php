@@ -30,7 +30,7 @@
                 <tbody>
                     @foreach($venues as $venue)
                         <tr>
-                            <td><img src="{{ asset('storage/' . $venue->image) }}" alt=""></td>
+                            <td><img src="{{ asset('storage/' . $venue->image) }}" style="max-width:50px" alt=""></td>
                             <td>{{ $venue->name }}</td>
                             <td>{{ $venue->address }}</td>
                             <td>{{ $venue->minimum_capacity }}</td>
