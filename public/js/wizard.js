@@ -48,9 +48,14 @@ $("#w_smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDir
 
         }*/
     }else{
-        if(stepNumber){
+
+        var estab_id = $('#w-establishment-id').val();
+
+        if(stepNumber == 2){
+            getVenue(estab_id);
 
         }
+
         $('.checkout_from_wizard').hide();
         $("#prev-btn").removeClass('disabled');
         $("#next-btn").removeClass('disabled');
@@ -261,7 +266,6 @@ function getWizardSummary(id){
             console.log(data.cart);
         }
     });
-
 }
 
 function getWizardUserinformation(id){
@@ -291,4 +295,30 @@ function getWizardUserinformation(id){
             console.log(data);
         }
     });
+}
+
+function getVenue(id){
+    var guest = $('#w_number_guests').val();
+
+    $.ajax({
+        url: urlGetVenue+"/"+id,
+        type: "POST",
+        data: {id: id,guest:guest, _token: token},
+        dataType: "text",
+        success:function(data){
+            console.log(data);
+
+
+        $('#venue-display').html(data);
+        },
+        error:function(data){
+        console.log(data);
+        }
+    });
+
+
+}
+
+function getGuest(){
+
 }

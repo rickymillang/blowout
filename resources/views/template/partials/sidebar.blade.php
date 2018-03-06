@@ -58,7 +58,20 @@
                         <span class="nav-label">Calendar</span>
                     </a>
                 </li>
+                <li {{ url()->current() == url('venues') || url()->current() == url('venues/create') ? 'class=active' : '' }}>
+                    <a href="/venues">
+                        <i class="fa fa-compass"></i>
 
+                        <span class="nav-label">Venues</span>
+                    </a>
+                </li>
+                <li {{ url()->current() == url('event_types') || url()->current() == url('event_types/create') ? 'class=active' : '' }}>
+                    <a href="/event_types">
+                        <i class="fa fa-calendar"></i>
+
+                        <span class="nav-label">Event Types</span>
+                    </a>
+                </li>
                 <li {{ url()->current() == url('product_types') || url()->current() == url('product_types/create') ? 'class=active' : '' }}>
                     <a href="/product_types">
                         <i class="fa fa-tags"></i>

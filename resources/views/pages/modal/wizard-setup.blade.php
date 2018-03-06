@@ -10,7 +10,7 @@
                       </div>--}}
                       <div class="modal-body" id="w_smartwizard">
                       {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
-
+                          <input type="hidden" id="w-establishment-id" >
                          <ul>
                              <li><a href="#step-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                              <li><a href="#step-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
@@ -74,142 +74,11 @@
                                            <div class="col-md-1"></div>
                                            <div class="col-md-10" >
 
-                                               <div class="row">
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                            <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                              <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
+                                               <div class="row" id="venue-display">
 
                                                </div>
 
-                                               <br><br>
 
-
-                                               <div class="row">
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-
-                                               </div>
-
-                                               <br><br>
-
-
-                                               <div class="row">
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-sm-4">
-                                                       <div class="venue">
-                                                           <img src="{{ asset('storage/images/grandcon.jpg') }}" alt="" width="100%" height="100%">
-                                                           <br>
-                                                           <div class="venue-details">
-                                                               <div class="venue-name">Grand Convention Cebu</div>
-                                                               <div class="venue-address">Address : Tisa Cebu City</div>
-                                                               <div class="venue-guest-number">Guest capacity : 200</div>
-                                                               <div class="venue-price">Price : 2,000</div>
-
-                                                           </div>
-                                                       </div>
-                                                   </div>
-
-                                               </div>
-
-                                               <br><br>
                                            </div>
                                            <div class="col-md-1"></div>
                                         </div>

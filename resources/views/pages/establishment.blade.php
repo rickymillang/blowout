@@ -232,6 +232,17 @@
 					color: rgba(2, 0, 1, 0.49);
 				}
 
+				#venue-display{
+					 height:800px ;
+					max-height: 100%;
+					overflow-y: auto;
+				}
+
+				#input-venue{
+					text-align: center;
+					border : 1px solid rgba(199, 199, 199, 0.71);
+				}
+
 				.venue-address .venue-price .venue-guest-number{
 
 				}
@@ -550,6 +561,7 @@
            var urlgetCartWizardSummary = "{{ URL::to('/cart/get-cart-wizard-summary') }}";
            var urlgetWizardUserinformation = "{{ URL::to('/cart/get-wizard-user-information') }}";
            var urlCheckOutFromWizard = "{{ URL::to('/cart/checkout-from-wizard') }}";
+           var urlGetQuestion = "{{ URL::to('/cart/get-question') }}";
            var urlGetVenue = "{{ URL::to('/cart/get-venue') }}";
 
 
@@ -599,9 +611,9 @@
                 }else{
 
                      $("#wizard-setup").modal("toggle");
-
+						$("#w-establishment-id").val(establishment_id);
                       $.ajax({
-                            url:urlGetVenue+"/"+id,
+                            url:urlGetQuestion+"/"+id,
                             type: "POST",
                             data: {id: id,setup:setup, _token: token},
                             dataType: "text",

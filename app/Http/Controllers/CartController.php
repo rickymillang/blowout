@@ -819,7 +819,7 @@ class CartController extends Controller
         }
     }
 
-    public function getVenue(Request $request,$id){
+    public function getQuestion(Request $request,$id){
         $result = '';
 
         $event_type = EventType::where('establishment_id',$id)->get();
@@ -839,6 +839,33 @@ class CartController extends Controller
 
 
         return $result;
+    }
+
+    public function getVenue(Request $request,$id){
+        $result = '';
+
+        $venue = Venue::where('establishment_id',$id)->where('minimum_capacity','>=',(int) $request->guest)->orWhere('maximum_capacity','<=',(int) $request->guest)->get();
+
+        foreach ($venue as $v){
+
+        $result .= '<div class="col-sm-4" >
+                           <div class="venue">
+                                <img src="'.asset("storage/".$v->image).'" alt="" width="100%" height="100%">
+                               <br>
+                               <div class="venue-details">
+                                   <div class="venue-name">'.$v->name.'</div>
+                                   <div class="venue-address">Address : '.$v->address.'</div>
+                                   <div class="venue-guest-number">Guest capacity : '.$v->minimum_capacity.'-'.$v->maximum_capacity.'</div>
+                                   <div class="venue-price">Price : '.$v->price.'</div>
+
+                               </div>
+                           </div>
+                           <div id="input-venue"><input type="radio" name="input-venue-value" id="input-venue-value" value="'.$v->id.'"></div>
+                       </div>';
+        }
+
+        return $result;
+
     }
 
 }
