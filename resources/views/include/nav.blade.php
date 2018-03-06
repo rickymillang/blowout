@@ -44,7 +44,7 @@
 
                                     </li>
                                     <li>
-                                        <a href="#"> Profile</a>
+                                        <a href="/profile"> Profile</a>
 
                                     </li>
                                     <li>
