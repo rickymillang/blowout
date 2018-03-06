@@ -44,7 +44,7 @@
 					<label for="avatar" class="col-md-2 col-md-offset-2 control-label">Avatar</label>
 					<div class="col-md-6">
 						<input id="avatar" type="file" name="avatar" value="{{ $profile->avatar }}">
-						<img src="{{ asset($profile->avatar) }}" alt="" style="max-width:100px;max-weight:100px;margin-top:20px;">
+						<img src="{{ asset('storage/' . $profile->avatar) }}" alt="" style="max-width:100px;max-weight:100px;margin-top:20px;">
 					</div>
 				</div>
 
