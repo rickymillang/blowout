@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                    <img alt="image" class="img-circle" style="max-width:64px;" src="{{ asset(auth()->user()->avatar) }}" />
+                    <img alt="image" class="img-circle" style="max-width:64px;" src="{{ asset('storage/' . auth()->user()->avatar) }}" />
                 </span>
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ auth()->user()->name }}</strong>
@@ -170,7 +170,7 @@
                     </a>
                 </li>
                 <li {{ url()->current() == url('invoices') ? 'class=active' : '' }}>
-                    <a href="#" >
+                    <a href="/invoices" >
                         <i class="fa fa-tasks"></i>
                         <span class="nav-label">Invoices</span>
                     </a>
