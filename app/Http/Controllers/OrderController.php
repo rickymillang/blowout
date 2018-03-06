@@ -11,7 +11,7 @@ use App\Order;
 use App\OrderStatus;
 use App\ProductOrder;
 use Illuminate\Http\Request;
-use Semaphore\Semaphore
+use Semaphore\Semaphore;
 
 class OrderController extends Controller
 {
