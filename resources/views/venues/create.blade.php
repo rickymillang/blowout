@@ -53,6 +53,13 @@
 				</div>
 
 				<div class="form-group">
+					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price <span class="text-danger">*</span></label>
+					<div class="col-md-6">
+						<input type="number" class="form-control" name="price" value="{{ old('price') }}">
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label for="image" class="col-md-2 col-md-offset-2 control-label">Image <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input id="image" type="file" name="image">

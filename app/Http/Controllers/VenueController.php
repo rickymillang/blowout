@@ -34,6 +34,7 @@ class VenueController extends Controller
     		'address' => 'required',
     		'minimum_capacity' => 'required|numeric',
     		'maximum_capacity' => 'required|numeric',
+    		'price' => 'required',
     		'image' => 'required'
     	]);
 
@@ -45,6 +46,7 @@ class VenueController extends Controller
 	    		'address' => $request->address,
 	    		'minimum_capacity' => $request->minimum_capacity,
 	    		'maximum_capacity' => $request->maximum_capacity,
+	    		'price' => $request->price,
 	    		'image' => $image,
 	    		'establishment_id' => auth()->user()->establishment->id
 			]);
