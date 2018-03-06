@@ -39,7 +39,7 @@ class ProfileController extends Controller
 
 		if ($profile) {
 			if (request()->hasFile('avatar')) {
-				$avatar = Storage::putFile('images/user', $request->file('avatar'));
+				$avatar = Storage::putFile('storage/images/user', $request->file('avatar'));
 				$profile->avatar = $avatar;
 			}
 
