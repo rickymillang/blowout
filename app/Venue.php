@@ -10,7 +10,7 @@ class Venue extends Model
 
     public function event_types()
     {
-    	return $this->hasMany(EventType::class);
+    	return $this->belongsToMany(EventType::class);
     }
 
     public function establishment()
