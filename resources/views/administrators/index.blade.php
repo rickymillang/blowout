@@ -47,11 +47,11 @@
                             					<button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
                             					<a href="/administrators/{{ $administrator->id }}" class="btn btn-danger btn-xs"
                             					    onclick="event.preventDefault();
-                            					             document.getElementById('delete-administrator').submit();">
+                            					             document.getElementById('delete-administrator{{ $administrator->id }}').submit();">
                             					    Delete
                             					</a>
 
-                            					<form id="delete-administrator" action="/administrators/{{ $administrator->id }}" method="POST" style="display: none;">
+                            					<form id="delete-administrator{{ $administrator->id }}" action="/administrators/{{ $administrator->id }}" method="POST" style="display: none;">
                             					    {{ csrf_field() }}
                             					    {{ method_field('DELETE')}}
                             					</form>
