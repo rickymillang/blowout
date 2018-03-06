@@ -61,10 +61,13 @@ $('#wizard_back').hide();
 // Smart Wizard
 $('#w_smartwizard').smartWizard({
     selected: 0,
-    theme:  'arrows',
+    theme:  'default',
     transitionEffect:'fade',
     showStepURLhash: true,
-
+    lang: {  // Language variables
+        next: 'Next',
+        previous: 'Back'
+    },
     toolbarSettings: {toolbarPosition: 'bottom',
         toolbarExtraButtons: [product,btnFinish, btnCancel]
     }
