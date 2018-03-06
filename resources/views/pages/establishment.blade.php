@@ -419,8 +419,8 @@
                         zoom: 15,
                         center: uluru{{ $est->id  }}
                       });
-
-                      var marker = new google.maps.Marker({
+                      
+                      var marker{{ $est->id  }} = new google.maps.Marker({
                         position: uluru{{ $est->id  }},
                         map: map{{ $est->id  }}
                       });

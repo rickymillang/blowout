@@ -176,24 +176,24 @@
 	<!-- <div class="page-inner"> -->
 	@include('include.nav')
 
-	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_bg_3.jpg)">
-		<div class="overlay"></div>
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12 col-md-offset-0 text-left">
-					<div class="row row-mt-15em">
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url('{{asset('images/banner.png')}}')">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-0 text-left">
 
-						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<span class="intro-text-small">Don't be shy</span>
-							<h1>Get In Touch</h1>
-						</div>
+          <div class="row row-mt-15em">
 
-					</div>
+            <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+              <h1><center>Contact Us</center></h1>
 
-				</div>
-			</div>
-		</div>
-	</header>
+            </div>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
 	<div class="gtco-section border-bottom">
@@ -242,10 +242,10 @@
 					<div class="gtco-contact-info">
 						<h3>Contact Information</h3>
 						<ul>
-							<li class="address">198 West 21th Street, <br> Suite 721 New York NY 10016</li>
+							<li class="address">University of Cebu <br>Sanciangko Cebu City</li>
 							<li class="phone"><a href="tel://1234567920">+ 1235 2355 98</a></li>
-							<li class="email"><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-							<li class="url"><a href="http://GetTemplates.co">GetTemplates.co</a></li>
+							<li class="email"><a href="mailto:info@yoursite.com">info@blowout.com</a></li>
+							<li class="url"><a href="http://GetTemplates.co">Blowout.com.ph</a></li>
 						</ul>
 					</div>
 

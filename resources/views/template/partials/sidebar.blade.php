@@ -160,7 +160,35 @@
                 </li>
             @endrole
 
-            @role('customer', 'establishment.admin')
+            @role('customer')
+                <li {{ url()->current() == url('payments') ? 'class=active' : '' }}>
+                    <a href="#">
+                        <i class="fa fa-credit-card"></i>
+
+                        <span class="nav-label">Payments</span>
+                    </a>
+                </li>
+                <li {{ url()->current() == url('orders') ? 'class=active' : '' }}>
+                    <a href="/orders">
+                        <i class="fa fa-cart-plus"></i>
+
+                        <span class="nav-label">Orders</span>
+                    </a>
+                </li>
+                <li {{ url()->current() == url('invoices') ? 'class=active' : '' }}>
+                    <a href="/invoices" >
+                        <i class="fa fa-tasks"></i>
+                        <span class="nav-label">Invoices</span>
+                    </a>
+                </li>
+                <li {{ url()->current() == url('messages') ? 'class=active' : '' }}>
+                    <a href="/messages">
+                        <i class="fa fa-envelope"></i>
+                        <span class="nav-label">Messages</span>
+                    </a>
+                </li>
+            @endrole
+            @role('establishment.admin')
                 <li {{ url()->current() == url('payments') ? 'class=active' : '' }}>
                     <a href="#">
                         <i class="fa fa-credit-card"></i>

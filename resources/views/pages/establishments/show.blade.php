@@ -437,6 +437,8 @@
                 </div>
             </div>
             @endforeach
+
+            @if(auth()->user())
             <div id="reviewDisplay">
 
             <form action="/reviews" method="POST">
@@ -460,6 +462,7 @@
                     </div>
                  </form>
             </div>
+            @endif
         </div>
         </div>
 	</div>

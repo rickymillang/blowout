@@ -5,11 +5,10 @@
 				<div class="col-md-4 ">
 					<div class="gtco-widget">
 						<h3>About Us</h3>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore eos molestias quod sint ipsum possimus temporibus officia iste perspiciatis consectetur in fugiat repudiandae cum. Totam cupiditate nostrum ut neque ab?</p>
+						<p>Boring party? It's a big NO We are your new online source that offers fantastic Party Planners,Caterings,lechons,cakes,party needs,intertainers ,packages, services and Blowouts such as House Party, Wedding Party, Beach Party, Kiddie Party & more for all life's celebrations. Our services also include an array of party organizer arrangement to suit your requirements from a simple yet stunning creation of party blowouts WE/YOU CAN CUSTOMIZE YOUR PARTY according to the theme you want.</p>
 					</div>
 				</div>
-
-				<div class="col-md-4 col-md-push-1">
+<div class="col-md-4 col-md-push-1">
 					<div class="gtco-widget">
 						<h3>Establishments</h3>
 						<ul class="gtco-footer-links">
@@ -21,19 +20,6 @@
 						</ul>
 					</div>
 				</div>
-
-				{{--<div class="col-md-2 col-md-push-1">
-					<div class="gtco-widget">
-						<h3>Hotels</h3>
-						<ul class="gtco-footer-links">
-							<li><a href="#">Luxe Hotel</a></li>
-							<li><a href="#">Italy 5 Star hotel</a></li>
-							<li><a href="#">Dubai Hotel</a></li>
-							<li><a href="#">Deluxe Hotel</a></li>
-							<li><a href="#">BoraBora Hotel</a></li>
-						</ul>
-					</div>
-				</div>--}}
 
 				<div class="col-md-4 col-md-push-1">
 					<div class="gtco-widget">
