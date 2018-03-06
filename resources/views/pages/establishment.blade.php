@@ -160,6 +160,7 @@
                 padding:5px;
                 color:#b9b2b2;
               }
+
               .steps {
                   max-height: calc(100vh - 300px);
                   overflow-y: auto;
@@ -169,6 +170,7 @@
               .modal-content{
               font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
               font-size:12px;
+
               }
 
               .modal-content > .steps > button{
@@ -177,12 +179,12 @@
               }
 
                 ::-webkit-scrollbar {
-                    width: 8px;
+                    width: 5px;
                     background-color: rgba(126, 242, 255, 0.98);
                 }
 
                 ::-webkit-scrollbar-thumb {
-                    width: 8px;
+                    width: 5px;
                     background-image: -webkit-linear-gradient(#1fe1ff, #43ceff);
                 }
 
@@ -190,25 +192,23 @@
                     border-color:#5cb85c;
                  }
 
-				 .question-box{
-					 height: calc(100vh - 189px);
-					 min-height: 210px;
+				 #question-box{
+					 height:400px ;
+					 max-height: 100%;
 					 overflow-y: auto;
-					 padding-bottom: 38px;
-					 padding-bottom: 38px;
-					 border : 1px solid rgba(69, 70, 70, 0.71);
+
 				 }
 
-				 .inputcontainer{
-					padding :10px;
-					 border : 1px solid rgba(69, 70, 70, 0.71);
+				 #inputcontainer{
+					 padding :10px;
+					 border : 1px solid rgba(199, 199, 199, 0.71);
 				 }
 
-			.question-wizard{
-				/*min-height: 148px;*/
-				width: 66.66667%;
-				margin: 0 auto;
-			}
+				.question-wizard{
+					/*min-height: 148px;*/
+					width: 66.66667%;
+					margin: 0 auto;
+				}
 
 
            /* .btn {
@@ -349,7 +349,7 @@
                     <!-- Modal content-->
                     <div class="modal-content">
 
-                      <div class="modal-body">
+                      <div class="modal-body" >
                         <div class="row">
                             <div class="col-md-1"></div>
                              <div class="col-md-10">

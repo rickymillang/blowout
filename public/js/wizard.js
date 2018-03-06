@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+    $('#wizard-setup').on('show.bs.modal', function () {
+        $('.modal .modal-body').css('overflow-y', 'auto');
+        $('.modal .modal-body').css('max-height', $(window).height() * 0.7);
+    });
+
     $('#datetimepicker4').datetimepicker();
 
 $("#terms_and_condition_checkout_wizard").on('ifUnchecked', function(event) {

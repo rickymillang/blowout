@@ -1,9 +1,9 @@
 <!--Start of model div -->
                 <div id="wizard-setup" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-lg" >
 
                     <!-- Modal content-->
-                    <div class="modal-content">
+                    <div class="modal-content" >
                       {{--<div class="modal-header" style="background-color: #0ec6c2;border-color: #0ec6c2;border-top-left-radius: 5px;border-top-right-radius: 5px;">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="modal-title-setup" style="color:white">Organize from wizard</h4>
@@ -12,19 +12,17 @@
                       {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
 
                          <ul>
-                             <li><a href="#step-1">Step 1&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-2">Step 2&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-3">Step 3&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-4">Step 4&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-5">Step 5&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-6">Step 6&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-7">Step 7&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                             {{-- <li><a href="#step-8">Step 8&nbsp;&nbsp;&nbsp;&nbsp;</a></li>--}}      {{-- <li><a href="#step-7">Step 7</a></li>
                                  <li><a href="#step-8">Step 8</a></li>--}}
-
-
                          </ul>
-                            <div>
+                            <div style="height:auto;">
                         <br/>
                                  <div id="step-1" class="steps">
                                     <div class="row">
@@ -37,39 +35,40 @@
                                     </div>
                                      <div class="row">
                                          <div class="col-md-1"></div>
-                                         <div class="col-md-10">
-                                            <div id="question-box">
+                                         <div class="col-md-10" id="question-box">
+
                                              <div id="inputcontainer">
-                                                <input type="radio" name="question1" class="form-control">
+                                                 <input type="radio" name="question1" class="form-control">
                                                  <label for="">Children's birthday party</label>
                                              </div>
-                                            </div>
+
                                              
-                                            <div id="question-box">
-                                                <div id="inputcontationer">
+
+                                                <div id="inputcontainer">
                                                     <input type="radio" name="question1" class="form-control">
                                                     <label for="">Wedding</label>
                                                 </div>
-                                            </div>
 
-                                          <div id="question-box">
-                                             <div id="inputcontationer">
+
+
+                                             <div id="inputcontainer">
                                              <input type="radio" name="question1" class="form-control">
                                                <label for="">Corporate Party</label>
                                              </div>
-                                          </div>
 
-                                          <div id="question-box">
-                                             <div id="inputcontationer">
+
+
+                                             <div id="inputcontainer">
                                                  <input type="radio" name="question1" class="form-control">
-                                                  <label for="">Graduation Party</label>
+                                              <label for="">Graduation Party</label>
                                              </div>
-                                             </div>
+                                             <br>
+                                             <br>
                                          </div>
 
                                          <div class="col-md-1"></div>
                                      </div>
-                                          </div>
+                                 </div>
                                  
                                  <div id="step-2" class="steps">
                                      <div class="row">
@@ -81,136 +80,67 @@
                                        <div class="row">
 
                                          <div class="col-md-1"></div>
-                                         <div class="col-md-10">
-                                           <div id="inputcontationer">
-                                             <div id="question-box">
-                                                        <input type="radio" name="question1" class="form-control">
-                                                          <label for="">25 guest or fewer</label>
-                                                     </div>
-                                                  </div>
-                                                   <div id="question-box">
-
-                                                      <div id="inputcontationer">
-                                                         <input type="radio" name="question1" class="form-control">
-                                                           <label for="">26 - 50 guests </label>
-                                                      </div>
+                                         <div class="col-md-10" id="question-box">
+                                                   <div class="form-group">
+                                                       <input type="number" id="w_number_guests" class="form-control" Placeholder="Enter number of possible guest">
                                                    </div>
-                                                  <div id="question-box">
-
-                                                     <div id="inputcontationer">
-                                                        <input type="radio" name="question1" class="form-control">
-                                                          <label for="">51 - 100 guests</label>
-                                                     </div>
-                                                  </div>
-                                                  <div id="question-box">
-
-                                                     <div id="inputcontationer">
-                                                        <input type="radio" name="question1" class="form-control">
-                                                          <label for="">151 - 200 guests</label>
-                                                     </div>
-                                                  </div>
-                                                  <div id="question-box">
-
-                                                     <div id="inputcontationer">
-                                                        <input type="radio" name="question1" class="form-control">
-                                                          <label for="">201 - 250 guests</label>
-                                                     </div>
-                                                  </div>
                                            </div>
                                          <div class="col-md-1"></div>
                                       </div>
                                  </div>
                                  <div id="step-3" class="steps">
                                      <div class="question-wizard">
-                                         <h3 style="text-align:center;color:rgba(108,108,108,0.39)">What party planning packages would you like?</h3>
+                                         <h3 style="text-align:center;color:rgba(56,56,56,0.52)">What party planning packages would you like?</h3>
                                      </div>
                                       <div class="row">
 
                                            <div class="col-md-1"></div>
-                                           <div class="col-md-10">
-                                             <div id="inputcontationer">
-                                               <div id="question-box">
-                                                          <input type="radio" name="question1" class="form-control">
-                                                            <label for="">Package 1</label>
-                                                       </div>
-                                                    </div>
-                                                     <div id="question-box">
-
-                                                        <div id="inputcontationer">
-                                                           <input type="radio" name="question1" class="form-control">
-                                                             <label for="">Package 2 </label>
-                                                        </div>
-                                                     </div>
-                                                    <div id="question-box">
-
-                                                       <div id="inputcontationer">
-                                                          <input type="radio" name="question1" class="form-control">
-                                                            <label for="">Package 3</label>
-                                                       </div>
-                                                    </div>
-                                                    <div id="question-box">
-
-                                                       <div id="inputcontationer">
-                                                          <input type="radio" name="question1" class="form-control">
-                                                            <label for="">Package 4</label>
-                                                       </div>
-                                                    </div>
-                                                    <div id="question-box">
-
-                                                       <div id="inputcontationer">
-                                                          <input type="radio" name="question1" class="form-control">
-                                                            <label for="">Package 5</label>
-                                                       </div>
-                                                    </div>
-                                             </div>
+                                           <div class="col-md-10" >
+                                               <img src="{{ asset('storage/images/W5bgp6ibOHsL6JA3fkHR2ijdwYv83auLQKnUmfjp.jpeg') }}" alt="" width="30px" height="30px">
+                                           </div>
                                            <div class="col-md-1"></div>
                                         </div>
-
-
-
                                  </div>
                                 <div id="step-4" class="steps">
                                     <div class="question-wizard">
-                                        <h3 style="text-align:center;color:rgba(108,108,108,0.39)">What party planning services would you like?</h3>
+                                        <h3 style="text-align:center;color:rgba(56,56,56,0.52)">What party planning services would you like?</h3>
                                     </div>
                                     <div class="row">
 
                                       <div class="col-md-1"></div>
-                                      <div class="col-md-10">
-                                        <div id="inputcontationer">
-                                          <div id="question-box">
-                                                     <input type="checkbox" name="question1" class="form-control">
+                                      <div class="col-md-10" id="question-box">
+                                        <div id="inputcontainer">
+                                                           <input type="checkbox" name="question1" class="form-control">
                                                        <label for="">Setup</label>
                                                   </div>
-                                               </div>
-                                                <div id="question-box">
 
-                                                   <div id="inputcontationer">
+
+
+                                                   <div id="inputcontainer">
                                                       <input type="checkbox" name="question1" class="form-control">
                                                         <label for="">Clean Up</label>
                                                    </div>
-                                                </div>
-                                               <div id="question-box">
 
-                                                  <div id="inputcontationer">
+
+
+                                                  <div id="inputcontainer">
                                                      <input type="checkbox" name="question1" class="form-control">
                                                        <label for="">Day-of coordination</label>
                                                   </div>
-                                               </div>
-                                               <div id="question-box">
 
-                                                  <div id="inputcontationer">
-                                                     <input type="checkbox" name="question1" class="form-control">
+
+
+                                                  <div id="inputcontainer" >
+                                                      <input type="checkbox" name="question1" class="form-control">
                                                        <label for="">Decor Rental</label>
                                                   </div>
-                                               </div>
-                                               <div id="question-box">
 
-                                                  <div id="inputcontationer">
+
+                                                  <div id="inputcontainer">
                                                      <input type="checkbox" name="question1" class="form-control">
                                                        <label for="">Floral services</label>
                                                   </div>
-                                               </div>
+
                                         </div>
                                       <div class="col-md-1"></div>
                                    </div>
@@ -222,41 +152,36 @@
                                    <div class="row">
 
                                       <div class="col-md-1"></div>
-                                      <div class="col-md-10">
-                                        <div id="inputcontationer">
-                                          <div id="question-box">
+                                      <div class="col-md-10" id="question-box">
+                                        <div id="inputcontainer">
+
                                                      <input type="radio" name="question1" class="form-control">
                                                        <label for="">Less than one month</label>
                                                   </div>
-                                               </div>
-                                                <div id="question-box">
 
-                                                   <div id="inputcontationer">
+
+                                                   <div id="inputcontainer">
                                                       <input type="radio" name="question1" class="form-control">
                                                         <label for="">1 - 2 months</label>
                                                    </div>
-                                                </div>
-                                               <div id="question-box">
 
-                                                  <div id="inputcontationer">
+
+                                                  <div id="inputcontainer">
                                                      <input type="radio" name="question1" class="form-control">
                                                        <label for="">3 - 5 months</label>
                                                   </div>
-                                               </div>
-                                               <div id="question-box">
 
-                                                  <div id="inputcontationer">
+
+                                                  <div id="inputcontainer">
                                                      <input type="radio" name="question1" class="form-control">
                                                        <label for="">6 - 8 months</label>
                                                   </div>
-                                               </div>
-                                               <div id="question-box">
 
-                                                  <div id="inputcontationer">
+                                                  <div id="inputcontainer">
                                                      <input type="radio" name="question1" class="form-control">
                                                        <label for="">9 - 12 months</label>
                                                   </div>
-                                               </div>
+
                                         </div>
                                       <div class="col-md-1"></div>
                                    </div>

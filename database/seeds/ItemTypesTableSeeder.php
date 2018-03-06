@@ -23,5 +23,9 @@ class ItemTypesTableSeeder extends Seeder
     	ItemType::create([
     		'name' => 'Package'
     	]);
+
+    	ItemType::create([
+    	    'name' => 'Venue'
+        ]);
     }
 }
