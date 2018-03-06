@@ -20,6 +20,7 @@ class CreateVenuesTable extends Migration
             $table->integer('minimum_capacity');
             $table->integer('maximum_capacity');
             $table->integer('establishment_id');
+            $table->string('image');
             $table->timestamps();
         });
     }
