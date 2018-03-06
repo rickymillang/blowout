@@ -83,6 +83,23 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
     Route::post('questions', 'QuestionController@store');
     Route::get('questions/{id}/edit', 'QuestionController@edit');
     Route::patch('questions/{id}', 'QuestionController@update');
+
+    Route::get('venues', 'VenueController@index');
+    Route::get('venues/create', 'VenueController@create');
+    Route::post('venues', 'VenueController@store');
+
+    Route::get('venues/{id}/add-event-types', 'VenueController@addEventType');
+    Route::post('venues/{id}/add-event-types', 'VenueController@storeEventType');
+    Route::get('venues/{id}/add-services', 'VenueController@addService');
+    Route::post('venues/{id}/add-services', 'VenueController@storeService');
+    Route::get('venues/{id}/add-packages', 'VenueController@addPackage');
+    Route::post('venues/{id}/add-packages', 'VenueController@storePackage');
+
+    Route::get('event_types', 'EventTypeController@index');
+    Route::get('event_types/create', 'EventTypeController@create');
+    Route::post('event_types', 'EventTypeController@store');
+    Route::get('event_types/{id}/edit', 'EventTypeController@edit');
+    Route::patch('event_types/{id}', 'EventTypeController@update');
 });
 
 
@@ -102,6 +119,12 @@ Route::group(['middleware', ['auth', 'role:superadmin']], function() {
     Route::delete('customers/{id}', 'CustomerController@destroy');
 });
 
+Route::group(['middleware', ['auth', 'role:customer']], function() {
+    Route::get('invoices', 'InvoiceController@index');
+    Route::get('invoices/{id}', 'InvoiceController@show');
+
+    Route::get('payments', 'PaymentController@index');
+});
 Route::group(['middleware' => 'auth'], function() {
     Route::get('notifications', 'NotificationController@index');
 
