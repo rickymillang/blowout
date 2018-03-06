@@ -87,6 +87,9 @@ Route::group(['middleware' => ['auth', 'role:establishment.admin']], function() 
     Route::get('venues', 'VenueController@index');
     Route::get('venues/create', 'VenueController@create');
     Route::post('venues', 'VenueController@store');
+    Route::get('venues/{id}/edit', 'VenueController@edit');
+    Route::patch('venues/{id}', 'VenueController@update');
+    Route::delete('venues/{id}', 'VenueController@destroy');
 
     Route::get('venues/{id}/add-event-types', 'VenueController@addEventType');
     Route::post('venues/{id}/add-event-types', 'VenueController@storeEventType');
