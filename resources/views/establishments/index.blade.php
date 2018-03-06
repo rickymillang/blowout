@@ -57,7 +57,7 @@
 
                                                 <form id="deactivate-establishment{{ $establishment->id }}" action="/establishments/{{ $establishment->id }}/deactivate" method="POST" style="display: none;">
                                                     {{ csrf_field() }}
-                                                    {{ method_field('PATCH')}}
+                                                    {{ method_field('DELETE')}}
                                                 </form>
                                             </div>
                                         </div>
