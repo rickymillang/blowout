@@ -15,7 +15,7 @@ class CreateEventTypeVenueTable extends Migration
     {
         Schema::create('event_type_venue', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('event_type');
+            $table->integer('event_type_id');
             $table->integer('venue_id');
             $table->timestamps();
         });
