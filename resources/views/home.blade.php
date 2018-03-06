@@ -43,7 +43,7 @@
 				                <i class="fa fa-star fa-3x"></i>
 				            </div>
 				            <div class="col-xs-9 text-right">
-				                <h2 class="font-bold">{{ $rating }}</h2>
+				                <h2 class="font-bold">{{ number_format($rating, 2) }}</h2>
 				            </div>
 				        </div>
 				    </div>
