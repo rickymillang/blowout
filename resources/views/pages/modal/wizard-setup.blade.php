@@ -110,10 +110,7 @@
                                            <div class="col-md-6">
                                                <h4>Information Details</h4>
 
-                                               <div class="form-group">
-                                                   <label for="inf-number-quests" style="color:#808080">Number of Guests</label>
-                                                   <input type="number" class="form-control" name="w_number_guests" id="w_number_guests"/>
-                                               </div>
+                                              
                                                <div class="form-group">
                                                    <label for="inf-name" style="color:#808080">Confirmation Number</label>
                                                    <input type="text" class="form-control" name="w_confirmation_number" id="w_confirmation_number"/>
