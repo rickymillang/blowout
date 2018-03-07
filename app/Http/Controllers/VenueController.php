@@ -19,6 +19,8 @@ class VenueController extends Controller
     {
     	$venues = Venue::where('establishment_id', auth()->user()->establishment->id)->get();
 
+    	/*dd($venues);*/
+
     	return view('venues.index', compact('venues'));
     }
 

@@ -42,6 +42,7 @@ Route::post('/cart/get-wizard-user-information/{id}','CartController@getWizardUs
 Route::post('/cart/checkout-from-wizard/{id}','CartController@CheckoutFromWizard');
 Route::post('/cart/get-question/{id}','CartController@getQuestion');
 Route::post('/cart/get-venue/{id}','CartController@getVenue');
+Route::post('/cart/get-package-and-services/{id}','CartController@getPackageAndServices');
 
 Route::post('rate/{id}','RatingController@store');
 

@@ -18,7 +18,7 @@
                              <li><a href="#step-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                              <li><a href="#step-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                              <li><a href="#step-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+
                             {{-- <li><a href="#step-8">Step 8&nbsp;&nbsp;&nbsp;&nbsp;</a></li>--}}      {{-- <li><a href="#step-7">Step 7</a></li>
                                  <li><a href="#step-8">Step 8</a></li>--}}
                          </ul>
@@ -91,90 +91,21 @@
 
                                       <div class="col-md-1"></div>
                                       <div class="col-md-10" id="question-box">
-                                        <div id="inputcontainer">
-                                                           <input type="checkbox" name="question1" class="form-control">
-                                                       <label for="">Setup</label>
-                                                  </div>
+                                          <div id="services-and-package-display">
 
-
-
-                                                   <div id="inputcontainer">
-                                                      <input type="checkbox" name="question1" class="form-control">
-                                                        <label for="">Clean Up</label>
-                                                   </div>
-
-
-
-                                                  <div id="inputcontainer">
-                                                     <input type="checkbox" name="question1" class="form-control">
-                                                       <label for="">Day-of coordination</label>
-                                                  </div>
-
-
-
-                                                  <div id="inputcontainer" >
-                                                      <input type="checkbox" name="question1" class="form-control">
-                                                       <label for="">Decor Rental</label>
-                                                  </div>
-
-
-                                                  <div id="inputcontainer">
-                                                     <input type="checkbox" name="question1" class="form-control">
-                                                       <label for="">Floral services</label>
-                                                  </div>
-
+                                          </div>
                                         </div>
                                       <div class="col-md-1"></div>
                                    </div>
                                 </div>
-                                <div id="step-5" class="steps">
-                                    <div class="question-wizard">
-                                        <h3 style="text-align:center;color:rgba(108,108,108,0.39)">How far away is your event?</h3>
-                                    </div>
-                                   <div class="row">
 
-                                      <div class="col-md-1"></div>
-                                      <div class="col-md-10" id="question-box">
-                                        <div id="inputcontainer">
-
-                                                     <input type="radio" name="question1" class="form-control">
-                                                       <label for="">Less than one month</label>
-                                                  </div>
-
-
-                                                   <div id="inputcontainer">
-                                                      <input type="radio" name="question1" class="form-control">
-                                                        <label for="">1 - 2 months</label>
-                                                   </div>
-
-
-                                                  <div id="inputcontainer">
-                                                     <input type="radio" name="question1" class="form-control">
-                                                       <label for="">3 - 5 months</label>
-                                                  </div>
-
-
-                                                  <div id="inputcontainer">
-                                                     <input type="radio" name="question1" class="form-control">
-                                                       <label for="">6 - 8 months</label>
-                                                  </div>
-
-                                                  <div id="inputcontainer">
-                                                     <input type="radio" name="question1" class="form-control">
-                                                       <label for="">9 - 12 months</label>
-                                                  </div>
-
-                                        </div>
-                                      <div class="col-md-1"></div>
-                                   </div>
-                                </div>
                                 {{--<div id="step-7" class="steps">
                                     <div class="question-wizard">
                                         <h3 style="text-align:center;color:rgba(108,108,108,0.39)">What type of event are you planning?</h3>
                                     </div>
                                 </div>--}}
 
-                                   <div id="step-6" class="steps">
+                                   <div id="step-5" class="steps">
                                        <div class="row">
                                            <div class="col-md-6">
                                                <h4>Information Details</h4>
@@ -217,7 +148,7 @@
                                        </div>
 
                                    </div>
-                                   <div id="step-7" class="steps">
+                                   <div id="step-6" class="steps">
                                        <div class="row">
                                            <div class="col-md-5">
                                                <h4>Delivery Information</h4>

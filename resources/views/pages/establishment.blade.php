@@ -563,6 +563,7 @@
            var urlCheckOutFromWizard = "{{ URL::to('/cart/checkout-from-wizard') }}";
            var urlGetQuestion = "{{ URL::to('/cart/get-question') }}";
            var urlGetVenue = "{{ URL::to('/cart/get-venue') }}";
+           var urlGetPackageAndServices = "{{ URL::to('/cart/get-package-and-services') }}";
 
 
               $(function() {

@@ -54,6 +54,8 @@ $("#w_smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDir
         if(stepNumber == 2){
             getVenue(estab_id);
 
+        }else if(stepNumber == 3){
+            getPackageAndServices(estab_id);
         }
 
         $('.checkout_from_wizard').hide();
@@ -306,19 +308,34 @@ function getVenue(id){
         data: {id: id,guest:guest, _token: token},
         dataType: "text",
         success:function(data){
-            console.log(data);
+              console.log(data);
 
-
-        $('#venue-display').html(data);
+              $('#venue-display').html(data);
         },
         error:function(data){
-        console.log(data);
+             console.log(data);
         }
     });
 
 
 }
 
-function getGuest(){
+function getPackageAndServices(id){
+      var venue = $('#input-venue-value').val();
 
+    $.ajax({
+        url: urlGetPackageAndServices+"/"+id,
+        type: "POST",
+        data: {id: id,venue:venue,_token: token},
+        dataType: "text",
+        success:function(data){
+            console.log(data);
+
+        $('#services-and-package-display').html(data);
+        },
+        error:function(data){
+            console.log(data);
+
+        }
+    });
 }

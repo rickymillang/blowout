@@ -15,6 +15,8 @@ use App\ProductOrder;
 use App\Order;
 use App\PaymentMethod;
 use Carbon\Carbon;
+use App\PackageVenue;
+use App\ServiceVenue;
 use App\Notifications\OrderReceived;
 use Semaphore;
 use Illuminate\Support\Facades\DB;
@@ -846,7 +848,7 @@ class CartController extends Controller
     public function getVenue(Request $request,$id){
         $result = '';
 
-        $venue = Venue::where('establishment_id',$id)->where('minimum_capacity','>=',(int) $request->guest)->orWhere('maximum_capacity','<=',(int) $request->guest)->get();
+        $venue = Venue::where('establishment_id',$id)/*->where('minimum_capacity','>=',(int) $request->guest)->orWhere('maximum_capacity','<=',(int) $request->guest)*/->get();
 
         foreach ($venue as $v){
 
@@ -865,6 +867,46 @@ class CartController extends Controller
                            <div id="input-venue"><input type="radio" name="input-venue-value" id="input-venue-value" value="'.$v->id.'"></div>
                        </div>';
         }
+
+        return $result;
+
+    }
+
+    public function getPackageAndServices(Request $request,$id){
+            $result = '';
+
+            $packages = PackageVenue::where('venue_id',$request->venue)->get();
+
+            $services = ServiceVenue::where('venue_id',$request->venue)->get();
+
+            foreach ($packages as $p){
+                    $result .= '<div id="packages-display">
+                                  <h4>Packages</h4><br>
+                                  <div id="inputcontainer">
+                                      <input type="radio" name="w_package"  id="w_package'.$p->id.'" value="'.$p->id.'" > 
+                                       <img src="'.asset('storage/'.$p->getPackage->establishment->image).'" style="width:40px;height:40px;padding-left:5px">
+                                      <label for="w_package'.$p->id.'" style="padding-left:10px;">'.$p->getPackage->name.'</label>
+                                      
+                                      <span class="pull-right">Price : '.$p->getPackage->price.'</span>
+                                  </div>
+                                  <br>
+                              </div>';
+
+            }
+
+            foreach ($services as $s){
+                     $result .= '<div id="services-display">
+                                                  <h4>Services</h4><br>
+                                                  <div id="inputcontainer">
+                                                      <input type="checkbox" value="'.$s->id.'" name="w_services[]" id="w_services'.$s->id.'" >
+                                                       <img src="'.asset('storage/'.$s->getService->getEstablishment->image).'" style="width:40px;height:40px;padding-left:5px">
+                                                      <label for="w_services'.$s->id.'" style="padding-left:10px;">'.$s->getService->name.'</label>
+                                                       <span class="pull-right">Price : '.$s->getService->price.'</span>
+                                                  </div>
+                                              </div>';
+            }
+
+
 
         return $result;
 
