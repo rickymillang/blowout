@@ -12,12 +12,12 @@
                       {{--<h4 class="modal-title" style="color: rgba(40, 40, 40, 0.63)">Choose what you want and need!</h4>--}}
                           <input type="hidden" id="w-establishment-id" >
                          <ul>
-                             <li><a href="#step-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                             <li><a href="#step-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                             <li><a href="#step-1">Step 1</a></li>
+                             <li><a href="#step-2">Step 2</a></li>
+                             <li><a href="#step-3">Step 3</a></li>
+                             <li><a href="#step-4">Step 4</a></li>
+                             <li><a href="#step-5">Step 5</a></li>
+                             <li><a href="#step-6">Step 6</a></li>
 
                             {{-- <li><a href="#step-8">Step 8&nbsp;&nbsp;&nbsp;&nbsp;</a></li>--}}      {{-- <li><a href="#step-7">Step 7</a></li>
                                  <li><a href="#step-8">Step 8</a></li>--}}
@@ -116,11 +116,11 @@
                                                    <input type="text" class="form-control" name="w_confirmation_number" id="w_confirmation_number"/>
                                                </div>
                                                <div class="form-group">
-                                                   <label for="inf-name" style="color:#808080">Delivery Address</label>
+                                                   <label for="inf-name" style="color:#808080">Address</label>
                                                    <input type="text" class="form-control" name="w_delivery_address" id="w_delivery_address"/>
                                                </div>
 
-                                               <label for="inf-name" style="color:#808080">Delivery Date</label>
+                                               <label for="inf-name" style="color:#808080">Date</label>
                                                <div class='input-group date' id='datetimepicker4' style="position:relative;">
 
                                                    <input type='text' class="form-control" id="w_delivery_date"/>
@@ -132,10 +132,10 @@
 
                                            <div class="col-md-6">
                                                <h4>Payment Method</h4>
-                                               <div class="form-group">
+                                               <!-- <div class="form-group">
                                                    <input type="radio" name="w_payment_type" value="1" id="w_payment_type" checked="checked"  class="form-control"/>
                                                    <img src="{{ asset('images/cod.png') }}" alt="Cash on Delivery" width="30%" style="margin-left: 5px;" height="20%"/>
-                                               </div>
+                                               </div> -->
                                                <div class="form-group">
                                                    <input type="radio" name="w_payment_type" value="2" id="w_payment_type" class="form-control"/>
                                                    <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" style="margin-left: 5px;" alt="PayPal Logo">
@@ -148,7 +148,7 @@
                                    <div id="step-6" class="steps">
                                        <div class="row">
                                            <div class="col-md-5">
-                                               <h4>Delivery Information</h4>
+                                               <h4>Information</h4>
 
                                                <hr/>
                                                <table id="table_delivery_information">
@@ -163,7 +163,7 @@
                                                        <td id="w_di_contact"></td>
                                                    </tr>
                                                    <tr>
-                                                       <td>No. of Quests</td>
+                                                       <td>No. of Guests</td>
                                                        <td width="20%" align="center">:</td>
                                                        <td id="w_no_guests"></td>
                                                    </tr>
@@ -196,30 +196,36 @@
 
 
                                            </div>
-                                           <div class="col-md-8">
+                                           <br/>
+                                           <div class="col-md-5">
 
-                                               <h4>Product Item</h4>
+                                               <h4>Package Item</h4>
                                                <hr/>
-                                               <div class="table">
+                                               <div class="table"><!-- 
                                                    <table class="table collapsed" id="item_summary_wizard">
                                                        <thead>
                                                        <tr>
                                                            <th></th>
-                                                           <th>Name</th>
+                                                           <th>Type of Event</th>
                                                            <th>Price</th>
-                                                           <th>Quantity</th>
+                                                           <th>Planning Services</th>
                                                        </tr>
                                                        </thead>
                                                        <tbody id="item_summary_wizard_body">
 
                                                        </tbody>
                                                    </table>
-
+ -->
                                                    <table>
                                                        <tr>
-                                                           <td style="color:#5cb85c">Total Item Quantity</td>
+                                                           <td style="color:#5cb85c">Package Amount</td>
                                                            <td width="20%" align="center">:</td>
-                                                           <td id="wizard_total_cart_quantity" align="right">0</td>
+                                                           <td id="wizard_total_package_amount" align="right">0</td>
+                                                       </tr>
+                                                       <tr>
+                                                           <td style="color:#5cb85c">Venue Amount</td>
+                                                           <td width="20%" align="center">:</td>
+                                                           <td id="wizard_total_venue_amount" align="right">0</td>
                                                        </tr>
                                                        <tr>
                                                            <td style="color:#5cb85c">Total Amount</td>
@@ -229,7 +235,7 @@
                                                    </table>
                                                </div>
                                                <hr/>
-                                               <div class="col-md-12">
+                                               <div class="col-md-5">
                                                    <div class="pull-right">
                                                        <input type="checkbox" class="form-control" id="terms_and_condition_checkout_wizard"/>
                                                        <label for=""><a href="#">I hereby accept the term and conditions</a></label>

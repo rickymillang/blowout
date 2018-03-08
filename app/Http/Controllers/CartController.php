@@ -19,6 +19,7 @@ use App\PackageVenue;
 use App\ServiceVenue;
 use App\Notifications\OrderReceived;
 use Semaphore;
+// use DB;
 use Illuminate\Support\Facades\DB;
 
 
@@ -860,24 +861,32 @@ class CartController extends Controller
                                    <div class="venue-name">'.$v->name.'</div>
                                    <div class="venue-address">Address : '.$v->address.'</div>
                                    <div class="venue-guest-number">Guest capacity : '.$v->minimum_capacity.'-'.$v->maximum_capacity.'</div>
+                                   <input type="hidden" value="'.$v->price.'" id="venue_price">
                                    <div class="venue-price">Price : '.$v->price.'</div>
 
                                </div>
                            </div>
-                           <div id="input-venue"><input type="radio" name="input-venue-value" id="input-venue-value" value="'.$v->id.'"></div>
+                           <div id="input-venue"><input type="radio" class="input-venue-value" name="input-venue-value" id="input-venue-value" value="'.$v->id.'"></div>
                        </div>';
         }
 
         return $result;
 
     }
-
+    public function getProducts($id){
+        $products = DB::table('packageables')
+            ->join('packages','packageables.package_id','=','packages.id')
+            ->join('products','packageables.packageable_id','=','products.id')
+            ->where('packageables.package_id',$id)
+            ->get();
+        return $products;
+    }
     public function getPackageAndServices(Request $request,$id){
             $result = '';
-
             $packages = PackageVenue::where('venue_id',$request->venue)->get();
-
             $services = ServiceVenue::where('venue_id',$request->venue)->get();
+
+            // $result = $packages ;
 
             foreach ($packages as $p){
                     $result .= '<div id="packages-display">
@@ -886,24 +895,29 @@ class CartController extends Controller
                                       <input type="radio" name="w_package"  id="w_package'.$p->id.'" value="'.$p->id.'" > 
                                        <img src="'.asset('storage/'.$p->getPackage->establishment->image).'" style="width:40px;height:40px;padding-left:5px">
                                       <label for="w_package'.$p->id.'" style="padding-left:10px;">'.$p->getPackage->name.'</label>
-                                      
+                                      <input type="hidden" id="package_price" value="'.$p->getPackage->price.'">
                                       <span class="pull-right">Price : '.$p->getPackage->price.'</span>
                                   </div>
                                   <br>
                               </div>';
-
+                              $result .= '<a href="#" data-toggle="collapse" data-target="#collapseProd'.$p->id.'">View Details</a><div class="collapse" id="collapseProd'.$p->id.'">';
+                              foreach($this->getProducts($p->id) as $prod){
+                                $result .= '<br>'.$prod->name;
+                              }
+                              $result .= '</div>';
             }
+
 
             foreach ($services as $s){
                      $result .= '<div id="services-display">
-                                                  <h4>Services</h4><br>
-                                                  <div id="inputcontainer">
-                                                      <input type="checkbox" value="'.$s->id.'" name="w_services[]" id="w_services'.$s->id.'" >
-                                                       <img src="'.asset('storage/'.$s->getService->getEstablishment->image).'" style="width:40px;height:40px;padding-left:5px">
-                                                      <label for="w_services'.$s->id.'" style="padding-left:10px;">'.$s->getService->name.'</label>
-                                                       <span class="pull-right">Price : '.$s->getService->price.'</span>
-                                                  </div>
-                                              </div>';
+                                      <h4>Packages</h4><br>
+                                      <div id="inputcontainer">
+                                          <input type="checkbox" value="'.$s->id.'" name="w_services[]" id="w_services'.$s->id.'" >
+                                           <img src="'.asset('storage/'.$s->getService->getEstablishment->image).'" style="width:40px;height:40px;padding-left:5px">
+                                          <label for="w_services'.$s->id.'" style="padding-left:10px;">'.$s->getService->name.'</label>
+                                           <span class="pull-right">Price : '.$s->getService->price.'</span>
+                                      </div>
+                                  </div>';
             }
 
 
