@@ -18,7 +18,10 @@ $("#terms_and_condition_checkout_wizard").on('ifChecked', function(event) {
     //Check all checkoxes
     $('.checkout_from_wizard').removeAttr('disabled');
 });
-
+$('.checkout_from_wizard').click(function(){
+    var total_amount = $('#wizard_total_cart_amount').text();
+    alert(total_amount);
+});
 // Step show event
 $("#w_smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition ) {
     //alert("You are on step "+stepNumber+" now");
@@ -55,7 +58,16 @@ $("#w_smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDir
             getVenue(estab_id);
 
         }else if(stepNumber == 3){
-            getPackageAndServices(estab_id);
+            $('input:radio[name="input-venue-value"]').each(function(){
+                if($(this).is(':checked')){
+                    // alert($(this).val());
+                    // alert(venue_id);
+                    getPackageAndServices(estab_id,$(this).val());
+                    // break;
+                }
+            });
+            // alert($('.input-venue-value').val());
+            
         }
 
         $('.checkout_from_wizard').hide();
@@ -106,6 +118,9 @@ $('.checkout').hide();
 
 
     $('.checkout_from_wizard').on('click',function(){
+        var tot_amount = $('#wizard_total_cart_amount').text();
+        var toPay = parseInt(tot_amount);
+        window.location.href = urlPaypalPayment+"/"+toPay+"/"+token;
         var number_guests = $('#w_number_guests').val();
         var delivery_address = $('#w_delivery_address').val();
         var delivery_date = $('#w_delivery_date').val();
@@ -272,15 +287,20 @@ function getWizardSummary(id){
 
 function getWizardUserinformation(id){
     var number_guests = $('#w_number_guests').val();
+    var confirmation_number = $('#w_confirmation_number').val();
     var delivery_address = $('#w_delivery_address').val();
     var delivery_date = $('#w_delivery_date').val();
     var payment_type = $('input[name=w_payment_type]:checked').val();
+    var package_amount = $('#package_price').val();
+    var venue_amount = $('#venue_price').val();
+
+    // var venue_amount = 
     var organize_from = 3;
 
     $.ajax({
         url: urlgetWizardUserinformation+"/"+id,
         type: "POST",
-        data: {id: id,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,number_guests:number_guests,organize_from:organize_from, _token: token},
+        data: {id: id,confirmation_number:confirmation_number,venue_amount:venue_amount,delivery_address:delivery_address,delivery_date:delivery_date,payment_type:payment_type,number_guests:number_guests,organize_from:organize_from,package_amount:package_amount, _token: token},
         dataType: "json",
         success: function (data) {
             console.log(data.cart);
@@ -290,8 +310,21 @@ function getWizardUserinformation(id){
             $('#w_di_date').text(data.delivery_date);
             $('#w_pm_payment_method').text(data.payment_type);
             $('#w_no_guests').text(data.request.number_guests);
-            $('#wizard_total_cart_quantity').text(data.total_quantity);
-            $('#wizard_total_cart_amount').text(data.total_amount);
+            $('#wizard_total_venue_amount').text($.number(data.request.venue_amount,2));
+
+
+
+            var total_p = parseInt(data.request.number_guests) * parseInt(data.request.package_amount);
+
+
+
+            var total_amount = parseInt(total_p) + parseInt(data.request.venue_amount);
+
+
+
+            $('#wizard_total_cart_amount').text($.number(total_amount,2));
+            $('#wizard_total_package_amount').text($.number(total_p,2));
+
         },
         error: function (data) {
             console.log(data);
@@ -316,25 +349,24 @@ function getVenue(id){
              console.log(data);
         }
     });
-
-
 }
 
-function getPackageAndServices(id){
-      var venue = $('#input-venue-value').val();
-
+function getPackageAndServices(id,venue_id){
     $.ajax({
         url: urlGetPackageAndServices+"/"+id,
         type: "POST",
-        data: {id: id,venue:venue,_token: token},
+        data: {id: id,venue:venue_id,_token: token},
         dataType: "text",
         success:function(data){
-            console.log(data);
+           console.log(id);
+          
+            console.log(venue_id);
+            // console.log(data);
 
         $('#services-and-package-display').html(data);
         },
         error:function(data){
-            console.log(data);
+            // console.log(data);
 
         }
     });

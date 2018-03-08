@@ -564,7 +564,7 @@
            var urlGetQuestion = "{{ URL::to('/cart/get-question') }}";
            var urlGetVenue = "{{ URL::to('/cart/get-venue') }}";
            var urlGetPackageAndServices = "{{ URL::to('/cart/get-package-and-services') }}";
-
+           var urlPaypalPayment = "{{ URL::to('paypal') }}";
 
               $(function() {
                $('.btn-notify').click(function() {
@@ -624,7 +624,7 @@
                             },
                             error: function (data){
                             console.log(data);
-                            alert('wew');
+                            // alert('wew');
                             }
 
                          });

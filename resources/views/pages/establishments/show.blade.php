@@ -216,7 +216,18 @@
 
 	<!-- <div class="page-inner"> -->
 	@include('include.nav')
-
+@if(session()->get('success'))
+    <div class="alert alert-success alert-dismissable fade show">
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        {{ session()->get('success') }}
+    </div>
+    @endif
+    @if(session()->get('error'))
+    <div class="alert alert-success alert-dismissable fade show">
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        {{ session()->get('error') }}
+    </div>
+    @endif
 	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url( {{asset('storage/'.$establishment->image) }});">
 		<div class="overlay"></div>
 		<div class="gtco-container">
