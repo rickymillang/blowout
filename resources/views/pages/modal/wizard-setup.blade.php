@@ -110,7 +110,7 @@
                                            <div class="col-md-6">
                                                <h4>Information Details</h4>
 
-                                              
+
                                                <div class="form-group">
                                                    <label for="inf-name" style="color:#808080">Confirmation Number</label>
                                                    <input type="text" class="form-control" name="w_confirmation_number" id="w_confirmation_number"/>

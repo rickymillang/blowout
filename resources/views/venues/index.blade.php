@@ -39,11 +39,10 @@
                             <td>{{ $venue->price }}</td>
                             <td>
                                 <ul>
-                                    @if(count($venue->event_types) != 0)
+
                                     @foreach($venue->event_types as $event_type)
                                         <li>{{ $event_type->name }}</li>
                                     @endforeach
-                                        @endif
                                 </ul>
                             </td>
                             <td>
