@@ -74,6 +74,13 @@
 		        </div>
 
 		        <div class="form-group">
+					<label for="quantity" class="col-md-2 col-md-offset-2 control-label">Quantity <span class="text-danger">*</span></label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="quantity">
+					</div>
+				</div>
+
+		        <div class="form-group">
 					<label for="price" class="col-md-2 col-md-offset-2 control-label">Price <span class="text-danger">*</span></label>
 					<div class="col-md-6">
 						<input type="number" class="form-control" name="price">
