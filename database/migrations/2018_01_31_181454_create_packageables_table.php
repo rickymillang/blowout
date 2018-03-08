@@ -17,6 +17,7 @@ class CreatePackageablesTable extends Migration
             $table->integer('package_id');
             $table->integer('packageable_id');
             $table->string('packageable_type');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

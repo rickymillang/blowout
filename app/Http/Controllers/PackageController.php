@@ -58,7 +58,8 @@ class PackageController extends Controller
             Packageable::insert([
                 'package_id' => $package->id,
                 'packageable_id' => $request->service,
-                'packageable_type' => 'App\Service'
+                'packageable_type' => 'App\Service',
+                'quantity' => $request->quantity
             ]);
         }
 
@@ -66,7 +67,8 @@ class PackageController extends Controller
             Packageable::insert([
                 'package_id' => $package->id,
                 'packageable_id' => $request->product,
-                'packageable_type' => 'App\Product'
+                'packageable_type' => 'App\Product',
+                'quantity' => $request->quantity
             ]);
         }
 
@@ -98,7 +100,8 @@ class PackageController extends Controller
             Packageable::insert([
                 'package_id' => $package->id,
                 'packageable_id' => $request->service,
-                'packageable_type' => 'App\Service'
+                'packageable_type' => 'App\Service',
+                'quantity' => $request->quantity
             ]);
         }
 
@@ -106,9 +109,11 @@ class PackageController extends Controller
             Packageable::insert([
                 'package_id' => $package->id,
                 'packageable_id' => $request->product,
-                'packageable_type' => 'App\Product'
+                'packageable_type' => 'App\Product',
+                'quantity' => $request->quantity
             ]);
         }
+        dd($request->quantity);
 
         $package->price = $request->price;
 
