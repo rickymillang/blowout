@@ -10,14 +10,16 @@ use App\EstablishmentType;
 class PageController extends Controller
 {
     public function __construct(){
-        $this->establishments = Establishment::where('status',1)->get();
+        /*$this->establishments = Establishment::where('status',1)->get();*/
 
     }
 
-        public function lists(){
+        public function lists($id){
 
+            $establishments = Establishment::where('establishment_type_id',$id)->where('status',1)->get();
             return view('pages.establishment')
-                        ->with('establishments',$this->establishments);
+                        ->with('establishments',$establishments)
+                        ->with('establishment_type_id',$id);
         }
 
         public function about_us()
@@ -32,5 +34,9 @@ class PageController extends Controller
 
      public function contact_us(){
         return view('pages.contact-us');
+     }
+
+     public function establishmentType(){
+         return view('pages.establishment-type');
      }
 }

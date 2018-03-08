@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('paypal/{amount}/{token}', 'PaypalController@payProject')->name('paypal.post');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-Route::get('/establishment/list','PageController@lists');
+Route::get('/establishment/list/{id}','PageController@lists');
+Route::get('/establishment/type','PageController@establishmentType');
 Route::get('/about-us','PageController@about_us');
 Route::get('/contact-us','PageController@contact_us');
 Route::get('/meet-the-team','PageController@meet_the_team');

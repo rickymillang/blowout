@@ -1,5 +1,5 @@
 <!--Start of model div -->
-<div id="wizard-setup" class="modal fade" role="dialog">
+<div id="old-wizard-setup" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->

@@ -296,25 +296,12 @@
 		<div class="gtco-container">
 			<div class="row">
 			<div class="col-lg-9">
-
-			    <button class="btn btn-primary filter-button" value="1">
-			        Catering
-			    </button>
-			     <button class="btn btn-primary filter-button" value="2">
-                    Lechon
-                </button>
-                 <button class="btn btn-primary filter-button" value="4">
-                    Cake
-                </button>
-                 <button class="btn btn-primary filter-button" value="6">
-                    Planner
-                </button>
-                 <button class="btn btn-primary filter-button" value="5">
-                    Entertainer
-                </button>
-                 <button class="btn btn-primary filter-button" value="3">
-                    Party Needs
-                </button>
+				<a href="/establishment/list/1" class="btn btn-primary">Catering</a>
+				<a href="/establishment/list/2" class="btn btn-primary">Lechon</a>
+				<a href="/establishment/list/4" class="btn btn-primary">Cake</a>
+				<a href="/establishment/list/6" class="btn btn-primary">Planner</a>
+				<a href="/establishment/list/5" class="btn btn-primary">Entertainer</a>
+				<a href="/establishment/list/3" class="btn btn-primary">Party Needs</a>
 
 
 			</div>
@@ -468,6 +455,8 @@
 
                 @include('pages.modal.wizard-setup')
 
+				{{--@include('pages.modal.old-wizard-setup')--}}
+
 		</div>
 	</div>
 
@@ -544,7 +533,8 @@
             </script>
 	  <script>
            var token = "{{csrf_token()}}";
-           var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
+           var establishment_type_id = "{{ $establishment_type_id }}";
+		   var user_id = "{{ auth()->check() ? auth()->user()->id:null }}";
            var myurl = "{{ URL::to('/') }}";
            var urlAddCart = "{{ URL::to('/cart') }}";
            var urlAllCartItem = "{{ URL::to('/cart/delete-all') }}";
@@ -585,7 +575,7 @@
                  var setup = $("#setup option:selected").val();
                  var url = "/establishments/"+id;
           		 var establishment_id = id;
-             	 var reseturl = "/establishment/list#step-1";
+             	 var reseturl = "/establishment/list/"+establishment_type_id+"#step-1";
 
                     window.location.replace(reseturl);
                 if(setup == 1){
@@ -611,7 +601,13 @@
 
                 }else{
 
-                     $("#wizard-setup").modal("toggle");
+                  /*  if(establishment_type_id == 6){*/
+                        $("#wizard-setup").modal("toggle");
+					/*}else{
+                        $("#old-wizard-setup").modal("toggle");
+					}
+*/
+
 						$("#w-establishment-id").val(establishment_id);
                       $.ajax({
                             url:urlGetQuestion+"/"+id,

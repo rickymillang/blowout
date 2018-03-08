@@ -8,7 +8,7 @@
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
 					    <li><a href="/">Home</a></li>
-						<li><a href="/establishment/list">Establishment</a></li>
+						<li><a href="/establishment/type">Establishment</a></li>
 
 						<li><a href="/about-us">About Us</a></li>
 						<li><a href="/meet-the-team">Meet The Team</a></li>
