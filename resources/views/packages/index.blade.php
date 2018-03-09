@@ -29,14 +29,14 @@
                             <td>
                                 <ul>
                                     @foreach($package->products as $product)
-                                        <li>{{ $product->name }}</li>
+                                        <li>{{ $product->name }}: {{ $product->pivot->quantity }}</li>
                                     @endforeach
                                 </ul>
                             </td>
                             <td>
                                 <ul>
                                     @foreach($package->services as $service)
-                                        <li>{{ $service->name }}</li>
+                                        <li>{{ $service->name }}: {{ $product->pivot->quantity }}</li>
                                     @endforeach
                                 </ul>
                             </td>

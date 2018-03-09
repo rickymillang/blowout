@@ -15,12 +15,12 @@ class Package extends Model
 
     public function products()
     {
-        return $this->morphedByMany(Product::class, 'packageable');
+        return $this->morphedByMany(Product::class, 'packageable')->withPivot('quantity');
     }
 
     public function services()
     {
-        return $this->morphedByMany(Service::class, 'packageable');
+        return $this->morphedByMany(Service::class, 'packageable')->withPivot('quantity');
     }
 
     public function getEstablishment(){
