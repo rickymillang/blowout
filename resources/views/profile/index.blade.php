@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="widget lazur-bg p-xl text-center text-uppercase">
-                <img alt="image" class="img-circle" style="max-width:64px;" src="{{ asset('storage/' . auth()->user()->avatar) }}" />
+                <img alt="image" class="img-circle" style="max-width:64px;" src="{{ asset(auth()->user()->avatar) }}" />
                 <h1>
                     {{ $user->name }}
                 </h1>

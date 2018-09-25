@@ -18,6 +18,7 @@
                         <th>Name</th>
                         <th>Products</th>
                         <th>Services</th>
+                        <th>Quantity</th>
                         <th>Price</th>
                         <th>Actions</th>
                     </tr>
@@ -40,6 +41,7 @@
                                     @endforeach
                                 </ul>
                             </td>
+                            <td>{{ $package->quantity}}</td>
                             <td>{{ $package->price }}</td>
                             <td>
                                 <a href="/packages/{{ $package->id}}/edit" class="btn btn-success btn-xs">Add Items</a>

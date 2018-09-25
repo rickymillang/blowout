@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                    <img alt="image" class="img-circle" style="max-width:64px;" src="{{ asset('storage/' . auth()->user()->avatar) }}" />
+                    <img alt="image" class="img-circle" style="max-width:64px;" src="{{ asset(auth()->user()->avatar) }}" />
                 </span>
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ auth()->user()->name }}</strong>
@@ -42,15 +42,15 @@
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
-            <li {{ url()->current() == url('home') ? 'class=active' : '' }}>
-                <a href="/establishment/list">
-                    <i class="fa fa-home"></i>
-                    <span class="nav-label">View establishment</span>
-                </a>
-            </li>
 
             @role('establishment.admin')
                 @if(auth()->user()->establishment->status == 1)
+                <li {{ url()->current() == url('home') ? 'class=active' : '' }}>
+                    <a href="/establishment/list/1">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">View establishment</span>
+                    </a>
+                </li>
                 <li {{ url()->current() == url('calendar') ? 'class=active' : '' }}>
                     <a href="/calendar">
                         <i class="fa fa-calendar"></i>
